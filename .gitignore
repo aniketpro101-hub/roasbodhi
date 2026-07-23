@@ -41,7 +41,10 @@ pnpm-debug.log*
 *.sln
 *.swp
 
-# Scratch files
+# Scratch files & Internal Strategy Docs
 scratch/
+extradata/
+*.md
+!README.md
 .env
 .env.*
