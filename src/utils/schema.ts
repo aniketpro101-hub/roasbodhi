@@ -61,7 +61,6 @@ export function organizationSchema() {
     "url": siteUrl,
     "logo": `${siteUrl}/favicon.svg`,
     "description": "Premium performance marketing and website design agency delivering high ROAS for Indian SMB models.",
-    "foundingDate": "2025-05-01",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Navi Mumbai",
@@ -115,7 +114,7 @@ export function localBusinessSchema(city: CityType) {
         "Saturday"
       ],
       "opens": "09:00",
-      "closes": "21:00"
+      "closes": "19:00"
     },
     "areaServed": {
       "@type": "AdministrativeArea",
