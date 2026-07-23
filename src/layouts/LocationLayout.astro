@@ -1,0 +1,211 @@
+---
+import PageLayout from './PageLayout.astro';
+import servicesData from '../data/services.json';
+import { MapPin, CheckCircle, ArrowRight } from 'lucide-astro';
+
+interface Props {
+  city: {
+    name: string;
+    slug: string;
+    state: string;
+    state_slug: string;
+    tier: number;
+    population: string;
+    region: string;
+    languages: string[];
+    top_industries: string[];
+    economic_notes: string;
+    local_market_note: string;
+    local_phrases?: {
+      hello: string;
+      business: string;
+    };
+    landmarks: string[];
+  };
+  service: {
+    id: string;
+    name: string;
+    slug: string;
+    short_name: string;
+    description: string;
+    gradient: string;
+    color: string;
+    benefits: string[];
+  };
+}
+
+const { city, service } = Astro.props;
+
+const siteUrl = 'https://roasbodhi.in';
+const currentPath = `/${service.slug}-agency-${city.slug}/`;
+
+// Create LocalBusiness + Service JSON-LD Schema
+const locationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "name": `RoasBodhi™ ${city.name}`,
+      "image": "https://roasbodhi.in/images/roasbodhi-og.jpg",
+      "url": `${siteUrl}${currentPath}`,
+      "telephone": "+9082543992",
+      "priceRange": "₹7999 - ₹89999",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": city.name,
+        "addressRegion": city.state,
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 20.5937, // default general coordinates if not set, or mapping if available
+        "longitude": 78.9629
+      }
+    },
+    {
+      "@type": "Service",
+      "name": `${service.name} in ${city.name}`,
+      "description": service.description,
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": `RoasBodhi™ ${city.name}`
+      }
+    }
+  ]
+};
+
+// Set breadcrumbs dynamically
+const breadcrumbs = [
+  { label: 'Locations', link: '#' },
+  { label: city.state, link: '#' },
+  { label: city.name, link: currentPath }
+];
+
+// Load other services available in this city (for interlinking)
+const otherServices = servicesData.filter(s => s.slug !== service.slug);
+---
+
+<PageLayout 
+  title={`${service.name} Agency in ${city.name} | RoasBodhi™`}
+  description={`Looking for ${service.name.toLowerCase()} in ${city.name}? RoasBodhi™ delivers 3.5X+ ROAS for local business models in ${city.name}, ${city.state}.`}
+  breadcrumbs={breadcrumbs}
+  schema={locationSchema}
+>
+
+  <!-- Location Specific Hero Override -->
+  <section class="relative bg-neutral-dark text-white py-24 overflow-hidden select-none">
+    
+    <!-- Saffron / Purple Glow points -->
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-primary-saffron/10 rounded-full blur-[100px]"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-secondary-purple/10 rounded-full blur-[100px]"></div>
+    
+    <!-- Grid dots -->
+    <div class="absolute inset-0 bg-[radial-gradient(#ffffff04_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left details copy -->
+        <div class="lg:col-span-8 flex flex-col items-start gap-4">
+          <span class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white font-display font-extrabold text-[10px] uppercase tracking-wider">
+            <MapPin class="w-3.5 h-3.5 text-primary-saffron" />
+            <span>Serving {city.name}, {city.state}</span>
+          </span>
+          
+          <h1 class="font-display font-extrabold text-3xl sm:text-6xl text-white tracking-tight leading-tight">
+            Enlightened {service.name} <br />
+            <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">For {city.name} SMBs</span>
+          </h1>
+
+          <p class="font-body text-sm sm:text-base text-white/70 max-w-2xl leading-relaxed mt-2">
+            Awakening ad returns and high-speed web setups for local businesses near landmarks like {city.landmarks.slice(0, 2).join(' or ')}. 
+            We align templates in local languages ({city.languages.join(' and ')}) to target the region's top industries.
+          </p>
+
+          <div class="flex flex-wrap gap-4 mt-6">
+            <a 
+              href="#local-page-form" 
+              class="px-6 py-3.5 bg-gradient-to-r from-primary-saffron to-primary-gold hover:shadow-button-saffron hover:-translate-y-0.5 rounded-xl font-display font-extrabold text-xs tracking-wider uppercase transition-all duration-300"
+            >
+              Get Free Local Audit
+            </a>
+            <a 
+              href={`https://wa.me/9082543992?text=${encodeURIComponent(`Namaste RoasBodhi™! Let's consult on ${service.name} for my business in ${city.name}.`)}`}
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="px-6 py-3.5 border border-white/20 hover:bg-white/5 rounded-xl font-display font-extrabold text-xs tracking-wider uppercase transition-colors"
+            >
+              Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Right statistics snapshot card -->
+        <div class="lg:col-span-4 bg-white/5 border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-md flex flex-col gap-4">
+          <span class="text-[10px] text-white/50 uppercase tracking-widest font-semibold font-body">Local Market Profile</span>
+          <div class="flex flex-col border-b border-white/10 pb-4">
+            <span class="text-white font-display font-bold text-lg">{city.name} Market</span>
+            <span class="text-xs text-white/60 mt-1">Top Industries: {city.top_industries.slice(0, 2).join(', ')}</span>
+          </div>
+          <div class="flex justify-between items-center text-xs font-body text-white/80">
+            <span>Est. Business Count:</span>
+            <span class="font-mono font-bold text-primary-gold">{city.business_count || '1,000+'}</span>
+          </div>
+          <div class="flex justify-between items-center text-xs font-body text-white/80">
+            <span>Local Greeting:</span>
+            <span class="font-body font-bold text-primary-gold">{city.local_phrases?.hello || 'Namaste'}</span>
+          </div>
+          <div class="p-3 bg-secondary-purple/10 border border-secondary-purple/20 rounded-lg text-[11px] text-white/80 leading-relaxed">
+            <b>Local Insight:</b> {city.local_market_note}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Location Slot Page Content (Injects dynamic pricing cards, local FAQs, etc.) -->
+  <slot />
+
+  <!-- Interlinking Service Directory for this Specific City -->
+  <section class="py-24 bg-white select-none">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="font-display font-extrabold text-xs text-primary-saffron uppercase tracking-widest">
+          Local Directory
+        </span>
+        <h2 class="font-display font-extrabold text-neutral-dark text-2xl sm:text-4xl mt-3 tracking-tight">
+          Other Digital Services in {city.name}
+        </h2>
+        <p class="font-body text-xs sm:text-sm text-neutral-charcoal/80 mt-2 font-medium">
+          Scale other channels of your business using our localized performance setups.
+        </p>
+      </div>
+
+      <!-- Services interlinking grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        {otherServices.map(oth => (
+          <a 
+            href={`/${oth.slug}-agency-${city.slug}/`} 
+            class="bg-neutral-ghost border border-neutral-mist hover:border-primary-saffron hover:bg-white rounded-xl p-5 hover:shadow-card-default transition-all duration-300 flex flex-col group"
+          >
+            <span class="font-display font-bold text-xs text-neutral-dark group-hover:text-primary-saffron transition-colors">
+              {oth.short_name}
+            </span>
+            <span class="font-body text-[10px] text-neutral-stone mt-1.5 leading-relaxed flex-grow">
+              {oth.short_description}
+            </span>
+            <span class="font-display font-extrabold text-[10px] text-primary-saffron flex items-center gap-1 mt-4">
+              Explore 
+              <ArrowRight class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </span>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+</PageLayout>

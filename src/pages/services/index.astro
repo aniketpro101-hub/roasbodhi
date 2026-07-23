@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import CtaSection from '../../components/sections/CtaSection.astro';
+import servicesData from '../../data/services.json';
+import { ArrowRight, Check } from 'lucide-astro';
+
+const pageTitle = "Our Digital Marketing Services | RoasBodhi";
+const pageDescription = "Explore our Sanskrit-themed performance marketing packages. From Meta and Google Ads to GMB SEO and high-speed web design.";
+const servicesKeywords = "digital marketing services India, Meta Ads services, Google Ads services, web design services, local SEO services";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} keywords={servicesKeywords}>
+  
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal text-left select-none">
+    
+    <!-- Hero Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <SectionLabel text="SERVICE PACKAGES" />
+      <h1 class="font-display font-extrabold text-neutral-dark text-4xl sm:text-6xl mt-3 tracking-tight">
+        Awaken Your Business <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">With Sanskrit Systems</span>
+      </h1>
+      <p class="font-body text-sm sm:text-base text-neutral-stone mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+        Professional ad campaign setups and custom web speed optimizations with Pay-After-Seeing™ model.
+      </p>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {servicesData.map(service => (
+          <div class="bg-white border border-neutral-mist rounded-3xl p-8 flex flex-col justify-between hover:shadow-card-hover hover:border-primary-saffron/30 transition-all duration-300 group">
+            <div>
+              <div 
+                class="w-12 h-12 rounded-xl flex items-center justify-center border flex-shrink-0"
+                style={`background-color: ${service.color}12; border-color: ${service.color}25; color: ${service.color};`}
+              >
+                {service.icon === 'flame' && (
+                  <svg class="w-5.5 h-5.5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm4.25 13.5h-8.5v-1.5h8.5v1.5zm0-2.5h-8.5v-1.5h8.5v1.5zm0-2.5h-8.5v-1.5h8.5v1.5z" />
+                  </svg>
+                )}
+                {service.icon === 'target' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
+                {service.icon === 'code' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                  </svg>
+                )}
+                {service.icon === 'map-pin' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  </svg>
+                )}
+                {service.icon === 'trending-up' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                  </svg>
+                )}
+                {service.icon === 'instagram' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                  </svg>
+                )}
+              </div>
+
+              <h3 class="font-display font-extrabold text-lg text-neutral-dark mt-5 leading-tight group-hover:text-primary-saffron transition-colors">
+                {service.name}
+              </h3>
+              
+              <span class="font-body font-semibold italic text-[10px] text-neutral-stone mt-1 block">
+                ({service.sanskrit_plan_name})
+              </span>
+
+              <p class="font-body text-xs mt-3 leading-relaxed text-neutral-charcoal/80">
+                {service.short_description}
+              </p>
+
+              <ul class="flex flex-col gap-2 mt-5">
+                {service.benefits.slice(0, 3).map(benefit => (
+                  <li class="flex items-center gap-2 text-[11px] font-body font-semibold leading-none">
+                    <Check class="w-3.5 h-3.5 text-secondary-emerald" />
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-neutral-mist/50">
+              <a 
+                href={`/services/${service.slug}/`}
+                class="font-display font-extrabold text-[9px] uppercase tracking-wider flex items-center justify-end gap-1 text-primary-saffron"
+                style={`color: ${service.color};`}
+              >
+                <span>Learn More</span>
+                <ArrowRight class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Audit form banner -->
+    <CtaSection />
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

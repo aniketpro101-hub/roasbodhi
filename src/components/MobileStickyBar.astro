@@ -1,0 +1,67 @@
+---
+import { Phone, MessageCircle } from 'lucide-astro';
+
+interface Props {
+  phone?: string;
+  whatsappMessage?: string;
+}
+
+const { 
+  phone = "+9082543992", 
+  whatsappMessage = "Namaste RoasBodhi™! I'd like to consult on web design and ads for my business." 
+} = Astro.props;
+
+const cleanPhone = phone.replace(/[^0-9+]/g, '');
+const whatsappUrl = `https://wa.me/9082543992?text=${encodeURIComponent(whatsappMessage)}`;
+---
+
+<div 
+  id="mobile-sticky-bar" 
+  class="md:hidden fixed bottom-0 left-0 right-0 h-[60px] bg-gradient-to-r from-primary-saffron to-primary-gold z-40 grid grid-cols-2 shadow-[0_-4px_20px_rgba(0,0,0,0.12)] border-t border-white/10 transition-transform duration-300 translate-y-0 select-none"
+>
+  <!-- Left Button: Call -->
+  <a 
+    href={`tel:${cleanPhone}`} 
+    class="flex items-center justify-center gap-2 border-r border-white/20 hover:bg-white/10 active:bg-white/20 text-white font-display font-extrabold text-xs uppercase tracking-wider"
+  >
+    <Phone class="w-4.5 h-4.5 text-white" />
+    <span>Call Now</span>
+  </a>
+
+  <!-- Right Button: WhatsApp -->
+  <a 
+    href={whatsappUrl} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="flex items-center justify-center gap-2 hover:bg-white/10 active:bg-white/20 text-white font-display font-extrabold text-xs uppercase tracking-wider"
+  >
+    <MessageCircle class="w-5 h-5 fill-white text-white" />
+    <span>WhatsApp</span>
+  </a>
+</div>
+
+<script>
+  // Hide sticky bar when footer is intersecting the viewport
+  document.addEventListener('DOMContentLoaded', () => {
+    const stickyBar = document.getElementById('mobile-sticky-bar');
+    const footer = document.querySelector('footer');
+
+    if (stickyBar && footer) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Hide sticky bar
+            stickyBar.classList.add('translate-y-full');
+          } else {
+            // Show sticky bar
+            stickyBar.classList.remove('translate-y-full');
+          }
+        });
+      }, {
+        threshold: 0.05 // Trigger when even a tiny bit of the footer is visible
+      });
+
+      observer.observe(footer);
+    }
+  });
+</script>

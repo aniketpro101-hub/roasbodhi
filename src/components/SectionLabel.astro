@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string;
+  color?: string; // Tailwind class like 'text-primary-saffron' or custom hex
+}
+
+const { text, color = 'text-primary-saffron' } = Astro.props;
+---
+
+<div class="flex items-center gap-2 select-none">
+  <!-- Accent Line / Dot Decoration -->
+  <span class={`h-1 w-8 rounded-full bg-gradient-to-r from-primary-saffron to-primary-gold`}></span>
+  <span class={`font-display font-extrabold text-xs uppercase tracking-widest ${color}`}>
+    {text}
+  </span>
+</div>

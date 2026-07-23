@@ -1,0 +1,54 @@
+---
+import SectionLabel from '../SectionLabel.astro';
+import { Check } from 'lucide-astro';
+
+interface Props {
+  benefits: string[];
+  color: string;
+  serviceName: string;
+}
+
+const { benefits, color, serviceName } = Astro.props;
+---
+
+<section class="py-24 bg-neutral-ghost relative overflow-hidden select-none text-neutral-charcoal">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- HEADER -->
+    <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-16">
+      <SectionLabel text="WHAT IS INCLUDED" />
+      
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight mt-2 text-center">
+        Complete Deliverables <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">We Manage For You</span>
+      </h2>
+      
+      <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-2 max-w-xl leading-relaxed font-semibold">
+        Everything required to launch, monitor, and scale your {serviceName} campaigns.
+      </p>
+    </div>
+
+    <!-- BENEFITS CARDS GRID -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto text-left">
+      {benefits.map(benefit => (
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm hover:shadow-card-hover hover:border-primary-saffron/30 transition-all duration-300 flex flex-col gap-4">
+          <div 
+            class="w-10 h-10 rounded-xl flex items-center justify-center border flex-shrink-0"
+            style={`background-color: ${color}12; border-color: ${color}20; color: ${color};`}
+          >
+            <Check class="w-5 h-5 stroke-[2.5]" />
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-display font-extrabold text-sm text-neutral-dark">
+              {benefit}
+            </span>
+            <span class="font-body text-[11px] text-neutral-stone leading-relaxed font-medium mt-1">
+              Fully optimized, configured, and tracked by our specialist team.
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

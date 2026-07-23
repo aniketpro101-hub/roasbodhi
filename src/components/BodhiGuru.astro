@@ -1,0 +1,153 @@
+---
+// No frontmatter needed — purely client-side
+---
+
+<!-- Bodhi Guru Chatbot Widget -->
+<div id="bodhi-guru-widget" aria-label="Bodhi Guru Chat" role="complementary">
+
+  <!-- CLOSED STATE: Floating Button -->
+  <div id="bg-trigger-btn" 
+       role="button" 
+       tabindex="0" 
+       aria-label="Open Bodhi Guru Chat"
+       aria-expanded="false">
+    
+    <!-- Pulse ring animation -->
+    <div class="bg-pulse-ring"></div>
+    
+    <!-- Button icon -->
+    <div class="bg-btn-icon">
+      <!-- Bodhi Leaf SVG -->
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" 
+           xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14 2C8 2 4 7 4 14C4 18 6 21 9 23L14 26L19 23C22 21 24 18 24 14C24 7 20 2 14 2Z" 
+              fill="white" opacity="0.9"/>
+        <path d="M14 6C14 6 10 10 10 15C10 18 12 20 14 21C16 20 18 18 18 15C18 10 14 6 14 6Z" 
+              fill="#FF6B2B"/>
+        <path d="M14 8L14 22" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M11 13C11 13 12.5 14 14 14C15.5 14 17 13 17 13" 
+              stroke="#FF6B2B" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </div>
+    
+    <!-- Notification dot -->
+    <div class="bg-notification-dot" aria-hidden="true"></div>
+    
+    <!-- Tooltip -->
+    <div class="bg-tooltip" role="tooltip">Chat with Bodhi Guru 🙏</div>
+    
+  </div>
+
+  <!-- Message Preview Notification Bubble -->
+  <div id="bg-preview-bubble" class="bg-preview-bubble" role="alert" style="display: none;">
+    <span class="bg-preview-close" id="bg-preview-close" role="button" aria-label="Dismiss message">&times;</span>
+    <div class="bg-preview-text">Namaste! Need help growing your business? 🙏</div>
+  </div>
+
+  <!-- OPEN STATE: Chat Window -->
+  <div id="bg-chat-window" 
+       role="dialog" 
+       aria-label="Bodhi Guru Chat Window"
+       aria-modal="false"
+       hidden>
+    
+    <!-- HEADER -->
+    <div class="bg-header">
+      <div class="bg-header-avatar" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 28 28" fill="none" 
+             xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 2C8 2 4 7 4 14C4 18 6 21 9 23L14 26L19 23C22 21 24 18 24 14C24 7 20 2 14 2Z" 
+                fill="white" opacity="0.9"/>
+          <path d="M14 6C14 6 10 10 10 15C10 18 12 20 14 21C16 20 18 18 18 15C18 10 14 6 14 6Z" 
+                fill="#FF6B2B"/>
+          <path d="M14 8L14 22" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="bg-header-info">
+        <div class="bg-header-name">Bodhi Guru</div>
+        <div class="bg-header-status">
+          <span class="bg-online-dot" aria-hidden="true"></span>
+          Online • Replies instantly
+        </div>
+      </div>
+      <div class="bg-header-actions">
+        <button class="bg-minimize-btn" 
+                aria-label="Minimize chat"
+                title="Minimize">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" 
+               stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M5 12h14"/>
+          </svg>
+        </button>
+        <button class="bg-close-btn" 
+                aria-label="Close chat"
+                title="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" 
+               stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- MESSAGE AREA -->
+    <div id="bg-messages" 
+         class="bg-messages" 
+         role="log" 
+         aria-live="polite" 
+         aria-label="Chat messages">
+      <!-- Messages injected here by JavaScript -->
+    </div>
+
+    <!-- BUTTONS AREA -->
+    <div id="bg-buttons" class="bg-buttons" role="group" aria-label="Chat options">
+      <!-- Option buttons injected here by JavaScript -->
+    </div>
+
+    <!-- INPUT AREA (hidden initially, shown for name/phone) -->
+    <div id="bg-input-area" class="bg-input-area" hidden>
+      <input type="text" 
+             id="bg-input-field"
+             class="bg-input-field"
+             autocomplete="off"
+             aria-label="Type your answer"/>
+      <button id="bg-send-btn" 
+              class="bg-send-btn"
+              aria-label="Send message"
+              disabled>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" 
+             stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="bg-footer" aria-hidden="true">
+      🔒 Secure • Powered by RoasBodhi
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Load chatbot script AFTER page is ready -->
+<script>
+  // Load chatbot only after everything else is done
+  // Uses requestIdleCallback for zero performance impact
+  function loadBodhiGuru() {
+    const script = document.createElement('script');
+    script.src = '/scripts/chatbot.js';
+    script.defer = true;
+    document.body.appendChild(script);
+  }
+  
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadBodhiGuru, { timeout: 5000 });
+  } else {
+    setTimeout(loadBodhiGuru, 3000);
+  }
+</script>
+
+<link rel="stylesheet" href="/styles/chatbot.css" media="print" 
+      onload="this.media='all'"/>

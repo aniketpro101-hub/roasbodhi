@@ -1,0 +1,279 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ServiceHero from '../../components/sections/ServiceHero.astro';
+import ServiceProcess from '../../components/sections/ServiceProcess.astro';
+import ServiceBenefits from '../../components/sections/ServiceBenefits.astro';
+import ServicePricing from '../../components/sections/ServicePricing.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import CtaSection from '../../components/sections/CtaSection.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import { ShieldCheck, MapPin } from 'lucide-astro';
+
+// Load our databases
+import servicesData from '../../data/services.json';
+import citiesData from '../../data/cities.json';
+import caseStudiesData from '../../data/case-studies.json';
+
+// Import Schema utilities
+import { generateServiceSchema, generateFAQSchema, generateBreadcrumbSchema } from '../../utils/schema';
+
+export async function getStaticPaths() {
+  return servicesData.map(service => ({
+    params: {
+      service: service.slug
+    },
+    props: {
+      service
+    }
+  }));
+}
+
+interface Props {
+  service: typeof servicesData[0];
+}
+
+const { service } = Astro.props;
+
+// Map service id to pricing key
+const serviceKeys = {
+  'meta-ads': 'meta_ads',
+  'google-ads': 'google_ads',
+  'web-development': 'web_design',
+  'google-my-business': 'google_my_business',
+  'research-reports': 'research_reports'
+};
+const serviceKey = serviceKeys[service.id as keyof typeof serviceKeys] || 'meta_ads';
+
+const pageTitle = `${service.name} Management Agency India | ${service.short_name} Expert - RoasBodhi`;
+const pageDescription = `${service.name} Management Agency India. RoasBodhi™ delivers risk-free performance campaigns with Pay-After-Seeing™ protection. Audit response in 2 hours.`;
+
+// Filter relevant case studies
+const relevantCaseStudies = caseStudiesData.slice(0, 3); // Take first 3 case studies as generic proof
+
+// Dynamic local FAQs for this service page
+const localFaqs = service.faqs.map(faq => ({
+  question: faq.question.replace(/{city}/g, 'India').replace(/{state}/g, ''),
+  answer: faq.answer.replace(/{city}/g, 'India').replace(/{state}/g, '')
+}));
+
+// Group 505 cities by state for the directory links hub
+const citiesByState = citiesData.reduce((acc, city) => {
+  if (!acc[city.state]) {
+    acc[city.state] = [];
+  }
+  acc[city.state].push(city);
+  return acc;
+}, {} as Record<string, typeof citiesData>);
+
+// Sort states alphabetically
+const sortedStates = Object.keys(citiesByState).sort();
+
+// Structured JSON-LD Schemas
+const mockCityPlaceholder = { name: 'India', slug: 'india', state: 'India', coordinates: { lat: '20.5937', lng: '78.9629' } };
+const serviceSchema = generateServiceSchema(service, mockCityPlaceholder);
+const faqSchema = generateFAQSchema(localFaqs);
+const breadcrumbsSchema = generateBreadcrumbSchema([
+  { label: 'Services', href: '/contact/' },
+  { label: service.name, href: `/services/${service.slug}/` }
+]);
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    serviceSchema,
+    faqSchema,
+    breadcrumbsSchema
+  ]
+};
+
+// Target list of industries for grid
+const industries = [
+  { name: "Real Estate Developers", icon: "🏢" },
+  { name: "Dental Clinics", icon: "🦷" },
+  { name: "Jewellery Showrooms", icon: "💎" },
+  { name: "Hospitals & Medical", icon: "🏥" },
+  { name: "B2B Manufacturers", icon: "⚙️" },
+  { name: "Coaching Institutes", icon: "📚" },
+  { name: "Restaurants & Cafes", icon: "🍽️" },
+  { name: "Gyms & Fitness Centers", icon: "💪" }
+];
+
+const serviceKeywords = `${service.name} agency India, ${service.short_name} agency India, ${service.short_name} expert, ${service.short_name} consulting`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} keywords={serviceKeywords} schema={combinedSchema}>
+  
+  <Header />
+
+  <main class="flex-grow">
+    
+    <!-- 1. Service Hero Section -->
+    <ServiceHero service={service} />
+
+    <!-- 2. Educational Section -->
+    <section class="py-24 bg-white relative overflow-hidden select-none text-neutral-charcoal text-left">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Text column -->
+          <div class="lg:col-span-7 flex flex-col items-start gap-4">
+            <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest">
+              MARKET STRATEGY
+            </span>
+            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark tracking-tight leading-tight">
+              Why Indian SMBs Need Certified <br />
+              <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">{service.short_name} Audits</span>
+            </h2>
+            <p class="font-body text-xs sm:text-sm text-neutral-charcoal/80 leading-relaxed font-semibold">
+              Operating a business in India requires more than just launching ad campaigns. Traditional agencies focus purely on "clicks" or "impressions" that drain budget without producing physical sales or phone calls. At RoasBodhi™, we align our setups directly with your sales calendar.
+            </p>
+            <p class="font-body text-xs sm:text-sm text-neutral-charcoal/80 leading-relaxed font-semibold">
+              With our risk-free Pay-After-Seeing™ web layout system and optimized lead-capture forms, you verify results before transferring service fees. Every landing page we deploy is optimized for target cities across Tier 1, Tier 2, and Tier 3 markets.
+            </p>
+          </div>
+
+          <!-- Highlight graphic column -->
+          <div class="lg:col-span-5 bg-neutral-ghost border border-neutral-mist rounded-3xl p-6 shadow-sm flex flex-col gap-4">
+            <h4 class="font-display font-extrabold text-xs text-neutral-dark border-b border-neutral-mist pb-3">
+              Performance Highlights
+            </h4>
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-full bg-secondary-emerald/10 border border-secondary-emerald/20 flex items-center justify-center text-secondary-emerald flex-shrink-0">
+                ✓
+              </div>
+              <p class="font-body text-[11px] text-neutral-charcoal leading-relaxed font-semibold">
+                <b>Pre-Launch Refund Policy:</b> If you're not completely satisfied with your custom web layout preview, we refund every rupee before taking your site live.
+              </p>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-9 h-9 rounded-full bg-secondary-emerald/10 border border-secondary-emerald/20 flex items-center justify-center text-secondary-emerald flex-shrink-0">
+                ✓
+              </div>
+              <p class="font-body text-[11px] text-neutral-charcoal leading-relaxed font-semibold">
+                <b>Live Campaign Dashboards:</b> Direct integration with Meta/Google ads tracking metrics so you always know your exact cost per lead.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. What is Included (Benefits Grid) -->
+    <ServiceBenefits benefits={service.benefits} color={service.color} serviceName={service.name} />
+
+    <!-- 4. Methodology Process -->
+    <ServiceProcess serviceId={service.id} serviceName={service.name} />
+
+    <!-- 5. Industries Grid Section -->
+    <section class="py-24 bg-white select-none text-neutral-charcoal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-16">
+          <SectionLabel text="SECTORS SERVED" />
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-neutral-dark tracking-tight mt-2 text-center">
+            Industries We Scale With {service.short_name}
+          </h2>
+          <p class="font-body text-xs sm:text-sm text-neutral-stone font-semibold mt-1">
+            Custom localized campaigns configured for commercial trades.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-5xl mx-auto text-left">
+          {industries.map(ind => (
+            <div class="bg-neutral-ghost border border-neutral-mist hover:border-primary-saffron/30 hover:bg-white rounded-xl p-5 hover:shadow-card-default transition-all duration-300 flex flex-col items-start gap-3 group">
+              <span class="text-2xl">{ind.icon}</span>
+              <span class="font-display font-extrabold text-xs text-neutral-dark group-hover:text-primary-saffron transition-colors">
+                {ind.name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Campaign Results (Case Studies Grid) -->
+    <section class="py-24 bg-neutral-ghost select-none text-neutral-charcoal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-16">
+          <SectionLabel text="CAMPAIGN PROOF" />
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-neutral-dark tracking-tight mt-2 text-center">
+            Verified {service.short_name} Case Results
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
+          {relevantCaseStudies.map(caseStudy => (
+            <CaseStudyCard caseStudy={caseStudy} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Dynamic Pricing Cards -->
+    <ServicePricing serviceKey={serviceKey} serviceName={service.name} />
+
+    <!-- 8. Cities Directory Hub (Index path linkages) -->
+    <section class="py-24 bg-neutral-dark text-white select-none relative overflow-hidden">
+      <!-- Glow effect -->
+      <div class="absolute right-[-200px] bottom-0 w-[400px] h-[400px] bg-primary-saffron/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <span class="font-display font-extrabold text-xs text-primary-gold uppercase tracking-widest">
+          PAN-INDIA DIRECTORY HUB
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-tight mt-3">
+          Local {service.name} Agencies
+        </h2>
+        <p class="font-body text-xs sm:text-sm text-white/60 mt-1 max-w-xl mx-auto font-medium">
+          Select your local market below to access dynamic pricing and geo-targeted optimization reports.
+        </p>
+
+        <!-- Dynamic Hub List Grouped by State -->
+        <div class="flex flex-col gap-10 mt-16 text-left max-w-6xl mx-auto h-[480px] overflow-y-auto pr-4 border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-md">
+          {sortedStates.map(state => {
+            const stateCities = citiesByState[state];
+            return (
+              <div class="flex flex-col gap-3">
+                <span class="font-display font-extrabold text-xs text-primary-gold uppercase tracking-widest border-b border-white/10 pb-1.5 w-full">
+                  {state}
+                </span>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-body text-xs text-white/70">
+                  {stateCities.map(city => (
+                    <a 
+                      href={`/${service.slug}-agency-${city.slug}/`}
+                      class="hover:text-primary-saffron hover:translate-x-0.5 block transition-all"
+                    >
+                      {city.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Dynamic FAQ Accordions -->
+    <section class="py-24 bg-white select-none text-neutral-charcoal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-16">
+          <SectionLabel text="FAQ DIRECTORY" />
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-neutral-dark tracking-tight mt-2">
+            Got Questions? We Have Answers.
+          </h2>
+        </div>
+
+        <FAQAccordion faqs={localFaqs} />
+      </div>
+    </section>
+
+    <!-- 10. Audit CTA Capture -->
+    <CtaSection />
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

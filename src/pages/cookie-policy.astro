@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Cookie Policy | RoasBodhi";
+const pageDescription = "Comprehensive Cookie Policy for Namaste Sales Enterprises (operating as RoasBodhi™) in accordance with the DPDP Act 2023.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} noIndex={true}>
+  
+  <Header />
+
+  <main class="flex-grow pt-32 pb-24 bg-neutral-ghost text-neutral-charcoal text-left">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-12 border-b border-neutral-mist pb-8">
+        <span class="px-3 py-1 rounded-full bg-primary-saffron/10 text-primary-saffron text-[10px] font-display font-extrabold uppercase tracking-widest">
+          Legal Policy
+        </span>
+        <h1 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl mt-3 tracking-tight">
+          Cookie Policy
+        </h1>
+        <p class="font-body text-xs text-neutral-stone mt-2 font-semibold">
+          Last Updated: July 18, 2026
+        </p>
+      </div>
+
+      <div class="prose prose-sm max-w-none font-body text-neutral-charcoal/90 leading-relaxed space-y-8 select-none">
+        
+        <!-- SECTION 1 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            1. WHAT ARE COOKIES
+          </h2>
+          <p>
+            Cookies are small text files containing numbers and letters that are downloaded to your browser or device when you visit a website. They are sent back to the originating website on each subsequent visit, allowing the platform to identify your browser, remember your preferences, and secure your session.
+          </p>
+          <p>
+            Cookies play a vital role in web performance. We categorize cookies based on their duration and source:
+          </p>
+          <ul class="list-disc pl-6 space-y-1.5 text-xs">
+            <li>**Session Cookies:** Temporary files that expire and are deleted automatically when you close your browser.</li>
+            <li>**Persistent Cookies:** Files that remain on your browser for a specified duration or until you delete them manually.</li>
+            <li>**First-Party Cookies:** Set directly by the Website domain you are visiting.</li>
+            <li>**Third-Party Cookies:** Set by external service providers integrated into our platform (like Google Analytics, Microsoft Clarity, and Meta).</li>
+          </ul>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section class="space-y-4">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            2. COOKIES WE USE
+          </h2>
+          <p>
+            We use cookies to improve user experience, secure our platform, analyze traffic patterns, and deliver relevant advertisements. The cookies we use are classified into four main categories:
+          </p>
+
+          <div class="space-y-2">
+            <h3 class="font-display font-bold text-sm text-neutral-dark">
+              2A. Essential Cookies (Strictly Necessary)
+            </h3>
+            <p>
+              These cookies are essential for our Website to function. They enable core security features, page load balance, and form submissions. Because the website cannot function properly without them, they cannot be disabled.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="font-display font-bold text-sm text-neutral-dark">
+              2B. Analytics Cookies
+            </h3>
+            <p>
+              These cookies collect anonymous, aggregated data about how visitors interact with our Website, helping us optimize loading speeds and layout structures:
+            </p>
+            <ul class="list-disc pl-6 space-y-1 text-xs">
+              <li>**Google Analytics 4 (GA4):** We use standard cookies (like `_ga`, `_gid`, `_gat`) to track traffic sources, page views, and user behavior. The data collected is anonymous and is retained for a maximum of 26 months.</li>
+              <li>**Microsoft Clarity:** Used to generate session recordings and heatmaps to analyze website interactions. Microsoft Clarity stores user identifiers under persistent cookies for up to 1 year.</li>
+            </ul>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="font-display font-bold text-sm text-neutral-dark">
+              2C. Marketing Cookies
+            </h3>
+            <p>
+              These cookies are set by third-party advertising networks to build interest profiles and deliver relevant advertisements on external channels:
+            </p>
+            <ul class="list-disc pl-6 space-y-1 text-xs">
+              <li>**Meta Pixel (Facebook):** We use the `_fbp` cookie to track ad conversion actions and build custom audience groups for retargeting campaigns. Meta retains this data for up to 90 days.</li>
+              <li>**Google Ads Remarketing:** Tracks conversion events from Google Ads campaigns and enables retargeting across the Google Display Network.</li>
+            </ul>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="font-display font-bold text-sm text-neutral-dark">
+              2D. Functional Cookies
+            </h3>
+            <p>
+              These cookies remember preferences and choices you make on our Website, such as language selections or form data inputs, to provide a more personalized browsing experience.
+            </p>
+          </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            3. THIRD-PARTY COOKIES DIRECTORY
+          </h2>
+          <p>
+            For transparency, we list our primary third-party integration partners below. We recommend reviewing their privacy policies to manage their tracking parameters:
+          </p>
+          <ul class="list-disc pl-6 space-y-1.5 text-xs">
+            <li>**Cloudflare (Security & CDN):** <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" class="text-primary-saffron hover:underline">Cloudflare Privacy Policy</a></li>
+            <li>**Google (Analytics & Ads):** <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary-saffron hover:underline">Google Privacy Policy</a></li>
+            <li>**Meta (Facebook & Instagram Ads):** <a href="https://www.facebook.com/policy.php" target="_blank" rel="noopener noreferrer" class="text-primary-saffron hover:underline">Meta Privacy Policy</a></li>
+            <li>**Microsoft Clarity (Analytics):** <a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank" rel="noopener noreferrer" class="text-primary-saffron hover:underline">Microsoft Privacy Statement</a></li>
+            <li>**Razorpay (Payment Processing):** <a href="https://razorpay.com/privacy/" target="_blank" rel="noopener noreferrer" class="text-primary-saffron hover:underline">Razorpay Privacy Policy</a></li>
+          </ul>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            4. HOW TO MANAGE COOKIES
+          </h2>
+          <p>
+            You have the right to accept, customize, or reject cookies. You can manage your preferences through the following methods:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-xs">
+            <li>**Cookie Consent Banner:** When you first visit our Website, a cookie banner is displayed. You can choose to accept all cookies, reject non-essential cookies, or customize your tracking preferences.</li>
+            <li>**Browser Settings:** You can configure your browser to block, notify, or delete cookies. Below are links to instructions for popular browsers:
+              <ul class="list-disc pl-6 mt-1 space-y-1">
+                <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer" class="text-primary-saffron hover:underline">Google Chrome</a></li>
+                <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener noreferrer" class="text-primary-saffron hover:underline">Mozilla Firefox</a></li>
+                <li><a href="https://support.apple.com/en-in/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" class="text-primary-saffron hover:underline">Apple Safari</a></li>
+                <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63dcf96b-0b0c-b0d7-75a2-83b7b2aac695" target="_blank" rel="noopener noreferrer" class="text-primary-saffron hover:underline">Microsoft Edge</a></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            5. IMPACT OF DISABLING COOKIES
+          </h2>
+          <p>
+            If you choose to block or delete cookies, you can still browse our Website. However, please note that certain features, interactive widgets (like our ROAS calculator), and personalized layouts may not function correctly.
+          </p>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            6. DATA COLLECTED VIA COOKIES
+          </h2>
+          <p>
+            The cookies used on our Website collect technical, non-personally identifiable indicators, including:
+          </p>
+          <ul class="list-disc pl-6 space-y-1.5 text-xs">
+            <li>Your IP address and device/browser details.</li>
+            <li>Your operating system version and screen resolution.</li>
+            <li>Referrer URLs (the website or link that directed you to our platform).</li>
+            <li>Page view counts, visit duration, and click history.</li>
+          </ul>
+        </section>
+
+        <!-- SECTION 7 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            7. YOUR RIGHTS UNDER DPDP ACT 2023
+          </h2>
+          <p>
+            In accordance with the Digital Personal Data Protection Act, 2023 (DPDP Act), we treat cookie consent in India with high transparency:
+          </p>
+          <ul class="list-disc pl-6 space-y-2 text-xs">
+            <li>Consent obtained for cookie tracking must be free, specific, informed, and withdrawable.</li>
+            <li>You have the right to request access to the cookie-tracked parameters we store, or request the deletion of non-essential cookie logs associated with your IP.</li>
+            <li>To exercise these rights, please email us at <a href="mailto:roasbodhi@gmail.com" class="text-primary-saffron hover:underline font-semibold">roasbodhi@gmail.com</a>. We will respond and process your request within 30 days.</li>
+          </ul>
+        </section>
+
+        <!-- SECTION 8 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            8. POLICY UPDATES
+          </h2>
+          <p>
+            We may update this Cookie Policy from time to time. When we make updates, we will update the "Last Updated" date at the top of this page. Your continued use of our Website after any modifications indicates your acceptance of the updated Cookie Policy.
+          </p>
+        </section>
+
+        <!-- SECTION 9 -->
+        <section class="space-y-4">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            9. CONTACT INFORMATION
+          </h2>
+          <p>
+            For any queries or requests regarding our Cookie Policy, please contact our team:
+          </p>
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm space-y-2 text-xs font-semibold">
+            <p>**Legal Entity:** Namaste Sales Enterprises</p>
+            <p>**Brand Name:** RoasBodhi™</p>
+            <p>**Contact Email:** <a href="mailto:roasbodhi@gmail.com" class="text-primary-saffron hover:underline">roasbodhi@gmail.com</a></p>
+            <p>**Registered Address:** 501 Shankar Apartment Sec 20 Nerul W Navi Mumbai 400706</p>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+
+</BaseLayout>

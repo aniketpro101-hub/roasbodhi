@@ -1,0 +1,41 @@
+---
+import { MessageCircle } from 'lucide-astro';
+
+interface Props {
+  city?: string;
+  service?: string;
+}
+
+const { city, service } = Astro.props;
+
+// Dynamic pre-filled text logic based on current context
+let defaultMessage = "Namaste RoasBodhi™! I'd like to consult on web design and ads for my business.";
+if (city && service) {
+  defaultMessage = `Namaste RoasBodhi™! I saw your ${service} services in ${city}. Let's discuss growing my business.`;
+} else if (city) {
+  defaultMessage = `Namaste RoasBodhi™! I am a business owner in ${city}. I'd like to consult on web design and ads.`;
+} else if (service) {
+  defaultMessage = `Namaste RoasBodhi™! I am interested in learning more about your ${service} plans.`;
+}
+
+const whatsappUrl = `https://wa.me/9082543992?text=${encodeURIComponent(defaultMessage)}`;
+---
+
+<!-- Floating WhatsApp Action Bubble (hidden on mobile, shown on md and up) -->
+<a 
+  href={whatsappUrl} 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  class="hidden md:flex fixed bottom-6 right-6 z-40 items-center justify-center w-14 h-14 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-[0_8px_30px_rgba(5,150,105,0.40)] hover:scale-105 transition-all duration-300 group"
+  aria-label="Chat with RoasBodhi on WhatsApp"
+>
+  <!-- Pulse Indicator ring -->
+  <span class="absolute inset-0 rounded-full bg-emerald-500/30 animate-ping"></span>
+  
+  <MessageCircle class="w-7 h-7 relative z-10 fill-white" />
+  
+  <!-- Tooltip text displayed on hover -->
+  <span class="absolute right-full mr-3 px-3 py-1.5 rounded-lg bg-neutral-dark text-white text-xs font-display font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-md">
+    Chat on WhatsApp (Online)
+  </span>
+</a>

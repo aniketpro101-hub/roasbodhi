@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import CtaSection from '../../components/sections/CtaSection.astro';
+import { getCollection } from 'astro:content';
+import { Calendar, User, Clock, ArrowRight, MessageCircle } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: {
+      slug: post.slug
+    },
+    props: {
+      post
+    }
+  }));
+}
+
+interface Props {
+  post: any;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+
+const pageTitle = `${post.data.title} | RoasBodhi Blog`;
+const pageDescription = post.data.description;
+
+// Fetch related posts (same category or general)
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug && p.data.category === post.data.category)
+  .slice(0, 3);
+
+// Dynamic WhatsApp message URL
+const whatsappText = `Namaste RoasBodhi™! I read your article "${post.data.title}" and would like to ask a question.`;
+const whatsappUrl = `https://wa.me/919082543992?text=${encodeURIComponent(whatsappText)}`;
+const articleKeywords = `${post.data.category}, ${post.data.title.split(' ').slice(0, 5).join(', ').replace(/[^a-zA-Z0-9,\s]/g, '')}`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} keywords={articleKeywords}>
+  
+  <!-- 1. Reading Progress Bar -->
+  <div id="progress-bar" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary-saffron to-primary-gold z-50 transition-all duration-100" style="width: 0%;"></div>
+
+  <!-- Header -->
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal text-left">
+    
+    <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Article Header -->
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <span class="px-2.5 py-1 rounded bg-primary-saffron/10 text-primary-saffron text-[9px] font-display font-extrabold uppercase tracking-widest w-fit mx-auto block mb-4">
+          {post.data.category}
+        </span>
+        <h1 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl tracking-tight leading-tight">
+          {post.data.title}
+        </h1>
+        
+        <!-- Author Box -->
+        <div class="flex items-center justify-center gap-4 mt-6 text-xs text-neutral-stone font-semibold">
+          <span class="flex items-center gap-1"><User class="w-4 h-4 text-primary-saffron" /> By {post.data.author}</span>
+          <span>•</span>
+          <span class="flex items-center gap-1"><Calendar class="w-4 h-4" /> {post.data.publishDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+          <span>•</span>
+          <span class="flex items-center gap-1"><Clock class="w-4 h-4" /> {post.data.readingTime || 5} min read</span>
+        </div>
+      </div>
+
+      <!-- Featured Image Area -->
+      <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden bg-neutral-cloud border border-neutral-mist h-64 sm:h-96 flex items-center justify-center text-primary-saffron text-6xl mb-12 shadow-sm select-none">
+        🔱
+      </div>
+
+      <!-- Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-5xl mx-auto items-start">
+        
+        <!-- Left: Table of Contents (Sticky) -->
+        <aside class="hidden lg:block lg:col-span-3 sticky top-32 bg-white border border-neutral-mist p-5 rounded-2xl shadow-sm text-xs font-body font-semibold">
+          <h4 class="font-display font-extrabold text-[10px] text-neutral-dark uppercase tracking-widest border-b border-neutral-mist pb-2 mb-3">
+            Table of Contents
+          </h4>
+          <ul class="flex flex-col gap-2.5 text-neutral-stone text-left">
+            {headings.map(h => (
+              <li class={`hover:text-primary-saffron transition-colors ${h.depth > 2 ? 'pl-3' : ''}`}>
+                <a href={`#${h.slug}`}>{h.text}</a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+
+        <!-- Right: MDX/MD Content body -->
+        <div class="lg:col-span-9 bg-white border border-neutral-mist rounded-3xl p-6 sm:p-10 shadow-sm">
+          <div class="prose prose-neutral max-w-none text-xs sm:text-sm leading-relaxed text-neutral-charcoal/90 font-medium font-body flex flex-col gap-6">
+            <Content />
+          </div>
+
+          <!-- Mid-Article Pullout CTA -->
+          <div class="my-10 p-6 bg-primary-saffron/5 border border-primary-saffron/15 rounded-2xl text-left flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex flex-col gap-1">
+              <h4 class="font-display font-extrabold text-sm text-neutral-dark">Get Your Free Local ROAS Audit</h4>
+              <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold">
+                Receive a professional 10-page GMB and Ad spend optimization blueprint.
+              </p>
+            </div>
+            <a href="/contact/" class="px-5 py-2.5 bg-primary-indigo hover:bg-neutral-dark text-white font-display font-extrabold text-[10px] uppercase tracking-wider rounded-lg transition-all flex-shrink-0">Request Free Audit</a>
+          </div>
+
+          <!-- Comments CTA (WhatsApp chat link) -->
+          <div class="border-t border-neutral-mist/60 pt-8 mt-10 text-center flex flex-col items-center gap-3">
+            <h4 class="font-display font-extrabold text-sm text-neutral-dark">Have Questions About This Article?</h4>
+            <p class="font-body text-xs text-neutral-stone max-w-md font-semibold">
+              Ask our local performance marketers directly. Click below to message us on WhatsApp.
+            </p>
+            <a 
+              href={whatsappUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-display font-extrabold text-[10px] uppercase tracking-wider rounded-xl shadow-md transition-all mt-2"
+            >
+              <MessageCircle class="w-4 h-4 fill-white text-white" />
+              <span>Ask on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Related Posts Section (3 cards) -->
+      {relatedPosts.length > 0 && (
+        <div class="max-w-5xl mx-auto mt-20 border-t border-neutral-mist/60 pt-16 text-left select-none">
+          <h3 class="font-display font-extrabold text-xl text-neutral-dark mb-8">Related Articles</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {relatedPosts.map(rp => (
+              <div class="bg-white border border-neutral-mist rounded-2xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+                <div class="p-6">
+                  <span class="text-[9px] font-display font-extrabold text-neutral-stone uppercase tracking-widest">{rp.data.category}</span>
+                  <h4 class="font-display font-extrabold text-sm text-neutral-dark mt-2 leading-tight">
+                    <a href={`/blog/${rp.slug}/`} class="hover:text-primary-saffron transition-colors">{rp.data.title}</a>
+                  </h4>
+                </div>
+                <div class="p-6 pt-0 flex justify-end">
+                  <a href={`/blog/${rp.slug}/`} class="text-primary-saffron font-display font-extrabold text-[9px] uppercase tracking-wider flex items-center gap-1 hover:underline">
+                    Read Post <ArrowRight class="w-3 h-3" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+    </article>
+
+    <!-- Generic Lead Capture CTA Section -->
+    <div class="mt-24">
+      <CtaSection />
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <Footer />
+
+</BaseLayout>
+
+<script>
+  document.addEventListener('scroll', () => {
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (window.scrollY / scrollHeight) * 100;
+      progressBar.style.width = scrolled + '%';
+    }
+  });
+</script>

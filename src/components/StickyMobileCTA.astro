@@ -1,0 +1,74 @@
+---
+import { Phone, MessageCircle, ArrowRight } from 'lucide-astro';
+
+interface Props {
+  city?: string;
+  service?: string;
+}
+
+const { city, service } = Astro.props;
+
+let defaultMessage = "Namaste RoasBodhi™! I'd like to consult on web design and ads for my business.";
+if (city && service) {
+  defaultMessage = `Namaste RoasBodhi™! I saw your ${service} services in ${city}. Let's discuss growing my business.`;
+}
+
+const whatsappUrl = `https://wa.me/9082543992?text=${encodeURIComponent(defaultMessage)}`;
+---
+
+<!-- Fixed bottom mobile CTA bar (hidden on desktop/tablet, shown on mobile) -->
+<div 
+  id="mobile-sticky-cta" 
+  class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-neutral-mist shadow-[0_-4px_20px_rgba(0,0,0,0.08)] z-40 grid grid-cols-5 items-stretch transition-transform duration-300 translate-y-0"
+>
+  <!-- Call Button (Column 1) -->
+  <a 
+    href="tel:+9082543992" 
+    class="col-span-1 flex items-center justify-center border-r border-neutral-mist hover:bg-neutral-ghost active:bg-neutral-cloud text-neutral-charcoal"
+    aria-label="Call RoasBodhi Support"
+  >
+    <Phone class="w-5 h-5 text-primary-saffron" />
+  </a>
+
+  <!-- Primary Saffron CTA Button (Columns 2-4) -->
+  <a 
+    href="/contact/" 
+    class="col-span-3 bg-gradient-to-r from-primary-saffron to-primary-gold flex items-center justify-center gap-2 text-white font-display font-extrabold text-xs tracking-wider uppercase hover:shadow-inner active:brightness-95"
+  >
+    <span>Free ROAS Audit</span>
+    <ArrowRight class="w-4 h-4" />
+  </a>
+
+  <!-- WhatsApp Button (Column 5) -->
+  <a 
+    href={whatsappUrl} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="col-span-1 flex items-center justify-center border-l border-neutral-mist hover:bg-neutral-ghost active:bg-neutral-cloud text-emerald-600"
+    aria-label="Chat with RoasBodhi on WhatsApp"
+  >
+    <MessageCircle class="w-6 h-6 fill-emerald-600 text-emerald-600" />
+  </a>
+</div>
+
+<script>
+  let lastScrollY = window.scrollY;
+  const mobileCta = document.getElementById('mobile-sticky-cta');
+
+  if (mobileCta) {
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      
+      // If scrolling down, hide the CTA bar. If scrolling up, show it.
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        // Scrolling down -> Slide out of view
+        mobileCta.classList.add('translate-y-full');
+      } else {
+        // Scrolling up -> Slide into view
+        mobileCta.classList.remove('translate-y-full');
+      }
+      
+      lastScrollY = currentScrollY;
+    });
+  }
+</script>

@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Website Disclaimer | RoasBodhi";
+const pageDescription = "Comprehensive website disclaimer for Namaste Sales Enterprises (operating as RoasBodhi™) in accordance with the IT Act 2000.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} noIndex={true}>
+  
+  <Header />
+
+  <main class="flex-grow pt-32 pb-24 bg-neutral-ghost text-neutral-charcoal text-left">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-12 border-b border-neutral-mist pb-8">
+        <span class="px-3 py-1 rounded-full bg-primary-saffron/10 text-primary-saffron text-[10px] font-display font-extrabold uppercase tracking-widest">
+          Legal Disclaimer
+        </span>
+        <h1 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl mt-3 tracking-tight">
+          Website Disclaimer
+        </h1>
+        <p class="font-body text-xs text-neutral-stone mt-2 font-semibold">
+          Last Updated: July 18, 2026
+        </p>
+      </div>
+
+      <div class="prose prose-sm max-w-none font-body text-neutral-charcoal/90 leading-relaxed space-y-8 select-none">
+        
+        <!-- SECTION 1 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            1. GENERAL DISCLAIMER
+          </h2>
+          <p>
+            The information, content, templates, software, and articles published on this Website (<a href="https://roasbodhi.in" class="text-primary-saffron hover:underline font-semibold">https://roasbodhi.in</a>) by **Namaste Sales Enterprises** (doing business as **RoasBodhi**, hereinafter referred to as the "Company", "we", "us", or "our") are provided strictly for general **educational, informational, and reference purposes**.
+          </p>
+          <p>
+            While we make every effort to maintain the accuracy, completeness, and timeliness of the material hosted on our platform, we make **no warranties, representations, or guarantees of any kind**, express or implied, regarding the reliability, merchantability, suitability, or availability of the website details, marketing tools, or calculators. Any reliance you place on such information is strictly at your own risk.
+          </p>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            2. NO PROFESSIONAL ADVICE
+          </h2>
+          <p>
+            The marketing suggestions, ad optimization tips, conversion frameworks, and code setups shared on this Website do not constitute, and should not be interpreted as, professional legal, financial, accounting, or tax advice. We are not lawyers, chartered accountants, or registered investment advisors.
+          </p>
+          <p>
+            Every local business and commercial market operates under distinct legal parameters, municipal guidelines, and risk factors. We strongly recommend that you consult with licensed professionals (attorneys, corporate accountants) before implementing new marketing strategies, registering domains, or launching commercial campaigns.
+          </p>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            3. RESULTS AND EARNINGS DISCLAIMER
+          </h2>
+          <p>
+            We implement conversion tracking, GMB optimizations, and high-speed Astro.js layouts to the best of our professional ability. However, **we do not guarantee specific business results, search engine rankings, leads, sales, or ROAS (Return on Ad Spend) multipliers**.
+          </p>
+          <p>
+            All case studies, performance metrics, and client earnings reports shared on our platform are illustrative examples of past client success. These metrics are not typical, expected, or representative of the average Client experience.
+          </p>
+          <p>
+            Your individual campaign results will vary significantly based on multiple external factors outside our control, including:
+          </p>
+          <ul class="list-disc pl-6 space-y-1 text-xs">
+            <li>Google Search and Meta Ad network algorithm updates.</li>
+            <li>Local competitor ad bids and regional budget saturation levels.</li>
+            <li>The quality, demand, and pricing of your products or services.</li>
+            <li>How quickly and effectively your sales team contacts inbound leads.</li>
+            <li>Your overall brand reputation and offline customer service quality.</li>
+          </ul>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            4. TESTIMONIAL DISCLAIMER
+          </h2>
+          <p>
+            The testimonials featured on our Website represent the real experiences and opinions of actual Clients who have engaged our services. These testimonials are subjective and reflect the specific circumstances of individual campaigns.
+          </p>
+          <p>
+            We do not claim, and you should not assume, that you will achieve similar results. Some testimonials may be edited for length, formatting, or clarity, but their core message is maintained. None of the clients featured have been compensated for their reviews.
+          </p>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            5. THIRD-PARTY LINKS DISCLAIMER
+          </h2>
+          <p>
+            Our Website may contain hyperlinks directing you to external sites operated by third parties. These links are provided for your convenience only. We have no control over the content, security, or privacy practices of these third-party platforms.
+          </p>
+          <p>
+            The inclusion of an external link does not imply our endorsement of the platform, its operator, or its services. We accept no liability for any loss or damage arising from your use of third-party websites.
+          </p>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            6. THIRD-PARTY SERVICES DISCLAIMER
+          </h2>
+          <p>
+            We manage marketing campaigns that integrate with platforms like Google Ads, Meta Ads, and WhatsApp. You acknowledge that:
+          </p>
+          <ul class="list-disc pl-6 space-y-1.5 text-xs">
+            <li>These platforms enforce their own policies and may suspend, pause, or ban ad accounts at their sole discretion. We are not responsible for account bans or restrictions.</li>
+            <li>We have no control over platform service interruptions, API changes, or sudden billing updates.</li>
+          </ul>
+        </section>
+
+        <!-- SECTION 7 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            7. TECHNICAL DISCLAIMER
+          </h2>
+          <p>
+            We do not warrant that our Website, server systems, or custom web previews will operate uninterrupted, error-free, or free of viruses, malware, or other security threats.
+          </p>
+          <p>
+            We are not liable for any data loss, system downtime, or compatibility issues that may occur while accessing our platform. We strongly recommend that you maintain independent backups of all files and data.
+          </p>
+        </section>
+
+        <!-- SECTION 8 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            8. COPYRIGHT AND TRADEMARKS
+          </h2>
+          <p>
+            All custom code, sitemap index structures, graphic assets, and copywriting on this Website are the intellectual property of Namaste Sales Enterprises. RoasBodhi™ is a registered trademark of Namaste Sales Enterprises.
+          </p>
+          <p>
+            Any other brand names, product logos, or trademarks mentioned on our platform belong to their respective owners. Mention of these brands does not imply endorsement, affiliation, or sponsorship.
+          </p>
+        </section>
+
+        <!-- SECTION 9 -->
+        <section class="space-y-3">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            9. LIMITATION OF LIABILITY
+          </h2>
+          <p>
+            To the maximum extent permitted by law, Namaste Sales Enterprises, its directors, and employees shall not be liable for any indirect, special, incidental, or consequential damages (including loss of profits, revenue, or business opportunities) arising out of your use or inability to use this Website.
+          </p>
+          <p>
+            **Liability Cap:** Our total liability for any claim related to your use of this Website is strictly capped at **₹1,000 INR**.
+          </p>
+        </section>
+
+        <!-- SECTION 10 -->
+        <section class="space-y-4">
+          <h2 class="font-display font-extrabold text-lg text-neutral-dark border-l-4 border-primary-saffron pl-3">
+            10. CONTACT INFORMATION
+          </h2>
+          <p>
+            For any queries or legal notices regarding this Website Disclaimer, please contact our team:
+          </p>
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm space-y-2 text-xs font-semibold">
+            <p>**Legal Entity:** Namaste Sales Enterprises</p>
+            <p>**Brand Name:** RoasBodhi™</p>
+            <p>**Contact Email:** <a href="mailto:roasbodhi@gmail.com" class="text-primary-saffron hover:underline">roasbodhi@gmail.com</a></p>
+            <p>**Registered Address:** 501 Shankar Apartment Sec 20 Nerul W Navi Mumbai 400706</p>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+
+</BaseLayout>

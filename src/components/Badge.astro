@@ -1,0 +1,42 @@
+---
+import { ShieldCheck, Flame, Target, Code, MapPin, TrendingUp, Sparkles, Star } from 'lucide-astro';
+
+interface Props {
+  text: string;
+  variant?: 'saffron' | 'purple' | 'emerald' | 'blue' | 'gold' | 'dark';
+  size?: 'sm' | 'md' | 'lg';
+  icon?: 'shield' | 'flame' | 'target' | 'code' | 'map-pin' | 'trending-up' | 'sparkles' | 'star';
+}
+
+const { text, variant = 'saffron', size = 'md', icon } = Astro.props;
+
+const variants = {
+  saffron: 'bg-primary-saffron/10 text-primary-saffron border-primary-saffron/20',
+  purple: 'bg-secondary-purple/10 text-secondary-purple border-secondary-purple/20',
+  emerald: 'bg-secondary-emerald/10 text-secondary-emerald border-secondary-emerald/20',
+  blue: 'bg-secondary-blue/10 text-secondary-blue border-secondary-blue/20',
+  gold: 'bg-primary-gold/10 text-primary-gold border-primary-gold/20',
+  dark: 'bg-neutral-dark/10 text-neutral-dark border-neutral-dark/20'
+};
+
+const sizes = {
+  sm: 'px-2 py-0.5 text-[10px] tracking-wider',
+  md: 'px-3 py-1 text-xs tracking-wide',
+  lg: 'px-4 py-1.5 text-sm tracking-wide'
+};
+
+const variantClass = variants[variant];
+const sizeClass = sizes[size];
+---
+
+<span class={`inline-flex items-center gap-1.5 rounded-full border font-display font-extrabold uppercase leading-none select-none ${variantClass} ${sizeClass}`}>
+  {icon === 'shield' && <ShieldCheck class="w-3.5 h-3.5" />}
+  {icon === 'flame' && <Flame class="w-3.5 h-3.5" />}
+  {icon === 'target' && <Target class="w-3.5 h-3.5" />}
+  {icon === 'code' && <Code class="w-3.5 h-3.5" />}
+  {icon === 'map-pin' && <MapPin class="w-3.5 h-3.5" />}
+  {icon === 'trending-up' && <TrendingUp class="w-3.5 h-3.5" />}
+  {icon === 'sparkles' && <Sparkles class="w-3.5 h-3.5" />}
+  {icon === 'star' && <Star class="w-3.5 h-3.5 fill-current" />}
+  <span>{text}</span>
+</span>

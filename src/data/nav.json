@@ -1,0 +1,80 @@
+{
+  "main_menu": [
+    {
+      "label": "Home",
+      "link": "/"
+    },
+    {
+      "label": "Services",
+      "link": "#",
+      "dropdown": true,
+      "items": [
+        {
+          "label": "Meta Ads (Agni)",
+          "link": "/services/meta-ads/",
+          "desc": "Convert social traffic on Facebook & Instagram."
+        },
+        {
+          "label": "Google Ads (Chakra)",
+          "link": "/services/google-ads/",
+          "desc": "Rank #1 for commercial intent searches."
+        },
+        {
+          "label": "Web Design (Vriddhi)",
+          "link": "/services/web-development/",
+          "desc": "Ultra-fast websites built on Astro & Tailwind."
+        },
+        {
+          "label": "Maps SEO (Sthapna)",
+          "link": "/services/google-my-business/",
+          "desc": "Dominate local maps pack ranking."
+        },
+        {
+          "label": "Omnichannel (Shakti)",
+          "link": "/services/performance-marketing/",
+          "desc": "Integrated ads + landing page scale."
+        },
+        {
+          "label": "Social Organic (Aseem)",
+          "link": "/services/social-media-marketing/",
+          "desc": "Organic Instagram grid & Reels management."
+        },
+        {
+          "label": "Research Reports (Drishti)",
+          "link": "/services/research-reports/",
+          "desc": "Competitor & market intelligence reports.",
+          "name": "Research Reports",
+          "sanskrit": "Bodhi Drishti",
+          "href": "/services/research-reports/",
+          "icon": "search",
+          "description": "Competitor & market intelligence reports",
+          "badge": "NEW"
+        }
+      ]
+    },
+    {
+      "label": "Pricing",
+      "link": "/pricing/"
+    },
+    {
+      "label": "Results",
+      "link": "/#results"
+    },
+    {
+      "label": "About Us",
+      "link": "/about/"
+    },
+    {
+      "label": "Contact",
+      "link": "/contact/"
+    }
+  ],
+  "cta_button": {
+    "label": "Free ROAS Audit",
+    "link": "/contact/"
+  },
+  "whatsapp_direct": {
+    "phone": "+919999999999",
+    "text": "Namaste RoasBodhi™! I'd like to consult on web design and ads for my business."
+  }
+}

@@ -1,0 +1,95 @@
+---
+interface Props {
+  stats?: {
+    number: number;
+    suffix: string;
+    label: string;
+    color: 'saffron' | 'indigo' | 'purple' | 'emerald' | 'blue';
+  }[];
+}
+
+// Default homepage stats if none provided
+const defaultStats = [
+  { number: 85, suffix: "%+", label: "Avg. ROAS Growth", color: "saffron" as const },
+  { number: 4.8, suffix: "X", label: "Average Campaign ROAS", color: "emerald" as const },
+  { number: 200, suffix: "+", label: "Indian SMBs scaled", color: "indigo" as const },
+  { number: 100, suffix: "%", label: "Pre-Launch Refund", color: "purple" as const }
+];
+
+const { stats = defaultStats } = Astro.props;
+
+const colors = {
+  saffron: 'text-primary-saffron',
+  indigo: 'text-primary-indigo',
+  purple: 'text-secondary-purple',
+  emerald: 'text-secondary-emerald',
+  blue: 'text-secondary-blue'
+};
+---
+
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 select-none">
+  <!-- 4-column grid, 2x2 on mobile -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 items-center text-center">
+    {stats.map((stat) => (
+      <div class="flex flex-col items-center justify-center bg-white border border-neutral-mist/50 p-6 rounded-2xl shadow-sm hover:shadow-card-hover transition-all duration-300">
+        <div class="font-mono text-3xl sm:text-5xl font-extrabold tracking-tight flex items-baseline">
+          <span 
+            class={`animate-count ${colors[stat.color]}`} 
+            data-target={stat.number}
+            data-decimals={stat.number % 1 === 0 ? 0 : 1}
+          >
+            0
+          </span>
+          <span class={colors[stat.color]}>{stat.suffix}</span>
+        </div>
+        <span class="font-display font-bold text-[10px] sm:text-xs text-neutral-charcoal uppercase tracking-wider mt-2.5 leading-snug">
+          {stat.label}
+        </span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  // requestAnimationFrame Count-up trigger on element viewport intersection
+  document.addEventListener('DOMContentLoaded', () => {
+    const counterElements = document.querySelectorAll('.animate-count');
+
+    const animateCount = (el: HTMLElement) => {
+      const target = parseFloat(el.dataset.target || '0');
+      const decimals = parseInt(el.dataset.decimals || '0');
+      const duration = 2000; // 2 seconds animation duration
+      const startTime = performance.now();
+
+      const easeOutQuad = (t: number) => t * (2 - t);
+
+      const update = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuad(progress);
+        
+        const currentValue = easedProgress * target;
+        el.textContent = currentValue.toFixed(decimals);
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target.toFixed(decimals);
+        }
+      };
+
+      requestAnimationFrame(update);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    counterElements.forEach((el) => observer.observe(el));
+  });
+</script>

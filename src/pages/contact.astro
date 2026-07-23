@@ -1,0 +1,494 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import Footer from '../components/Footer.astro';
+import { Phone, Mail, MapPin, MessageCircle, ShieldCheck, ArrowRight } from 'lucide-astro';
+
+const contactTitle = "Let's Talk Growth | Contact Us - RoasBodhi";
+const contactDescription = "Get in touch with RoasBodhi™ performance agency. Claim your free ROAS and website audit. Real human support via direct phone call and WhatsApp Business.";
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact RoasBodhi",
+  "description": "Contact page for RoasBodhi performance digital marketing agency.",
+  "url": "https://roasbodhi.in/contact/"
+};
+
+// Top 50 commercial cities in India to populate dropdown cleanly
+const topCities = [
+  "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Ahmedabad", "Chennai", "Kolkata", "Surat", 
+  "Pune", "Jaipur", "Lucknow", "Kanpur", "Nagpur", "Indore", "Thane", "Bhopal", 
+  "Visakhapatnam", "Pimpri-Chinchwad", "Patna", "Vadodara", "Ghaziabad", "Ludhiana", "Agra", 
+  "Nashik", "Faridabad", "Meerut", "Rajkot", "Kalyan-Dombivli", "Vasai-Virar", "Varanasi", 
+  "Srinagar", "Aurangabad", "Dhanbad", "Amritsar", "Navi Mumbai", "Allahabad", "Ranchi", 
+  "Howrah", "Coimbatore", "Jabalpur", "Gwalior", "Vijayawada", "Jodhpur", "Madurai", 
+  "Raipur", "Kota", "Guwahati", "Chandigarh", "Kolhapur", "Solapur"
+].sort();
+
+const contactFaqs = [
+  {
+    question: "What happens after I submit this contact form?",
+    answer: "Our team will review your business URL and details. We will reach out to you on WhatsApp within 2 hours to schedule a 15-minute diagnostic call."
+  },
+  {
+    question: "Is the ROAS audit really free?",
+    answer: "Yes, 100% free. We compile a report detailing speed optimizations, GMB map errors, and ad creative suggestions. There is no credit card required and no sales pressure."
+  },
+  {
+    question: "Do you sign non-disclosure agreements (NDAs)?",
+    answer: "Yes. If your business requires strict confidentiality regarding transaction volumes or customer data lists, we sign standard NDAs before auditing."
+  },
+  {
+    question: "How long does it take to deploy a new website?",
+    answer: "Our Vriddhi Website plan takes 7 to 10 working days to build on our staging preview link. Once approved under our Pay-After-Seeing model, we launch it within 24 hours."
+  },
+  {
+    question: "What is the minimum budget required for ad spend?",
+    answer: "We recommend a minimum ad budget of ₹15,000/month (paid directly to Meta or Google) to gather sufficient pixel and conversion data."
+  }
+];
+const contactKeywords = "contact RoasBodhi, hire performance marketing agency, Meta ads expert India, digital marketing contact";
+---
+
+<BaseLayout title={contactTitle} description={contactDescription} keywords={contactKeywords} schema={contactSchema}>
+  
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal text-left">
+    
+    <!-- 1. Contact Hero -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 select-none">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary-saffron/10 text-primary-saffron text-[10px] font-display font-extrabold uppercase tracking-widest mb-4">
+        🔱 Get in Touch
+      </span>
+      <h1 class="font-display font-extrabold text-neutral-dark text-4xl sm:text-6xl tracking-tight leading-[1.05]">
+        Let's Talk Growth. <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">Free Strategy Call. No Pressure.</span>
+      </h1>
+      <p class="font-body text-sm sm:text-base text-neutral-stone mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+        Claim your free audit report or consult with our local marketing specialists.
+      </p>
+    </section>
+
+    <!-- 2-Column Contact Layout -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Options & Address Details (col 5) -->
+        <div class="lg:col-span-5 flex flex-col gap-6 select-none">
+          
+          <!-- Option 1: WhatsApp -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
+              <MessageCircle class="w-5 h-5 fill-emerald-600" />
+            </div>
+            <div class="flex flex-col">
+              <span class="font-display font-bold text-sm text-neutral-dark">WhatsApp Business Chat</span>
+              <span class="font-body text-xs text-neutral-stone mt-0.5">Instant chat, 15-min response</span>
+              <a href="https://wa.me/919082543992?text=Namaste%20RoasBodhi%E2%84%A2!%20I'd%20like%20to%20consult%20on%20my%20business%20growth." target="_blank" rel="noopener noreferrer" class="font-body font-bold text-emerald-600 mt-2 hover:underline">
+                Chat on WhatsApp →
+              </a>
+            </div>
+          </div>
+
+          <!-- Option 2: Phone Call -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-primary-saffron/10 border border-primary-saffron/20 flex items-center justify-center text-primary-saffron flex-shrink-0">
+              <Phone class="w-5 h-5" />
+            </div>
+            <div class="flex flex-col">
+              <span class="font-display font-bold text-sm text-neutral-dark">Call Us Directly</span>
+              <span class="font-body text-xs text-neutral-stone mt-0.5">Mon - Sat, 9 AM - 6 PM IST</span>
+              <a href="tel:+919082543992" class="font-mono font-bold text-neutral-charcoal mt-2 hover:text-primary-saffron transition-all">
+                +91 9082543992 <span class="text-[10px] text-neutral-stone block font-sans font-medium mt-0.5">(Give missed call to get WhatsApp back)</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Option 3: Email -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-primary-indigo flex-shrink-0">
+              <Mail class="w-5 h-5" />
+            </div>
+            <div class="flex flex-col">
+              <span class="font-display font-bold text-sm text-neutral-dark">Send Email Inquiry</span>
+              <span class="font-body text-xs text-neutral-stone mt-0.5">Response within 24 hours</span>
+              <a href="mailto:roasbodhi@gmail.com" class="font-mono text-neutral-charcoal mt-2 hover:text-primary-saffron transition-all">
+                roasbodhi@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <!-- Office Info Location -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-purple-50 border border-purple-100 flex items-center justify-center text-secondary-purple flex-shrink-0">
+              <MapPin class="w-5 h-5" />
+            </div>
+            <div class="flex flex-col">
+              <span class="font-display font-bold text-sm text-neutral-dark">Operations Office</span>
+              <span class="font-body text-xs text-neutral-stone mt-0.5">Navi Mumbai Registered Office</span>
+              <span class="font-body text-xs text-neutral-charcoal mt-2 leading-relaxed font-semibold">
+                501 Shankar Apartment Sec 20 Nerul W Navi Mumbai 400706
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Main Contact Form (col 7) -->
+        <div class="lg:col-span-7 bg-white border border-neutral-mist rounded-3xl p-6 sm:p-8 shadow-sm">
+          <h3 class="font-display font-extrabold text-lg text-neutral-dark border-b border-neutral-mist/60 pb-3 mb-6">
+            Submit Audit Inquiry Form
+          </h3>
+
+          <form 
+            id="contact-page-form"
+            action="https://api.web3forms.com/submit" 
+            method="POST"
+            class="flex flex-col gap-4 text-xs font-body font-semibold text-neutral-charcoal"
+          >
+            <!-- Web3Forms Hidden Inputs -->
+            <input type="hidden" name="access_key" value="[USER_WILL_ADD_KEY]">
+            <input type="hidden" name="subject" value="Audit Inquiry - RoasBodhi Website">
+            <input type="hidden" name="from_name" value="RoasBodhi Website">
+            <input type="hidden" name="redirect" value="https://roasbodhi.in/thank-you/">
+            
+            <!-- Honeypot Anti-Spam field -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+            
+            <!-- UTM Parameter Captures -->
+            <input type="hidden" name="utm_source" id="utm_source" value="website">
+            <input type="hidden" name="utm_medium" id="utm_medium" value="form">
+            <input type="hidden" name="utm_campaign" id="utm_campaign" value="contact_page">
+
+            <!-- Grid 1 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input type="text" name="name" required placeholder="Your Name" class="px-4.5 py-3.5 rounded-xl bg-neutral-ghost border border-neutral-mist focus:outline-none focus:ring-2 focus:ring-primary-saffron" />
+              <input type="email" name="email" required placeholder="Business Email" class="px-4.5 py-3.5 rounded-xl bg-neutral-ghost border border-neutral-mist focus:outline-none focus:ring-2 focus:ring-primary-saffron" />
+            </div>
+
+            <!-- Grid 2 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <input type="tel" name="phone" required placeholder="WhatsApp Number" class="px-4.5 py-3.5 rounded-xl bg-neutral-ghost border border-neutral-mist focus:outline-none focus:ring-2 focus:ring-primary-saffron" />
+              <select name="city" required class="px-4.5 py-3.5 rounded-xl bg-neutral-ghost border border-neutral-mist focus:outline-none focus:ring-2 focus:ring-primary-saffron cursor-pointer">
+                <option value="" disabled selected>Select Your City</option>
+                {topCities.map(c => <option value={c}>{c}</option>)}
+              </select>
+            </div>
+
+            <!-- Checkboxes Multi-select -->
+            <div class="flex flex-col gap-2 mt-2 text-left">
+              <span class="text-xs text-neutral-stone font-semibold">Services you are interested in:</span>
+              <div class="grid grid-cols-2 gap-2 mt-1">
+                <label class="flex items-center gap-2 cursor-pointer font-medium">
+                  <input type="checkbox" name="services" value="meta-ads" class="accent-primary-saffron w-4 h-4" />
+                  <span>Meta Ads</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer font-medium">
+                  <input type="checkbox" name="services" value="google-ads" class="accent-primary-saffron w-4 h-4" />
+                  <span>Google Ads</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer font-medium">
+                  <input type="checkbox" name="services" value="web-development" class="accent-primary-saffron w-4 h-4" />
+                  <span>Website Design</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer font-medium">
+                  <input type="checkbox" name="services" value="google-my-business" class="accent-primary-saffron w-4 h-4" />
+                  <span>GMB Map SEO</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Budget Dropdown -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+              <select name="budget" required class="px-4.5 py-3.5 rounded-xl bg-neutral-ghost border border-neutral-mist focus:outline-none focus:ring-2 focus:ring-primary-saffron cursor-pointer">
+                <option value="" disabled selected>Monthly Ad Spend Budget</option>
+                <option value="Under 15k">Under ₹15,000 / mo</option>
+                <option value="15k-50k">₹15,000 - ₹50,000 / mo</option>
+                <option value="50k-1.5L">₹50,000 - ₹1.5L / mo</option>
+                <option value="Over 1.5L">Over ₹1.5L / mo</option>
+              </select>
+
+              <select name="referrer" required class="px-4.5 py-3.5 rounded-xl bg-neutral-ghost border border-neutral-mist focus:outline-none focus:ring-2 focus:ring-primary-saffron cursor-pointer">
+                <option value="" disabled selected>How did you find us?</option>
+                <option value="Google Search">Google Search Pack</option>
+                <option value="Instagram">Instagram Reels / Post</option>
+                <option value="Word of Mouth">Word of Mouth / Client Refer</option>
+                <option value="LinkedIn">LinkedIn Post</option>
+              </select>
+            </div>
+
+            <textarea name="message" rows="4" placeholder="Brief details about your business products & website link..." class="px-4.5 py-3.5 rounded-xl bg-neutral-ghost border border-neutral-mist focus:outline-none focus:ring-2 focus:ring-primary-saffron mt-2 resize-none"></textarea>
+
+            <button 
+              type="submit"
+              class="w-full py-4 mt-4 bg-gradient-to-r from-primary-saffron to-primary-gold hover:shadow-button-saffron hover:-translate-y-0.5 text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all text-center flex items-center justify-center gap-1.5 shadow"
+            >
+              <span>Send Message & Get Free Audit</span>
+            </button>
+          </form>
+
+          <!-- TASK 6: Backup WhatsApp Option -->
+          <div class="mt-6 text-center border-t border-neutral-mist/60 pt-4 flex flex-col items-center gap-2">
+            <span class="text-[9px] text-neutral-stone font-semibold uppercase tracking-wider">Prefer WhatsApp? Message us directly</span>
+            <a 
+              id="whatsapp-direct-link"
+              href="https://wa.me/919082543992?text=Namaste%20RoasBodhi!%20I'd%20like%20to%20consult%20on%20digital%20marketing%20for%20my%20business.&utm_source=website&utm_medium=button&utm_campaign=contact_page" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 hover:shadow-[0_8px_20px_rgba(16,185,129,0.15)] hover:-translate-y-0.5 rounded-xl font-display font-extrabold text-[10px] uppercase tracking-wider text-white transition-all text-center flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
+            >
+              <MessageCircle class="w-3.5 h-3.5 fill-white" />
+              <span>Message Us on WhatsApp</span>
+            </a>
+          </div>
+
+          <script is:inline>
+            document.addEventListener('DOMContentLoaded', () => {
+              // 1. Capture and Set UTMs in form
+              const urlParams = new URLSearchParams(window.location.search);
+              const utmSource = urlParams.get('utm_source') || 'website';
+              const utmMedium = urlParams.get('utm_medium') || 'form';
+              const utmCampaign = urlParams.get('utm_campaign') || 'contact_page';
+
+              const sourceInput = document.getElementById('utm_source');
+              const mediumInput = document.getElementById('utm_medium');
+              const campaignInput = document.getElementById('utm_campaign');
+
+              if (sourceInput) sourceInput.value = utmSource;
+              if (mediumInput) mediumInput.value = utmMedium;
+              if (campaignInput) campaignInput.value = utmCampaign;
+
+              // 2. Track WhatsApp Click
+              const waLink = document.getElementById('whatsapp-direct-link');
+              if (waLink) {
+                waLink.addEventListener('click', () => {
+                  if (window.gtag) {
+                    window.gtag('event', 'whatsapp_click', { button_location: 'contact_page' });
+                  }
+                });
+              }
+
+              // 3. Client side Validation & AJAX Submission
+              const form = document.getElementById('contact-page-form');
+              const submitBtn = form.querySelector('button[type="submit"]');
+              const submitBtnSpan = submitBtn.querySelector('span');
+
+              form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Basic validation checks
+                const name = form.elements['name'].value.trim();
+                const email = form.elements['email'].value.trim();
+                const phone = form.elements['phone'].value.trim();
+                const city = form.elements['city'].value;
+                const referrer = form.elements['referrer'].value;
+                const budget = form.elements['budget'].value;
+
+                if (!name || !email || !phone || !city || !referrer || !budget) {
+                  window.showToast("Please fill in all required fields.", "error");
+                  return;
+                }
+
+                // Email check
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                  window.showToast("Please enter a valid business email address.", "error");
+                  return;
+                }
+
+                // Phone check (10 to 15 digits)
+                const phoneRegex = /^\+?[0-9\s-]{10,15}$/;
+                if (!phoneRegex.test(phone.replace(/\+/g, ''))) {
+                  window.showToast("Please enter a valid 10-15 digit phone number.", "error");
+                  return;
+                }
+
+                // Honeypot check
+                if (form.elements['botcheck'].checked) {
+                  console.warn("Spam detected");
+                  return;
+                }
+
+                // Load State (Disable button and set loading spinner)
+                submitBtn.disabled = true;
+                const origText = submitBtnSpan.textContent;
+                submitBtnSpan.textContent = "Submitting Inquiry...";
+
+                const formData = new FormData(form);
+
+                fetch('https://api.web3forms.com/submit', {
+                  method: 'POST',
+                  body: formData
+                })
+                .then(async (response) => {
+                  const json = await response.json();
+                  if (response.status === 200) {
+                    // GA4 event
+                    if (window.gtag) {
+                      window.gtag('event', 'form_submit', {
+                        form_location: 'contact_page',
+                        utm_source: utmSource,
+                        utm_medium: utmMedium,
+                        utm_campaign: utmCampaign
+                      });
+                    }
+                    window.showToast("Message sent successfully! Redirecting...", "success");
+                    setTimeout(() => {
+                      window.location.href = '/thank-you/';
+                    }, 1500);
+                  } else {
+                    if (window.gtag) {
+                      window.gtag('event', 'form_error', { form_location: 'contact_page', error_message: json.message || 'unknown_error' });
+                    }
+                    window.showToast(json.message || "Submission failed. Please check access key or parameters.", "error");
+                    submitBtn.disabled = false;
+                    submitBtnSpan.textContent = origText;
+                  }
+                })
+                .catch((err) => {
+                  if (window.gtag) {
+                    window.gtag('event', 'form_error', { form_location: 'contact_page', error_message: 'network_failure' });
+                  }
+                  window.showToast("Network failure. Please consult on WhatsApp instead.", "error");
+                  submitBtn.disabled = false;
+                  submitBtnSpan.textContent = origText;
+                });
+              });
+            });
+          </script>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. Google Maps Embed Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="bg-white border border-neutral-mist rounded-3xl p-6 sm:p-10 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Left: Map Container (col 7) -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+          <div class="w-full h-80 bg-neutral-ghost border border-neutral-mist rounded-2xl relative overflow-hidden flex flex-col items-center justify-center gap-2 group" id="maps-container">
+            <!-- Overlay and static preview -->
+            <div class="absolute inset-0 bg-[radial-gradient(#ff6b2b08_4px,transparent_4px)] bg-[size:24px_24px] z-0"></div>
+            <div class="flex flex-col items-center justify-center gap-3 relative z-10 p-6 text-center" id="map-placeholder">
+              <MapPin class="w-10 h-10 text-primary-saffron animate-bounce" />
+              <h4 class="font-display font-extrabold text-sm text-neutral-dark">RoasBodhi™ Navi Mumbai Operations Hub</h4>
+              <p class="font-body text-xs text-neutral-stone max-w-sm font-semibold leading-relaxed">
+                To optimize page speed, the map is loaded on-demand. Click below to view the live location.
+              </p>
+              <button 
+                id="load-map-btn" 
+                class="px-6 py-3 bg-primary-indigo hover:bg-neutral-dark text-white text-xs font-display font-extrabold uppercase tracking-wider rounded-xl shadow-md transition-all duration-300 mt-2 focus:outline-none"
+              >
+                Show Live Map
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Address & Travel Info (col 5) -->
+        <div class="lg:col-span-5 flex flex-col gap-5 text-left select-none">
+          <div class="flex flex-col gap-1.5">
+            <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest leading-none">Office Map</span>
+            <h3 class="font-display font-extrabold text-xl sm:text-2xl text-neutral-dark tracking-tight leading-tight">Find Us in Navi Mumbai</h3>
+          </div>
+
+          <div class="flex flex-col gap-4 text-xs font-body font-semibold text-neutral-charcoal/90">
+            <!-- Office Address -->
+            <div class="flex items-start gap-3">
+              <span class="text-lg font-normal">🏢</span>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-neutral-dark">Registered Office Address</h4>
+                <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold mt-0.5">
+                  Sector 15, Nerul West, Navi Mumbai, Maharashtra 400706
+                </p>
+              </div>
+            </div>
+
+            <!-- Directions Link -->
+            <div class="flex items-start gap-3">
+              <span class="text-lg font-normal">📍</span>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-neutral-dark">Get Directions</h4>
+                <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold mt-0.5">
+                  <a 
+                    href="https://maps.google.com/?q=Nerul+West,+Navi+Mumbai,+Maharashtra" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="text-primary-saffron hover:underline inline-flex items-center gap-1"
+                  >
+                    Open in Google Maps App &rarr;
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <!-- Landmarks -->
+            <div class="flex items-start gap-3">
+              <span class="text-lg font-normal">🚩</span>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-neutral-dark">Nearby Landmarks</h4>
+                <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold mt-0.5">
+                  Near Nerul Railway Station (East-West Flyover corridor)
+                </p>
+              </div>
+            </div>
+
+            <!-- Public Transport -->
+            <div class="flex items-start gap-3">
+              <span class="text-lg font-normal">🚆</span>
+              <div>
+                <h4 class="font-display font-extrabold text-xs text-neutral-dark">Public Transit Directions</h4>
+                <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold mt-0.5">
+                  Nerul Railway Station on Mumbai Harbour Line (just a 5-minute walk from the station exit)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client-side Map Activation Script -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const loadMapBtn = document.getElementById('load-map-btn');
+        const mapsContainer = document.getElementById('maps-container');
+        
+        if (loadMapBtn && mapsContainer) {
+          loadMapBtn.addEventListener('click', () => {
+            const embedUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3772.339247167664!2d73.0125203!3d19.0267798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c3edf3db56f1%3A0x6bfa009ec2543992!2sNerul%2C%20Navi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin';
+            
+            mapsContainer.innerHTML = `
+              <iframe 
+                src="${embedUrl}" 
+                class="w-full h-full border-0 absolute inset-0" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="RoasBodhi Google Maps Location"
+              ></iframe>
+            `;
+          });
+        }
+      });
+    </script>
+
+    <!-- 5. FAQ accordion -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none">
+      <div class="text-center mb-10">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold font-display">FAQS</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-2 tracking-tight">Got Questions? We Have Answers.</h2>
+      </div>
+
+      <FAQAccordion faqs={contactFaqs} />
+    </section>
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

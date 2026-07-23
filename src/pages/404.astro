@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ArrowRight, Search } from 'lucide-astro';
+
+const pageTitle = "404 - Page Not Found | RoasBodhi";
+const pageDescription = "Even we got lost, but your Return on Ad Spend won't. Access our homepage or pricing directories.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} noIndex={true}>
+  
+  <Header />
+
+  <main class="flex-grow pt-32 pb-24 bg-neutral-ghost text-neutral-charcoal text-center flex flex-col items-center justify-center select-none">
+    
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-6">
+      
+      <!-- Leaf Logo SVG -->
+      <svg class="w-16 h-16 animate-bounce" viewBox="0 0 40 40" fill="none">
+        <linearGradient id="logo404" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FF6B2B" />
+          <stop offset="100%" stop-color="#F5A623" />
+        </linearGradient>
+        <path d="M20 2C20 2 34 16 34 26C34 32.6274 27.732 38 20 38C12.268 38 6 32.6274 6 26C6 16 20 2 20 2Z" fill="url(#logo404)" />
+      </svg>
+
+      <span class="px-3 py-1 rounded-full bg-primary-saffron/10 text-primary-saffron text-[9px] font-display font-extrabold uppercase tracking-widest">
+        ⚠️ Error Code 404
+      </span>
+
+      <h1 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl tracking-tight leading-tight">
+        Even We Got Lost. <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">But Your ROAS Won't.</span>
+      </h1>
+
+      <p class="font-body text-xs sm:text-sm text-neutral-stone leading-relaxed font-semibold max-w-sm">
+        This page took a wrong turn. Let's redirect you back to the paths of enlightened growth.
+      </p>
+
+      <!-- Main Action button -->
+      <a 
+        href="/" 
+        class="px-7 py-3.5 mt-2 bg-gradient-to-r from-primary-saffron to-primary-gold hover:shadow-button-saffron text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all"
+      >
+        Go to Homepage
+      </a>
+
+      <!-- Quick links directory -->
+      <div class="mt-8 border-t border-neutral-mist/60 pt-6 w-full flex flex-wrap justify-center gap-4 text-xs font-display font-extrabold uppercase tracking-wider text-neutral-stone">
+        <a href="/pricing/" class="hover:text-primary-saffron transition-all">Pricing Plans</a>
+        <span>•</span>
+        <a href="/services/" class="hover:text-primary-saffron transition-all">Our Services</a>
+        <span>•</span>
+        <a href="/contact/" class="hover:text-primary-saffron transition-all">Claim Audit</a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

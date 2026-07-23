@@ -1,0 +1,189 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import { CheckCircle2, MessageCircle, Phone, ArrowLeft, ArrowRight, Save, ShieldCheck, Globe, Star } from 'lucide-astro';
+
+// Load our real testimonials
+import testimonialsData from '../data/testimonials.json';
+const realTestimonials = testimonialsData.slice(0, 3);
+
+const pageTitle = "Inquiry Received | Thank You - RoasBodhi";
+const pageDescription = "Thank you for contacting RoasBodhi™. We have received your inquiry and our performance marketers will reach out to you within 2 hours on WhatsApp.";
+
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} noIndex={true}>
+  
+  <Header />
+
+  <main class="min-h-screen bg-neutral-ghost flex flex-col justify-between pt-24 select-none">
+    
+    <!-- Hero Confirmation Section -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center flex flex-col items-center gap-6">
+      
+      <div class="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center border border-emerald-500/20 text-emerald-500 animate-bounce">
+        <CheckCircle2 class="w-8 h-8" />
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest">Inquiry Received</span>
+        <h1 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight">
+          Thank You! Your Spot is Reserved.
+        </h1>
+        <p class="font-body text-sm font-semibold text-neutral-stone max-w-xl mx-auto mt-2 leading-relaxed">
+          We have successfully received your business details. Our performance marketing experts are already auditing your industry's CPL rates and search benchmarks.
+        </p>
+      </div>
+
+      <!-- Urgency/SLA card -->
+      <div class="w-full max-w-lg bg-white border border-neutral-mist rounded-3xl p-6 shadow-sm flex flex-col gap-4 text-left mt-4">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 bg-primary-saffron/10 rounded-xl flex items-center justify-center border border-primary-saffron/20 text-primary-saffron shrink-0">
+            <MessageCircle class="w-5 h-5" />
+          </div>
+          <div>
+            <h4 class="font-display font-extrabold text-sm text-neutral-dark">WhatsApp SLA Response Commitment</h4>
+            <p class="font-body text-xs text-neutral-stone font-semibold mt-0.5 leading-relaxed">
+              We will contact you via WhatsApp Business at your registered number within <strong class="text-primary-saffron">2 hours</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="border-t border-neutral-mist/60 pt-4 flex items-start gap-4">
+          <div class="w-10 h-10 bg-primary-gold/10 rounded-xl flex items-center justify-center border border-primary-gold/20 text-primary-gold shrink-0">
+            <Save class="w-5 h-5" />
+          </div>
+          <div>
+            <h4 class="font-display font-extrabold text-sm text-neutral-dark">Crucial Next Step</h4>
+            <p class="font-body text-xs text-neutral-stone font-semibold mt-0.5 leading-relaxed">
+              Please save our number <strong class="text-neutral-dark">+91 90825 43992</strong> in your contacts list. This ensures WhatsApp delivers our audit reports and media files without flagging them as unknown.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 mt-2 w-full max-w-md">
+        <!-- Direct WhatsApp Chat -->
+        <a 
+          href="https://wa.me/919082543992?text=Namaste%20RoasBodhi!%20I%20just%20submitted%20the%20audit%20form%20on%20your%20website.%20I'd%20like%20to%20get%20started." 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="w-full py-4 bg-emerald-500 hover:bg-emerald-600 hover:shadow-[0_12px_32px_rgba(16,185,129,0.2)] hover:-translate-y-0.5 text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all text-center flex items-center justify-center gap-1.5 shadow"
+        >
+          <MessageCircle class="w-4 h-4 fill-white" />
+          <span>Connect Instantly on WhatsApp</span>
+        </a>
+
+        <!-- Back to Home -->
+        <a 
+          href="/" 
+          class="w-full py-4 bg-white border border-neutral-mist hover:bg-neutral-ghost hover:-translate-y-0.5 text-neutral-dark font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all text-center flex items-center justify-center gap-1.5 shadow-sm"
+        >
+          <ArrowLeft class="w-4 h-4" />
+          <span>Back to Homepage</span>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- Social Proof Testimonials Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-neutral-mist/60 w-full select-none">
+      <div class="text-center mb-10">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">REVIEWS</span>
+        <h2 class="font-display font-extrabold text-xl sm:text-2xl text-neutral-dark mt-1">Real Results Delivered to Indian Businesses</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {realTestimonials.map(t => (
+          <div class="bg-white border border-neutral-mist rounded-3xl p-6 shadow-sm flex flex-col justify-between gap-5 relative hover:border-primary-saffron/30 transition-colors">
+            <div class="absolute right-6 top-6 flex gap-0.5">
+              {[...Array(t.rating)].map(() => (
+                <Star class="w-3.5 h-3.5 fill-primary-gold text-primary-gold" />
+              ))}
+            </div>
+            
+            <div class="flex flex-col gap-3 text-left">
+              <p class="font-body text-xs text-neutral-stone font-medium leading-relaxed italic">
+                "{t.text}"
+              </p>
+            </div>
+
+            <div class="flex items-center gap-3 border-t border-neutral-mist/60 pt-4 text-left">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary-saffron to-primary-gold flex items-center justify-center text-white font-display font-extrabold text-xs uppercase shadow-inner">
+                {t.name.split(' ').map(n => n[0]).join('')}
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display font-extrabold text-[11px] text-neutral-dark leading-tight">{t.name}</span>
+                <span class="font-body text-[9px] text-neutral-stone font-semibold">{t.business} ({t.city}, {t.state})</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Recommended Resources & Navigation -->
+    <section class="bg-neutral-dark text-white/80 py-16 w-full select-none border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          
+          <!-- Column 1: Suggested Reading -->
+          <div class="flex flex-col items-start gap-4 text-left">
+            <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest">Free Knowledge Resources</span>
+            <h3 class="font-display font-extrabold text-xl text-white">Optimize Your Digital Strategy While You Wait</h3>
+            <p class="font-body text-xs text-white/60 font-semibold leading-relaxed">
+              Explore our strategic, data-rich guides explaining pricing structures and optimization steps.
+            </p>
+            <div class="flex flex-col gap-3 mt-2 w-full">
+              <a href="/pricing/" class="flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 rounded-2xl transition-colors w-full border border-white/5">
+                <div class="flex flex-col">
+                  <span class="font-display font-extrabold text-xs text-white">Transparent Pricing Plans</span>
+                  <span class="font-body text-[10px] text-white/50 font-semibold mt-0.5">Explore transparent ads retainers and website design costs.</span>
+                </div>
+                <ArrowRight class="w-4 h-4 text-primary-saffron shrink-0" />
+              </a>
+              <a href="/blog/" class="flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 rounded-2xl transition-colors w-full border border-white/5">
+                <div class="flex flex-col">
+                  <span class="font-display font-extrabold text-xs text-white">RoasBodhi Insights Blog</span>
+                  <span class="font-body text-[10px] text-white/50 font-semibold mt-0.5">Strategic digital marketing how-to articles for Indian SMBs.</span>
+                </div>
+                <ArrowRight class="w-4 h-4 text-primary-saffron shrink-0" />
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 2: Trust Pillars -->
+          <div class="flex flex-col items-start gap-6 text-left">
+            <span class="font-display font-extrabold text-[10px] text-primary-gold uppercase tracking-widest">Why Partner with Us</span>
+            <h3 class="font-display font-extrabold text-xl text-white">Devoted to Data, Committed to Dharma</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+              <div class="flex items-start gap-3">
+                <ShieldCheck class="w-5 h-5 text-primary-saffron shrink-0 mt-0.5" />
+                <div class="flex flex-col">
+                  <span class="font-display font-extrabold text-xs text-white">Zero Upfront Web Model</span>
+                  <span class="font-body text-[10px] text-white/50 font-semibold mt-0.5">Pay only after reviewing your live website staging setup.</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <Globe class="w-5 h-5 text-primary-saffron shrink-0 mt-0.5" />
+                <div class="flex flex-col">
+                  <span class="font-display font-extrabold text-xs text-white">Pan-India Support</span>
+                  <span class="font-body text-[10px] text-white/50 font-semibold mt-0.5">Active local search optimizations serving 180+ cities.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+
+  </main>
+
+</BaseLayout>

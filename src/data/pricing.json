@@ -1,0 +1,1231 @@
+{
+  "web_design": {
+    "plans": [
+      {
+        "id": "ankur",
+        "name": "Ankur",
+        "hindi": "अंकुर",
+        "meaning": "Seedling / Sprout",
+        "price": 7999,
+        "period": "one-time",
+        "popular": false,
+        "description": "Perfect for new startups and freelancers needing a fast, professional digital presence.",
+        "features": [
+          {
+            "name": "Responsive Pages",
+            "value": "Up to 3 Pages",
+            "included": true
+          },
+          {
+            "name": "Layout Structure",
+            "value": "Professional Template",
+            "included": true
+          },
+          {
+            "name": "Performance Target",
+            "value": "Lighthouse >80+ Score",
+            "included": true
+          },
+          {
+            "name": "Accessibility Target",
+            "value": "Lighthouse >80+ Score",
+            "included": true
+          },
+          {
+            "name": "Best Practices Target",
+            "value": "Lighthouse >80+ Score",
+            "included": true
+          },
+          {
+            "name": "SEO Target",
+            "value": "Lighthouse >80+ Score",
+            "included": true
+          },
+          {
+            "name": "Agentic Browsing",
+            "value": "Not Included",
+            "included": false
+          },
+          {
+            "name": "Mobile Optimization",
+            "value": "Responsive Layout",
+            "included": true
+          },
+          {
+            "name": "WhatsApp Integration",
+            "value": "Direct Link API",
+            "included": true
+          },
+          {
+            "name": "Predefined Chatbot",
+            "value": "Not Included",
+            "included": false
+          },
+          {
+            "name": "YouTube Integration",
+            "value": "Not Included",
+            "included": false
+          },
+          {
+            "name": "Free .in Domain",
+            "value": "1 Year",
+            "included": false
+          },
+          {
+            "name": "On-Page SEO setup",
+            "value": "All pages",
+            "included": false
+          }
+        ],
+        "cta": "Start Ankur Web Plan",
+        "guarantee": "100% Pre-launch Refund",
+        "setup_fee": 0
+      },
+      {
+        "id": "vriddhi",
+        "name": "Vriddhi",
+        "hindi": "वृद्धि",
+        "meaning": "Growth / Prosperity",
+        "price": 19999,
+        "period": "one-time",
+        "popular": true,
+        "description": "Our most popular plan. Semi-custom website designed to rank locally and convert leads.",
+        "features": [
+          {
+            "name": "Responsive Pages",
+            "value": "Up to 7 Pages",
+            "included": true
+          },
+          {
+            "name": "Layout Structure",
+            "value": "Semi-Custom Brand Design",
+            "included": true
+          },
+          {
+            "name": "Performance Target",
+            "value": "Lighthouse >85+ Score",
+            "included": true
+          },
+          {
+            "name": "Accessibility Target",
+            "value": "Lighthouse >85+ Score",
+            "included": true
+          },
+          {
+            "name": "Best Practices Target",
+            "value": "Lighthouse >85+ Score",
+            "included": true
+          },
+          {
+            "name": "SEO Target",
+            "value": "Lighthouse >85+ Score",
+            "included": true
+          },
+          {
+            "name": "Agentic Browsing",
+            "value": "Standard Bot Access",
+            "included": true
+          },
+          {
+            "name": "Mobile Optimization",
+            "value": "Full Mobile Engine",
+            "included": true
+          },
+          {
+            "name": "WhatsApp Integration",
+            "value": "Pre-filled Form Link",
+            "included": true
+          },
+          {
+            "name": "Predefined Chatbot",
+            "value": "Included (Predefined Flow)",
+            "included": true
+          },
+          {
+            "name": "YouTube Integration",
+            "value": "Not Included",
+            "included": false
+          },
+          {
+            "name": "Free .in Domain",
+            "value": "Included 1 Year",
+            "included": true
+          },
+          {
+            "name": "On-Page SEO setup",
+            "value": "Fully Optimized",
+            "included": true
+          }
+        ],
+        "cta": "Build Vriddhi Web Preview",
+        "guarantee": "Pay After Seeing Preview",
+        "setup_fee": 0
+      },
+      {
+        "id": "siddhi",
+        "name": "Siddhi",
+        "hindi": "सिद्धि",
+        "meaning": "Mastery / Perfection",
+        "price": 39999,
+        "period": "one-time",
+        "popular": false,
+        "description": "Custom built enterprise or e-commerce website with advanced tracking integrations.",
+        "features": [
+          {
+            "name": "Responsive Pages",
+            "value": "Up to 15 Pages / Ecom store",
+            "included": true
+          },
+          {
+            "name": "Layout Structure",
+            "value": "100% Custom Layout",
+            "included": true
+          },
+          {
+            "name": "Performance Target",
+            "value": "Lighthouse >90+ Score",
+            "included": true
+          },
+          {
+            "name": "Accessibility Target",
+            "value": "Lighthouse >90+ Score",
+            "included": true
+          },
+          {
+            "name": "Best Practices Target",
+            "value": "Lighthouse >90+ Score",
+            "included": true
+          },
+          {
+            "name": "SEO Target",
+            "value": "Lighthouse >90+ Score",
+            "included": true
+          },
+          {
+            "name": "Agentic Browsing",
+            "value": "Maximum AI Crawling",
+            "included": true
+          },
+          {
+            "name": "Mobile Optimization",
+            "value": "Mobile-First PWA Layout",
+            "included": true
+          },
+          {
+            "name": "WhatsApp Integration",
+            "value": "Custom API CRM Hook",
+            "included": true
+          },
+          {
+            "name": "Predefined Chatbot",
+            "value": "Included (Custom Scripts)",
+            "included": true
+          },
+          {
+            "name": "YouTube Integration",
+            "value": "Included Channel Config",
+            "included": true
+          },
+          {
+            "name": "Free .in Domain",
+            "value": "Included 1 Year",
+            "included": true
+          },
+          {
+            "name": "On-Page SEO setup",
+            "value": "Local + Schema Markup",
+            "included": true
+          }
+        ],
+        "cta": "Custom Build Siddhi Plan",
+        "guarantee": "Pay After Seeing Preview",
+        "setup_fee": 0
+      }
+    ]
+  },
+  "meta_ads": {
+    "plans": [
+      {
+        "id": "jyoti",
+        "name": "Jyoti",
+        "hindi": "ज्योति",
+        "meaning": "Light / Base",
+        "price": 7999,
+        "period": "month",
+        "popular": false,
+        "description": "Test your offers and creatives. Setup basic pixel tracking and start lead flow.",
+        "features": [
+          {
+            "name": "Monthly Spend Limit",
+            "value": "Up to ₹15,000",
+            "included": true
+          },
+          {
+            "name": "Ad Platforms",
+            "value": "Facebook OR Instagram",
+            "included": true
+          },
+          {
+            "name": "Active Campaigns",
+            "value": "1 Campaign",
+            "included": true
+          },
+          {
+            "name": "Visual Creatives",
+            "value": "4 Graphics / month",
+            "included": true
+          },
+          {
+            "name": "Pixel Integration",
+            "value": "Basic Pixel Setup",
+            "included": true
+          },
+          {
+            "name": "Conversions API Setup",
+            "value": "Bypass iOS block",
+            "included": false
+          },
+          {
+            "name": "Reporting Frequency",
+            "value": "Monthly PDF",
+            "included": true
+          }
+        ],
+        "cta": "Launch Jyoti Ads Plan",
+        "guarantee": "Waived Setup Fee Offer",
+        "setup_fee": 2999
+      },
+      {
+        "id": "agni",
+        "name": "Agni",
+        "hindi": "अग्नि",
+        "meaning": "Sacred Fire / Scale",
+        "price": 17999,
+        "period": "month",
+        "popular": true,
+        "description": "Complete performance campaign scaling. Includes custom copies, graphic ads, and reels.",
+        "features": [
+          {
+            "name": "Monthly Spend Limit",
+            "value": "Up to ₹50,000",
+            "included": true
+          },
+          {
+            "name": "Ad Platforms",
+            "value": "Facebook + Instagram + WA",
+            "included": true
+          },
+          {
+            "name": "Active Campaigns",
+            "value": "2-3 Campaigns",
+            "included": true
+          },
+          {
+            "name": "Visual Creatives",
+            "value": "10 Graphics + 2 Reels / mo",
+            "included": true
+          },
+          {
+            "name": "Pixel Integration",
+            "value": "Advanced Pixel Integration",
+            "included": true
+          },
+          {
+            "name": "Conversions API Setup",
+            "value": "Enabled CAPI Setup",
+            "included": true
+          },
+          {
+            "name": "Reporting Frequency",
+            "value": "Bi-Weekly + Call",
+            "included": true
+          }
+        ],
+        "cta": "Scale with Agni Ads Plan",
+        "guarantee": "15-Day Cancellation Notice",
+        "setup_fee": 3999
+      },
+      {
+        "id": "pralaya",
+        "name": "Pralaya",
+        "hindi": "प्रलय",
+        "meaning": "Cosmic Storm / Domination",
+        "price": 29999,
+        "period": "month",
+        "popular": false,
+        "description": "High budget scaling. Multi-level retargeting and complete custom landing page setups.",
+        "features": [
+          {
+            "name": "Monthly Spend Limit",
+            "value": "Up to ₹1,50,000",
+            "included": true
+          },
+          {
+            "name": "Ad Platforms",
+            "value": "Omnichannel Meta Target",
+            "included": true
+          },
+          {
+            "name": "Active Campaigns",
+            "value": "5+ Campaigns",
+            "included": true
+          },
+          {
+            "name": "Visual Creatives",
+            "value": "20 Graphics + 5 Reels / mo",
+            "included": true
+          },
+          {
+            "name": "Pixel Integration",
+            "value": "Enterprise Setup",
+            "included": true
+          },
+          {
+            "name": "Conversions API Setup",
+            "value": "Full custom integrations",
+            "included": true
+          },
+          {
+            "name": "Reporting Frequency",
+            "value": "Weekly Dashboard + 2 Calls",
+            "included": true
+          }
+        ],
+        "cta": "Dominate with Pralaya Ads",
+        "guarantee": "Includes 1 Landing Page",
+        "setup_fee": 4999
+      }
+    ]
+  },
+  "google_ads": {
+    "plans": [
+      {
+        "id": "disha",
+        "name": "Disha",
+        "hindi": "दिशा",
+        "meaning": "Direction / Guide",
+        "price": 9999,
+        "period": "month",
+        "popular": false,
+        "description": "Ideal for targeting specific, high-intent local search keywords.",
+        "features": [
+          {
+            "name": "Monthly Spend Limit",
+            "value": "Up to ₹20,000",
+            "included": true
+          },
+          {
+            "name": "Ad Channels",
+            "value": "Google Search Only",
+            "included": true
+          },
+          {
+            "name": "Target Keywords",
+            "value": "Up to 30 Keywords",
+            "included": true
+          },
+          {
+            "name": "Ad Groups Configured",
+            "value": "2 Ad Groups",
+            "included": true
+          },
+          {
+            "name": "Conversion Tracking",
+            "value": "Basic Setup",
+            "included": true
+          },
+          {
+            "name": "Negative Keywords",
+            "value": "Monthly Review",
+            "included": true
+          }
+        ],
+        "cta": "Start Disha Google Ads",
+        "guarantee": "No Set-up Fee Offer",
+        "setup_fee": 2999
+      },
+      {
+        "id": "chakra",
+        "name": "Chakra",
+        "hindi": "चक्र",
+        "meaning": "Wheel of Growth",
+        "price": 22999,
+        "period": "month",
+        "popular": true,
+        "description": "Target clients across Search, Maps, and YouTube, supported by negative list scrubbing.",
+        "features": [
+          {
+            "name": "Monthly Spend Limit",
+            "value": "Up to ₹75,000",
+            "included": true
+          },
+          {
+            "name": "Ad Channels",
+            "value": "Search + Display + Maps",
+            "included": true
+          },
+          {
+            "name": "Target Keywords",
+            "value": "Up to 80 Keywords",
+            "included": true
+          },
+          {
+            "name": "Ad Groups Configured",
+            "value": "5 Ad Groups",
+            "included": true
+          },
+          {
+            "name": "Conversion Tracking",
+            "value": "Advanced Track",
+            "included": true
+          },
+          {
+            "name": "Negative Keywords",
+            "value": "Bi-Weekly Scrubbing",
+            "included": true
+          }
+        ],
+        "cta": "Scale with Chakra Google Ads",
+        "guarantee": "Includes 1 Landing Page",
+        "setup_fee": 4999
+      },
+      {
+        "id": "vajra",
+        "name": "Vajra",
+        "hindi": "वज्र",
+        "meaning": "Thunderbolt / Invincible",
+        "price": 39999,
+        "period": "month",
+        "popular": false,
+        "description": "Complete performance dominance across Performance Max, Search, and Video Ads.",
+        "features": [
+          {
+            "name": "Monthly Spend Limit",
+            "value": "Up to ₹2,00,000",
+            "included": true
+          },
+          {
+            "name": "Ad Channels",
+            "value": "PMax + Search + Display + YT",
+            "included": true
+          },
+          {
+            "name": "Target Keywords",
+            "value": "150+ Keywords",
+            "included": true
+          },
+          {
+            "name": "Ad Groups Configured",
+            "value": "10+ Ad Groups",
+            "included": true
+          },
+          {
+            "name": "Conversion Tracking",
+            "value": "Call Tracking + Analytics",
+            "included": true
+          },
+          {
+            "name": "Negative Keywords",
+            "value": "Weekly Optimization",
+            "included": true
+          }
+        ],
+        "cta": "Dominate with Vajra Google Ads",
+        "guarantee": "Includes 2 Landing Pages",
+        "setup_fee": 5999
+      }
+    ]
+  },
+  "gmb": {
+    "plans": [
+      {
+        "id": "sthapna",
+        "name": "Sthapna",
+        "hindi": "स्थापना",
+        "meaning": "Foundation / Setup",
+        "price": 4999,
+        "period": "one-time",
+        "popular": false,
+        "description": "Get verified, set up local category listings, and establish maps visibility.",
+        "features": [
+          {
+            "name": "Profile Setup",
+            "value": "Claim & Verify GMB",
+            "included": true
+          },
+          {
+            "name": "Category Alignment",
+            "value": "Optimized Descriptions",
+            "included": true
+          },
+          {
+            "name": "Geotagged Uploads",
+            "value": "10 Photos Uploaded",
+            "included": true
+          },
+          {
+            "name": "Local Directory Submissions",
+            "value": "5 Listings",
+            "included": true
+          },
+          {
+            "name": "Review Generation Link",
+            "value": "WhatsApp Link Setup",
+            "included": true
+          }
+        ],
+        "cta": "Claim GMB Setup",
+        "guarantee": "100% Verification Support",
+        "setup_fee": 0
+      },
+      {
+        "id": "unnati",
+        "name": "Unnati",
+        "hindi": "उन्नति",
+        "meaning": "Progress / Growth",
+        "price": 7999,
+        "period": "month",
+        "popular": true,
+        "description": "Continuous ranking optimization, geotagged photo posts, and directory citations builds.",
+        "features": [
+          {
+            "name": "Profile Setup",
+            "value": "Ongoing Optimizations",
+            "included": true
+          },
+          {
+            "name": "Category Alignment",
+            "value": "Keyword Audited",
+            "included": true
+          },
+          {
+            "name": "Geotagged Uploads",
+            "value": "15 Photos / month",
+            "included": true
+          },
+          {
+            "name": "Local Directory Submissions",
+            "value": "15 Listings / month",
+            "included": true
+          },
+          {
+            "name": "Review Generation Link",
+            "value": "Automatic link followups",
+            "included": true
+          }
+        ],
+        "cta": "Start Unnati Map SEO",
+        "guarantee": "Cancel Anytime Retainer",
+        "setup_fee": 0
+      },
+      {
+        "id": "samrajya",
+        "name": "Samrajya",
+        "hindi": "साम્રાજ્ય",
+        "meaning": "Empire / Domination",
+        "price": 14999,
+        "period": "month",
+        "popular": false,
+        "description": "Multi-location management and competitor spam report audits for local market dominance.",
+        "features": [
+          {
+            "name": "Profile Setup",
+            "value": "Up to 3 Map locations",
+            "included": true
+          },
+          {
+            "name": "Category Alignment",
+            "value": "Advanced Map SEO",
+            "included": true
+          },
+          {
+            "name": "Geotagged Uploads",
+            "value": "30 Photos / month",
+            "included": true
+          },
+          {
+            "name": "Local Directory Submissions",
+            "value": "40 Listings / month",
+            "included": true
+          },
+          {
+            "name": "Review Generation Link",
+            "value": "GMB review strategy setup",
+            "included": true
+          }
+        ],
+        "cta": "Dominate with Samrajya GMB",
+        "guarantee": "Includes Competitor Audits",
+        "setup_fee": 0
+      }
+    ]
+  },
+  "bundles": {
+    "plans": [
+      {
+        "id": "arambh",
+        "name": "Arambh Combo",
+        "hindi": "आरम्भ",
+        "meaning": "Starting Kit",
+        "price": 9999,
+        "period": "one-time",
+        "popular": false,
+        "description": "The perfect digital launcher pack for local SMBs. Includes website and GMB setup.",
+        "features": [
+          {
+            "name": "Web Design",
+            "value": "Ankur Plan (3 Pages)",
+            "included": true
+          },
+          {
+            "name": "GMB Map SEO",
+            "value": "Sthapna Plan (GMB Setup)",
+            "included": true
+          },
+          {
+            "name": "Free .in Domain",
+            "value": "Included 1 Year",
+            "included": true
+          },
+          {
+            "name": "Performance Target",
+            "value": "Lighthouse >85+ Score",
+            "included": true
+          },
+          {
+            "name": "Review Link Setup",
+            "value": "Included",
+            "included": true
+          }
+        ],
+        "cta": "Launch Arambh Pack",
+        "guarantee": "Anniversary Launch Offer",
+        "setup_fee": 0
+      },
+      {
+        "id": "shakti",
+        "name": "Shakti Growth Bundle",
+        "hindi": "शक्ति",
+        "meaning": "Power / Complete Execution",
+        "price": 37999,
+        "period": "month",
+        "popular": true,
+        "description": "Our premier growth kit. Combines 7-page custom website with monthly Meta ads and GMB SEO.",
+        "features": [
+          {
+            "name": "Web Design",
+            "value": "Vriddhi Plan (7 Pages)",
+            "included": true
+          },
+          {
+            "name": "Meta Ads scaling",
+            "value": "Agni Plan (Up to ₹50k spend)",
+            "included": true
+          },
+          {
+            "name": "GMB Maps SEO",
+            "value": "Unnati Plan (Monthly optimization)",
+            "included": true
+          },
+          {
+            "name": "Free .in Domain",
+            "value": "Included 1 Year",
+            "included": true
+          },
+          {
+            "name": "Live Performance Reports",
+            "value": "Bi-Weekly + Strategy Call",
+            "included": true
+          }
+        ],
+        "cta": "Scale with Shakti Bundle",
+        "guarantee": "Save ₹7,998 every month",
+        "setup_fee": 0
+      },
+      {
+        "id": "moksha",
+        "name": "Moksha Market Domination",
+        "hindi": "मोक्ष",
+        "meaning": "Total Liberation",
+        "price": 89999,
+        "period": "month",
+        "popular": false,
+        "description": "Complete omnichannel execution. Includes custom E-commerce website, Google Search, Meta Ads, and GMB SEO.",
+        "features": [
+          {
+            "name": "Web Design",
+            "value": "Siddhi Plan (Custom E-com)",
+            "included": true
+          },
+          {
+            "name": "Meta Ads scaling",
+            "value": "Pralaya Plan (Up to ₹1.5L spend)",
+            "included": true
+          },
+          {
+            "name": "Google Ads scaling",
+            "value": "Vajra Plan (Up to ₹2L spend)",
+            "included": true
+          },
+          {
+            "name": "GMB Maps SEO",
+            "value": "Samrajya Plan (Multi-locations)",
+            "included": true
+          },
+          {
+            "name": "Live Performance Reports",
+            "value": "Weekly Dashboard + 2 Calls",
+            "included": true
+          }
+        ],
+        "cta": "Claim Moksha Domination",
+        "guarantee": "Save ₹34,997 every month",
+        "setup_fee": 0
+      }
+    ]
+  },
+  "bodhi_utsav_offers": {
+    "website_utsav": {
+      "price": 9999,
+      "original_price": 25999,
+      "period": "one-time",
+      "worth": 25999
+    },
+    "ads_utsav": {
+      "price": 9999,
+      "original_price": 35997,
+      "period": "month",
+      "worth": 35997
+    },
+    "sampoorna_utsav": {
+      "price": 17999,
+      "original_price": 59996,
+      "period": "month",
+      "worth": 59996
+    },
+    "drishti_utsav": {
+      "price": 4999,
+      "original_price": 14999,
+      "period": "one-time",
+      "worth": 14999,
+      "id": "drishti-utsav",
+      "name": "Drishti Utsav",
+      "hindi": "दृष्टि उत्सव",
+      "description": "Complete Divya Drishti Research Report at launch celebration price",
+      "discount_percent": 67,
+      "what_you_get": "Full Divya Drishti package worth ₹14,999",
+      "limited_to": 20,
+      "includes": [
+        "50-60 page professional report",
+        "5 competitor deep-dive analysis",
+        "Complete ad intelligence (Meta + Google)",
+        "100+ keyword research with difficulty scores",
+        "3 buyer personas with journey mapping",
+        "Full ad strategy blueprint",
+        "90-day content calendar",
+        "90-day growth roadmap",
+        "4 consulting calls (60 min each)",
+        "Video walkthrough recording",
+        "30-day WhatsApp support",
+        "20% off any RoasBodhi service"
+      ]
+    }
+  },
+  "research_reports": {
+    "category": "Research Reports",
+    "category_id": "research-reports",
+    "tagline": "Know Your Market. Beat Your Competitors.",
+    "note": "One-time investment. Report is yours forever.",
+    "plans": [
+      {
+        "id": "chakshu",
+        "name": "Chakshu",
+        "hindi": "चक्षु",
+        "meaning": "The Eye — Your First Vision",
+        "price": 4999,
+        "period": "one-time",
+        "popular": false,
+        "ideal_for": "New businesses wanting basic market clarity",
+        "delivery": "5 Business Days",
+        "report_pages": "25-30 Pages",
+        "competitors_analyzed": 3,
+        "consulting_calls": "2 calls (30 min each)",
+        "features": [
+          {
+            "name": "Business Digital Audit",
+            "value": "Your current online presence score",
+            "included": true
+          },
+          {
+            "name": "Competitor Analysis",
+            "value": "3 competitors analyzed",
+            "included": true
+          },
+          {
+            "name": "Their Active Ads Review",
+            "value": "Meta + Google ads screenshot analysis",
+            "included": true
+          },
+          {
+            "name": "Local Market Snapshot",
+            "value": "Your city + industry overview",
+            "included": true
+          },
+          {
+            "name": "Basic Keyword Research",
+            "value": "Top 30 keywords for your business",
+            "included": true
+          },
+          {
+            "name": "Quick Wins Action Plan",
+            "value": "Top 10 immediate improvements",
+            "included": true
+          },
+          {
+            "name": "Growth Opportunities",
+            "value": "3-5 untapped opportunities",
+            "included": true
+          },
+          {
+            "name": "Professional PDF Report",
+            "value": "25-30 pages, branded",
+            "included": true
+          },
+          {
+            "name": "Kickoff Strategy Call",
+            "value": "30 minutes",
+            "included": true
+          },
+          {
+            "name": "Report Walkthrough Call",
+            "value": "45 minutes",
+            "included": true
+          },
+          {
+            "name": "Deep Competitor Intelligence",
+            "value": "5+ competitors with SWOT",
+            "included": false
+          },
+          {
+            "name": "Customer Persona Research",
+            "value": "3 detailed buyer personas",
+            "included": false
+          },
+          {
+            "name": "Full Ad Strategy Blueprint",
+            "value": "Ready-to-execute campaigns",
+            "included": false
+          },
+          {
+            "name": "Content Calendar",
+            "value": "90-day content plan",
+            "included": false
+          },
+          {
+            "name": "Video Walkthrough Recording",
+            "value": "Recorded for your team",
+            "included": false
+          },
+          {
+            "name": "90-Day Growth Roadmap",
+            "value": "Week-by-week execution plan",
+            "included": false
+          },
+          {
+            "name": "Follow-Up Support",
+            "value": "WhatsApp support for 30 days",
+            "included": false
+          },
+          {
+            "name": "Service Discount",
+            "value": "20% off any RoasBodhi service",
+            "included": false
+          }
+        ],
+        "cta": "Get Chakshu Report",
+        "guarantee": "100% satisfaction or revision included"
+      },
+      {
+        "id": "divya-drishti",
+        "name": "Divya Drishti",
+        "hindi": "दिव्य दृष्टि",
+        "meaning": "Divine Sight — Complete Market Vision",
+        "price": 14999,
+        "period": "one-time",
+        "popular": true,
+        "ideal_for": "Established businesses ready to scale with data",
+        "delivery": "10 Business Days",
+        "report_pages": "50-60 Pages",
+        "competitors_analyzed": 5,
+        "consulting_calls": "4 calls (60 min each)",
+        "features": [
+          {
+            "name": "Business Digital Audit",
+            "value": "100+ point comprehensive audit",
+            "included": true
+          },
+          {
+            "name": "Competitor Analysis",
+            "value": "5 competitors deep-dive",
+            "included": true
+          },
+          {
+            "name": "Their Active Ads Review",
+            "value": "Every Meta + Google ad with analysis",
+            "included": true
+          },
+          {
+            "name": "Local Market Snapshot",
+            "value": "Complete market size and trends",
+            "included": true
+          },
+          {
+            "name": "Full Keyword Research",
+            "value": "100+ targeted keywords with difficulty",
+            "included": true
+          },
+          {
+            "name": "Quick Wins Action Plan",
+            "value": "20+ prioritized improvements",
+            "included": true
+          },
+          {
+            "name": "Growth Opportunities",
+            "value": "10+ opportunities with revenue estimates",
+            "included": true
+          },
+          {
+            "name": "Professional PDF Report",
+            "value": "50-60 pages, branded",
+            "included": true
+          },
+          {
+            "name": "Deep Competitor Intelligence",
+            "value": "SWOT + strategy reverse-engineering",
+            "included": true
+          },
+          {
+            "name": "Customer Persona Research",
+            "value": "3 detailed buyer personas",
+            "included": true
+          },
+          {
+            "name": "Full Ad Strategy Blueprint",
+            "value": "Meta + Google campaigns ready to launch",
+            "included": true
+          },
+          {
+            "name": "Content Calendar",
+            "value": "90-day content plan with 30 topics",
+            "included": true
+          },
+          {
+            "name": "Video Walkthrough Recording",
+            "value": "60 min recorded presentation",
+            "included": true
+          },
+          {
+            "name": "90-Day Growth Roadmap",
+            "value": "Week-by-week execution plan",
+            "included": true
+          },
+          {
+            "name": "Follow-Up Support",
+            "value": "WhatsApp support for 30 days",
+            "included": true
+          },
+          {
+            "name": "Service Discount",
+            "value": "20% off any RoasBodhi service",
+            "included": true
+          },
+          {
+            "name": "Consulting Calls",
+            "value": "4 calls × 60 min each",
+            "included": true
+          },
+          {
+            "name": "Editable Strategy Sheets",
+            "value": "Excel/Sheets templates",
+            "included": true
+          },
+          {
+            "name": "365-Day Execution Roadmap",
+            "value": "Full year plan",
+            "included": false
+          },
+          {
+            "name": "Pricing Strategy Analysis",
+            "value": "Optimal pricing recommendations",
+            "included": false
+          },
+          {
+            "name": "Team Hiring Roadmap",
+            "value": "When and who to hire",
+            "included": false
+          },
+          {
+            "name": "12-Month Financial Projections",
+            "value": "Revenue and ROI forecasts",
+            "included": false
+          },
+          {
+            "name": "6-Month Priority Support",
+            "value": "Monthly strategy calls",
+            "included": false
+          }
+        ],
+        "cta": "Get Divya Drishti Report",
+        "guarantee": "100% satisfaction or full revision"
+      },
+      {
+        "id": "trikaldarshi",
+        "name": "Trikaldarshi",
+        "hindi": "त्रिकालदर्शी",
+        "meaning": "The All-Seeing — Past, Present, Future Mastery",
+        "price": 29999,
+        "period": "one-time",
+        "popular": false,
+        "ideal_for": "Serious businesses investing ₹50K+ monthly in growth",
+        "delivery": "15 Business Days",
+        "report_pages": "100+ Pages",
+        "competitors_analyzed": 10,
+        "consulting_calls": "8+ calls (12+ hours total)",
+        "features": [
+          {
+            "name": "Business Digital Audit",
+            "value": "200+ point enterprise audit",
+            "included": true
+          },
+          {
+            "name": "Competitor Analysis",
+            "value": "10 competitors (direct + indirect + aspirational)",
+            "included": true
+          },
+          {
+            "name": "Their Active Ads Review",
+            "value": "Complete ad library analysis with trends",
+            "included": true
+          },
+          {
+            "name": "Local Market Snapshot",
+            "value": "Full market research with 5-year trends",
+            "included": true
+          },
+          {
+            "name": "Full Keyword Research",
+            "value": "500+ keywords with complete strategy",
+            "included": true
+          },
+          {
+            "name": "Quick Wins Action Plan",
+            "value": "50+ improvements prioritized by ROI",
+            "included": true
+          },
+          {
+            "name": "Growth Opportunities",
+            "value": "20+ with revenue projections",
+            "included": true
+          },
+          {
+            "name": "Professional PDF Report",
+            "value": "100+ pages, enterprise-grade",
+            "included": true
+          },
+          {
+            "name": "Deep Competitor Intelligence",
+            "value": "Reverse-engineered strategy per competitor",
+            "included": true
+          },
+          {
+            "name": "Customer Persona Research",
+            "value": "5 detailed personas + journey mapping",
+            "included": true
+          },
+          {
+            "name": "Full Ad Strategy Blueprint",
+            "value": "5 campaign structures ready to launch",
+            "included": true
+          },
+          {
+            "name": "Content Calendar",
+            "value": "365-day content plan with 100+ topics",
+            "included": true
+          },
+          {
+            "name": "Video Walkthrough Recording",
+            "value": "2-hour recorded masterclass",
+            "included": true
+          },
+          {
+            "name": "90-Day Growth Roadmap",
+            "value": "Detailed week-by-week execution",
+            "included": true
+          },
+          {
+            "name": "Follow-Up Support",
+            "value": "WhatsApp support for 90 days",
+            "included": true
+          },
+          {
+            "name": "Service Discount",
+            "value": "20% off any RoasBodhi service for 12 months",
+            "included": true
+          },
+          {
+            "name": "Consulting Calls",
+            "value": "8+ calls × 90 min (12+ hours total)",
+            "included": true
+          },
+          {
+            "name": "Editable Strategy Sheets",
+            "value": "Complete Excel + Google Sheets library",
+            "included": true
+          },
+          {
+            "name": "365-Day Execution Roadmap",
+            "value": "Day-by-day growth plan",
+            "included": true
+          },
+          {
+            "name": "Pricing Strategy Analysis",
+            "value": "Market positioning + pricing optimization",
+            "included": true
+          },
+          {
+            "name": "Team Hiring Roadmap",
+            "value": "12-month team building plan",
+            "included": true
+          },
+          {
+            "name": "12-Month Financial Projections",
+            "value": "Complete revenue + ROI forecast",
+            "included": true
+          },
+          {
+            "name": "6-Month Priority Support",
+            "value": "Monthly 60-min strategy calls",
+            "included": true
+          },
+          {
+            "name": "Executive Summary Deck",
+            "value": "10-page PPT for stakeholders",
+            "included": true
+          },
+          {
+            "name": "Separate Competitor Reports",
+            "value": "Individual PDF per competitor",
+            "included": true
+          },
+          {
+            "name": "Technology Stack Recommendations",
+            "value": "CRM, tools, automation plan",
+            "included": true
+          }
+        ],
+        "cta": "Get Trikaldarshi Report",
+        "guarantee": "100% satisfaction guaranteed"
+      }
+    ]
+  }
+}

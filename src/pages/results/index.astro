@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import ResultsSection from '../../components/sections/ResultsSection.astro';
+import CtaSection from '../../components/sections/CtaSection.astro';
+
+const pageTitle = "Proven Results & Case Studies | RoasBodhi";
+const pageDescription = "Explore detailed Return on Ad Spend (ROAS) and local search optimization benchmarks delivered for real business accounts in India.";
+const resultsKeywords = "performance marketing results, ROAS case studies India, digital marketing ROI, ad campaign benchmarks";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} keywords={resultsKeywords}>
+  
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal text-left select-none">
+    
+    <!-- Hero Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <SectionLabel text="PROVEN RESULTS" />
+      <h1 class="font-display font-extrabold text-neutral-dark text-4xl sm:text-6xl mt-3 tracking-tight">
+        Real Campaigns. Real ROAS. <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">Real Business Returns.</span>
+      </h1>
+      <p class="font-body text-sm sm:text-base text-neutral-stone mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+        Review performance metrics delivered for local retail, real estate, and healthcare accounts across India.
+      </p>
+    </section>
+
+    <!-- Mount filterable case studies grid -->
+    <ResultsSection />
+
+    <!-- Audit Cta Form -->
+    <CtaSection />
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

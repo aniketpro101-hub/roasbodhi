@@ -1,0 +1,133 @@
+---
+import { MapPin, ArrowRight, MessageCircle } from 'lucide-astro';
+
+interface Props {
+  city: {
+    name: string;
+    slug: string;
+    state: string;
+     экономический_контекст?: string; // fallback if needed
+  };
+  service: {
+    id: string;
+    name: string;
+    slug: string;
+    short_name: string;
+    color: string;
+    gradient: string;
+    description: string;
+  };
+}
+
+const { city, service } = Astro.props;
+
+// Compile WhatsApp link
+const whatsappMsg = `Namaste RoasBodhi™! I'd like to consult on ${service.name} for my business in ${city.name}.`;
+const whatsappUrl = `https://wa.me/9082543992?text=${encodeURIComponent(whatsappMsg)}`;
+
+// Generate realistic dynamic micro-stats based on service type
+const getMicroStats = (serviceId: string) => {
+  switch (serviceId) {
+    case 'web-development':
+      return [
+        { label: 'PageSpeed Score', val: '98/100' },
+        { label: 'Risk-Free', val: 'Pay Later' },
+        { label: 'Time-to-Live', val: '7 Days' }
+      ];
+    case 'meta-ads':
+      return [
+        { label: 'Average ROAS', val: '4.2X' },
+        { label: 'Lead Cost Reduction', val: '-75%' },
+        { label: 'Active Support', val: 'Direct WA' }
+      ];
+    default:
+      return [
+        { label: 'Conversion Lift', val: '3X+' },
+        { label: 'Campaign ROAS', val: '3.8X+' },
+        { label: 'Deliverables', val: 'Live Board' }
+      ];
+  }
+};
+
+const microStats = getMicroStats(service.id);
+---
+
+<section class="relative bg-neutral-dark text-white py-24 sm:py-32 overflow-hidden select-none">
+  
+  <!-- Glowing service colored accent orb -->
+  <div 
+    class="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-[100px] opacity-15 pointer-events-none"
+    style={`background-color: ${service.color};`}
+  ></div>
+  <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-primary-saffron/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <!-- Subtle dot pattern overlay -->
+  <div class="absolute inset-0 bg-[radial-gradient(#ffffff04_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left side copy (H1, badges, buttons) -->
+      <div class="lg:col-span-8 flex flex-col items-start gap-4 sm:gap-6">
+        
+        <!-- Location Badge -->
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-display font-extrabold uppercase tracking-widest text-white">
+          <MapPin class="w-3.5 h-3.5 text-primary-saffron" />
+          <span>📍 {city.name}, {city.state}</span>
+        </span>
+
+        <!-- H1 Exact Keyword Title -->
+        <h1 class="font-display font-extrabold text-3xl sm:text-6xl text-white tracking-tight leading-[1.1] max-w-3xl">
+          Best <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">{service.name} Agency</span> <br />
+          In {city.name}
+        </h1>
+
+        <p class="font-body text-sm sm:text-base text-white/70 max-w-xl leading-relaxed">
+          Awakening return-on-ad-spend (ROAS) and premium local listings for commercial models in {city.name}. 
+          No shortcuts, zero excuses—we design and manage custom {service.short_name} pipelines built to scale.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mt-2">
+          <a 
+            href="#local-page-form" 
+            class="px-7 py-3.5 bg-gradient-to-r from-primary-saffron to-primary-gold text-white font-display font-extrabold text-xs tracking-wider uppercase rounded-full shadow-lg hover:shadow-button-saffron hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-1.5"
+          >
+            <span>🚀 Get Free Local Audit</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+          
+          <a 
+            href={whatsappUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="px-7 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-display font-extrabold text-xs tracking-wider uppercase rounded-full shadow-md hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-1.5"
+          >
+            <MessageCircle class="w-4.5 h-4.5 fill-white text-white" />
+            <span>Consult on WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right side micro-stats card -->
+      <div class="lg:col-span-4 bg-white/5 border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-md flex flex-col gap-5 w-full max-w-[360px] mx-auto">
+        <span class="text-[9px] font-display font-extrabold text-white/40 uppercase tracking-widest border-b border-white/5 pb-2">
+          Performance Benchmarks
+        </span>
+        
+        {microStats.map(stat => (
+          <div class="flex items-center justify-between border-b border-white/5 pb-2.5">
+            <span class="font-body text-xs text-white/60 font-semibold">{stat.label}</span>
+            <span class="font-mono font-extrabold text-sm text-primary-gold">{stat.val}</span>
+          </div>
+        ))}
+
+        <div class="p-3 bg-primary-saffron/10 border border-primary-saffron/20 rounded-xl text-[10px] text-white/80 leading-relaxed text-left">
+          <b>Pay-After-Seeing™ active:</b> Review your landing page and Google Map setups before transferring payments.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

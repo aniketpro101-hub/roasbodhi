@@ -1,0 +1,182 @@
+---
+import '../styles/global.css';
+import Toast from '../components/Toast.astro';
+import StickyWhatsApp from '../components/StickyWhatsApp.astro';
+import ScrollToTop from '../components/ScrollToTop.astro';
+import StickyMobileCTA from '../components/StickyMobileCTA.astro';
+import BodhiGuru from '../components/BodhiGuru.astro';
+
+interface Props {
+  title: string;
+  description: string;  
+  keywords?: string;
+  ogImage?: string;
+  canonical?: string;
+  schema?: object; // JSON-LD
+  noIndex?: boolean;
+}
+
+const { title, description, keywords, ogImage, canonical, schema, noIndex } = Astro.props;
+
+const siteUrl = 'https://roasbodhi.in';
+const pathname = Astro.url.pathname;
+const resolvedCanonicalUrl = canonical || `${siteUrl}${pathname.endsWith('/') ? pathname : pathname + '/'}`;
+const defaultOgImage = ogImage || `${siteUrl}/images/roasbodhi-og.jpg`;
+
+// Format title to follow 55-60 char SEO best practices
+const formattedTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
+const metaKeywords = keywords || "";
+---
+
+<!DOCTYPE html>
+<html lang="en-IN" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Robots indexing meta -->
+    {noIndex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
+    
+    <!-- Dynamic Titles and Descriptions -->
+    <title>{formattedTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={metaKeywords} />
+    <link rel="canonical" href={resolvedCanonicalUrl} />
+    <link rel="alternate" hreflang="en-IN" href={resolvedCanonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={resolvedCanonicalUrl} />
+    
+    <!-- Theme color and Apple specific tags -->
+    <meta name="theme-color" content="#FF6B2B" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Open Graph (Facebook / LinkedIn / WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={resolvedCanonicalUrl} />
+    <meta property="og:title" content={formattedTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={defaultOgImage} />
+    <meta property="og:site_name" content="RoasBodhi" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter Card (X previews) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={resolvedCanonicalUrl} />
+    <meta name="twitter:title" content={formattedTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={defaultOgImage} />
+
+    <!-- Favicons & App Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Preconnect to self-hosted assets only -->
+    <link rel="preconnect" href={siteUrl} crossorigin />
+
+    <!-- Partytown Third-Party Analytics Scripts (Offloaded to Web Worker) -->
+    <!-- Google Tag Manager (GTM) -->
+    <script type="text/partytown">
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-XXXXXXX');
+    </script>
+
+    <!-- Google Analytics 4 (GA4) -->
+    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXX');
+    </script>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/partytown">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "XXXXXXXXXX");
+    </script>
+
+    <!-- Dynamic Schema Markup JSON-LD -->
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+    
+    <!-- Schema Breadcrumbs (If not homepage) -->
+    {pathname !== '/' && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": pathname.split('/').filter(Boolean).map((part, index, arr) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": part.charAt(0).toUpperCase() + part.slice(1).replace(/-/g, ' '),
+          "item": `${siteUrl}/${arr.slice(0, index + 1).join('/')}/`
+        }))
+      })} />
+    )}
+  </head>
+  <body class="min-h-screen flex flex-col overflow-x-hidden antialiased bg-white text-neutral-charcoal">
+    
+    <!-- Accessibility Skip to Main Content Link -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-6 focus:py-3.5 focus:bg-primary-saffron focus:text-white focus:font-display focus:font-extrabold focus:rounded-xl focus:shadow-button-saffron transition-all"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Main Content Slot -->
+    <slot />
+
+    <!-- Lightweight Scroll Reveal Script (Intersection Observer) -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -50px 0px'
+        });
+        
+        revealElements.forEach((el) => observer.observe(el));
+      });
+    </script>
+
+    <!-- Minimal Inline Service Worker Registration for caching static assets -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('ServiceWorker registration successful'))
+            .catch(err => console.log('ServiceWorker registration failed: ', err));
+        });
+      }
+    </script>
+    <Toast />
+    <StickyWhatsApp />
+    <ScrollToTop />
+    <div class="lg:hidden">
+      <StickyMobileCTA />
+    </div>
+    <BodhiGuru />
+  </body>
+</html>

@@ -1,0 +1,352 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import { getCollection } from 'astro:content';
+import { Calendar, User, Clock, ArrowRight } from 'lucide-astro';
+
+const blogTitle = "Performance Marketing Insights & Blog | RoasBodhi";
+const blogDescription = "Actionable strategies, ad platform reviews, and web optimization guides for local storefronts and SMB models across India.";
+
+// Fetch all posts sorted by date
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+
+// Identify featured post
+const featuredPost = sortedPosts.find(p => p.data.featured) || sortedPosts[0];
+const regularPosts = sortedPosts.filter(p => p.slug !== featuredPost.slug);
+
+// Categories list
+const categories = ['All', 'Meta Ads', 'Google Ads', 'Web Design', 'GMB SEO', 'Analytics', 'General'];
+const blogKeywords = "performance marketing insights, digital marketing blog, meta ads tips, google ads tips, web design guide";
+---
+
+<BaseLayout title={blogTitle} description={blogDescription} keywords={blogKeywords}>
+  
+  <!-- Header -->
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal select-none">
+    
+    <!-- Hero Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <SectionLabel text="OUR KNOWLEDGE BASE" />
+      <h1 class="font-display font-extrabold text-neutral-dark text-4xl sm:text-6xl mt-3 tracking-tight">
+        Performance Marketing <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">Insights & Guides</span>
+      </h1>
+      <p class="font-body text-sm sm:text-base text-neutral-stone mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+        Actionable advertising, GMB ranking, and web conversion guides built specifically for Indian SMBs.
+      </p>
+    </section>
+
+    <!-- Blog Layout Wrapper -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+      
+      <!-- Category Filters -->
+      <div class="flex flex-wrap items-center gap-2.5 mb-12 border-b border-neutral-mist/50 pb-4 overflow-x-auto" id="blog-category-filters">
+        {categories.map(cat => (
+          <button 
+            class={`px-4.5 py-2 rounded-full font-display font-bold text-xs normal-case tracking-wider transition-all ${
+              cat === 'All' 
+                ? 'bg-primary-saffron text-white shadow' 
+                : 'bg-white border border-neutral-mist text-neutral-stone hover:text-neutral-charcoal hover:border-neutral-stone/30'
+            }`}
+            data-category-target={cat}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Left Side: Featured + Cards Grid (col 8) -->
+        <div class="lg:col-span-8 flex flex-col gap-12 text-left">
+          
+          <!-- Featured Post Card -->
+          {featuredPost && (
+            <div class="blog-card-wrapper transition-all duration-300 opacity-100 scale-100 bg-white border border-neutral-mist rounded-3xl overflow-hidden shadow-sm flex flex-col md:grid md:grid-cols-12 hover:shadow-card-default transition-all duration-300" data-card-category={featuredPost.data.category}>
+              <div class="md:col-span-6 bg-neutral-cloud h-full min-h-[220px] relative overflow-hidden select-none">
+                {featuredPost.data.image ? (
+                  <img 
+                    src={featuredPost.data.image} 
+                    alt={featuredPost.data.imageAlt || featuredPost.data.title} 
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
+                    onerror="this.style.display='none'"
+                  />
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-primary-saffron/10 to-primary-gold/10 flex items-center justify-center text-primary-saffron text-4xl">
+                    🔱
+                  </div>
+                )}
+              </div>
+              <div class="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between">
+                <div class="flex flex-col gap-3">
+                  <span class="px-2.5 py-1 rounded bg-primary-saffron/10 text-primary-saffron text-[9px] font-display font-extrabold normal-case tracking-widest w-fit">
+                    Featured: {featuredPost.data.category}
+                  </span>
+                  <h2 class="font-display font-extrabold text-neutral-dark text-xl sm:text-2xl tracking-tight leading-tight group-hover:text-primary-saffron transition-colors">
+                    <a href={`/blog/${featuredPost.slug}/`}>{featuredPost.data.title}</a>
+                  </h2>
+                  <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">
+                    {featuredPost.data.description}
+                  </p>
+                </div>
+                
+                <div class="flex items-center justify-between border-t border-neutral-mist/50 pt-4 mt-6">
+                  <div class="flex items-center gap-3 text-[10px] text-neutral-stone font-semibold">
+                    <span class="flex items-center gap-1"><Calendar class="w-3.5 h-3.5" /> {featuredPost.data.publishDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                    <span class="flex items-center gap-1"><Clock class="w-3.5 h-3.5" /> {featuredPost.data.readingTime} min</span>
+                  </div>
+                  <a href={`/blog/${featuredPost.slug}/`} class="text-primary-saffron font-display font-extrabold text-[10px] normal-case tracking-wider flex items-center gap-1 hover:underline">
+                    Read Post <ArrowRight class="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <!-- Regular Posts Grid (3-column layout inside col-8 -> grid-cols-2) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {regularPosts.map(post => (
+              <div class="blog-card-wrapper transition-all duration-300 opacity-100 scale-100 bg-white border border-neutral-mist rounded-2xl overflow-hidden shadow-sm hover:shadow-card-hover hover:border-primary-saffron/20 transition-all duration-300 flex flex-col justify-between" data-card-category={post.data.category}>
+                <div>
+                  <div class="bg-neutral-cloud h-40 overflow-hidden relative select-none">
+                    {post.data.image ? (
+                      <img 
+                        src={post.data.image} 
+                        alt={post.data.imageAlt || post.data.title} 
+                        class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
+                        onerror="this.style.display='none'"
+                      />
+                    ) : (
+                      <div class="w-full h-full bg-gradient-to-br from-primary-indigo/5 to-secondary-purple/5 flex items-center justify-center text-primary-indigo text-3xl">
+                        📖
+                      </div>
+                    )}
+                  </div>
+                  <div class="p-6">
+                    <span class="text-[9px] font-display font-extrabold text-neutral-stone normal-case tracking-widest">
+                      {post.data.category}
+                    </span>
+                    <h3 class="font-display font-extrabold text-neutral-dark text-base sm:text-lg mt-2 leading-tight">
+                      <a href={`/blog/${post.slug}/`} class="hover:text-primary-saffron transition-colors">{post.data.title}</a>
+                    </h3>
+                    <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold mt-2 line-clamp-2">
+                      {post.data.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between border-t border-neutral-mist/50 p-6 pt-4">
+                  <span class="text-[9px] text-neutral-stone font-semibold">
+                    {post.data.publishDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  </span>
+                  <a href={`/blog/${post.slug}/`} class="text-primary-saffron font-display font-extrabold text-[9px] normal-case tracking-wider flex items-center gap-1 hover:underline">
+                    Read Post <ArrowRight class="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+        <!-- Right Side: Sidebar (col 4) -->
+        <div class="lg:col-span-4 flex flex-col gap-6 text-left">
+          
+          <!-- Newsletter Signup Card -->
+          <div class="bg-primary-indigo text-white border border-white/10 rounded-2xl p-6 shadow-sm flex flex-col gap-4 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none"></div>
+            
+            <div class="relative z-10 flex flex-col gap-2">
+              <span class="text-[9px] font-display font-extrabold text-primary-gold normal-case tracking-widest">Newsletter</span>
+              <h4 class="font-display font-extrabold text-lg text-white leading-tight">Dharma & Data Letters</h4>
+              <p class="font-body text-[11px] text-white/70 leading-relaxed font-semibold">
+                Get monthly performance marketing guides and cost optimization secrets delivered straight to your inbox.
+              </p>
+              <form id="newsletter-signup-form" action="https://api.web3forms.com/submit" method="POST" class="flex flex-col gap-2 mt-2">
+                <!-- Web3Forms Hidden Inputs -->
+                <input type="hidden" name="access_key" value="[USER_WILL_ADD_KEY]">
+                <input type="hidden" name="subject" value="Newsletter Subscription - RoasBodhi Website">
+                <input type="hidden" name="from_name" value="RoasBodhi Website">
+                <input type="hidden" name="redirect" value="https://roasbodhi.in/thank-you/">
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                
+                <input type="hidden" name="utm_source" id="blog_utm_source" value="website">
+                <input type="hidden" name="utm_medium" id="blog_utm_medium" value="form">
+                <input type="hidden" name="utm_campaign" id="blog_utm_campaign" value="blog_newsletter">
+
+                <input type="email" name="email" required placeholder="Business Email" class="px-4 py-3 rounded-lg bg-white text-neutral-dark text-xs font-semibold focus:outline-none" />
+                <button type="submit" class="py-3 bg-gradient-to-r from-primary-saffron to-primary-gold text-white font-display font-extrabold text-[10px] normal-case tracking-wider rounded-lg hover:shadow-button-saffron transition-all">
+                  <span>Subscribe Now</span>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Free ROAS Audit Card -->
+          <div class="bg-neutral-ghost border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col gap-4">
+            <span class="text-3xl">🔱</span>
+            <div class="flex flex-col gap-1.5">
+              <h4 class="font-display font-extrabold text-base text-neutral-dark">Get Your Ads Audited For Free</h4>
+              <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">
+                Already running ads but not hitting your ROAS index? Get our local specialist team to review your account.
+              </p>
+            </div>
+            <a href="/contact/" class="w-full py-3 bg-primary-indigo hover:bg-neutral-dark text-white text-center font-display font-extrabold text-[10px] normal-case tracking-wider rounded-lg transition-all">Request Free Audit</a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <Footer />
+
+</BaseLayout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Capture and Set UTMs in form
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get('utm_source') || 'website';
+    const utmMedium = urlParams.get('utm_medium') || 'form';
+    const utmCampaign = urlParams.get('utm_campaign') || 'blog_newsletter';
+
+    const sourceInput = document.getElementById('blog_utm_source');
+    const mediumInput = document.getElementById('blog_utm_medium');
+    const campaignInput = document.getElementById('blog_utm_campaign');
+
+    if (sourceInput) sourceInput.value = utmSource;
+    if (mediumInput) mediumInput.value = utmMedium;
+    if (campaignInput) campaignInput.value = utmCampaign;
+
+    // 2. AJAX Submission
+    const form = document.getElementById('newsletter-signup-form');
+    if (form) {
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const submitBtnSpan = submitBtn.querySelector('span');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = form.elements['email'].value.trim();
+        if (!email) {
+          window.showToast("Please enter your email.", "error");
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          window.showToast("Please enter a valid email address.", "error");
+          return;
+        }
+
+        if (form.elements['botcheck'].checked) {
+          return;
+        }
+
+        submitBtn.disabled = true;
+        const origText = submitBtnSpan.textContent;
+        submitBtnSpan.textContent = "Subscribing...";
+
+        const formData = new FormData(form);
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(async (response) => {
+          const json = await response.json();
+          if (response.status === 200) {
+            if (window.gtag) {
+              window.gtag('event', 'form_submit', {
+                form_location: 'blog_newsletter',
+                utm_source: utmSource,
+                utm_medium: utmMedium,
+                utm_campaign: utmCampaign
+              });
+            }
+            window.showToast("Subscribed successfully! Thank you.", "success");
+            form.reset();
+            submitBtn.disabled = false;
+            submitBtnSpan.textContent = origText;
+          } else {
+            if (window.gtag) {
+              window.gtag('event', 'form_error', { form_location: 'blog_newsletter', error_message: json.message || 'unknown_error' });
+            }
+            window.showToast(json.message || "Failed to subscribe. Please try again.", "error");
+            submitBtn.disabled = false;
+            submitBtnSpan.textContent = origText;
+          }
+        })
+        .catch((err) => {
+          if (window.gtag) {
+            window.gtag('event', 'form_error', { form_location: 'blog_newsletter', error_message: 'network_failure' });
+          }
+          window.showToast("Network error. Please try again later.", "error");
+          submitBtn.disabled = false;
+          submitBtnSpan.textContent = origText;
+        });
+      });
+    }
+
+    // 3. Category Filter Handler
+    const filterButtons = document.querySelectorAll('#blog-category-filters button');
+    const cards = document.querySelectorAll('.blog-card-wrapper');
+    const timeouts = new Map();
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle active button style
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-primary-saffron', 'text-white', 'shadow');
+          b.classList.add('bg-white', 'border', 'border-neutral-mist', 'text-neutral-stone', 'hover:text-neutral-charcoal', 'hover:border-neutral-stone/30');
+        });
+
+        btn.classList.remove('bg-white', 'border', 'border-neutral-mist', 'text-neutral-stone', 'hover:text-neutral-charcoal', 'hover:border-neutral-stone/30');
+        btn.classList.add('bg-primary-saffron', 'text-white', 'shadow');
+
+        const activeFilter = btn.getAttribute('data-category-target');
+
+        cards.forEach(card => {
+          const wrapper = card as HTMLElement;
+          const category = wrapper.getAttribute('data-card-category');
+
+          // Clear any active timeout
+          if (timeouts.has(wrapper)) {
+            clearTimeout(timeouts.get(wrapper));
+            timeouts.delete(wrapper);
+          }
+
+          const matches = activeFilter === 'All' || category === activeFilter;
+
+          if (matches) {
+            wrapper.classList.remove('hidden');
+            void wrapper.offsetWidth; // Force reflow
+            wrapper.classList.remove('opacity-0', 'scale-95');
+            wrapper.classList.add('opacity-100', 'scale-100');
+          } else {
+            wrapper.classList.remove('opacity-100', 'scale-100');
+            wrapper.classList.add('opacity-0', 'scale-95');
+            
+            const tid = setTimeout(() => {
+              if (!wrapper.classList.contains('opacity-100')) {
+                wrapper.classList.add('hidden');
+              }
+            }, 300);
+            timeouts.set(wrapper, tid);
+          }
+        });
+      });
+    });
+  });
+</script>
+

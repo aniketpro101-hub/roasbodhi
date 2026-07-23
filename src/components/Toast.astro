@@ -1,0 +1,62 @@
+<!-- src/components/Toast.astro -->
+<div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+<script is:inline>
+  (function() {
+    window.showToast = function(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      // Create toast element
+      const toast = document.createElement('div');
+      toast.className = `flex items-center gap-3 p-4 bg-white/95 backdrop-blur-md rounded-2xl border shadow-[0_12px_32px_rgba(0,0,0,0.06)] pointer-events-auto transition-all duration-300 transform translate-x-full opacity-0 ${
+        type === 'success' 
+          ? 'border-emerald-500/20 text-emerald-800' 
+          : 'border-rose-500/20 text-rose-800'
+      }`;
+
+      // Icon definitions
+      const successIcon = `<svg class="w-5 h-5 text-emerald-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>`;
+      const errorIcon = `<svg class="w-5 h-5 text-rose-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`;
+      const closeIcon = `<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`;
+
+      toast.innerHTML = `
+        ${type === 'success' ? successIcon : errorIcon}
+        <p class="font-body text-xs font-semibold leading-relaxed grow pr-2 select-none">${message}</p>
+        <button type="button" class="text-neutral-stone hover:text-neutral-dark p-0.5 rounded-md hover:bg-neutral-ghost transition-colors pointer-events-auto">
+          ${closeIcon}
+        </button>
+      `;
+
+      // Append to container
+      container.appendChild(toast);
+
+      // Trigger slide-in animation
+      setTimeout(() => {
+        toast.classList.remove('translate-x-full', 'opacity-0');
+        toast.classList.add('translate-x-0', 'opacity-100');
+      }, 10);
+
+      // Dismiss function
+      const dismiss = () => {
+        toast.classList.remove('translate-x-0', 'opacity-100');
+        toast.classList.add('translate-x-full', 'opacity-0');
+        setTimeout(() => {
+          toast.remove();
+        }, 300);
+      };
+
+      // Auto dismiss after 5 seconds
+      const autoDismissTimeout = setTimeout(dismiss, 5000);
+
+      // Manual close
+      const closeBtn = toast.querySelector('button');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          clearTimeout(autoDismissTimeout);
+          dismiss();
+        });
+      }
+    };
+  })();
+</script>

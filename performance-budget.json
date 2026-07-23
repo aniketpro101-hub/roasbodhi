@@ -1,0 +1,24 @@
+{
+  "limits": [
+    {
+      "path": "dist/**/*.js",
+      "maxSize": "50KB",
+      "compression": "gzip"
+    },
+    {
+      "path": "dist/**/*.css",
+      "maxSize": "20KB",
+      "compression": "gzip"
+    },
+    {
+      "path": "dist/**/*.{png,jpg,jpeg,webp,svg}",
+      "maxSize": "100KB"
+    }
+  ],
+  "web-vitals": {
+    "LCP": "<1.5s",
+    "CLS": 0,
+    "INP": "<100ms",
+    "FID": "<50ms"
+  }
+}

@@ -1,0 +1,407 @@
+[
+  {
+    "id": "real-estate",
+    "name": "Real Estate Developers",
+    "slug": "real-estate",
+    "icon": "building",
+    "color": "#7C3AED",
+    "description": "Acquire high-intent home buyers and commercial property leads using localized Meta target filters and high-converting builder project landing pages.",
+    "pain_points": [
+      "High Cost-Per-Lead (CPL) on third-party real estate portal platforms.",
+      "Useless leads from brokers and fake customer profiles.",
+      "Low lead-to-site-visit conversions."
+    ],
+    "our_approach": "We build dedicated single-project landing pages with fast load times and run targeted Meta lead generation campaigns, verifying customer phone numbers with instant WhatsApp triggers.",
+    "results_achieved": "Delivered 800+ qualified local leads within 45 days, cutting average Cost-Per-Lead values by 65%.",
+    "best_services": [
+      "meta-ads",
+      "web-development"
+    ],
+    "avg_roas": "4.2X",
+    "avg_cpl_reduction": "65%",
+    "faqs": [
+      {
+        "q": "How do you filter out brokers from ad campaigns?",
+        "a": "We use precise exclusions in Meta target criteria (excluding real estate brokers, agents, and industry job titles) and add mandatory qualifier questions inside lead forms."
+      }
+    ]
+  },
+  {
+    "id": "dental-clinics",
+    "name": "Dental Clinics & Doctors",
+    "slug": "dental-clinics",
+    "icon": "activity",
+    "color": "#0EA5E9",
+    "description": "Fills appointment calendars for dental implants, root canals, and cosmetic treatments using Google Maps SEO and high-speed local booking websites.",
+    "pain_points": [
+      "Low visibility on Google local maps search in nearby city sectors.",
+      "High acquisition cost for premium implant treatments.",
+      "No-shows for booked appointments."
+    ],
+    "our_approach": "We optimize your GMB profile with specific dental keywords and run Google Local Search ads that target users looking for dentists nearby.",
+    "results_achieved": "Acquired 320 patient bookings in 30 days while tripling call volume through maps optimizations.",
+    "best_services": [
+      "google-my-business",
+      "google-ads"
+    ],
+    "avg_roas": "3.8X",
+    "avg_cpl_reduction": "45%",
+    "faqs": [
+      {
+        "q": "Is GMB optimization enough to get dental clients?",
+        "a": "Yes, for local areas GMB is highly effective. Combining GMB updates with local Google search ads ensures maximum visibility above competitors."
+      }
+    ]
+  },
+  {
+    "id": "jewellery",
+    "name": "Jewellery Showrooms",
+    "slug": "jewellery",
+    "icon": "gem",
+    "color": "#F5A623",
+    "description": "Drive physical store walk-ins for bridal gold, diamond, and polki collections using localized visual Instagram campaigns.",
+    "pain_points": [
+      "Difficulty displaying heavy gold collections safely online.",
+      "High ad budget leakages without getting local footfalls.",
+      "Competitor price undercutting."
+    ],
+    "our_approach": "We deploy high-quality vertical videos showing store designs and jewellery collections, running custom local location radius ads on Instagram.",
+    "results_achieved": "Delivered over 120 store walk-ins in 60 days, generating ₹22.4L in local gemstone and gold showroom sales.",
+    "best_services": [
+      "meta-ads",
+      "google-my-business"
+    ],
+    "avg_roas": "5.1X",
+    "avg_cpl_reduction": "50%",
+    "faqs": [
+      {
+        "q": "Do we need an e-commerce website to advertise jewellery?",
+        "a": "No, for showrooms, a catalog showcase website or direct-to-WhatsApp booking flow is highly effective to drive local physical walk-ins."
+      }
+    ]
+  },
+  {
+    "id": "hospitals",
+    "name": "Hospitals & Clinics",
+    "slug": "hospitals",
+    "icon": "heart",
+    "color": "#059669",
+    "description": "Custom digital ads and lead capture structures built specifically for hospitals & clinics in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 40% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "meta-ads",
+      "google-ads"
+    ],
+    "avg_roas": "3.2X",
+    "avg_cpl_reduction": "40%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Hospitals & Clinics?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "manufacturing",
+    "name": "B2B Manufacturers",
+    "slug": "manufacturing",
+    "icon": "cpu",
+    "color": "#6B7280",
+    "description": "Custom digital ads and lead capture structures built specifically for b2b manufacturers in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 45% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "web-development",
+      "google-my-business"
+    ],
+    "avg_roas": "3.4X",
+    "avg_cpl_reduction": "42%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for B2B Manufacturers?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "coaching-institutes",
+    "name": "Coaching Institutes",
+    "slug": "coaching-institutes",
+    "icon": "graduation-cap",
+    "color": "#7C3AED",
+    "description": "Custom digital ads and lead capture structures built specifically for coaching institutes in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 50% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "meta-ads",
+      "google-ads"
+    ],
+    "avg_roas": "3.5X",
+    "avg_cpl_reduction": "44%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Coaching Institutes?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "restaurants-cafes",
+    "name": "Restaurants & Cafes",
+    "slug": "restaurants-cafes",
+    "icon": "coffee",
+    "color": "#FF6B2B",
+    "description": "Custom digital ads and lead capture structures built specifically for restaurants & cafes in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 55% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "web-development",
+      "google-my-business"
+    ],
+    "avg_roas": "3.7X",
+    "avg_cpl_reduction": "46%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Restaurants & Cafes?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "gyms-fitness",
+    "name": "Gyms & Fitness Centres",
+    "slug": "gyms-fitness",
+    "icon": "dumbbell",
+    "color": "#0F0E1A",
+    "description": "Custom digital ads and lead capture structures built specifically for gyms & fitness centres in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 60% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "meta-ads",
+      "google-ads"
+    ],
+    "avg_roas": "3.8X",
+    "avg_cpl_reduction": "48%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Gyms & Fitness Centres?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "accounting-legal",
+    "name": "Chartered Accountants & Legal",
+    "slug": "accounting-legal",
+    "icon": "briefcase",
+    "color": "#1E1B4B",
+    "description": "Custom digital ads and lead capture structures built specifically for chartered accountants & legal in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 65% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "web-development",
+      "google-my-business"
+    ],
+    "avg_roas": "4.0X",
+    "avg_cpl_reduction": "50%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Chartered Accountants & Legal?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "packers-movers",
+    "name": "Packers & Movers",
+    "slug": "packers-movers",
+    "icon": "truck",
+    "color": "#0EA5E9",
+    "description": "Custom digital ads and lead capture structures built specifically for packers & movers in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 70% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "meta-ads",
+      "google-ads"
+    ],
+    "avg_roas": "4.1X",
+    "avg_cpl_reduction": "52%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Packers & Movers?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "salons-spas",
+    "name": "Salons & Spas",
+    "slug": "salons-spas",
+    "icon": "sparkles",
+    "color": "#FF6B2B",
+    "description": "Custom digital ads and lead capture structures built specifically for salons & spas in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 75% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "web-development",
+      "google-my-business"
+    ],
+    "avg_roas": "4.2X",
+    "avg_cpl_reduction": "54%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Salons & Spas?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "solar-wind",
+    "name": "Solar & Green Energy",
+    "slug": "solar-wind",
+    "icon": "sun",
+    "color": "#F5A623",
+    "description": "Custom digital ads and lead capture structures built specifically for solar & green energy in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 80% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "meta-ads",
+      "google-ads"
+    ],
+    "avg_roas": "4.4X",
+    "avg_cpl_reduction": "56%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Solar & Green Energy?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "interior-design",
+    "name": "Interior Designers",
+    "slug": "interior-design",
+    "icon": "home",
+    "color": "#7C3AED",
+    "description": "Custom digital ads and lead capture structures built specifically for interior designers in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 85% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "web-development",
+      "google-my-business"
+    ],
+    "avg_roas": "4.5X",
+    "avg_cpl_reduction": "58%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Interior Designers?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "ecom-brands",
+    "name": "D2C E-commerce Brands",
+    "slug": "ecom-brands",
+    "icon": "shopping-bag",
+    "color": "#059669",
+    "description": "Custom digital ads and lead capture structures built specifically for d2c e-commerce brands in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 90% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "meta-ads",
+      "google-ads"
+    ],
+    "avg_roas": "4.7X",
+    "avg_cpl_reduction": "60%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for D2C E-commerce Brands?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  },
+  {
+    "id": "boutiques-fashion",
+    "name": "Boutiques & Fashion Showrooms",
+    "slug": "boutiques-fashion",
+    "icon": "scissors",
+    "color": "#7C3AED",
+    "description": "Custom digital ads and lead capture structures built specifically for boutiques & fashion showrooms in India.",
+    "pain_points": [
+      "Lack of local business visibility online.",
+      "High advertising costs with zero conversion tracking.",
+      "Attracting low-budget inquiries instead of premium clients."
+    ],
+    "our_approach": "We build high-speed responsive web layouts and target local search coordinates using customized copy variations.",
+    "results_achieved": "Scaled weekly digital lead flow by 95% while cutting cost-per-lead values by half.",
+    "best_services": [
+      "web-development",
+      "google-my-business"
+    ],
+    "avg_roas": "4.8X",
+    "avg_cpl_reduction": "62%",
+    "faqs": [
+      {
+        "q": "How fast can we see results for Boutiques & Fashion Showrooms?",
+        "a": "Typically, localized search setups show increase in calls and map direction queries within 3-4 weeks of launch."
+      }
+    ]
+  }
+]

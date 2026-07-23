@@ -1,0 +1,238 @@
+---
+import testimonialsData from '../data/testimonials.json';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-astro';
+
+// Slice the first 3 featured testimonials for the home carousel
+const featuredReviews = testimonialsData.slice(0, 3);
+---
+
+<section id="testimonials" class="py-24 bg-neutral-ghost relative overflow-hidden select-none">
+  <!-- Purple background glow -->
+  <div class="absolute left-[-200px] top-0 w-[450px] h-[450px] bg-primary-indigo/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+    
+    <!-- HEADER -->
+    <div class="flex flex-col items-center gap-3 max-w-3xl mx-auto mb-16">
+      <span class="font-display font-extrabold text-xs text-primary-saffron uppercase tracking-widest">
+        CLIENT TESTIMONIALS
+      </span>
+      
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight mt-2">
+        What Our Clients Say <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">About RoasBodhi Returns.</span>
+      </h2>
+    </div>
+
+    <!-- CAROUSEL WRAPPER -->
+    <div class="relative overflow-hidden min-h-[350px] sm:min-h-[280px]" id="testimonial-carousel">
+      {featuredReviews.map((test, idx) => (
+        <div 
+          class={`testimonial-slide transition-all duration-750 absolute inset-x-0 top-0 flex flex-col items-center justify-center ${
+            idx === 0 
+              ? 'opacity-100 scale-100 relative z-10' 
+              : 'opacity-0 scale-95 pointer-events-none absolute z-0'
+          }`}
+          data-slide-index={idx}
+        >
+          <!-- Testimonial Card -->
+          <div class="bg-white border border-neutral-mist rounded-3xl p-8 sm:p-12 shadow-sm max-w-3xl mx-auto flex flex-col gap-6 text-left relative">
+            <span class="text-6xl text-primary-gold/15 absolute top-4 left-6 font-serif">“</span>
+            
+            <div class="flex flex-col gap-4 relative z-10">
+              <!-- Rating Stars -->
+              <div class="flex gap-1">
+                {Array.from({ length: test.rating }).map(() => (
+                  <Star class="w-4 h-4 fill-primary-gold text-primary-gold" />
+                ))}
+              </div>
+
+              <!-- Quote Text -->
+              <p class="font-body text-xs sm:text-sm text-neutral-charcoal/90 leading-relaxed font-semibold italic">
+                "{test.text}"
+              </p>
+
+              <!-- Footer with profile details -->
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4 border-t border-neutral-mist/50 pt-4 mt-2">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary-saffron/20 to-primary-gold/20 flex items-center justify-center text-primary-saffron text-xl font-bold font-display shadow-sm flex-shrink-0">
+                  {test.name.charAt(0)}
+                </div>
+                
+                <div class="flex flex-col gap-0.5">
+                  <h4 class="font-display font-extrabold text-sm text-neutral-dark leading-none">{test.name}</h4>
+                  <span class="text-[10px] text-neutral-stone font-semibold mt-0.5">{test.business}  •  {test.city}</span>
+                  <span class="px-2 py-0.5 rounded bg-primary-indigo/5 border border-primary-indigo/10 text-primary-indigo text-[8px] font-display font-extrabold uppercase tracking-wider w-fit mt-1.5">
+                    {test.service.replace("-", " ")}
+                  </span>
+                </div>
+
+                <div class="sm:ml-auto bg-secondary-emerald/10 border border-secondary-emerald/20 text-secondary-emerald text-[9px] font-display font-extrabold uppercase tracking-widest px-3 py-1 rounded-lg w-fit">
+                  {test.result}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="flex items-center justify-center gap-4 mt-8">
+      <button 
+        id="prev-testimonial" 
+        class="w-10 h-10 rounded-full border border-neutral-mist hover:border-primary-saffron bg-white text-neutral-charcoal hover:text-primary-saffron flex items-center justify-center shadow-sm hover:shadow transition-all focus:outline-none"
+        aria-label="Previous Testimonial"
+      >
+        <ChevronLeft class="w-5 h-5" />
+      </button>
+
+      <!-- Dot Indicators -->
+      <div class="flex gap-2" id="testimonial-dots">
+        {featuredReviews.map((_, idx) => (
+          <button 
+            class={`w-2.5 h-2.5 rounded-full transition-all focus:outline-none ${
+              idx === 0 ? 'bg-primary-saffron w-6' : 'bg-neutral-mist hover:bg-neutral-stone'
+            }`}
+            data-dot-index={idx}
+            aria-label={`Go to slide ${idx + 1}`}
+          ></button>
+        ))}
+      </div>
+
+      <button 
+        id="next-testimonial" 
+        class="w-10 h-10 rounded-full border border-neutral-mist hover:border-primary-saffron bg-white text-neutral-charcoal hover:text-primary-saffron flex items-center justify-center shadow-sm hover:shadow transition-all focus:outline-none"
+        aria-label="Next Testimonial"
+      >
+        <ChevronRight class="w-5 h-5" />
+      </button>
+    </div>
+
+    <!-- SEE MORE LINK -->
+    <div class="mt-8">
+      <a 
+        href="/testimonials/" 
+        class="inline-flex items-center gap-1 text-xs font-display font-extrabold text-primary-indigo hover:text-primary-saffron hover:underline uppercase tracking-wider transition-all"
+      >
+        See more reviews & testimonials &rarr;
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('#testimonial-carousel .testimonial-slide');
+    const dots = document.querySelectorAll('#testimonial-dots button');
+    const prevBtn = document.getElementById('prev-testimonial');
+    const nextBtn = document.getElementById('next-testimonial');
+    
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let autoRotateInterval: number;
+
+    const showSlide = (index: number) => {
+      slides.forEach((slide, idx) => {
+        const wrapper = slide as HTMLElement;
+        if (idx === index) {
+          wrapper.classList.remove('opacity-0', 'scale-95', 'pointer-events-none', 'absolute', 'z-0');
+          wrapper.classList.add('opacity-100', 'scale-100', 'relative', 'z-10');
+        } else {
+          wrapper.classList.remove('opacity-100', 'scale-100', 'relative', 'z-10');
+          wrapper.classList.add('opacity-0', 'scale-95', 'pointer-events-none', 'absolute', 'z-0');
+        }
+      });
+
+      // Update dots
+      dots.forEach((dot, idx) => {
+        const btn = dot as HTMLElement;
+        if (idx === index) {
+          btn.classList.remove('bg-neutral-mist', 'w-2.5');
+          btn.classList.add('bg-primary-saffron', 'w-6');
+        } else {
+          btn.classList.remove('bg-primary-saffron', 'w-6');
+          btn.classList.add('bg-neutral-mist', 'w-2.5');
+        }
+      });
+
+      currentIndex = index;
+    };
+
+    const nextSlide = () => {
+      const nextIndex = (currentIndex + 1) % slides.length;
+      showSlide(nextIndex);
+    };
+
+    const prevSlide = () => {
+      const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(prevIndex);
+    };
+
+    // Auto rotate every 5 seconds
+    const startAutoRotate = () => {
+      stopAutoRotate();
+      autoRotateInterval = window.setInterval(nextSlide, 5000);
+    };
+
+    const stopAutoRotate = () => {
+      if (autoRotateInterval) {
+        clearInterval(autoRotateInterval);
+      }
+    };
+
+    // Button event listeners
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        startAutoRotate();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        startAutoRotate();
+      });
+    }
+
+    // Dot event listeners
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        showSlide(idx);
+        startAutoRotate();
+      });
+    });
+
+    // Swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const carouselEl = document.getElementById('testimonial-carousel');
+    if (carouselEl) {
+      carouselEl.addEventListener('touchstart', (e: TouchEvent) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      carouselEl.addEventListener('touchend', (e: TouchEvent) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+    }
+
+    const handleSwipe = () => {
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+        startAutoRotate();
+      }
+    };
+
+    // Start
+    startAutoRotate();
+  });
+</script>

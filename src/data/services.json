@@ -1,0 +1,495 @@
+[
+  {
+    "id": "meta-ads",
+    "name": "Meta Ads Management",
+    "sanskrit_name": "Agni (अग्नि)",
+    "sanskrit_plan_name": "Agni",
+    "sanskrit_meaning": "Sacred Fire / Pure Drive",
+    "slug": "meta-ads",
+    "icon": "flame",
+    "color": "#FF6B2B",
+    "gradient": "from-primary-saffron to-primary-gold",
+    "description": "Unleash high-converting Facebook, Instagram, and WhatsApp marketing campaigns tailored for local consumer markets. We build lead capture systems, design custom graphics and vertical video Reels, and write conversion-optimized copies that drive direct WhatsApp chats, store visits, and retail sales.",
+    "short_description": "Convert social traffic into paying customers with optimized FB, Instagram & WhatsApp ad funnels.",
+    "benefits": [
+      "Target high-intent local customer groups based on exact city behaviors.",
+      "Receive 10+ designer graphics and vertical video reels monthly.",
+      "Conversions API & Pixel integration setup included to track leads.",
+      "Daily campaign budget monitoring and continuous bid optimizations."
+    ],
+    "process_steps": [
+      {
+        "step": 1,
+        "title": "Audit & Pixel Setup",
+        "desc": "Configure Meta Conversions API to bypass iOS ad blocks."
+      },
+      {
+        "step": 2,
+        "title": "Creative Design",
+        "desc": "Write localized copies and compile visual product images/reels."
+      },
+      {
+        "step": 3,
+        "title": "Launch & Target",
+        "desc": "Deploy custom target lookalike profiles in specified cities."
+      },
+      {
+        "step": 4,
+        "title": "Scaling & Optimization",
+        "desc": "Scale budgets once campaigns hit a stable 3X+ ROAS target."
+      }
+    ],
+    "platforms": [
+      "Facebook",
+      "Instagram",
+      "WhatsApp Business"
+    ],
+    "ideal_for": [
+      "Real Estate",
+      "Clinics",
+      "Jewellery Shops",
+      "Gyms",
+      "Local Retailers"
+    ],
+    "plans": [
+      "jyoti",
+      "agni",
+      "pralaya"
+    ],
+    "starting_price": "₹7,999",
+    "faqs": [
+      {
+        "question": "What is the starting budget for Meta Ads in {city}?",
+        "answer": "We recommend starting with a daily budget of ₹500 to ₹1,000 for your Meta campaigns in {city}. This allows the Meta algorithm to collect enough conversions data to optimize bidding."
+      },
+      {
+        "question": "Do you design the ad graphics and videos?",
+        "answer": "Yes, all our plans include full ad creative services: high-converting copies, professional graphic cards, and video edits for Instagram Reels."
+      }
+    ]
+  },
+  {
+    "id": "google-ads",
+    "name": "Google Ads Management",
+    "sanskrit_name": "Chakra (चक्र)",
+    "sanskrit_plan_name": "Chakra",
+    "sanskrit_meaning": "Cycle / Wheel of Growth",
+    "slug": "google-ads",
+    "icon": "target",
+    "color": "#0EA5E9",
+    "gradient": "from-secondary-blue to-primary-indigo",
+    "description": "Capture customers at the exact moment they search for your products or services. Our Google Search and Performance Max campaigns target high-intent local keywords in your city, filtering out useless clicks to save your ad budget.",
+    "short_description": "Intercept high-intent buyers with search ads, local map keywords, and display campaigns.",
+    "benefits": [
+      "Rank #1 on Google for high-commercial local search terms.",
+      "Continuous negative keyword scrubbing to eliminate waste clicks.",
+      "Optimized Google Search and Performance Max setup.",
+      "Dynamic conversion tracking for call button clicks and map directions."
+    ],
+    "process_steps": [
+      {
+        "step": 1,
+        "title": "Keyword Extraction",
+        "desc": "Extract localized search volume terms for your specific services."
+      },
+      {
+        "step": 2,
+        "title": "Landing Page Review",
+        "desc": "Optimize the lead form landing page to improve Google Quality Score."
+      },
+      {
+        "step": 3,
+        "title": "Search Ad Copywriting",
+        "desc": "Write clear headings, callouts, and location extensions."
+      },
+      {
+        "step": 4,
+        "title": "Daily Bidding Optimization",
+        "desc": "Optimize target cost-per-acquisition (tCPA) values."
+      }
+    ],
+    "platforms": [
+      "Google Search",
+      "YouTube",
+      "Google Maps",
+      "Google Display"
+    ],
+    "ideal_for": [
+      "Dental Clinics",
+      "Chartered Accountants",
+      "B2B Manufacturers",
+      "Packers & Movers"
+    ],
+    "plans": [
+      "disha",
+      "chakra",
+      "vajra"
+    ],
+    "starting_price": "₹9,999",
+    "faqs": [
+      {
+        "question": "How do you prevent wasted ad budget in {city}?",
+        "answer": "We maintain a robust negative keyword list and configure tight location targeting in {city}. This ensures your ads are only shown to users physically searching within your delivery radius."
+      }
+    ]
+  },
+  {
+    "id": "web-development",
+    "name": "High-Speed Website Development",
+    "sanskrit_name": "Vriddhi (वृद्धि)",
+    "sanskrit_plan_name": "Vriddhi",
+    "sanskrit_meaning": "Growth / Prosperity",
+    "slug": "web-development",
+    "icon": "code",
+    "color": "#7C3AED",
+    "gradient": "from-secondary-purple to-primary-saffron",
+    "description": "Get a world-class, lightning-fast business website built on Astro.js + Tailwind CSS. We optimize for high performance, accessibility, and SEO targets. Best of all: we use our Pay-After-Seeing model. You pay only after you approve the design.",
+    "short_description": "Ultra-fast, mobile-responsive websites built using Astro.js with a Pay-After-Seeing model.",
+    "benefits": [
+      "High Lighthouse performance targets for instant mobile loads.",
+      "Pay-After-Seeing model: Zero risk, review preview before paying.",
+      "On-page local SEO structures for city rankings.",
+      "Clean call-to-action buttons optimized for WhatsApp chat generation."
+    ],
+    "process_steps": [
+      {
+        "step": 1,
+        "title": "Layout Blueprinting",
+        "desc": "Discuss target objectives and draft structure."
+      },
+      {
+        "step": 2,
+        "title": "Preview Build",
+        "desc": "Develop the complete preview website on a staging link."
+      },
+      {
+        "step": 3,
+        "title": "Client Approval",
+        "desc": "Show preview to client. Approve and release payment."
+      },
+      {
+        "step": 4,
+        "title": "Live Deployment",
+        "desc": "Register .in domain, activate SSL, and push site live."
+      }
+    ],
+    "platforms": [
+      "Cloudflare Pages",
+      "GitHub",
+      "Astro.js Static SSG"
+    ],
+    "ideal_for": [
+      "Local SMBs",
+      "Service Providers",
+      "E-commerce Brands",
+      "Corporate Portals"
+    ],
+    "plans": [
+      "ankur",
+      "vriddhi",
+      "siddhi"
+    ],
+    "starting_price": "₹7,999",
+    "faqs": [
+      {
+        "question": "Do I have to pay anything upfront for web design in {city}?",
+        "answer": "No. Under our Pay-After-Seeing model, we build the complete website preview first. You only transfer the package price when you approve the design and we are ready to deploy it to your live domain in {city}."
+      }
+    ]
+  },
+  {
+    "id": "google-my-business",
+    "name": "Google My Business & Map SEO",
+    "sanskrit_name": "Sthapna (स्थापना)",
+    "sanskrit_plan_name": "Sthapna",
+    "sanskrit_meaning": "Foundation / Establishment",
+    "slug": "google-my-business",
+    "icon": "map-pin",
+    "color": "#059669",
+    "gradient": "from-secondary-emerald to-secondary-blue",
+    "description": "Dominating local search results on Google Maps is the fastest way to get local walk-ins and phone calls. We optimize your GMB profile with geotagged images, local keyword citations, directory listings, and review acquisition strategies.",
+    "short_description": "Dominate local maps search to drive phone calls and physical store walk-ins.",
+    "benefits": [
+      "Rank in the Google Maps Local 3-Pack.",
+      "Monthly uploads of 15+ geotagged store photos.",
+      "Clean up consistent Name, Address, Phone (NAP) citations.",
+      "Automated WhatsApp review generation template setups."
+    ],
+    "process_steps": [
+      {
+        "step": 1,
+        "title": "Profile Verification",
+        "desc": "Claim ownership and verify your local business listing."
+      },
+      {
+        "step": 2,
+        "title": "Keyword Insertion",
+        "desc": "Add target service categories and optimized local descriptions."
+      },
+      {
+        "step": 3,
+        "title": "Local Citation Build",
+        "desc": "Submit details to 40+ local business directories."
+      },
+      {
+        "step": 4,
+        "title": "Review Scaling",
+        "desc": "Deploy review capture links for clients to rank higher."
+      }
+    ],
+    "platforms": [
+      "Google Maps",
+      "Google Local Pack",
+      "Local Directories"
+    ],
+    "ideal_for": [
+      "Clinics",
+      "Showrooms",
+      "Spa & Salons",
+      "Professional Offices"
+    ],
+    "plans": [
+      "sthapna",
+      "unnati",
+      "samrajya"
+    ],
+    "starting_price": "₹4,999",
+    "faqs": [
+      {
+        "question": "How long does GMB optimization take to show results in {city}?",
+        "answer": "Most local business profiles in {city} show an increase in phone calls and map direction queries within 30 to 45 days of starting GMB citation and geotagging updates."
+      }
+    ]
+  },
+  {
+    "id": "performance-marketing",
+    "name": "Performance Marketing Package",
+    "sanskrit_name": "Shakti (शक्ति)",
+    "sanskrit_plan_name": "Shakti",
+    "sanskrit_meaning": "Power / Strength / Complete Force",
+    "slug": "performance-marketing",
+    "icon": "trending-up",
+    "color": "#7C3AED",
+    "gradient": "from-primary-indigo to-secondary-purple",
+    "description": "Combine the strength of social media advertisements and search marketing. This all-in-one package includes high-converting landing pages, Meta ads, Google Search ads, and local maps management designed to maximize your monthly revenues.",
+    "short_description": "Omnichannel performance scaling using high-speed landing pages, search, and social ads.",
+    "benefits": [
+      "Integrated ads management across Meta and Google.",
+      "Includes a 1-page high-converting Astro landing page.",
+      "Weekly live analytics dashboard to track marketing metrics.",
+      "Dedicated account manager for strategy calls."
+    ],
+    "process_steps": [
+      {
+        "step": 1,
+        "title": "Cross-Platform Planning",
+        "desc": "Align branding and offer message across search and social channels."
+      },
+      {
+        "step": 2,
+        "title": "Landing Page Build",
+        "desc": "Create a high-speed landing page with custom leads hooks."
+      },
+      {
+        "step": 3,
+        "title": "Ads Deployment",
+        "desc": "Launch search capture and social retargeting setups simultaneously."
+      },
+      {
+        "step": 4,
+        "title": "ROAS Maximization",
+        "desc": "Audit results weekly and reallocate budget to the highest converting channels."
+      }
+    ],
+    "platforms": [
+      "Meta Ads",
+      "Google Ads",
+      "Custom Landing Pages"
+    ],
+    "ideal_for": [
+      "E-commerce",
+      "Hospitals",
+      "Real Estate Builders",
+      "Educational Institutions"
+    ],
+    "plans": [
+      "arambh",
+      "shakti",
+      "moksha"
+    ],
+    "starting_price": "₹37,999",
+    "faqs": [
+      {
+        "question": "What is the minimum contract period for performance ads in {city}?",
+        "answer": "We work on a month-to-month basis with no lock-in. However, we recommend a 90-day window to fully test, optimize, and scale campaigns in {city} for maximum ROAS."
+      }
+    ]
+  },
+  {
+    "id": "social-media-marketing",
+    "name": "Social Media Marketing",
+    "sanskrit_name": "Aseem (असीम)",
+    "sanskrit_plan_name": "Aseem",
+    "sanskrit_meaning": "Boundless / Limitless",
+    "slug": "social-media-marketing",
+    "icon": "instagram",
+    "color": "#FF6B2B",
+    "gradient": "from-primary-saffron to-secondary-purple",
+    "description": "Build a stunning organic presence on Instagram and Facebook. We design grid layouts, edit viral Reels, write captions, and manage comments to build trust and authority for your brand locally.",
+    "short_description": "Grow your local brand organically with premium grids, Reels, and interactive social posts.",
+    "benefits": [
+      "12+ premium graphic posts designed per month.",
+      "4+ edited video Reels for Instagram organic algorithm.",
+      "Custom highlights icons and bio optimization.",
+      "Local community engagement and query responses."
+    ],
+    "process_steps": [
+      {
+        "step": 1,
+        "title": "Theme Design",
+        "desc": "Create a premium visual grid theme using your brand color palette."
+      },
+      {
+        "step": 2,
+        "title": "Content Calendar",
+        "desc": "Prepare a 30-day posting plan with captions and local hashtags."
+      },
+      {
+        "step": 3,
+        "title": "Graphic & Video Build",
+        "desc": "Design premium banners and edit vertical short videos."
+      },
+      {
+        "step": 4,
+        "title": "Publish & Interact",
+        "desc": "Publish content and respond to comments/DMs to build trust."
+      }
+    ],
+    "platforms": [
+      "Instagram",
+      "Facebook",
+      "LinkedIn"
+    ],
+    "ideal_for": [
+      "Cafes & Hotels",
+      "Architects",
+      "Fashion Boutiques",
+      "Personal Brands"
+    ],
+    "plans": [
+      "jyoti",
+      "agni",
+      "pralaya"
+    ],
+    "starting_price": "₹7,999",
+    "faqs": [
+      {
+        "question": "How often will you post on my social accounts in {city}?",
+        "answer": "Our standard plans include 3-4 posts/Reels per week. This maintains a consistent organic brand presence in {city} without spamming your followers."
+      }
+    ]
+  },
+  {
+    "id": "research-reports",
+    "name": "Bodhi Drishti Research Reports",
+    "sanskrit_name": "Drishti (दृष्टि)",
+    "sanskrit_meaning": "Sacred Insight / Vision",
+    "slug": "research-reports",
+    "icon": "search",
+    "color": "#7C3AED",
+    "gradient": "from-secondary-purple to-secondary-blue",
+    "tagline": "Know Your Market. Beat Your Competitors.",
+    "description": "Professional research reports that reveal exactly what your competitors are doing, what your market wants, and how to dominate your industry. AI-powered intelligence delivered as premium consulting reports. From competitor ad analysis to full market intelligence — get the insights that transform your business decisions.",
+    "short_description": "Competitor analysis, market research & growth intelligence reports for Indian businesses.",
+    "benefits": [
+      "Know exactly what competitors are doing",
+      "Discover untapped market opportunities",
+      "Get a data-backed growth strategy",
+      "Save months of manual research",
+      "Professional PDF report with actionable insights",
+      "Expert consulting calls included",
+      "Industry-specific benchmarks and data",
+      "Keyword and content strategy included"
+    ],
+    "process_steps": [
+      {
+        "step": 1,
+        "title": "Choose Your Report",
+        "desc": "Select from Chakshu, Divya Drishti, or Trikaldarshi based on depth."
+      },
+      {
+        "step": 2,
+        "title": "Quick Discovery Call",
+        "desc": "A 30-60 minute call where we understand your business and challenges."
+      },
+      {
+        "step": 3,
+        "title": "Deep Research & Analysis",
+        "desc": "We research your market, keywords, ads, and opportunities."
+      },
+      {
+        "step": 4,
+        "title": "Report Creation",
+        "desc": "We compile findings into a beautifully designed, actionable PDF report."
+      },
+      {
+        "step": 5,
+        "title": "Presentation & Strategy",
+        "desc": "We walk you through every insight in a dedicated video call."
+      }
+    ],
+    "platforms": [
+      "Meta Ad Library",
+      "Google Ads Transparency",
+      "SEMrush",
+      "SimilarWeb",
+      "Google Maps",
+      "Social Blade",
+      "Google Trends"
+    ],
+    "ideal_for": [
+      "Small businesses planning digital marketing",
+      "Businesses spending on ads without clarity",
+      "Business owners who want competitive edge",
+      "Companies entering new markets",
+      "Established businesses ready to scale",
+      "Startups looking for market validation"
+    ],
+    "plans": [
+      "chakshu",
+      "divya-drishti",
+      "trikaldarshi"
+    ],
+    "starting_price": "₹4,999",
+    "faqs": [
+      {
+        "question": "What tools do you use for research?",
+        "answer": "We use professional intelligence platforms including Meta Ad Library, Google Ads Transparency Center, SEMrush, SimilarWeb, Google Trends, and proprietary analysis frameworks."
+      },
+      {
+        "question": "How long does the research take?",
+        "answer": "Chakshu reports take 5 business days, Divya Drishti takes 10 business days, and Trikaldarshi takes 15 business days."
+      },
+      {
+        "question": "Is my business data kept confidential?",
+        "answer": "Absolutely. We sign NDAs if required. All research data is exclusively yours and never shared with competitors."
+      },
+      {
+        "question": "Can I get a sample report first?",
+        "answer": "Yes. Contact us to receive a redacted sample report that shows the quality and format of our research deliverables."
+      },
+      {
+        "question": "What if I need changes to the report?",
+        "answer": "Each report includes one round of revisions after the presentation call."
+      },
+      {
+        "question": "Do you also implement the recommendations?",
+        "answer": "The report is intelligence-only, but we offer full implementation services. Report clients get 20% off any RoasBodhi service."
+      },
+      {
+        "question": "How is this different from free online tools?",
+        "answer": "Free tools give raw data. We give you interpreted, contextualized, India-specific intelligence with specific action items for your business."
+      }
+    ]
+  }
+]

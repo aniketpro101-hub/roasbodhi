@@ -1,0 +1,112 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import testimonialsData from '../data/testimonials.json';
+import { Star, MessageCircle } from 'lucide-astro';
+import CtaSection from '../components/sections/CtaSection.astro';
+
+const pageTitle = "Client Reviews & Testimonials | RoasBodhi";
+const pageDescription = "Read through 12 verified digital marketing reviews, ratings, and performance return metrics from Indian business owners.";
+const testimonialsKeywords = "roasbodhi reviews, digital marketing testimonials, client ratings, advertising success India";
+
+const testimonialsSchema = {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "LocalBusiness",
+    "name": "RoasBodhi",
+    "image": "https://roasbodhi.in/android-chrome-192x192.png",
+    "telephone": "9082543992",
+    "priceRange": "₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Pune",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    }
+  },
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "5",
+    "bestRating": "5"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Aniket Sawant"
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} keywords={testimonialsKeywords} schema={testimonialsSchema}>
+  
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal text-left select-none">
+    
+    <!-- Hero Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <SectionLabel text="CLIENT VERDICTS" />
+      <h1 class="font-display font-extrabold text-neutral-dark text-4xl sm:text-6xl mt-3 tracking-tight">
+        Verified Success <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">From Indian Storefronts</span>
+      </h1>
+      <p class="font-body text-sm sm:text-base text-neutral-stone mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+        Read 12 reviews from real businesses who scaled their ad returns and launched speed sites with RoasBodhi.
+      </p>
+    </section>
+
+    <!-- Testimonials Grid -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {testimonialsData.map(test => (
+          <div class="bg-white border border-neutral-mist rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col justify-between hover:shadow-card-hover hover:border-primary-saffron/20 transition-all duration-300 relative">
+            <span class="text-5xl text-primary-gold/10 absolute top-4 left-6 font-serif">“</span>
+            
+            <div class="flex flex-col gap-4 relative z-10">
+              <!-- Rating Stars -->
+              <div class="flex gap-0.5">
+                {Array.from({ length: test.rating }).map(() => (
+                  <Star class="w-3.5 h-3.5 fill-primary-gold text-primary-gold" />
+                ))}
+              </div>
+
+              <!-- Quote Text -->
+              <p class="font-body text-xs text-neutral-charcoal/80 leading-relaxed font-semibold italic">
+                "{test.text}"
+              </p>
+            </div>
+
+            <!-- Footer info -->
+            <div class="flex items-center gap-3 border-t border-neutral-mist/50 pt-4 mt-6 relative z-10">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary-saffron/10 to-primary-gold/10 flex items-center justify-center text-primary-saffron text-sm font-bold font-display shadow-sm">
+                {test.name.charAt(0)}
+              </div>
+              
+              <div class="flex flex-col gap-0.5">
+                <h4 class="font-display font-extrabold text-xs text-neutral-dark leading-none">{test.name}</h4>
+                <span class="text-[9px] text-neutral-stone font-semibold mt-0.5">{test.business}  •  {test.city}</span>
+                <span class="px-2 py-0.5 rounded bg-primary-indigo/5 border border-primary-indigo/10 text-primary-indigo text-[8px] font-display font-bold uppercase tracking-wider w-fit mt-1">
+                  {test.service.replace("-", " ")}
+                </span>
+              </div>
+
+              <div class="ml-auto bg-secondary-emerald/10 border border-secondary-emerald/20 text-secondary-emerald text-[8px] font-display font-extrabold uppercase tracking-widest px-2 py-0.5 rounded-md">
+                {test.result}
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Lead Form Action -->
+    <CtaSection />
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

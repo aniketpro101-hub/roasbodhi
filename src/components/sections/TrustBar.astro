@@ -1,0 +1,79 @@
+---
+// Section 8: Trust & Stats Bar Component
+// Renders 4 animated stat counters using JetBrains Mono font faces and custom theme colors
+
+const stats = [
+  { number: 500, suffix: "+", label: "Ad Campaigns Optimized", colorClass: "text-primary-saffron" },
+  { number: 200, suffix: "+", label: "SMBs Transformed", colorClass: "text-secondary-purple" },
+  { number: 4.9, suffix: "★", label: "Average Client Rating", colorClass: "text-primary-gold" },
+  { number: 3.8, suffix: "X", label: "Average ROAS Delivered", colorClass: "text-secondary-emerald" }
+];
+---
+
+<section class="bg-white border-y border-neutral-mist py-12 select-none">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center items-center">
+      {stats.map((stat) => (
+        <div class="flex flex-col items-center justify-center">
+          <div class="font-mono text-3xl sm:text-5xl font-extrabold tracking-tight flex items-baseline leading-none">
+            <span 
+              class={`animate-trust-count ${stat.colorClass}`} 
+              data-target={stat.number}
+              data-decimals={stat.number % 1 === 0 ? 0 : 1}
+            >
+              0
+            </span>
+            <span class={stat.colorClass}>{stat.suffix}</span>
+          </div>
+          <span class="font-display font-extrabold text-[10px] sm:text-xs text-neutral-charcoal normal-case tracking-widest mt-3.5 leading-snug">
+            {stat.label}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // requestAnimationFrame viewport count-up listener
+  document.addEventListener('DOMContentLoaded', () => {
+    const counterElements = document.querySelectorAll('.animate-trust-count');
+
+    const animateCount = (el: HTMLElement) => {
+      const target = parseFloat(el.dataset.target || '0');
+      const decimals = parseInt(el.dataset.decimals || '0');
+      const duration = 2000; // 2 seconds
+      const startTime = performance.now();
+
+      const easeOutQuad = (t: number) => t * (2 - t);
+
+      const update = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuad(progress);
+        
+        const currentValue = easedProgress * target;
+        el.textContent = currentValue.toFixed(decimals);
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          el.textContent = target.toFixed(decimals);
+        }
+      };
+
+      requestAnimationFrame(update);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target as HTMLElement);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    counterElements.forEach((el) => observer.observe(el));
+  });
+</script>

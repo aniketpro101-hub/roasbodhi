@@ -1,0 +1,119 @@
+---
+import SectionLabel from '../SectionLabel.astro';
+import { Search, PenTool, Radio, TrendingUp, CheckCircle, Cpu, FileText, Code, Globe, ShieldCheck } from 'lucide-astro';
+
+interface Props {
+  serviceId: string;
+  serviceName: string;
+}
+
+const { serviceId, serviceName } = Astro.props;
+
+// Steps mapping for each service type
+const getSteps = (id: string) => {
+  switch (id) {
+    case 'meta-ads':
+      return [
+        { title: "Account Audit & Strategy", desc: "We review your past campaign metrics, target demographics, and local competitor ads to define budget allocations.", icon: "search" },
+        { title: "Audience Research & Setup", desc: "Custom pixel setups, CAPI integrations, and building lookalike or interest lists based on local trade parameters.", icon: "cpu" },
+        { title: "Creative Design & Copy", desc: "We draft high-converting ad copy and design video and static image assets localized for target markets.", icon: "pen-tool" },
+        { title: "Campaign Launch", desc: "Pushing ads live under A/B test groups to monitor initial Cost-Per-Lead (CPL) metrics.", icon: "radio" },
+        { title: "Optimize & Scale", desc: "Weekly budget reallocations and scaling ad copy that delivers above a 3.5X ROAS index.", icon: "trending-up" }
+      ];
+    case 'google-ads':
+      return [
+        { title: "Keyword Research", desc: "Extracting high-intent search keywords with local volume near your store or service centers.", icon: "search" },
+        { title: "Campaign Structure", desc: "Setting up Search, Display, and Performance Max campaign architectures with negative keyword filters.", icon: "cpu" },
+        { title: "Ad Copy Creation", desc: "Writing headlines and callouts designed to maximize Click-Through Rates (CTR) and Quality Scores.", icon: "pen-tool" },
+        { title: "Tracking Setup", desc: "Deploying Google Tag Manager (GTM) conversion tracking to map every incoming call and form fill.", icon: "radio" },
+        { title: "Continuous Optimization", desc: "Bid management adjustments, device filtering, and weekly search term audits to prevent waste.", icon: "trending-up" }
+      ];
+    case 'web-development':
+      return [
+        { title: "Requirement Discussion", desc: "Aligning on layout preferences, target count of landing pages, and lead flow connections.", icon: "file-text" },
+        { title: "Design Mockup", desc: "We draft modern design mockups for your home and services pages to define colors and typography.", icon: "pen-tool" },
+        { title: "Development", desc: "Coding high-speed pages in Astro.js with zero render-blocking styles for a 95+ PageSpeed score.", icon: "code" },
+        { title: "Preview & Revision", desc: "Review your live website on our temporary domain preview. Enjoy unlimited (Aseem) revision rounds.", icon: "radio" },
+        { title: "Launch & Domain Setup", desc: "Register your custom domain, set up Cloudflare SSL protection, and publish files live. ₹0 due before this.", icon: "globe" }
+      ];
+    case 'google-my-business':
+      return [
+        { title: "Profile Audit", desc: "Reviewing your current Google Map ranking score, duplicate listings, and keyword authority.", icon: "search" },
+        { title: "Complete Optimization", desc: "Correcting address details, categorization tags, and adding keyword-rich descriptions for city searches.", icon: "cpu" },
+        { title: "Content Calendar", desc: "Scheduling geotagged photos and local update posts to signal active operations to Google's ranking crawler.", icon: "pen-tool" },
+        { title: "Review Strategy", desc: "Setting up review capture widgets and automated QR cards to encourage customers to leave 5-star ratings.", icon: "radio" },
+        { title: "Monthly Monitoring", desc: "Tracking map interactions, phone calls, and direction clicks while filtering out spam reviews.", icon: "trending-up" }
+      ];
+    default:
+      return [
+        { title: "Initial Audit", desc: "Reviewing your local digital assets, maps, and ad account histories.", icon: "search" },
+        { title: "Competitor Study", desc: "Auditing competitor listings and ad campaigns targeting your city.", icon: "cpu" },
+        { title: "Funnels Setup", desc: "Building conversion landing pages and pixel trackers.", icon: "code" },
+        { title: "Campaign Launch", desc: "Pushing ads live and setting up real-time analytics updates.", icon: "radio" },
+        { title: "Monthly Scaling", desc: "Optimizing budgets and refining targets to maximize ROAS metrics.", icon: "trending-up" }
+      ];
+  }
+};
+
+const steps = getSteps(serviceId);
+---
+
+<section class="py-24 bg-white relative overflow-hidden select-none text-neutral-charcoal">
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- HEADER -->
+    <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-20">
+      <SectionLabel text="OUR METHODOLOGY" />
+      
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight mt-2 text-center">
+        The 5-Step Process to <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">Awaken Your Returns</span>
+      </h2>
+      
+      <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-2 max-w-xl leading-relaxed font-semibold">
+        How we take your {serviceName} campaigns from audit to scalable revenue.
+      </p>
+    </div>
+
+    <!-- TIMELINE STEPS GRID -->
+    <div class="relative grid grid-cols-1 md:grid-cols-5 gap-8 items-start max-w-6xl mx-auto">
+      
+      <!-- Dotted Connector Line (Desktop md and up) -->
+      <div class="hidden md:block absolute top-[52px] left-[10%] right-[10%] h-0.5 border-t-2 border-dotted border-neutral-mist z-0"></div>
+
+      {steps.map((step, index) => (
+        <div class="flex flex-col items-center text-center relative z-10 group">
+          
+          <!-- Circle Number indicator -->
+          <div class="w-11 h-11 rounded-full bg-white border border-neutral-mist group-hover:border-primary-saffron group-hover:bg-primary-saffron/10 flex items-center justify-center font-display font-extrabold text-xs text-primary-saffron shadow-sm transition-all duration-300 mb-4">
+            {index + 1}
+          </div>
+
+          <!-- Icon container -->
+          <div class="w-14 h-14 rounded-2xl bg-neutral-ghost border border-neutral-mist/50 group-hover:border-primary-saffron group-hover:bg-white flex items-center justify-center text-neutral-charcoal group-hover:text-primary-saffron hover:shadow-card-default transition-all duration-300 mb-5">
+            {step.icon === 'search' && <Search class="w-5.5 h-5.5" />}
+            {step.icon === 'cpu' && <Cpu class="w-5.5 h-5.5" />}
+            {step.icon === 'pen-tool' && <PenTool class="w-5.5 h-5.5" />}
+            {step.icon === 'radio' && <Radio class="w-5.5 h-5.5" />}
+            {step.icon === 'trending-up' && <TrendingUp class="w-5.5 h-5.5" />}
+            {step.icon === 'file-text' && <FileText class="w-5.5 h-5.5" />}
+            {step.icon === 'code' && <Code class="w-5.5 h-5.5" />}
+            {step.icon === 'globe' && <Globe class="w-5.5 h-5.5" />}
+          </div>
+
+          <!-- Text -->
+          <h3 class="font-display font-extrabold text-neutral-dark text-sm sm:text-base leading-tight group-hover:text-primary-saffron transition-colors px-2">
+            {step.title}
+          </h3>
+          
+          <p class="font-body text-xs text-neutral-stone leading-relaxed mt-2.5 font-medium px-1">
+            {step.desc}
+          </p>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

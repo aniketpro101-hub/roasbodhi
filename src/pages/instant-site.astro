@@ -1,0 +1,452 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ArrowRight, Sparkles, Wand2, RefreshCw, CheckCircle, ShieldCheck, Download, ExternalLink, ArrowLeft, Phone, MessageSquare } from 'lucide-astro';
+import '../styles/wizard.css';
+
+const title = "Sthapna Instant Website Generator — Create Your Site in 60 Seconds";
+const description = "Build a high-converting website for your clinic, salon, cafe, gym, or real estate business instantly.";
+---
+
+<BaseLayout title={title} description={description} noIndex={true}>
+  
+  <div class="min-h-screen bg-neutral-dark text-white font-body selection:bg-primary-saffron selection:text-white wizard-root relative overflow-x-hidden">
+    
+    <!-- Background Glow Orbs & Particles -->
+    <div class="fixed top-0 right-0 w-[500px] h-[500px] rounded-full bg-primary-saffron/10 blur-[100px] pointer-events-none z-0"></div>
+    <div class="fixed bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-secondary-purple/15 blur-[100px] pointer-events-none z-0"></div>
+    <div class="fixed inset-0 bg-[radial-gradient(rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none z-0"></div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen flex flex-col justify-center">
+
+      <!-- ===================================================================
+           STEP 1: THE GRAND ENTRY (BUSINESS NAME)
+           =================================================================== -->
+      <div id="wizard-step-1" class="wizard-step active max-w-2xl mx-auto text-center py-12">
+        
+        <!-- Top Pill Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-saffron/15 border border-primary-saffron/40 text-xs font-display font-extrabold uppercase tracking-wider text-primary-saffron mb-8 animate-pulse-glow">
+          <Sparkles class="w-4 h-4 text-primary-gold" />
+          <span>Sthapna Instant Website Builder</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="font-display font-extrabold text-4xl sm:text-6xl text-white tracking-tight leading-tight mb-4">
+          Let's Build Your <br />
+          <span class="bg-gradient-to-r from-primary-saffron via-primary-gold to-secondary-purple bg-clip-text text-transparent">
+            Website in 60 Seconds
+          </span>
+        </h1>
+        <p class="text-white/60 text-sm sm:text-base mb-10 max-w-md mx-auto">
+          No coding, no copywriting needed. Enter your business name and watch the magic happen.
+        </p>
+
+        <!-- Live Name Logo Preview -->
+        <div class="mb-8 h-16 flex items-center justify-center">
+          <span id="biz-name-preview" class="font-display font-black text-2xl sm:text-4xl bg-gradient-to-r from-white via-primary-gold to-primary-saffron bg-clip-text text-transparent transition-all duration-300">
+            Your Business Name
+          </span>
+        </div>
+
+        <!-- Glowing Input Box -->
+        <div class="relative max-w-xl mx-auto mb-6">
+          <input 
+            type="text" 
+            id="biz-name-input"
+            placeholder="e.g. Anant Dental Care" 
+            class="w-full bg-white/5 border-2 border-white/20 focus:border-primary-saffron rounded-2xl px-6 py-5 text-lg sm:text-xl font-display font-bold text-white placeholder-white/30 outline-none transition-all shadow-2xl backdrop-blur-xl"
+            autofocus
+          />
+        </div>
+
+        <!-- Continue Button -->
+        <button 
+          id="step1-next-btn"
+          disabled
+          class="px-10 py-4 bg-gradient-to-r from-primary-saffron to-primary-gold disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-button-saffron rounded-full font-display font-extrabold text-sm tracking-wider uppercase inline-flex items-center gap-2 text-white transition-all shadow-button-saffron"
+        >
+          <span>Continue to Setup</span>
+          <ArrowRight class="w-4 h-4" />
+        </button>
+
+      </div>
+
+
+      <!-- ===================================================================
+           STEP 2: SMART DETAILS FORM
+           =================================================================== -->
+      <div id="wizard-step-2" class="wizard-step max-w-3xl mx-auto py-8">
+        
+        <div class="flex items-center justify-between mb-8">
+          <button data-goto-step="1" class="text-xs font-display font-bold text-white/50 hover:text-white flex items-center gap-1">
+            <ArrowLeft class="w-4 h-4" /> Back
+          </button>
+          <span class="text-xs font-display font-extrabold text-primary-gold uppercase tracking-widest">Step 2 of 3</span>
+        </div>
+
+        <h2 class="font-display font-extrabold text-3xl text-white mb-2">Select Industry & Details</h2>
+        <p class="text-white/60 text-sm mb-8">We will tailor the copywriting, icons, and sections specifically for your business type.</p>
+
+        <!-- Industry Visual Selection Grid -->
+        <label class="block text-xs font-display font-extrabold uppercase tracking-wider text-white/80 mb-3">Choose Your Industry</label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+          
+          <div class="industry-card selected rounded-2xl p-4 flex flex-col items-center text-center" data-industry="clinic">
+            <span class="text-3xl mb-2">🦷</span>
+            <span class="font-display font-bold text-xs">Clinic / Doctor</span>
+          </div>
+
+          <div class="industry-card rounded-2xl p-4 flex flex-col items-center text-center" data-industry="salon">
+            <span class="text-3xl mb-2">💇‍♀️</span>
+            <span class="font-display font-bold text-xs">Salon & Spa</span>
+          </div>
+
+          <div class="industry-card rounded-2xl p-4 flex flex-col items-center text-center" data-industry="cafe">
+            <span class="text-3xl mb-2">☕</span>
+            <span class="font-display font-bold text-xs">Cafe & Food</span>
+          </div>
+
+          <div class="industry-card rounded-2xl p-4 flex flex-col items-center text-center" data-industry="gym">
+            <span class="text-3xl mb-2">🏋️</span>
+            <span class="font-display font-bold text-xs">Gym & Fitness</span>
+          </div>
+
+          <div class="industry-card rounded-2xl p-4 flex flex-col items-center text-center" data-industry="realestate">
+            <span class="text-3xl mb-2">🏠</span>
+            <span class="font-display font-bold text-xs">Real Estate</span>
+          </div>
+
+          <div class="industry-card rounded-2xl p-4 flex flex-col items-center text-center" data-industry="general">
+            <span class="text-3xl mb-2">📚</span>
+            <span class="font-display font-bold text-xs">Coaching / Classes</span>
+          </div>
+
+          <div class="industry-card rounded-2xl p-4 flex flex-col items-center text-center" data-industry="general">
+            <span class="text-3xl mb-2">🛒</span>
+            <span class="font-display font-bold text-xs">Retail / Shop</span>
+          </div>
+
+          <div class="industry-card rounded-2xl p-4 flex flex-col items-center text-center" data-industry="general">
+            <span class="text-3xl mb-2">⚙️</span>
+            <span class="font-display font-bold text-xs">Other Services</span>
+          </div>
+
+        </div>
+
+        <!-- Form Inputs Grid -->
+        <div class="space-y-4 mb-8">
+          <div>
+            <label class="block text-xs font-display font-extrabold uppercase tracking-wider text-white/80 mb-1.5">City / Location</label>
+            <input 
+              type="text" 
+              id="biz-location-input"
+              placeholder="e.g. Kharghar, Navi Mumbai" 
+              class="w-full bg-white/5 border border-white/15 focus:border-primary-saffron rounded-xl px-4 py-3.5 text-sm text-white placeholder-white/30 outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-display font-extrabold uppercase tracking-wider text-white/80 mb-1.5">Short Business Description (1-2 lines)</label>
+            <textarea 
+              id="biz-desc-input"
+              rows="3"
+              placeholder="e.g. We specialize in root canals, teeth cleaning and teeth whitening. Open everyday." 
+              class="w-full bg-white/5 border border-white/15 focus:border-primary-saffron rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none resize-none"
+            ></textarea>
+            <span class="text-[10px] text-white/40 mt-1 block">💡 Smart detection automatically detects your industry as you type.</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-display font-extrabold uppercase tracking-wider text-white/80 mb-1.5">Phone Number</label>
+              <input 
+                type="text" 
+                id="biz-phone-input"
+                placeholder="+91 9876543210" 
+                class="w-full bg-white/5 border border-white/15 focus:border-primary-saffron rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none font-mono"
+              />
+            </div>
+
+            <div>
+              <label class="block text-xs font-display font-extrabold uppercase tracking-wider text-white/80 mb-1.5">WhatsApp Number</label>
+              <input 
+                type="text" 
+                id="biz-wa-input"
+                placeholder="+91 9876543210" 
+                class="w-full bg-white/5 border border-white/15 focus:border-primary-saffron rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 outline-none font-mono"
+              />
+            </div>
+          </div>
+        </div>
+
+        <button 
+          id="step2-next-btn"
+          class="w-full py-4 bg-gradient-to-r from-primary-saffron to-primary-gold hover:shadow-button-saffron rounded-full font-display font-extrabold text-sm tracking-wider uppercase flex items-center justify-center gap-2 text-white transition-all shadow-button-saffron"
+        >
+          <span>Next: Pick Layout & Theme →</span>
+        </button>
+
+      </div>
+
+
+      <!-- ===================================================================
+           STEP 3: PICK LAYOUT & THEME SELECTOR
+           =================================================================== -->
+      <div id="wizard-step-3" class="wizard-step max-w-4xl mx-auto py-8">
+        
+        <div class="flex items-center justify-between mb-8">
+          <button data-goto-step="2" class="text-xs font-display font-bold text-white/50 hover:text-white flex items-center gap-1">
+            <ArrowLeft class="w-4 h-4" /> Back
+          </button>
+          <span class="text-xs font-display font-extrabold text-primary-gold uppercase tracking-widest">Step 3 of 3</span>
+        </div>
+
+        <h2 class="font-display font-extrabold text-3xl text-white mb-2">Choose Design & Colors</h2>
+        <p class="text-white/60 text-sm mb-8">Select a structural layout and color palette tailored for your brand.</p>
+
+        <!-- 1. Layout Wireframes -->
+        <label class="block text-xs font-display font-extrabold uppercase tracking-wider text-white/80 mb-3">1. Select Layout Structure</label>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+          
+          <div class="layout-card selected rounded-2xl p-4 flex flex-col justify-between" data-layout="A">
+            <div>
+              <span class="text-xs font-display font-extrabold text-primary-gold uppercase tracking-wider block mb-1">Layout A</span>
+              <h3 class="font-display font-bold text-base text-white mb-2">Trust Builder</h3>
+              <p class="text-xs text-white/60 mb-4 leading-relaxed">Best for Clinics, Doctors, Corporate & Consultants.</p>
+              
+              <!-- Schematic wireframe -->
+              <div class="space-y-2 bg-black/40 p-3 rounded-xl border border-white/5">
+                <div class="h-4 w-full bg-white/20 rounded mini-preview-accent"></div>
+                <div class="h-8 w-full bg-white/10 rounded"></div>
+                <div class="grid grid-cols-3 gap-1">
+                  <div class="h-6 bg-white/10 rounded"></div>
+                  <div class="h-6 bg-white/10 rounded"></div>
+                  <div class="h-6 bg-white/10 rounded"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="layout-card rounded-2xl p-4 flex flex-col justify-between" data-layout="B">
+            <div>
+              <span class="text-xs font-display font-extrabold text-secondary-purple uppercase tracking-wider block mb-1">Layout B</span>
+              <h3 class="font-display font-bold text-base text-white mb-2">Visual Showcase</h3>
+              <p class="text-xs text-white/60 mb-4 leading-relaxed">Best for Cafes, Salons, Bakeries & Boutiques.</p>
+
+              <!-- Schematic wireframe -->
+              <div class="space-y-2 bg-black/40 p-3 rounded-xl border border-white/5">
+                <div class="h-10 w-full bg-white/20 rounded mini-preview-accent"></div>
+                <div class="grid grid-cols-2 gap-1">
+                  <div class="h-8 bg-white/10 rounded"></div>
+                  <div class="h-8 bg-white/10 rounded"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="layout-card rounded-2xl p-4 flex flex-col justify-between" data-layout="C">
+            <div>
+              <span class="text-xs font-display font-extrabold text-secondary-emerald uppercase tracking-wider block mb-1">Layout C</span>
+              <h3 class="font-display font-bold text-base text-white mb-2">Lead Machine</h3>
+              <p class="text-xs text-white/60 mb-4 leading-relaxed">Best for Gyms, Real Estate, Coaching & Classes.</p>
+
+              <!-- Schematic wireframe -->
+              <div class="space-y-2 bg-black/40 p-3 rounded-xl border border-white/5">
+                <div class="h-6 w-full bg-white/10 rounded"></div>
+                <div class="h-10 w-full bg-white/30 rounded border border-white/20"></div>
+                <div class="h-4 w-full bg-white/10 rounded"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 2. Color Palette Swatches -->
+        <label class="block text-xs font-display font-extrabold uppercase tracking-wider text-white/80 mb-3">2. Select Color Theme</label>
+        <div class="flex flex-wrap items-center gap-4 mb-10 bg-white/5 p-4 rounded-2xl border border-white/10">
+          
+          <div class="flex items-center gap-2 cursor-pointer">
+            <div class="theme-swatch selected" data-theme="saffron" style="background: #FF6B2B;"></div>
+            <span class="text-xs font-display font-bold text-white/80">Saffron Fire</span>
+          </div>
+
+          <div class="flex items-center gap-2 cursor-pointer">
+            <div class="theme-swatch" data-theme="indigo" style="background: #1E1B4B;"></div>
+            <span class="text-xs font-display font-bold text-white/80">Royal Indigo</span>
+          </div>
+
+          <div class="flex items-center gap-2 cursor-pointer">
+            <div class="theme-swatch" data-theme="emerald" style="background: #059669;"></div>
+            <span class="text-xs font-display font-bold text-white/80">Emerald Wellness</span>
+          </div>
+
+          <div class="flex items-center gap-2 cursor-pointer">
+            <div class="theme-swatch" data-theme="blue" style="background: #0EA5E9;"></div>
+            <span class="text-xs font-display font-bold text-white/80">Ocean Blue</span>
+          </div>
+
+          <div class="flex items-center gap-2 cursor-pointer">
+            <div class="theme-swatch" data-theme="charcoal" style="background: #1F2937;"></div>
+            <span class="text-xs font-display font-bold text-white/80">Charcoal Minimal</span>
+          </div>
+
+          <div class="flex items-center gap-2 cursor-pointer">
+            <div class="theme-swatch" data-theme="rose" style="background: #E11D48;"></div>
+            <span class="text-xs font-display font-bold text-white/80">Rose Gold</span>
+          </div>
+
+        </div>
+
+        <!-- Generate Button -->
+        <button 
+          id="generate-site-btn"
+          class="w-full py-5 bg-gradient-to-r from-primary-saffron via-primary-gold to-secondary-purple hover:shadow-button-saffron rounded-full font-display font-extrabold text-base tracking-wider uppercase flex items-center justify-center gap-2 text-white transition-all shadow-button-saffron animate-pulse-glow"
+        >
+          <Wand2 class="w-5 h-5" />
+          <span>✨ Generate My Website Now</span>
+        </button>
+
+      </div>
+
+
+      <!-- ===================================================================
+           STEP 4: AI LOADING SEQUENCE
+           =================================================================== -->
+      <div id="wizard-step-4" class="wizard-step max-w-lg mx-auto text-center py-20">
+        
+        <div class="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
+          <div class="absolute inset-0 rounded-full border-4 border-primary-saffron/20 border-t-primary-saffron animate-spin"></div>
+          <Sparkles class="w-10 h-10 text-primary-gold animate-bounce" />
+        </div>
+
+        <h3 class="font-display font-extrabold text-2xl text-white mb-2">Assembling Your Website</h3>
+        <p id="gen-status-msg" class="text-sm text-primary-gold font-display font-bold mb-6">✍️ Writing catchy headline & tagline...</p>
+
+        <!-- Progress Bar Container -->
+        <div class="w-full h-3 bg-white/10 rounded-full overflow-hidden mb-4 p-0.5 border border-white/10">
+          <div id="gen-progress-bar" class="h-full bg-gradient-to-r from-primary-saffron to-primary-gold rounded-full w-0 transition-all duration-300"></div>
+        </div>
+
+        <p class="text-xs text-white/40 font-mono">Silent Gemini AI Engine Active</p>
+      </div>
+
+
+      <!-- ===================================================================
+           STEP 5: GRAND REVEAL (SPLIT SCREEN PREVIEW & DOMAIN CHECKOUT)
+           =================================================================== -->
+      <div id="wizard-step-5" class="wizard-step py-4">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- LEFT COLUMN: CONTROLS & DOMAIN CHECKOUT (5 cols) -->
+          <div class="lg:col-span-5 flex flex-col gap-6">
+            
+            <!-- Top Controls Card -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl">
+              
+              <div class="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
+                <div>
+                  <span class="text-[10px] font-display font-extrabold text-primary-gold uppercase tracking-widest">Preview Mode</span>
+                  <h3 class="font-display font-extrabold text-lg text-white">Your Website is Ready!</h3>
+                </div>
+                
+                <button id="edit-wiz-btn" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-lg text-xs font-display font-bold text-white transition-all">
+                  Edit Details
+                </button>
+              </div>
+
+              <!-- Domain Availability Search -->
+              <div class="space-y-3 mb-6">
+                <label class="block text-xs font-display font-extrabold uppercase tracking-wider text-white/80">Check Custom Domain (.in)</label>
+                
+                <div class="flex gap-2">
+                  <input 
+                    type="text" 
+                    id="domain-search-input"
+                    placeholder="mybusiness.in" 
+                    class="flex-grow bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-xs text-white placeholder-white/30 font-mono outline-none focus:border-primary-saffron"
+                  />
+                  <button id="domain-check-btn" class="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-display font-bold">
+                    Check
+                  </button>
+                </div>
+
+                <!-- Status Output Box -->
+                <div id="domain-status-box" class="min-h-[36px]"></div>
+              </div>
+
+              <!-- Razorpay Pay & Launch Button -->
+              <div class="space-y-3">
+                <button 
+                  id="pay-checkout-btn"
+                  class="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-600 hover:shadow-lg rounded-2xl font-display font-extrabold text-sm tracking-wider uppercase flex items-center justify-center gap-2 text-white transition-all shadow-md"
+                >
+                  <ShieldCheck class="w-5 h-5" />
+                  <span>Pay ₹1,999 & Launch Website Live</span>
+                </button>
+
+                <p class="text-[10px] text-center text-white/40">Includes Free .in Domain + Free Hosting + Zero Monthly Fee</p>
+              </div>
+
+              <!-- Simulated Mode Toggle (For Testing Fallback Screen) -->
+              <div class="mt-6 pt-4 border-t border-white/10 text-center">
+                <button id="toggle-fallback-mode" class="text-[10px] font-mono text-emerald-400 underline">
+                  ✅ Mode: Normal Direct Success (Click to test Reseller Low Balance Fallback)
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Launch Result / Fallback Display Container -->
+            <div id="launch-result-box"></div>
+
+            <!-- Export / Share Actions -->
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl flex items-center justify-between">
+              <div>
+                <h4 class="font-display font-bold text-xs text-white">Download Code</h4>
+                <p class="text-[10px] text-white/50">Save single-file HTML</p>
+              </div>
+              <button id="download-html-btn" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-display font-bold flex items-center gap-1.5">
+                <Download class="w-3.5 h-3.5" /> Download HTML
+              </button>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: REALISTIC DEVICE FRAME PREVIEW (7 cols) -->
+          <div class="lg:col-span-7 flex flex-col items-center">
+            
+            <!-- Device Viewport Mode Bar -->
+            <div class="flex items-center gap-2 mb-4 bg-white/5 border border-white/10 p-1.5 rounded-full">
+              <button id="view-mobile-btn" class="px-4 py-1.5 rounded-full text-xs font-display font-bold bg-primary-saffron text-white transition-all">
+                📱 Mobile View
+              </button>
+              <button id="view-tab-btn" class="px-4 py-1.5 rounded-full text-xs font-display font-bold text-white/60 hover:text-white transition-all">
+                👁️ Open Fullscreen Tab
+              </button>
+            </div>
+
+            <div class="phone-frame select-none">
+              <!-- Notch -->
+              <div class="phone-notch">
+                <div class="phone-camera"></div>
+              </div>
+
+              <!-- Phone Display Container -->
+              <div id="phone-preview-screen" class="phone-screen">
+                <!-- Dynamically rendered website HTML will go here -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="../scripts/wizard.js"></script>
+</BaseLayout>

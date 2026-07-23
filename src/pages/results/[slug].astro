@@ -1,0 +1,434 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import caseStudiesData from '../../data/case-studies.json';
+import { ArrowLeft, ArrowRight, CheckCircle2, TrendingUp, Calendar, MapPin, Clock, Tag } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  return caseStudiesData.map(caseStudy => ({
+    params: {
+      slug: caseStudy.slug
+    },
+    props: {
+      caseStudy
+    }
+  }));
+}
+
+interface Props {
+  caseStudy: typeof caseStudiesData[0];
+}
+
+const { caseStudy } = Astro.props;
+
+const pageTitle = `${caseStudy.title} | Case Study - RoasBodhi`;
+const pageDescription = caseStudy.meta_description;
+const pageKeywords = `${caseStudy.industry} case study, marketing ROI ${caseStudy.city}, digital advertising results`;
+
+// Structured Schemas
+const siteUrl = 'https://roasbodhi.in';
+const canonicalUrl = `${siteUrl}/results/${caseStudy.slug}/`;
+
+const caseStudySchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": caseStudy.title,
+  "description": caseStudy.meta_description,
+  "image": `${siteUrl}${caseStudy.featured_image}`,
+  "datePublished": caseStudy.published_date,
+  "author": {
+    "@type": "Organization",
+    "name": "RoasBodhi"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "RoasBodhi",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/android-chrome-192x192.png`
+    }
+  },
+  "mainEntityOfPage": canonicalUrl
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": `${siteUrl}/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Results",
+      "item": `${siteUrl}/results/`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": caseStudy.client_name,
+      "item": canonicalUrl
+    }
+  ]
+};
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    caseStudySchema,
+    breadcrumbSchema
+  ]
+};
+
+// Filter other related case studies
+const relatedCaseStudies = caseStudiesData
+  .filter(cs => cs.id !== caseStudy.id)
+  .slice(0, 3);
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={combinedSchema}>
+  
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal text-left select-none">
+    
+    <!-- Hero Header -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div class="flex items-center gap-1 mb-4">
+        <a href="/results/" class="inline-flex items-center gap-1.5 text-xs font-display font-extrabold uppercase tracking-wider text-neutral-stone hover:text-primary-saffron transition-all">
+          <ArrowLeft class="w-4.5 h-4.5" /> Back to Results
+        </a>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <span class="px-3 py-1 rounded bg-primary-saffron/10 text-primary-saffron text-[10px] font-display font-extrabold uppercase tracking-widest w-fit">
+          🔱 {caseStudy.client_type}  •  {caseStudy.city}
+        </span>
+        
+        <h1 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl tracking-tight leading-tight mt-1">
+          {caseStudy.title}
+        </h1>
+        
+        <p class="font-body text-sm sm:text-base text-neutral-stone max-w-3xl leading-relaxed font-semibold mt-2">
+          {caseStudy.challenge_short}
+        </p>
+      </div>
+    </section>
+
+    <!-- Content Columns -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Case Study Details (col-8) -->
+        <div class="lg:col-span-8 flex flex-col gap-12">
+          
+          <!-- Case Image -->
+          <div class="relative rounded-3xl overflow-hidden shadow border border-neutral-mist bg-neutral-cloud h-[360px] flex items-center justify-center">
+            {caseStudy.featured_image ? (
+              <img 
+                src={caseStudy.featured_image} 
+                alt={caseStudy.title} 
+                class="w-full h-full object-cover" 
+                loading="eager"
+              />
+            ) : (
+              <>
+                <div class="absolute inset-0 bg-gradient-to-br from-primary-indigo/20 to-primary-saffron/20 flex items-center justify-center text-8xl opacity-80">
+                  📈
+                </div>
+                <div class="absolute inset-0 bg-[radial-gradient(#ffffff12_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+                <div class="relative z-10 text-center flex flex-col items-center gap-2 p-6">
+                  <span class="font-display font-extrabold text-white bg-neutral-dark/80 px-4 py-2 rounded-xl text-xs uppercase tracking-widest border border-white/10">
+                    Campaign Showcase Preview
+                  </span>
+                  <span class="text-[10px] text-neutral-charcoal font-semibold mt-2">
+                    Image Placeholder: {caseStudy.featured_image}
+                  </span>
+                </div>
+              </>
+            )}
+          </div>
+
+          <!-- Challenge Section (300+ words) -->
+          <div class="bg-white border border-neutral-mist rounded-3xl p-8 sm:p-10 shadow-sm flex flex-col gap-4">
+            <div class="flex items-center gap-2.5">
+              <span class="text-2xl">🚨</span>
+              <h2 class="font-display font-extrabold text-lg sm:text-xl text-neutral-dark">The Challenge</h2>
+            </div>
+            <p class="font-body text-xs sm:text-sm text-neutral-charcoal/90 leading-relaxed font-semibold">
+              {caseStudy.challenge_full}
+            </p>
+          </div>
+
+          <!-- Solution Section (400+ words) -->
+          <div class="bg-white border border-neutral-mist rounded-3xl p-8 sm:p-10 shadow-sm flex flex-col gap-4">
+            <div class="flex items-center gap-2.5">
+              <span class="text-2xl">💡</span>
+              <h2 class="font-display font-extrabold text-lg sm:text-xl text-neutral-dark">The Solution</h2>
+            </div>
+            <p class="font-body text-xs sm:text-sm text-neutral-charcoal/90 leading-relaxed font-semibold">
+              {caseStudy.solution_full}
+            </p>
+          </div>
+
+          <!-- Timeline Visualization -->
+          <div class="bg-white border border-neutral-mist rounded-3xl p-8 sm:p-10 shadow-sm flex flex-col gap-6">
+            <div class="flex items-center gap-2.5">
+              <span class="text-2xl">⏳</span>
+              <h2 class="font-display font-extrabold text-lg sm:text-xl text-neutral-dark">Campaign Timeline</h2>
+            </div>
+
+            <div class="relative pl-6 border-l-2 border-neutral-mist/60 flex flex-col gap-8">
+              <!-- Point 1 -->
+              <div class="relative">
+                <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-primary-saffron border-2 border-white ring-4 ring-primary-saffron/10"></span>
+                <span class="text-[9px] font-display font-extrabold text-primary-saffron uppercase tracking-wider block">Week 1: Audit & Architect</span>
+                <h4 class="font-display font-bold text-xs text-neutral-dark mt-1">Funnel Design & Pixel Binding</h4>
+                <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold mt-1">
+                  Custom Astro landing page creation, GMB optimization audits, pixel tracking validation, and meta-data configurations.
+                </p>
+              </div>
+              <!-- Point 2 -->
+              <div class="relative">
+                <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-primary-indigo border-2 border-white ring-4 ring-primary-indigo/10"></span>
+                <span class="text-[9px] font-display font-extrabold text-primary-indigo uppercase tracking-wider block">Week 2: Launch & Seed</span>
+                <h4 class="font-display font-bold text-xs text-neutral-dark mt-1">Creative Ad Set Launches</h4>
+                <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold mt-1">
+                  Active campaign deployment for pre-filtered lead forms. Launching targeted search sets and dynamic local GMB post uploads.
+                </p>
+              </div>
+              <!-- Point 3 -->
+              <div class="relative">
+                <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-secondary-purple border-2 border-white ring-4 ring-secondary-purple/10"></span>
+                <span class="text-[9px] font-display font-extrabold text-secondary-purple uppercase tracking-wider block">Week 3-4: Refine & Optimise</span>
+                <h4 class="font-display font-bold text-xs text-neutral-dark mt-1">A/B Testing & Exclusions</h4>
+                <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold mt-1">
+                  Invalid click exclusions setup, negative search terms audit, ad creative testing, and lead quality checks with the CRM dashboard.
+                </p>
+              </div>
+              <!-- Point 4 -->
+              <div class="relative">
+                <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-secondary-emerald border-2 border-white ring-4 ring-secondary-emerald/10"></span>
+                <span class="text-[9px] font-display font-extrabold text-secondary-emerald uppercase tracking-wider block">Week 6+: Scale & Stabilise</span>
+                <h4 class="font-display font-bold text-xs text-neutral-dark mt-1">Stabilizing target ROAS indices</h4>
+                <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold mt-1">
+                  Lead flow automation, automated WhatsApp integrations, client review request loops, and scaling monthly budget channels.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Full Width Quote -->
+          <div class="bg-gradient-to-br from-primary-indigo to-neutral-dark rounded-3xl p-8 sm:p-10 text-white relative overflow-hidden shadow-sm">
+            <div class="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none"></div>
+            <span class="text-6xl text-primary-gold/20 absolute top-4 left-4 font-serif">“</span>
+            
+            <div class="relative z-10 flex flex-col gap-4">
+              <p class="font-body text-xs sm:text-sm text-white/95 leading-relaxed font-medium italic mt-4">
+                "{caseStudy.client_quote}"
+              </p>
+              
+              <div class="border-t border-white/10 pt-4 mt-2 flex flex-col gap-0.5">
+                <h4 class="font-display font-extrabold text-xs text-primary-gold">{caseStudy.client_name}</h4>
+                <span class="text-[9px] text-white/70 font-semibold uppercase tracking-wider">{caseStudy.client_type}  •  {caseStudy.city}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Client Summary Side Card (col-4) -->
+        <div class="lg:col-span-4 flex flex-col gap-6 select-none">
+          
+          <!-- Summary card -->
+          <div class="bg-white border border-neutral-mist rounded-3xl p-6 shadow-sm flex flex-col gap-6">
+            <h3 class="font-display font-extrabold text-sm text-neutral-dark border-b border-neutral-mist pb-3 uppercase tracking-wider">
+              Project Brief
+            </h3>
+            
+            <div class="flex flex-col gap-4 text-xs font-body font-semibold">
+              <div class="flex items-center justify-between">
+                <span class="text-neutral-stone flex items-center gap-1"><MapPin class="w-3.5 h-3.5 text-primary-saffron" /> Location</span>
+                <span class="text-neutral-charcoal">{caseStudy.city}, {caseStudy.state}</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-neutral-stone flex items-center gap-1"><Clock class="w-3.5 h-3.5 text-primary-indigo" /> Duration</span>
+                <span class="text-neutral-charcoal">{caseStudy.duration}</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-neutral-stone flex items-center gap-1"><Calendar class="w-3.5 h-3.5 text-secondary-purple" /> Published</span>
+                <span class="text-neutral-charcoal">{caseStudy.published_date}</span>
+              </div>
+            </div>
+
+            <!-- Services Used Pills -->
+            <div class="flex flex-col gap-2">
+              <span class="text-[9px] font-display font-extrabold text-neutral-stone uppercase tracking-widest">Services Used</span>
+              <div class="flex flex-wrap gap-1.5 mt-1">
+                {caseStudy.services_used.map(slug => {
+                  const serviceMap = {
+                    'meta-ads': 'Meta Ads Retainer',
+                    'google-ads': 'Google Ads Retainer',
+                    'web-development': 'Web Development',
+                    'google-my-business': 'GMB Map SEO'
+                  };
+                  return (
+                    <a 
+                      href={`/services/${slug}/`}
+                      class="px-2.5 py-1 rounded bg-neutral-ghost border border-neutral-mist text-[10px] text-neutral-charcoal hover:border-primary-saffron hover:text-primary-saffron transition-colors"
+                    >
+                      {serviceMap[slug] || slug}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <!-- Campaign Growth Metrics Card -->
+          <div class="bg-primary-indigo text-white border border-white/10 rounded-3xl p-6 shadow-sm flex flex-col gap-4 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none"></div>
+            
+            <div class="relative z-10 flex flex-col gap-4">
+              <span class="text-[9px] font-display font-extrabold text-primary-gold uppercase tracking-widest flex items-center gap-1">
+                <TrendingUp class="w-3.5 h-3.5" /> Campaign Metrics
+              </span>
+              
+              <div class="grid grid-cols-2 gap-4">
+                <div class="flex flex-col gap-0.5">
+                  <span class="text-[10px] text-white/60">ROAS Index</span>
+                  <span class="text-2xl font-display font-extrabold text-white">{caseStudy.results.roas}</span>
+                </div>
+                <div class="flex flex-col gap-0.5">
+                  <span class="text-[10px] text-white/60">Leads / Month</span>
+                  <span class="text-2xl font-display font-extrabold text-white">+{caseStudy.results.leads_per_month}</span>
+                </div>
+                <div class="flex flex-col gap-0.5">
+                  <span class="text-[10px] text-white/60">CPL Before</span>
+                  <span class="text-lg font-display font-bold text-white/70 line-through">₹{caseStudy.results.cpl_before}</span>
+                </div>
+                <div class="flex flex-col gap-0.5">
+                  <span class="text-[10px] text-white/60">CPL After</span>
+                  <span class="text-2xl font-display font-extrabold text-primary-gold">₹{caseStudy.results.cpl_after}</span>
+                </div>
+              </div>
+
+              <!-- Comparison Table inside the side card -->
+              <div class="border-t border-white/10 pt-4 mt-2 flex flex-col gap-2">
+                <span class="text-[9px] font-display font-extrabold text-white/70 uppercase tracking-widest">Before & After Index</span>
+                
+                <div class="flex flex-col gap-1 text-[11px] font-body font-semibold">
+                  <div class="flex justify-between border-b border-white/5 pb-1">
+                    <span class="text-white/60">Revenue Index</span>
+                    <span class="text-secondary-emerald">+{caseStudy.results.revenue_increase}</span>
+                  </div>
+                  <div class="flex justify-between border-b border-white/5 pb-1">
+                    <span class="text-white/60">Cost Per Lead</span>
+                    <span class="text-secondary-emerald">-{Math.round((1 - (caseStudy.results.cpl_after / caseStudy.results.cpl_before)) * 100)}%</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-white/60">Ad Spend Index</span>
+                    <span class="text-white">₹{caseStudy.results.ad_spend.toLocaleString('en-IN')}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Related Case Studies Grid -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-neutral-mist/50 pt-16 mb-16">
+      <div class="text-center md:text-left mb-10 flex flex-col gap-2">
+        <span class="font-display font-extrabold text-xs text-primary-saffron uppercase tracking-widest">More Success Stories</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-neutral-dark tracking-tight">Other Indian Businesses We Scaled</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {relatedCaseStudies.map(cs => (
+          <div class="bg-white border border-neutral-mist rounded-2xl overflow-hidden shadow-sm hover:shadow-card-hover hover:border-primary-saffron/20 transition-all duration-300 flex flex-col justify-between text-left">
+            <div>
+              <div class="h-40 w-full relative bg-neutral-dark overflow-hidden select-none">
+                {cs.featured_image ? (
+                  <img 
+                    src={cs.featured_image} 
+                    alt={cs.title} 
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="bg-neutral-cloud w-full h-full flex items-center justify-center relative">
+                    <span class="text-4xl opacity-50">📈</span>
+                  </div>
+                )}
+              </div>
+              <div class="p-6">
+                <span class="text-[9px] font-display font-extrabold text-neutral-stone uppercase tracking-widest">
+                  {cs.client_type}  •  {cs.city}
+                </span>
+                <h3 class="font-display font-extrabold text-neutral-dark text-base mt-2 leading-tight">
+                  <a href={`/results/${cs.slug}/`} class="hover:text-primary-saffron transition-colors">{cs.title}</a>
+                </h3>
+                <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold mt-2 line-clamp-2">
+                  {cs.challenge_short}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-neutral-mist/50 p-6 pt-4">
+              <span class="text-[9px] text-neutral-stone font-semibold">
+                ROAS: {cs.results.roas}
+              </span>
+              <a href={`/results/${cs.slug}/`} class="text-primary-saffron font-display font-extrabold text-[9px] uppercase tracking-wider flex items-center gap-1 hover:underline">
+                Read Full Case <ArrowRight class="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Lead Form Action -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-br from-primary-saffron to-primary-gold rounded-3xl p-8 sm:p-12 text-white text-center flex flex-col items-center gap-4 shadow-sm relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none"></div>
+        <span class="text-4xl relative z-10">🔱</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight relative z-10 leading-tight">
+          Want Similar ROAS Results For Your Business?
+        </h2>
+        <p class="font-body text-xs sm:text-sm text-white/90 max-w-xl leading-relaxed font-semibold relative z-10">
+          We build custom target marketing funnels and high-converting speed sites with our Pay-After-Seeing™ promise. Get a free local account audit report today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 mt-4 relative z-10 w-full sm:w-auto">
+          <a 
+            href="/contact/" 
+            class="px-8 py-4 bg-white text-primary-saffron hover:bg-neutral-dark hover:text-white rounded-xl font-display font-extrabold text-xs uppercase tracking-wider transition-all duration-300 shadow"
+          >
+            Claim Free Account Audit
+          </a>
+          <a 
+            href="https://wa.me/919082543992?text=Namaste%20RoasBodhi!%20I%20read%20your%20case%20study%20for%20the%20%2A" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="px-8 py-4 bg-primary-indigo hover:bg-neutral-dark text-white rounded-xl font-display font-extrabold text-xs uppercase tracking-wider transition-all duration-300 shadow border border-white/10 flex items-center justify-center gap-2"
+          >
+            Chat With Specialist
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

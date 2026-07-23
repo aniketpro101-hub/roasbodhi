@@ -1,0 +1,337 @@
+---
+import { ArrowRight, Play, Star, Sparkles, Flame, BarChart, Heart, MapPin } from 'lucide-astro';
+---
+
+<section class="relative bg-neutral-dark text-white min-h-screen pt-32 pb-24 overflow-hidden select-none flex flex-col justify-center">
+  
+  <!-- BACKGROUND LAYERS -->
+  <!-- Layer 2: Radial Gradient Glow Orbs -->
+  <div class="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-primary-saffron/12 blur-[80px] pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-secondary-purple/15 blur-[80px] pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full bg-primary-gold/8 blur-[60px] pointer-events-none"></div>
+  
+  <!-- Layer 3: Dot Grid Pattern -->
+  <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none"></div>
+  
+  <!-- Layer 4: Floating Particles (20 particles) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    {Array.from({ length: 20 }).map((_, i) => {
+      const size = Math.floor(Math.random() * 4) + 2; // 2px - 6px
+      const left = Math.floor(Math.random() * 100); // 0% - 100%
+      const top = Math.floor(Math.random() * 100);
+      const delay = Math.floor(Math.random() * 10); // 0s - 10s
+      const duration = Math.floor(Math.random() * 10) + 12; // 12s - 22s
+      return (
+        <span 
+          class="absolute rounded-full bg-white/20 animate-particle" 
+          style={`width: ${size}px; height: ${size}px; left: ${left}%; top: ${top}%; animation-delay: ${delay}s; animation-duration: ${duration}s;`}
+        ></span>
+      );
+    })}
+  </div>
+
+  <!-- CONTENT -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex-grow flex flex-col justify-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- LEFT SIDE CONTENT (60% desktop) -->
+      <div class="lg:col-span-7 flex flex-col items-start gap-6 text-left reveal">
+        
+        <!-- 1. TOP BADGE -->
+        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary-purple/15 border border-secondary-purple/40 text-xs font-display font-extrabold uppercase tracking-wider relative overflow-hidden group">
+          <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-shimmer"></span>
+          <Sparkles class="w-3.5 h-3.5 text-primary-gold" />
+          <span>🇮🇳 India's Performance Ads Agency</span>
+        </div>
+
+        <!-- 2. H1 HEADLINE WITH CYCLING TEXT -->
+        <h1 class="font-display font-extrabold text-4xl sm:text-7xl leading-[1.05] tracking-tight text-white max-w-2xl">
+          Awakening Your <br />
+          <!-- Cycling Word Container -->
+          <span class="relative inline-block h-[50px] sm:h-[80px] overflow-hidden w-full mt-2">
+            <span class="absolute left-0 right-0 text-transparent bg-clip-text bg-gradient-to-r from-primary-saffron to-primary-gold opacity-100 translate-y-0 transition-all duration-300 font-bold" id="word-cycler">Ad Returns</span>
+          </span>
+        </h1>
+
+        <!-- 3. SUBHEADLINE -->
+        <div class="flex flex-col gap-2 font-body text-sm sm:text-base text-white/70 max-w-xl leading-relaxed">
+          <p class="font-display font-extrabold text-xs uppercase tracking-widest text-primary-gold">
+            Meta Ads • Google Ads • Web Design • GMB
+          </p>
+          <p class="font-medium">
+            Risk-Free High-Converting Marketing Campaigns for Growing Indian SMBs across 180+ Cities.
+          </p>
+        </div>
+
+        <!-- 4. SOCIAL PROOF ROW -->
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3 py-4 border-y border-white/5 w-full max-w-2xl">
+          <div class="flex flex-col">
+            <span class="text-xs font-display font-extrabold text-primary-saffron tracking-wider">⭐ 4.9/5</span>
+            <span class="text-[10px] text-white/50 font-medium mt-0.5 uppercase tracking-wide">47 verified reviews</span>
+          </div>
+          <div class="hidden sm:block h-6 w-px bg-white/10"></div>
+          <div class="flex flex-col">
+            <span class="text-xs font-mono font-bold text-primary-saffron tracking-wider">₹2Cr+</span>
+            <span class="text-[10px] text-white/50 font-medium mt-0.5 uppercase tracking-wide">Ad Spend Optimized</span>
+          </div>
+          <div class="hidden sm:block h-6 w-px bg-white/10"></div>
+          <div class="flex flex-col">
+            <span class="text-xs font-mono font-bold text-primary-saffron tracking-wider">200+</span>
+            <span class="text-[10px] text-white/50 font-medium mt-0.5 uppercase tracking-wide">SMBs Scaled</span>
+          </div>
+          <div class="hidden sm:block h-6 w-px bg-white/10"></div>
+          <div class="flex flex-col">
+            <span class="text-xs font-mono font-bold text-primary-saffron tracking-wider">180+</span>
+            <span class="text-[10px] text-white/50 font-medium mt-0.5 uppercase tracking-wide">Cities Covered</span>
+          </div>
+        </div>
+
+        <!-- 5. CTA BUTTONS ROW -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+          <!-- Primary CTA Button -->
+          <a 
+            href="/contact/" 
+            class="px-8 py-4 bg-gradient-to-r from-primary-saffron to-primary-gold hover:shadow-button-saffron hover:-translate-y-0.5 rounded-full font-display font-extrabold text-xs tracking-wider uppercase flex items-center justify-center gap-1.5 animate-pulse-glow shadow-button-saffron text-white"
+          >
+            <span>🚀 Get Free ROAS Audit</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+          
+          <!-- Secondary Case Study Button -->
+          <a 
+            href="#results" 
+            class="px-8 py-4 bg-white/5 border border-white/15 hover:bg-white/10 hover:border-white/25 hover:-translate-y-0.5 rounded-full font-display font-extrabold text-xs tracking-wider uppercase flex items-center justify-center gap-1.5 text-white transition-all"
+          >
+            <Play class="w-4 h-4 fill-white text-white" />
+            <span>See Case Studies</span>
+          </a>
+        </div>
+
+        <!-- 6. TRUST MICRO TEXT -->
+        <p class="text-[10px] font-body text-white/40 font-semibold tracking-wide">
+          🔒 100% Free Audit Report • No Credit Card Required • Delivered within 2 Hours
+        </p>
+
+      </div>
+
+      <!-- RIGHT SIDE VISUAL (40% desktop) -->
+      <div class="lg:col-span-5 relative flex items-center justify-center pt-10 lg:pt-0 reveal">
+        
+        <!-- Dashboard Mockup Container with 3D Tilt + Float -->
+        <div 
+          id="hero-dashboard" 
+          class="w-full max-w-[420px] bg-white/5 border border-white/10 rounded-2xl p-5 shadow-2xl backdrop-blur-xl transition-all duration-300 transform-gpu select-none relative z-10 animate-float"
+          style="transform: perspective(1000px) rotateX(-3deg) rotateY(6deg);"
+        >
+          <!-- Dashboard Header dots -->
+          <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+            <div class="flex gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            </div>
+            <span class="font-display font-extrabold text-[9px] text-white/40 uppercase tracking-widest">
+              RoasBodhi™ Real-Time Dashboard
+            </span>
+          </div>
+
+          <!-- Metric Cards 3-Column Grid -->
+          <div class="grid grid-cols-3 gap-2.5 mb-6">
+            <!-- ROAS -->
+            <div class="bg-white/5 border border-white/5 rounded-xl p-2.5 flex flex-col">
+              <span class="text-[8px] font-body text-white/40 uppercase tracking-wider font-semibold">Total ROAS</span>
+              <span class="font-mono text-base font-extrabold text-secondary-emerald mt-1">3.8X</span>
+              <span class="text-[7px] text-secondary-emerald mt-0.5 font-bold">✨ Awakened</span>
+            </div>
+            
+            <!-- Leads -->
+            <div class="bg-white/5 border border-white/5 rounded-xl p-2.5 flex flex-col">
+              <span class="text-[8px] font-body text-white/40 uppercase tracking-wider font-semibold">Total Leads</span>
+              <span class="font-mono text-base font-extrabold text-secondary-purple mt-1">2,847</span>
+              <span class="text-[7px] text-secondary-purple mt-0.5 font-bold">📈 Scale</span>
+            </div>
+
+            <!-- Spend -->
+            <div class="bg-white/5 border border-white/5 rounded-xl p-2.5 flex flex-col">
+              <span class="text-[8px] font-body text-white/40 uppercase tracking-wider font-semibold">Ad Spend</span>
+              <span class="font-mono text-base font-extrabold text-secondary-blue mt-1">₹4.2L</span>
+              <span class="text-[7px] text-secondary-blue mt-0.5 font-bold">🛡️ Secure</span>
+            </div>
+          </div>
+
+          <!-- Trend Chart (SVG going up) -->
+          <div class="flex flex-col gap-2 mb-6">
+            <span class="text-[8px] font-body text-white/40 uppercase tracking-wider font-semibold">ROAS Scaling Index</span>
+            <div class="h-28 w-full bg-white/5 border border-white/5 rounded-xl p-2 flex items-end">
+              <svg class="w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FF6B2B" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#FF6B2B" stop-opacity="0.0" />
+                  </linearGradient>
+                </defs>
+                <path d="M0 35 Q 25 30, 50 18 T 100 5 L 100 40 L 0 40 Z" fill="url(#chartGrad)" />
+                <path d="M0 35 Q 25 30, 50 18 T 100 5" stroke="#FF6B2B" stroke-width="2.5" stroke-linecap="round" fill="none" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Platform integrations row -->
+          <div class="flex items-center justify-between text-[8px] font-body text-white/40 font-semibold border-t border-white/5 pt-4">
+            <span>Linked Channels:</span>
+            <div class="flex gap-2.5">
+              <span>Meta Ads</span>
+              <span>Google Ads</span>
+              <span>GMB SEO</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FLOATING BADGES (Outside the Dashboard Mockup card) -->
+        <!-- Badge 1: Top-Left -->
+        <div 
+          class="absolute -top-4 -left-6 z-20 bg-white border border-emerald-500/20 border-l-4 border-l-secondary-emerald rounded-xl px-3 py-2 shadow-lg flex items-center gap-2 select-none animate-float"
+          style="animation-delay: 1.5s;"
+        >
+          <Flame class="w-4 h-4 text-secondary-emerald" />
+          <div class="flex flex-col text-left">
+            <span class="text-[9px] font-body font-bold text-neutral-stone uppercase tracking-wider leading-none">Delivered</span>
+            <span class="font-mono font-extrabold text-xs text-neutral-dark mt-1 leading-none">4.2X ROAS</span>
+          </div>
+        </div>
+
+        <!-- Badge 2: Bottom-Right -->
+        <div 
+          class="absolute -bottom-4 -right-6 z-20 bg-white border border-purple-500/20 border-l-4 border-l-secondary-purple rounded-xl px-3 py-2 shadow-lg flex items-center gap-2 select-none animate-float"
+          style="animation-delay: 3s;"
+        >
+          <BarChart class="w-4 h-4 text-secondary-purple" />
+          <div class="flex flex-col text-left">
+            <span class="text-[9px] font-body font-bold text-neutral-stone uppercase tracking-wider leading-none">Volume Scale</span>
+            <span class="font-mono font-extrabold text-xs text-neutral-dark mt-1 leading-none">847 Leads/Mo</span>
+          </div>
+        </div>
+
+        <!-- Badge 3: Right Center -->
+        <div 
+          class="absolute right-[-40px] top-[40%] z-20 bg-white border border-orange-500/20 border-l-4 border-l-primary-saffron rounded-xl px-3 py-2 shadow-lg flex items-center gap-2 select-none animate-float"
+          style="animation-delay: 4.5s;"
+        >
+          <Heart class="w-4 h-4 text-primary-saffron fill-primary-saffron" />
+          <div class="flex flex-col text-left">
+            <span class="text-[9px] font-body font-bold text-neutral-stone uppercase tracking-wider leading-none">Growth Peak</span>
+            <span class="font-mono font-extrabold text-xs text-neutral-dark mt-1 leading-none">+127% Revenue</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BELOW THE FOLD — CLIENT LOGO MARQUEE -->
+  <div class="mt-24 border-t border-white/5 pt-12 select-none relative z-10 w-full overflow-hidden">
+    <span class="block text-center font-display font-extrabold text-[10px] text-white/30 uppercase tracking-widest mb-6">
+      Trusted By Growing Businesses Across India
+    </span>
+    
+    <!-- Edge Fades -->
+    <div class="absolute left-0 top-1/2 bottom-0 w-20 bg-gradient-to-r from-neutral-dark to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-1/2 bottom-0 w-20 bg-gradient-to-l from-neutral-dark to-transparent z-10 pointer-events-none"></div>
+
+    <!-- Row 1: Left to Right Marquee -->
+    <div class="flex gap-12 items-center w-max animate-marquee hover:[animation-play-state:paused] cursor-pointer opacity-30 hover:opacity-50 transition-opacity duration-300">
+      {Array.from({ length: 3 }).flatMap(() => [
+        { name: "Real Estate Developers", icon: "🏢" },
+        { name: "Dental Clinics", icon: "🦷" },
+        { name: "Jewellery Showrooms", icon: "💎" },
+        { name: "Hospitals", icon: "🏥" },
+        { name: "Local Manufacturers", icon: "⚙️" },
+        { name: "Boutiques & Retail", icon: "👗" }
+      ]).map(item => (
+        <div class="flex items-center gap-2.5 h-8">
+          <span class="text-base">{item.icon}</span>
+          <span class="font-display font-extrabold text-[10px] text-white uppercase tracking-wider whitespace-nowrap">{item.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* Cycling Word Animation keyframes */
+  .animate-cycle-word {
+    animation: cycleWordAnimation 10s infinite;
+  }
+
+  @keyframes cycleWordAnimation {
+    0%, 20% { content: 'Ad Returns'; }
+    25%, 45% { content: 'ROAS'; }
+    50%, 70% { content: 'Growth'; }
+    75%, 95% { content: 'Revenue'; }
+  }
+
+  /* Dashboard Mockup 3D hover transition settings */
+  #hero-dashboard {
+    transform-style: preserve-3d;
+  }
+  #hero-dashboard:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) !important;
+  }
+
+  /* Custom floating particle animations keyframes */
+  .animate-particle {
+    animation: particleAnimation linear infinite;
+  }
+
+  @keyframes particleAnimation {
+    0% {
+      transform: translateY(100vh) scale(0.5);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.3;
+    }
+    90% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(-10vh) scale(1.2);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  // Dynamic Text Cycler for H1 word sequences
+  document.addEventListener('DOMContentLoaded', () => {
+    const cycler = document.getElementById('word-cycler');
+    const words = ["Ad Returns", "ROAS", "Growth", "Revenue", "Business"];
+    let wordIndex = 0;
+
+    if (cycler) {
+      setInterval(() => {
+        // Slide out current word
+        cycler.classList.remove('opacity-100', 'translate-y-0');
+        cycler.classList.add('opacity-0', '-translate-y-12');
+        
+        setTimeout(() => {
+          // Update word
+          wordIndex = (wordIndex + 1) % words.length;
+          cycler.textContent = words[wordIndex];
+          
+          // Reset to bottom position
+          cycler.classList.remove('-translate-y-12');
+          cycler.classList.add('translate-y-12');
+          
+          setTimeout(() => {
+            // Slide in new word
+            cycler.classList.remove('translate-y-12');
+            cycler.classList.add('translate-y-0', 'opacity-100');
+          }, 50);
+        }, 300); // 300ms delay during height transition
+      }, 2400); // 2000ms pause + 400ms transition
+    }
+  });
+</script>

@@ -1,0 +1,145 @@
+---
+import SectionLabel from '../SectionLabel.astro';
+import servicesData from '../../data/services.json';
+import { ArrowRight, Check } from 'lucide-astro';
+
+interface Props {
+  city: {
+    name: string;
+    slug: string;
+  };
+  activeServiceSlug: string;
+}
+
+const { city, activeServiceSlug } = Astro.props;
+---
+
+<section class="py-24 bg-neutral-ghost relative overflow-hidden select-none">
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- HEADER -->
+    <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-16">
+      <SectionLabel text="SERVICE DIRECTORY" />
+      
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight mt-2 text-center">
+        Digital Services Available <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">In {city.name}</span>
+      </h2>
+      
+      <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-2 max-w-xl leading-relaxed font-semibold">
+        Explore other custom performance marketing retainers we manage for {city.name} accounts.
+      </p>
+    </div>
+
+    <!-- SERVICES DIRECTORY GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {servicesData.map(service => {
+        const isActive = service.slug === activeServiceSlug;
+        const pageUrl = `/${service.slug}-agency-${city.slug}/`;
+        
+        return (
+          <div 
+            class={`relative rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between group border text-left ${
+              isActive 
+                ? 'bg-primary-indigo text-white border-2 border-primary-gold/50 shadow-lg scale-102 z-10' 
+                : 'bg-white text-neutral-charcoal border-neutral-mist hover:border-primary-saffron/40 shadow-sm z-0 hover:-translate-y-1'
+            }`}
+          >
+            <!-- Highlight Accent Indicator -->
+            {isActive && (
+              <span class="absolute top-4 right-4 bg-primary-gold text-primary-indigo font-display font-extrabold text-[8px] uppercase tracking-widest px-2.5 py-1 rounded-full shadow-inner">
+                Active View
+              </span>
+            )}
+
+            <!-- ICON & DETAILS -->
+            <div>
+              <div 
+                class="w-12 h-12 rounded-xl flex items-center justify-center border flex-shrink-0"
+                style={isActive 
+                  ? `background-color: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #F5A623;` 
+                  : `background-color: ${service.color}12; border-color: ${service.color}25; color: ${service.color};`
+                }
+              >
+                {service.icon === 'flame' && (
+                  <svg class="w-5.5 h-5.5 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm4.25 13.5h-8.5v-1.5h8.5v1.5zm0-2.5h-8.5v-1.5h8.5v1.5zm0-2.5h-8.5v-1.5h8.5v1.5z" />
+                  </svg>
+                )}
+                {service.icon === 'target' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
+                {service.icon === 'code' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+                  </svg>
+                )}
+                {service.icon === 'map-pin' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                  </svg>
+                )}
+                {service.icon === 'trending-up' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <path d="M23 6l-9.5 9.5-5-5L1 18" />
+                  </svg>
+                )}
+                {service.icon === 'instagram' && (
+                  <svg class="w-5.5 h-5.5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+                  </svg>
+                )}
+              </div>
+
+              <h3 class={`font-display font-extrabold text-base mt-5 leading-tight ${isActive ? 'text-white' : 'text-neutral-dark'}`}>
+                {service.name}
+              </h3>
+              
+              <span class={`font-body font-semibold italic text-[10px] mt-1 block ${isActive ? 'text-white/60' : 'text-neutral-stone'}`}>
+                ({service.sanskrit_plan_name})
+              </span>
+
+              <p class={`font-body text-xs mt-3 leading-relaxed ${isActive ? 'text-white/70' : 'text-neutral-charcoal/80'}`}>
+                {service.short_description}
+              </p>
+
+              <!-- Feature mini checklist -->
+              <ul class="flex flex-col gap-2 mt-5">
+                {service.benefits.slice(0, 3).map(benefit => (
+                  <li class="flex items-center gap-2 text-[11px] font-body font-semibold leading-none">
+                    <Check class={`w-3.5 h-3.5 ${isActive ? 'text-primary-gold' : 'text-secondary-emerald'}`} />
+                    <span>{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- BUTTON -->
+            <div class="mt-8 pt-4 border-t border-white/10">
+              {isActive ? (
+                <span class="font-display font-extrabold text-[9px] uppercase tracking-wider text-primary-gold flex items-center justify-end gap-1 select-none">
+                  Currently Viewing
+                </span>
+              ) : (
+                <a 
+                  href={pageUrl}
+                  class="font-display font-extrabold text-[9px] uppercase tracking-wider flex items-center justify-end gap-1 hover:underline text-primary-saffron"
+                  style={`color: ${service.color};`}
+                >
+                  <span>Explore in {city.name}</span>
+                  <ArrowRight class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                </a>
+              )}
+            </div>
+
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

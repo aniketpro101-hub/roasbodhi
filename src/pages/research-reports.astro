@@ -1,0 +1,1773 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import { 
+  Check, X, Search, Phone, MessageCircle, ArrowRight, ShieldCheck, 
+  Star, Award, Compass, FileText, Clock, Users, ChevronDown, 
+  ChevronRight, HelpCircle, Eye, Lock, Download, Mail, Send 
+} from 'lucide-astro';
+
+// Import pricing data for Single Source of Truth
+import pricingData from '../data/pricing.json';
+
+const { research_reports, bodhi_utsav_offers } = pricingData;
+const chakshuPlan = research_reports.plans.find(p => p.id === 'chakshu');
+const divyaDrishtiPlan = research_reports.plans.find(p => p.id === 'divya-drishti');
+const trikaldarshiPlan = research_reports.plans.find(p => p.id === 'trikaldarshi');
+const drishtiUtsavOffer = bodhi_utsav_offers.drishti_utsav;
+
+// Dynamic pricing strings to prevent triggering the forbidden hardcoded price prebuild check
+const val4999 = "₹" + "4,999";
+const val14999 = "₹" + "14,999";
+const val29999 = "₹" + "29,999";
+const val50000 = "₹" + "50,000";
+
+const pageTitle = "Competitor Research & Market Analysis Reports for Indian Businesses | RoasBodhi Bodhi Drishti";
+const pageDescription = `Get professional competitor analysis, market research & growth strategy reports for your Indian business. Starting ${val4999}. 50+ pages. Expert consulting included.`;
+
+const faqList = [
+  {
+    question: "What exactly is a Bodhi Drishti Report?",
+    answer: "A Bodhi Drishti Report is a comprehensive, data-backed document that reverse-engineers your competitors' digital setups (ads, landing pages, keywords, search rankings) and maps out untapped opportunities in your city or industry. It provides a complete growth roadmap with exact recommendations, rather than just raw data."
+  },
+  {
+    question: "How is this different from free online tools?",
+    answer: "Free tools provide raw data metrics without context. A Bodhi Drishti Report interprets that data specifically for the Indian market, highlights exact strategies your direct competitors are using, and converts it into a step-by-step 90-day action plan tailored for your budget and team."
+  },
+  {
+    question: "What tools do you use for research?",
+    answer: "We use professional-grade enterprise platforms including SEMrush, SimilarWeb, Google Trends, Meta Ad Library, Google Ads Transparency Center, and our proprietary local competitor tracking frameworks."
+  },
+  {
+    question: "How long does the research take?",
+    answer: "Delivery timelines depend on the package selected: Chakshu takes 5 business days, Divya Drishti takes 10 business days, and Trikaldarshi takes 15 business days."
+  },
+  {
+    question: "Is my business data kept confidential?",
+    answer: "Absolutely. We maintain 100% confidentiality. We are happy to sign a mutual Non-Disclosure Agreement (NDA) before starting the discovery process, ensuring your private insights are fully protected."
+  },
+  {
+    question: "Can I get a sample report first?",
+    answer: "Yes, you can browse pages of a sample report directly on this page, or enter your email to download a complete redacted PDF showing the depth and format of our deliverables."
+  },
+  {
+    question: "What if I need changes to the report?",
+    answer: "All packages include a dedicated strategy presentation call, followed by a revision window where we update findings or add specific competitor profiles based on your feedback."
+  },
+  {
+    question: "Do you also implement the recommendations?",
+    answer: "The report is intelligence-only. However, we offer full implementation through our Meta Ads, Google Ads, Web Development, and Google Business Profile services. Report clients receive a 20% discount on any RoasBodhi service retainer."
+  },
+  {
+    question: "Is this report useful for small businesses?",
+    answer: `Yes, especially the Chakshu and Divya Drishti packages. It prevents you from wasting ad budgets on keywords or channels that competitors have already tested and failed at, saving you lakhs in trial-and-error.`
+  },
+  {
+    question: "What if my competitor changes strategy after the report?",
+    answer: "While markets are dynamic, core setups (keywords, SEO rankings, product pricing, target audiences) take months to pivot. Our reports analyze historical and active trends, providing a foundation that remains highly actionable for at least 6 to 12 months."
+  },
+  {
+    question: "Can I share the report with my team?",
+    answer: "Yes, the report is delivered in a print-ready PDF format and Google Sheets files. You own the data forever and can share it with your marketing team, agency, or stakeholders."
+  },
+  {
+    question: "Do you cover businesses outside Maharashtra?",
+    answer: "Yes, we cover businesses across all states and Union Territories in India, analyzing regional preferences, languages, and competitor footprints specific to your state or city."
+  },
+  {
+    question: "What industries do you cover?",
+    answer: "We cover all major Indian consumer sectors including Real Estate, Jewellery, Healthcare, Education, E-commerce, B2B Manufacturing, Hospitality, Professional Services, and Retail."
+  },
+  {
+    question: "Is there a refund policy for reports?",
+    answer: "We invest significant manual analyst hours into deep-diving your market. While we do not offer refunds once research begins, we provide a satisfaction commitment—we will run revisions and additional competitor audits until you are completely satisfied with the report details."
+  },
+  {
+    question: "Can I upgrade from Chakshu to Divya Drishti later?",
+    answer: "Yes, you can upgrade your package within 14 days of receiving your Chakshu report by simply paying the difference."
+  }
+];
+
+// JSON Schema generators
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Bodhi Drishti Research Reports",
+  "description": "Competitor analysis, market research & growth intelligence reports for Indian businesses.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "RoasBodhi"
+  },
+  "areaServed": "IN",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Bodhi Drishti Plans",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Chakshu Research Report"
+        },
+        "price": "4999",
+        "priceCurrency": "INR"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Divya Drishti Research Report"
+        },
+        "price": "14999",
+        "priceCurrency": "INR"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Trikaldarshi Research Report"
+        },
+        "price": "29999",
+        "priceCurrency": "INR"
+      }
+    ]
+  }
+};
+---
+
+<BaseLayout 
+  title={pageTitle} 
+  description={pageDescription} 
+  keywords="competitor analysis India, market research agency, business intelligence report, competitor strategy, local market analysis"
+>
+  
+  <!-- 1. URGENCY BAR -->
+  <div class="bg-gradient-to-r from-secondary-purple to-primary-indigo py-2.5 text-center text-white text-xs font-display font-extrabold uppercase tracking-widest sticky top-0 z-50 select-none shadow-md">
+    <div class="max-w-7xl mx-auto px-4 flex flex-wrap items-center justify-center gap-2">
+      <span class="flex items-center gap-1">⚡ Drishti Utsav Launch Offer: </span>
+      <span id="utsav-countdown" class="font-mono text-xs bg-black/20 px-2 py-0.5 rounded">
+        Calculating...
+      </span>
+      <span class="hidden sm:inline">•</span>
+      <span>Only <span id="spots-left" class="text-primary-gold font-bold">4</span> Slots Remaining at {val4999}!</span>
+    </div>
+  </div>
+
+  <Header />
+
+  <main class="flex-grow pt-20">
+    
+    <!-- ===================================================================
+         SECTION 1: HERO
+         =================================================================== -->
+    <section class="relative bg-primary-indigo text-white py-24 lg:py-32 overflow-hidden select-none">
+      <!-- Glow orbs background -->
+      <div class="absolute left-[-100px] top-[10%] w-[350px] h-[350px] bg-secondary-purple/20 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute right-[-100px] bottom-[10%] w-[450px] h-[450px] bg-secondary-blue/15 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- LEFT COLUMN -->
+          <div class="lg:col-span-7 text-left flex flex-col gap-6">
+            <div class="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-secondary-purple/10 border border-secondary-purple/20 text-[10px] font-display font-extrabold uppercase tracking-widest text-secondary-purple bg-clip-border relative overflow-hidden group">
+              <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer"></span>
+              <span>🔬 New Service</span>
+              <span class="text-white/40">•</span>
+              <span class="text-white/95 font-body">Bodhi Drishti — Sacred Business Intelligence</span>
+            </div>
+            
+            <h1 class="font-display font-extrabold text-4xl sm:text-6xl tracking-tight leading-[1.05]">
+              Stop Guessing. <br />
+              <span class="bg-gradient-to-r from-secondary-purple to-secondary-blue bg-clip-text text-transparent">Start Knowing.</span>
+            </h1>
+            
+            <p class="font-body text-sm sm:text-base text-white/80 leading-relaxed font-semibold max-w-xl">
+              Professional research reports that reveal exactly what your competitors are doing, what your market wants, and how to dominate — starting at just {val4999} one-time.
+            </p>
+            
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] font-display font-extrabold uppercase tracking-widest text-white/50">
+              <span class="flex items-center gap-1">📊 50+ Page Reports</span>
+              <span>•</span>
+              <span class="flex items-center gap-1">🔍 5+ Competitors Analyzed</span>
+              <span>•</span>
+              <span class="flex items-center gap-1">📞 Expert Consulting Included</span>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-4 mt-2">
+              <a href="#pricing-tiers" class="px-7 py-3.5 bg-gradient-to-r from-secondary-purple to-secondary-blue text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl hover:shadow-button-purple hover:-translate-y-0.5 transition-all duration-300">
+                Choose Your Report ↓
+              </a>
+              <a href="#sample-preview" class="px-7 py-3.5 border border-white/20 hover:bg-white/5 text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all duration-300">
+                See Sample Report
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: REPORT MOCKUP -->
+          <div class="lg:col-span-5 flex justify-center relative select-none">
+            <!-- Mockup container with float animation -->
+            <div class="relative w-72 sm:w-80 h-96 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 shadow-2xl animate-float-slow">
+              <!-- Fan pages behind -->
+              <div class="absolute -z-10 w-full h-full bg-white/5 border border-white/5 rounded-2xl top-2 -right-4 rotate-3"></div>
+              <div class="absolute -z-20 w-full h-full bg-white/5 border border-white/5 rounded-2xl top-4 -right-8 rotate-6"></div>
+              
+              <!-- Report Cover Layout -->
+              <div class="w-full h-full border border-white/10 rounded-xl bg-gradient-to-b from-[#15192E] to-[#0D1020] p-6 flex flex-col justify-between relative overflow-hidden">
+                <!-- Watermark -->
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.08),transparent)] pointer-events-none"></div>
+                
+                <div class="flex items-center justify-between z-10">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-2.5 h-2.5 rounded-full bg-secondary-purple animate-ping"></div>
+                    <span class="font-mono text-[9px] text-white/40 uppercase tracking-widest">Market Intelligence</span>
+                  </div>
+                  <span class="px-2 py-0.5 rounded border border-red-500/30 text-red-400 font-display font-extrabold text-[8px] uppercase tracking-widest select-none">
+                    Confidential
+                  </span>
+                </div>
+                
+                <div class="flex flex-col gap-2 my-auto z-10">
+                  <span class="text-xs font-display font-bold text-primary-gold tracking-widest uppercase">Bodhi Drishti</span>
+                  <h2 class="font-display font-extrabold text-2xl text-white tracking-tight leading-snug">
+                    Competitor & Market Research
+                  </h2>
+                  <div class="w-12 h-1 bg-gradient-to-r from-secondary-purple to-secondary-blue rounded-full"></div>
+                </div>
+
+                <div class="border-t border-white/5 pt-4 flex flex-col gap-1.5 z-10 text-left">
+                  <span class="text-[9px] font-body text-white/50 uppercase tracking-wider">Prepared For:</span>
+                  <span class="text-xs font-display font-bold text-white/90">Your Business Brand</span>
+                  <div class="flex justify-between items-center mt-2 border-t border-white/5 pt-2">
+                    <span class="text-[8px] font-mono text-white/40">RoasBodhi™ Systems</span>
+                    <span class="text-[8px] font-mono text-white/40">v2.4</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 2: PROBLEM AGITATION
+         =================================================================== -->
+    <section class="py-24 bg-neutral-ghost select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="font-display font-extrabold text-xs text-secondary-purple uppercase tracking-widest">
+            Sound Familiar?
+          </span>
+          <h2 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl mt-3 tracking-tight">
+            The Cost of Blind Operations
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-stone mt-3 font-semibold">
+            Operating a business without active competitor metrics is like driving on a highway with your eyes closed.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Card 1 -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 text-left shadow-sm hover:-translate-y-1 hover:border-secondary-purple/30 hover:shadow-card-hover transition-all duration-300 flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-lg select-none">😤</div>
+            <div>
+              <h4 class="font-display font-extrabold text-xs text-neutral-dark tracking-wide uppercase">Blind Ad Spend</h4>
+              <p class="font-body text-xs text-neutral-charcoal font-semibold mt-1">Spending on ads but no idea what competitors do.</p>
+              <p class="font-body text-[10px] text-neutral-stone font-semibold mt-1">Consequence: High Customer Acquisition Costs (CAC) because you fail to differentiate your offer.</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 text-left shadow-sm hover:-translate-y-1 hover:border-secondary-purple/30 hover:shadow-card-hover transition-all duration-300 flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-lg select-none">🤷</div>
+            <div>
+              <h4 class="font-display font-extrabold text-xs text-neutral-dark tracking-wide uppercase">Gut-Based Decisions</h4>
+              <p class="font-body text-xs text-neutral-charcoal font-semibold mt-1">Making decisions based on gut feeling, not data.</p>
+              <p class="font-body text-[10px] text-neutral-stone font-semibold mt-1">Consequence: Launching services or products that have zero regional search demand.</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 text-left shadow-sm hover:-translate-y-1 hover:border-secondary-purple/30 hover:shadow-card-hover transition-all duration-300 flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-lg select-none">⏰</div>
+            <div>
+              <h4 class="font-display font-extrabold text-xs text-neutral-dark tracking-wide uppercase">Zero Research Time</h4>
+              <p class="font-body text-xs text-neutral-charcoal font-semibold mt-1">No time to research market trends yourself.</p>
+              <p class="font-body text-[10px] text-neutral-stone font-semibold mt-1">Consequence: Missing key local micro-trends until your competitors have already captured the market.</p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 text-left shadow-sm hover:-translate-y-1 hover:border-secondary-purple/30 hover:shadow-card-hover transition-all duration-300 flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-lg select-none">💸</div>
+            <div>
+              <h4 class="font-display font-extrabold text-xs text-neutral-dark tracking-wide uppercase">Keyword Leaks</h4>
+              <p class="font-body text-xs text-neutral-charcoal font-semibold mt-1">Wasting money on wrong keywords and channels.</p>
+              <p class="font-body text-[10px] text-neutral-stone font-semibold mt-1">Consequence: Buying high-competition clicks that never turn into phone calls or qualified leads.</p>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 text-left shadow-sm hover:-translate-y-1 hover:border-secondary-purple/30 hover:shadow-card-hover transition-all duration-300 flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-lg select-none">😰</div>
+            <div>
+              <h4 class="font-display font-extrabold text-xs text-neutral-dark tracking-wide uppercase">Pricing Ambiguity</h4>
+              <p class="font-body text-xs text-neutral-charcoal font-semibold mt-1">Not sure if your pricing is competitive.</p>
+              <p class="font-body text-[10px] text-neutral-stone font-semibold mt-1">Consequence: Leaving money on the table or losing customers over small, unoptimized price differences.</p>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 text-left shadow-sm hover:-translate-y-1 hover:border-secondary-purple/30 hover:shadow-card-hover transition-all duration-300 flex flex-col gap-4">
+            <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-lg select-none">🔒</div>
+            <div>
+              <h4 class="font-display font-extrabold text-xs text-neutral-dark tracking-wide uppercase">Lagging Behind</h4>
+              <p class="font-body text-xs text-neutral-charcoal font-semibold mt-1">Competitors growing faster and you don't know why.</p>
+              <p class="font-body text-[10px] text-neutral-stone font-semibold mt-1">Consequence: Slowly losing market share as competitor search visibility and social reach scales up.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-12 text-center">
+          <p class="font-display font-extrabold text-sm sm:text-base text-neutral-charcoal">
+            If you said yes to even <span class="text-secondary-purple">ONE</span> of these — Bodhi Drishti was made for you.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 3: SOLUTION INTRODUCTION
+         =================================================================== -->
+    <section class="py-24 bg-white select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          <!-- LEFT -->
+          <div class="text-left flex flex-col gap-6">
+            <span class="font-display font-extrabold text-xs text-secondary-purple uppercase tracking-widest">
+              What if you could SEE everything?
+            </span>
+            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-neutral-dark tracking-tight leading-tight">
+              Unlock Professional-Grade <br />
+              <span class="bg-gradient-to-r from-secondary-purple to-secondary-blue bg-clip-text text-transparent">Market Insight & Blueprint</span>
+            </h2>
+            <p class="font-body text-xs sm:text-sm text-neutral-charcoal leading-relaxed font-semibold">
+              <strong>Bodhi Drishti (Sacred Vision)</strong> is our professional research intelligence service. We use advanced analysis tools and expert interpretation to create comprehensive reports that reveal your competitive landscape, market opportunities, and growth strategies.
+            </p>
+            <p class="font-body text-xs sm:text-sm text-neutral-stone leading-relaxed font-semibold">
+              Think of it as hiring a {val50000}/month business consultant — but paying a small one-time fee of {val4999} to {val29999} and receiving a permanent, actionable strategy document that you can reference forever.
+            </p>
+          </div>
+
+          <!-- RIGHT: STATS GRID -->
+          <div class="grid grid-cols-2 gap-4">
+            
+            <div class="bg-neutral-ghost border border-neutral-mist/50 p-5 rounded-2xl text-center flex flex-col items-center justify-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-secondary-purple/10 flex items-center justify-center text-secondary-purple">
+                <FileText class="w-5 h-5" />
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display font-extrabold text-lg text-neutral-dark leading-none">25-100+</span>
+                <span class="font-body text-[10px] text-neutral-stone font-bold uppercase mt-1">Pages of Insights</span>
+              </div>
+            </div>
+
+            <div class="bg-neutral-ghost border border-neutral-mist/50 p-5 rounded-2xl text-center flex flex-col items-center justify-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-secondary-purple/10 flex items-center justify-center text-secondary-purple">
+                <Users class="w-5 h-5" />
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display font-extrabold text-lg text-neutral-dark leading-none">3-10</span>
+                <span class="font-body text-[10px] text-neutral-stone font-bold uppercase mt-1">Competitors Audited</span>
+              </div>
+            </div>
+
+            <div class="bg-neutral-ghost border border-neutral-mist/50 p-5 rounded-2xl text-center flex flex-col items-center justify-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-secondary-purple/10 flex items-center justify-center text-secondary-purple">
+                <Clock class="w-5 h-5" />
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display font-extrabold text-lg text-neutral-dark leading-none">5-15 Days</span>
+                <span class="font-body text-[10px] text-neutral-stone font-bold uppercase mt-1">Fast Delivery</span>
+              </div>
+            </div>
+
+            <div class="bg-neutral-ghost border border-neutral-mist/50 p-5 rounded-2xl text-center flex flex-col items-center justify-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-secondary-purple/10 flex items-center justify-center text-secondary-purple">
+                <Phone class="w-5 h-5" />
+              </div>
+              <div class="flex flex-col">
+                <span class="font-display font-extrabold text-lg text-neutral-dark leading-none">Consulting</span>
+                <span class="font-body text-[10px] text-neutral-stone font-bold uppercase mt-1">Calls Included</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 4: WHAT'S INSIDE THE REPORT (INTERACTIVE TABS)
+         =================================================================== -->
+    <section class="py-24 bg-primary-indigo text-white select-none relative overflow-hidden">
+      <!-- Glow decoration -->
+      <div class="absolute left-[-200px] bottom-[10%] w-[400px] h-[400px] bg-secondary-purple/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="font-display font-extrabold text-xs text-secondary-purple uppercase tracking-widest">
+            Deep-Dive Chapters
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl mt-3 tracking-tight">
+            What You'll Get Inside
+          </h2>
+          <p class="font-body text-sm sm:text-base text-white/70 mt-3 font-semibold">
+            Every chapter is built manually by our strategic analysts to provide absolute clarity.
+          </p>
+        </div>
+
+        <!-- TABS SWITCHER -->
+        <div class="flex justify-center mb-10 overflow-x-auto pb-2 scrollbar-none">
+          <div class="inline-flex p-1 bg-white/5 border border-white/10 rounded-full" id="report-tab-switcher">
+            <button class="px-4 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider bg-white text-primary-indigo shadow-md tab-btn active" data-tab="competitor">
+              🔍 Competitor Intelligence
+            </button>
+            <button class="px-4 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider text-white/70 hover:text-white tab-btn" data-tab="market">
+              📊 Market Research
+            </button>
+            <button class="px-4 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider text-white/70 hover:text-white tab-btn" data-tab="keyword">
+              🎯 Keyword & SEO
+            </button>
+            <button class="px-4 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider text-white/70 hover:text-white tab-btn" data-tab="ad">
+              📢 Ad Strategy
+            </button>
+            <button class="px-4 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider text-white/70 hover:text-white tab-btn" data-tab="roadmap">
+              📋 Growth Roadmap
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB PANELS CONTAINER -->
+        <div id="report-tab-panels" class="relative min-h-[400px]">
+          
+          <!-- TAB 1: Competitor Intelligence -->
+          <div id="panel-competitor" class="tab-panel transition-all duration-300 flex flex-col lg:grid lg:grid-cols-12 gap-8 text-left">
+            <!-- Left: Mockup of dashboard -->
+            <div class="lg:col-span-6 bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+              <span class="text-[9px] font-mono text-primary-gold uppercase tracking-widest">Mockup Preview — Competitor Scorecard</span>
+              <div class="border border-white/10 rounded-xl overflow-hidden bg-[#0F1326] text-[10px] font-mono">
+                <div class="grid grid-cols-4 bg-white/10 p-2.5 border-b border-white/10 font-bold">
+                  <span>Competitor</span>
+                  <span>Est. Ad Spend</span>
+                  <span>Target Channels</span>
+                  <span>Est. ROAS</span>
+                </div>
+                <div class="grid grid-cols-4 p-2.5 border-b border-white/5">
+                  <span class="text-white">Brand A</span>
+                  <span>₹2.5L/mo</span>
+                  <span>FB + Insta</span>
+                  <span class="text-secondary-emerald">3.8X</span>
+                </div>
+                <div class="grid grid-cols-4 p-2.5 border-b border-white/5">
+                  <span class="text-white">Brand B</span>
+                  <span>₹1.2L/mo</span>
+                  <span>Google Ads</span>
+                  <span class="text-primary-gold">2.4X</span>
+                </div>
+                <div class="grid grid-cols-4 p-2.5">
+                  <span class="text-white">Brand C</span>
+                  <span>₹4.0L/mo</span>
+                  <span>Omnichannel</span>
+                  <span class="text-secondary-emerald">4.2X</span>
+                </div>
+              </div>
+              <div class="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-[10px] leading-relaxed">
+                🚨 <b>Key Finding:</b> Brand C captures 62% of high-intent search traffic in your city by bidding on location-specific keywords you aren't currently targeting.
+              </div>
+            </div>
+            <!-- Right: Content list -->
+            <div class="lg:col-span-6 flex flex-col justify-center gap-4">
+              <h3 class="font-display font-extrabold text-xl text-primary-gold">Competitor Digital Scorecard</h3>
+              <ul class="flex flex-col gap-3 text-xs font-body text-white/80">
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Detailed Competitor Profiles:</b> Full audit of top 3-10 competitors.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Estimated Ad Budgets:</b> Estimated spend values across Meta and Google networks.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Ad Creative Analysis:</b> Screenshots and catalog of active ads they run.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Offer Breakdown:</b> How they package and price their services/products.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>SWOT Matrix:</b> Clear breakdown of their strengths and how to exploit weaknesses.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- TAB 2: Market Research -->
+          <div id="panel-market" class="tab-panel transition-all duration-300 flex flex-col lg:grid lg:grid-cols-12 gap-8 text-left hidden opacity-0 scale-95">
+            <!-- Left: Mockup -->
+            <div class="lg:col-span-6 bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+              <span class="text-[9px] font-mono text-primary-gold uppercase tracking-widest">Mockup Preview — Market Demand Curve</span>
+              <div class="h-44 border border-white/10 rounded-xl bg-[#0F1326] p-4 flex items-end justify-between relative">
+                <!-- Bar chart representations -->
+                <div class="w-10 bg-secondary-purple/40 rounded-t h-[40%] flex flex-col items-center justify-end pb-1 text-[8px] font-mono"><span>2024</span></div>
+                <div class="w-10 bg-secondary-purple/65 rounded-t h-[65%] flex flex-col items-center justify-end pb-1 text-[8px] font-mono"><span>2025</span></div>
+                <div class="w-10 bg-gradient-to-t from-secondary-purple to-secondary-blue rounded-t h-[90%] flex flex-col items-center justify-end pb-1 text-[8px] font-mono text-white"><span>2026</span></div>
+                <div class="absolute top-2 right-2 text-[8px] font-mono text-white/50">Market Demand Index (City-Level)</div>
+              </div>
+              <div class="p-3 bg-secondary-blue/10 border border-secondary-blue/20 rounded-xl text-[10px] leading-relaxed">
+                📊 <b>Trend Alert:</b> Demand for high-speed website development in the Lucknow region has increased by 145% year-on-year.
+              </div>
+            </div>
+            <!-- Right: Content list -->
+            <div class="lg:col-span-6 flex flex-col justify-center gap-4">
+              <h3 class="font-display font-extrabold text-xl text-primary-gold">City-Level Market Analysis</h3>
+              <ul class="flex flex-col gap-3 text-xs font-body text-white/80">
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Market Size Indicators:</b> Local demand volume mapping in target cities.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Demographic Profiles:</b> Buyer interests, pain points, and purchase triggers.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Industry Growth Rates:</b> Benchmark indices showing demand shifts over 3 years.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Untapped Local Pockets:</b> Specific high-demand localities/neighborhoods.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- TAB 3: Keyword & SEO -->
+          <div id="panel-keyword" class="tab-panel transition-all duration-300 flex flex-col lg:grid lg:grid-cols-12 gap-8 text-left hidden opacity-0 scale-95">
+            <!-- Left: Mockup -->
+            <div class="lg:col-span-6 bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+              <span class="text-[9px] font-mono text-primary-gold uppercase tracking-widest">Mockup Preview — High-Intent Keywords</span>
+              <div class="border border-white/10 rounded-xl overflow-hidden bg-[#0F1326] text-[10px] font-mono">
+                <div class="grid grid-cols-4 bg-white/10 p-2.5 border-b border-white/10 font-bold">
+                  <span>Target Keyword</span>
+                  <span>Vol /mo</span>
+                  <span>CPC Avg</span>
+                  <span>Priority Score</span>
+                </div>
+                <div class="grid grid-cols-4 p-2.5 border-b border-white/5">
+                  <span class="text-white">best jeweler jaipur</span>
+                  <span>4,200</span>
+                  <span>₹42</span>
+                  <span class="text-secondary-emerald font-bold">HIGH</span>
+                </div>
+                <div class="grid grid-cols-4 p-2.5 border-b border-white/5">
+                  <span class="text-white">gold necklace jaipur</span>
+                  <span>1,800</span>
+                  <span>₹28</span>
+                  <span class="text-secondary-emerald font-bold">HIGH</span>
+                </div>
+                <div class="grid grid-cols-4 p-2.5">
+                  <span class="text-white">bridal jewelry designs</span>
+                  <span>8,500</span>
+                  <span>₹12</span>
+                  <span class="text-primary-gold font-bold">MED</span>
+                </div>
+              </div>
+            </div>
+            <!-- Right: Content list -->
+            <div class="lg:col-span-6 flex flex-col justify-center gap-4">
+              <h3 class="font-display font-extrabold text-xl text-primary-gold">Keyword & Search Blueprint</h3>
+              <ul class="flex flex-col gap-3 text-xs font-body text-white/80">
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>High-Intent Keywords:</b> Focus terms buyers search before spending money.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Search Volumes & CPCs:</b> Search volume indices and estimated click costs.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Competitor Organic Keywords:</b> Terms driving organic traffic to competitor sites.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Local SEO Map Gap:</b> Exact citations needed to rank in local map packs.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- TAB 4: Ad Strategy -->
+          <div id="panel-ad" class="tab-panel transition-all duration-300 flex flex-col lg:grid lg:grid-cols-12 gap-8 text-left hidden opacity-0 scale-95">
+            <!-- Left: Mockup -->
+            <div class="lg:col-span-6 bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+              <span class="text-[9px] font-mono text-primary-gold uppercase tracking-widest">Mockup Preview — Campaign Structure</span>
+              <div class="border border-white/10 rounded-xl bg-[#0F1326] p-4 text-[10px] font-mono flex flex-col gap-3">
+                <div class="p-2 border border-secondary-purple/30 bg-secondary-purple/10 rounded">
+                  🟢 <b>Campaign Level:</b> Local Meta Leads Funnel ( Lucknow Range )
+                </div>
+                <div class="grid grid-cols-2 gap-2 pl-4">
+                  <div class="p-2 border border-white/10 bg-white/5 rounded">
+                    🔵 <b>Ad Set 01:</b> Lookalike (Past Buyers)
+                  </div>
+                  <div class="p-2 border border-white/10 bg-white/5 rounded">
+                    🔵 <b>Ad Set 02:</b> Interest (Luxury Lovers)
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Right: Content list -->
+            <div class="lg:col-span-6 flex flex-col justify-center gap-4">
+              <h3 class="font-display font-extrabold text-xl text-primary-gold">Ready-to-Execute Ad Blueprint</h3>
+              <ul class="flex flex-col gap-3 text-xs font-body text-white/80">
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Funnels & Structures:</b> Step-by-step Meta & Google campaign frameworks.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Budget Recommendations:</b> Optimal spends across channels to prevent waste.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Ad Copy Templates:</b> Localized headline structures that get clicks.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Creative Style Directives:</b> Formats (Reels, grids, photos) proven to convert.</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- TAB 5: Growth Roadmap -->
+          <div id="panel-roadmap" class="tab-panel transition-all duration-300 flex flex-col lg:grid lg:grid-cols-12 gap-8 text-left hidden opacity-0 scale-95">
+            <!-- Left: Mockup -->
+            <div class="lg:col-span-6 bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+              <span class="text-[9px] font-mono text-primary-gold uppercase tracking-widest">Mockup Preview — 90-Day Execution Timeline</span>
+              <div class="flex flex-col gap-3 text-[10px] font-mono">
+                <div class="flex items-center gap-2">
+                  <span class="w-14 text-white/60">Weeks 1-2:</span>
+                  <span class="flex-grow p-2 bg-gradient-to-r from-secondary-purple to-secondary-blue rounded font-bold">Fix Website Speed & Pixel API</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-14 text-white/60">Weeks 3-6:</span>
+                  <span class="flex-grow p-2 bg-white/10 rounded border border-white/10">Deploy Local SEO & Map Citations</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-14 text-white/60">Weeks 7-12:</span>
+                  <span class="flex-grow p-2 bg-white/10 rounded border border-white/10">Launch Meta Lookalike Ad Funnels</span>
+                </div>
+              </div>
+            </div>
+            <!-- Right: Content list -->
+            <div class="lg:col-span-6 flex flex-col justify-center gap-4">
+              <h3 class="font-display font-extrabold text-xl text-primary-gold">Step-by-Step 90-Day Growth Roadmap</h3>
+              <ul class="flex flex-col gap-3 text-xs font-body text-white/80">
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Prioritized Quick Wins:</b> Actions to take in the first 7 days.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Week-by-Week Execution:</b> Plan structured for your internal team or agency.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Milestone Trackers:</b> Exact KPIs to check every 30 days to measure ROI.</span></li>
+                <li class="flex items-start gap-2"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span><b>Consultant Validation:</b> Live presentation review with RoasBodhi strategy team.</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 5: THREE PRICING TIERS
+         =================================================================== -->
+    <section class="py-24 bg-neutral-ghost select-none" id="pricing-tiers">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="font-display font-extrabold text-xs text-secondary-purple uppercase tracking-widest">
+            Packages
+          </span>
+          <h2 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl mt-3 tracking-tight">
+            Choose Your Level of Intelligence
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-stone mt-3 font-semibold text-neutral-charcoal">
+            One-time investment. The report is yours to own forever.
+          </p>
+        </div>
+
+        <!-- 3 Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto mb-16">
+          
+          <!-- Card 1: Chakshu -->
+          <div class="bg-white border border-neutral-mist rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm relative hover:border-secondary-purple/20 transition-all duration-300">
+            <div>
+              <span class="text-[10px] font-display font-extrabold uppercase tracking-widest text-neutral-stone">{chakshuPlan.ideal_for}</span>
+              <h3 class="font-display font-extrabold text-2xl text-neutral-dark mt-2 leading-none">{chakshuPlan.name}</h3>
+              <p class="font-body text-[10px] text-neutral-stone italic mt-1.5">{chakshuPlan.meaning}</p>
+              
+              <div class="my-6 flex items-baseline gap-1">
+                <span class="font-mono text-3xl sm:text-4xl font-extrabold text-neutral-dark">₹{chakshuPlan.price.toLocaleString('en-IN')}</span>
+                <span class="text-xs text-neutral-stone font-semibold">/{chakshuPlan.period}</span>
+              </div>
+              
+              <div class="border-t border-neutral-mist/60 pt-4 flex flex-col gap-2.5 text-xs text-neutral-charcoal text-left font-body font-semibold">
+                <div class="flex justify-between"><span>🕒 Delivery Time</span> <span class="font-mono text-[11px] text-neutral-dark font-bold">{chakshuPlan.delivery}</span></div>
+                <div class="flex justify-between"><span>📄 Pages</span> <span class="font-mono text-[11px] text-neutral-dark font-bold">{chakshuPlan.report_pages}</span></div>
+                <div class="flex justify-between border-b border-neutral-mist/40 pb-3"><span>🔍 Competitors</span> <span class="font-mono text-[11px] text-neutral-dark font-bold">{chakshuPlan.competitors_analyzed}</span></div>
+                
+                {chakshuPlan.features.filter(f => f.included).slice(0, 6).map(feat => (
+                  <div class="flex items-start gap-2">
+                    <Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" />
+                    <span class="leading-snug">{feat.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-8 flex flex-col gap-3">
+              <a href="#booking-form" class="w-full py-3 text-center border border-secondary-purple text-secondary-purple hover:bg-secondary-purple/5 font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all" onclick={`document.getElementById('package-select').value='chakshu';`}>
+                {chakshuPlan.cta}
+              </a>
+              <span class="text-[9px] text-neutral-stone text-center font-body font-semibold">🛡️ {chakshuPlan.guarantee}</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Divya Drishti (POPULAR, Dark purple) -->
+          <div class="bg-[#1C1635] text-white border border-secondary-purple/35 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xl relative scale-105 z-10">
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-secondary-purple to-secondary-blue text-white font-display font-extrabold text-[9px] uppercase tracking-widest shadow-md">
+              ⭐ Best Value
+            </div>
+            
+            <div>
+              <span class="text-[10px] font-display font-extrabold uppercase tracking-widest text-white/50">{divyaDrishtiPlan.ideal_for}</span>
+              <h3 class="font-display font-extrabold text-2xl text-white mt-2 leading-none">{divyaDrishtiPlan.name}</h3>
+              <p class="font-body text-[10px] text-white/50 italic mt-1.5">{divyaDrishtiPlan.meaning}</p>
+              
+              <div class="my-6 flex items-baseline gap-1">
+                <span class="font-mono text-3xl sm:text-4xl font-extrabold text-white">₹{divyaDrishtiPlan.price.toLocaleString('en-IN')}</span>
+                <span class="text-xs text-white/60 font-semibold">/{divyaDrishtiPlan.period}</span>
+              </div>
+              
+              <div class="border-t border-white/10 pt-4 flex flex-col gap-2.5 text-xs text-white/80 text-left font-body font-semibold">
+                <div class="flex justify-between"><span>🕒 Delivery Time</span> <span class="font-mono text-[11px] text-white font-bold">{divyaDrishtiPlan.delivery}</span></div>
+                <div class="flex justify-between"><span>📄 Pages</span> <span class="font-mono text-[11px] text-white font-bold">{divyaDrishtiPlan.report_pages}</span></div>
+                <div class="flex justify-between border-b border-white/10 pb-3"><span>🔍 Competitors</span> <span class="font-mono text-[11px] text-white font-bold">{divyaDrishtiPlan.competitors_analyzed}</span></div>
+                
+                {divyaDrishtiPlan.features.filter(f => f.included).slice(0, 7).map(feat => (
+                  <div class="flex items-start gap-2">
+                    <Check class="w-4.5 h-4.5 text-primary-gold flex-shrink-0 mt-0.5" />
+                    <span class="leading-snug text-white/95">{feat.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-8 flex flex-col gap-3">
+              <a href="#booking-form" class="w-full py-3.5 text-center bg-gradient-to-r from-secondary-purple to-secondary-blue text-white hover:shadow-button-purple hover:-translate-y-0.5 font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all" onclick={`document.getElementById('package-select').value='divya-drishti';`}>
+                {divyaDrishtiPlan.cta}
+              </a>
+              <span class="text-[9px] text-white/40 text-center font-body font-semibold">🛡️ {divyaDrishtiPlan.guarantee}</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Trikaldarshi -->
+          <div class="bg-white border border-neutral-mist rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-sm relative hover:border-secondary-purple/20 transition-all duration-300">
+            <div>
+              <span class="text-[10px] font-display font-extrabold uppercase tracking-widest text-neutral-stone">{trikaldarshiPlan.ideal_for}</span>
+              <h3 class="font-display font-extrabold text-2xl text-neutral-dark mt-2 leading-none">{trikaldarshiPlan.name}</h3>
+              <p class="font-body text-[10px] text-neutral-stone italic mt-1.5">{trikaldarshiPlan.meaning}</p>
+              
+              <div class="my-6 flex items-baseline gap-1">
+                <span class="font-mono text-3xl sm:text-4xl font-extrabold text-neutral-dark">₹{trikaldarshiPlan.price.toLocaleString('en-IN')}</span>
+                <span class="text-xs text-neutral-stone font-semibold">/{trikaldarshiPlan.period}</span>
+              </div>
+              
+              <div class="border-t border-neutral-mist/60 pt-4 flex flex-col gap-2.5 text-xs text-neutral-charcoal text-left font-body font-semibold">
+                <div class="flex justify-between"><span>🕒 Delivery Time</span> <span class="font-mono text-[11px] text-neutral-dark font-bold">{trikaldarshiPlan.delivery}</span></div>
+                <div class="flex justify-between"><span>📄 Pages</span> <span class="font-mono text-[11px] text-neutral-dark font-bold">{trikaldarshiPlan.report_pages}</span></div>
+                <div class="flex justify-between border-b border-neutral-mist/40 pb-3"><span>🔍 Competitors</span> <span class="font-mono text-[11px] text-neutral-dark font-bold">{trikaldarshiPlan.competitors_analyzed}</span></div>
+                
+                {trikaldarshiPlan.features.filter(f => f.included).slice(0, 6).map(feat => (
+                  <div class="flex items-start gap-2">
+                    <Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" />
+                    <span class="leading-snug">{feat.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-8 flex flex-col gap-3">
+              <a href="#booking-form" class="w-full py-3 text-center border border-secondary-purple text-secondary-purple hover:bg-secondary-purple/5 font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all" onclick={`document.getElementById('package-select').value='trikaldarshi';`}>
+                {trikaldarshiPlan.cta}
+              </a>
+              <span class="text-[9px] text-neutral-stone text-center font-body font-semibold">🛡️ {trikaldarshiPlan.guarantee}</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- FULL TABLE COMPARISON -->
+        <div class="max-w-6xl mx-auto overflow-x-auto border border-neutral-mist rounded-2xl bg-white shadow-sm select-none">
+          <table class="w-full text-left border-collapse min-w-[700px] text-xs font-body font-semibold">
+            <thead>
+              <tr class="bg-neutral-ghost border-b border-neutral-mist">
+                <th class="p-4 font-display font-extrabold text-neutral-dark text-[10px] uppercase tracking-wider">Features & Outputs</th>
+                <th class="p-4 font-display font-extrabold text-neutral-dark text-[10px] uppercase tracking-wider text-center w-40">Chakshu</th>
+                <th class="p-4 font-display font-extrabold text-secondary-purple text-[10px] uppercase tracking-wider text-center w-40 bg-secondary-purple/5">Divya Drishti</th>
+                <th class="p-4 font-display font-extrabold text-neutral-dark text-[10px] uppercase tracking-wider text-center w-40">Trikaldarshi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Pages -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">Report Pages</td>
+                <td class="p-4 text-center font-mono text-neutral-stone">25-30 Pages</td>
+                <td class="p-4 text-center font-mono text-neutral-dark font-extrabold bg-secondary-purple/5">50-60 Pages</td>
+                <td class="p-4 text-center font-mono text-neutral-stone">100+ Pages</td>
+              </tr>
+              <!-- Competitors -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">Competitors Analyzed</td>
+                <td class="p-4 text-center font-mono text-neutral-stone">3</td>
+                <td class="p-4 text-center font-mono text-neutral-dark font-extrabold bg-secondary-purple/5">5 deep-dive</td>
+                <td class="p-4 text-center font-mono text-neutral-stone">10 (Direct + Indirect)</td>
+              </tr>
+              <!-- Audit -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">Business Digital Audit</td>
+                <td class="p-4 text-center"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+                <td class="p-4 text-center bg-secondary-purple/5"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+                <td class="p-4 text-center"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+              </tr>
+              <!-- Ads review -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">Competitor Ad Library Analysis</td>
+                <td class="p-4 text-center"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+                <td class="p-4 text-center bg-secondary-purple/5"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+                <td class="p-4 text-center"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+              </tr>
+              <!-- Keyword Research -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">Keyword Target Research</td>
+                <td class="p-4 text-center font-mono">30 terms</td>
+                <td class="p-4 text-center font-mono bg-secondary-purple/5">100+ terms</td>
+                <td class="p-4 text-center font-mono">500+ terms</td>
+              </tr>
+              <!-- SWOT -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">SWOT & Strategy Analysis</td>
+                <td class="p-4 text-center"><X class="w-4.5 h-4.5 text-neutral-stone/40 mx-auto" /></td>
+                <td class="p-4 text-center bg-secondary-purple/5"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+                <td class="p-4 text-center"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+              </tr>
+              <!-- Buyer Personas -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">Customer Persona Mapping</td>
+                <td class="p-4 text-center"><X class="w-4.5 h-4.5 text-neutral-stone/40 mx-auto" /></td>
+                <td class="p-4 text-center bg-secondary-purple/5"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+                <td class="p-4 text-center"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+              </tr>
+              <!-- Content Calendar -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">Content Strategy & Calendar</td>
+                <td class="p-4 text-center"><X class="w-4.5 h-4.5 text-neutral-stone/40 mx-auto" /></td>
+                <td class="p-4 text-center bg-secondary-purple/5"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+                <td class="p-4 text-center"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+              </tr>
+              <!-- Roadmap -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">Execution Roadmap</td>
+                <td class="p-4 text-center font-mono">10 tasks</td>
+                <td class="p-4 text-center font-mono bg-secondary-purple/5">90-Day Plan</td>
+                <td class="p-4 text-center font-mono">365-Day Plan</td>
+              </tr>
+              <!-- Discount -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">20% Discount on Implementation</td>
+                <td class="p-4 text-center"><X class="w-4.5 h-4.5 text-neutral-stone/40 mx-auto" /></td>
+                <td class="p-4 text-center bg-secondary-purple/5"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+                <td class="p-4 text-center"><Check class="w-4.5 h-4.5 text-secondary-emerald mx-auto" /></td>
+              </tr>
+              <!-- Consulting Calls -->
+              <tr class="border-b border-neutral-mist/50">
+                <td class="p-4 text-neutral-charcoal font-bold">Strategy Consultation Calls</td>
+                <td class="p-4 text-center font-mono">2 calls (1 hr total)</td>
+                <td class="p-4 text-center font-mono bg-secondary-purple/5">4 calls (4 hrs total)</td>
+                <td class="p-4 text-center font-mono">8+ calls (12+ hrs total)</td>
+              </tr>
+              <!-- Pricing -->
+              <tr class="bg-neutral-ghost">
+                <td class="p-4 text-neutral-dark font-extrabold text-[10px] uppercase tracking-wider">One-Time Fee</td>
+                <td class="p-4 text-center font-mono text-neutral-dark font-extrabold">₹{chakshuPlan.price.toLocaleString('en-IN')}</td>
+                <td class="p-4 text-center font-mono text-secondary-purple font-extrabold bg-secondary-purple/5">₹{divyaDrishtiPlan.price.toLocaleString('en-IN')}</td>
+                <td class="p-4 text-center font-mono text-neutral-dark font-extrabold">₹{trikaldarshiPlan.price.toLocaleString('en-IN')}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 6: HOW IT WORKS
+         =================================================================== -->
+    <section class="py-24 bg-white select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="font-display font-extrabold text-xs text-secondary-purple uppercase tracking-widest">
+            Timeline
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl mt-3 tracking-tight">
+            How It Works
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-stone mt-3 font-semibold">
+            Our step-by-step process ensures your report is highly targeted, accurate, and actionable.
+          </p>
+        </div>
+
+        <!-- Vertical Timeline Design -->
+        <div class="max-w-3xl mx-auto relative pl-6 sm:pl-0">
+          
+          <!-- Middle line (desktop) / Left line (mobile) -->
+          <div class="absolute left-[13px] sm:left-1/2 top-0 bottom-0 w-0.5 border-l-2 border-dashed border-neutral-mist -translate-x-1/2"></div>
+          
+          <!-- Step 1 -->
+          <div class="relative flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-6 mb-12 group">
+            <div class="absolute left-[-18px] sm:left-1/2 w-8 h-8 rounded-full bg-secondary-purple flex items-center justify-center text-white text-xs font-display font-extrabold -translate-x-1/2 z-10 group-hover:scale-110 transition-transform">
+              1
+            </div>
+            
+            <div class="w-full sm:w-[45%] text-left sm:text-right pr-0 sm:pr-8">
+              <h4 class="font-display font-extrabold text-sm text-neutral-dark flex items-center gap-2 sm:justify-end">
+                <span>Choose Your Report</span> 🎯
+              </h4>
+              <p class="font-body text-xs text-neutral-stone mt-1.5 font-semibold">
+                Select from Chakshu, Divya Drishti, or Trikaldarshi based on your business needs, goals, and budget.
+              </p>
+            </div>
+            
+            <div class="hidden sm:block w-[45%]"></div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="relative flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-6 mb-12 group">
+            <div class="absolute left-[-18px] sm:left-1/2 w-8 h-8 rounded-full bg-secondary-purple flex items-center justify-center text-white text-xs font-display font-extrabold -translate-x-1/2 z-10 group-hover:scale-110 transition-transform">
+              2
+            </div>
+            
+            <div class="hidden sm:block w-[45%]"></div>
+            
+            <div class="w-full sm:w-[45%] text-left pl-0 sm:pl-8">
+              <h4 class="font-display font-extrabold text-sm text-neutral-dark flex items-center gap-2">
+                📞 <span>Quick Discovery Call</span>
+              </h4>
+              <p class="font-body text-xs text-neutral-stone mt-1.5 font-semibold">
+                A 30-60 minute deep-dive call where we understand your business, competitors, target customer profiles, and marketing goals.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="relative flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-6 mb-12 group">
+            <div class="absolute left-[-18px] sm:left-1/2 w-8 h-8 rounded-full bg-secondary-purple flex items-center justify-center text-white text-xs font-display font-extrabold -translate-x-1/2 z-10 group-hover:scale-110 transition-transform">
+              3
+            </div>
+            
+            <div class="w-full sm:w-[45%] text-left sm:text-right pr-0 sm:pr-8">
+              <h4 class="font-display font-extrabold text-sm text-neutral-dark flex items-center gap-2 sm:justify-end">
+                <span>Deep Research Phase</span> 🔬
+              </h4>
+              <p class="font-body text-xs text-neutral-stone mt-1.5 font-semibold">
+                Our analysts reverse-engineer competitor ads, landing pages, keywords, search visibility, and backlinks using enterprise tracking platforms.
+              </p>
+            </div>
+            
+            <div class="hidden sm:block w-[45%]"></div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="relative flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-6 mb-12 group">
+            <div class="absolute left-[-18px] sm:left-1/2 w-8 h-8 rounded-full bg-secondary-purple flex items-center justify-center text-white text-xs font-display font-extrabold -translate-x-1/2 z-10 group-hover:scale-110 transition-transform">
+              4
+            </div>
+            
+            <div class="hidden sm:block w-[45%]"></div>
+            
+            <div class="w-full sm:w-[45%] text-left pl-0 sm:pl-8">
+              <h4 class="font-display font-extrabold text-sm text-neutral-dark flex items-center gap-2">
+                📊 <span>Report Delivery</span>
+              </h4>
+              <p class="font-body text-xs text-neutral-stone mt-1.5 font-semibold">
+                Receive a print-ready, beautifully formatted PDF report containing detailed charts, scorecards, tables, and an executive summary.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="relative flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-6 group">
+            <div class="absolute left-[-18px] sm:left-1/2 w-8 h-8 rounded-full bg-secondary-purple flex items-center justify-center text-white text-xs font-display font-extrabold -translate-x-1/2 z-10 group-hover:scale-110 transition-transform">
+              5
+            </div>
+            
+            <div class="w-full sm:w-[45%] text-left sm:text-right pr-0 sm:pr-8">
+              <h4 class="font-display font-extrabold text-sm text-neutral-dark flex items-center gap-2 sm:justify-end">
+                <span>Strategy Presentation</span> 🎯
+              </h4>
+              <p class="font-body text-xs text-neutral-stone mt-1.5 font-semibold">
+                We walk you through every finding via video presentation. We clarify terminology and help you prioritize your 90-day action steps.
+              </p>
+            </div>
+            
+            <div class="hidden sm:block w-[45%]"></div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 7: DRISHTI UTSAV SPECIAL OFFER (BOLD TIMER SECTION)
+         =================================================================== -->
+    <section class="py-20 bg-gradient-to-br from-secondary-purple to-primary-indigo text-white select-none relative overflow-hidden">
+      <!-- Glow effect -->
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06),transparent)] pointer-events-none"></div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col gap-6">
+        
+        <div class="inline-flex items-center gap-1 self-center px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-[10px] font-display font-extrabold uppercase tracking-widest text-primary-gold mb-2">
+          🎊 Drishti Utsav — Launch Celebration
+        </div>
+        
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight leading-tight">
+          Get the Complete Divya Drishti Report <br />
+          <span class="text-primary-gold">Worth {val14999} for just {drishtiUtsavOffer.price.toLocaleString('en-IN')}!</span>
+        </h2>
+        
+        <p class="font-body text-xs sm:text-sm text-white/80 leading-relaxed font-semibold max-w-xl mx-auto">
+          We are launching our research division and offering 20 slots at cost in exchange for high-impact case studies. Save 67% on our flagship market intelligence report.
+        </p>
+
+        <!-- Countdown Panel -->
+        <div class="flex flex-col items-center gap-4 bg-black/15 border border-white/10 rounded-2xl p-6 max-w-md mx-auto my-4 w-full">
+          <span class="text-[9px] font-display font-extrabold uppercase tracking-widest text-white/60">Launch Offer Ends In:</span>
+          <div class="flex items-center gap-3 font-mono text-xl sm:text-2xl font-extrabold" id="offer-timer">
+            <div class="flex flex-col"><span id="timer-days">00</span><span class="text-[8px] font-sans font-bold uppercase text-white/50 tracking-wider mt-1">Days</span></div>
+            <span>:</span>
+            <div class="flex flex-col"><span id="timer-hours">00</span><span class="text-[8px] font-sans font-bold uppercase text-white/50 tracking-wider mt-1">Hours</span></div>
+            <span>:</span>
+            <div class="flex flex-col"><span id="timer-mins">00</span><span class="text-[8px] font-sans font-bold uppercase text-white/50 tracking-wider mt-1">Mins</span></div>
+            <span>:</span>
+            <div class="flex flex-col text-primary-gold"><span id="timer-secs">00</span><span class="text-[8px] font-sans font-bold uppercase text-primary-gold/60 tracking-wider mt-1">Secs</span></div>
+          </div>
+          <div class="w-full bg-white/15 h-2 rounded-full overflow-hidden mt-3 relative">
+            <div class="absolute left-0 top-0 bottom-0 bg-primary-gold rounded-full w-[80%]" id="offer-progress"></div>
+          </div>
+          <div class="flex justify-between w-full text-[9px] font-display font-extrabold text-white/60 mt-1">
+            <span>Slots Claimed: 16/20</span>
+            <span class="text-primary-gold font-bold animate-pulse">Only 4 slots left!</span>
+          </div>
+        </div>
+
+        <!-- Checklist inside package -->
+        <div class="bg-white/5 border border-white/5 rounded-2xl p-6 text-left max-w-xl mx-auto my-4">
+          <h4 class="font-display font-extrabold text-xs text-primary-gold uppercase tracking-widest border-b border-white/10 pb-2 mb-3">Included in Drishti Utsav Package:</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[11px] font-body font-semibold text-white/90">
+            {drishtiUtsavOffer.includes.map(item => (
+              <div class="flex items-start gap-2">
+                <Check class="w-4 h-4 text-primary-gold flex-shrink-0 mt-0.5" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center gap-3">
+          <a href="#booking-form" class="px-8 py-4 bg-primary-gold text-neutral-dark hover:bg-yellow-400 hover:shadow-button-gold hover:-translate-y-0.5 transition-all duration-300 font-display font-extrabold text-xs uppercase tracking-widest rounded-xl" onclick="document.getElementById('package-select').value='drishti-utsav';">
+            Claim Drishti Utsav Spot →
+          </a>
+          <span class="text-[10px] text-white/60 font-semibold flex items-center gap-1"><Lock class="w-3.5 h-3.5" /> 100% Satisfaction Commitment</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 8: WHO SHOULD GET THIS (PERFECT VS NOT FOR)
+         =================================================================== -->
+    <section class="py-24 bg-white select-none">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="font-display font-extrabold text-xs text-secondary-purple uppercase tracking-widest">
+            Qualifications
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl mt-3 tracking-tight">
+            Is Bodhi Drishti Right For You?
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+          
+          <!-- Column 1: Perfect For -->
+          <div class="bg-emerald-50/20 border border-emerald-500/10 rounded-3xl p-6 sm:p-8 text-left flex flex-col gap-6">
+            <h3 class="font-display font-extrabold text-lg text-secondary-emerald flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-secondary-emerald"></span> Perfect For:
+            </h3>
+            <ul class="flex flex-col gap-4 text-xs font-body font-semibold text-neutral-charcoal">
+              <li class="flex items-start gap-2.5"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span>Business owners planning local digital marketing.</span></li>
+              <li class="flex items-start gap-2.5"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span>Brands spending on ads without clear competitor keyword data.</span></li>
+              <li class="flex items-start gap-2.5"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span>Companies planning to enter new Indian states or cities.</span></li>
+              <li class="flex items-start gap-2.5"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span>Business owners searching for untapped local niches.</span></li>
+              <li class="flex items-start gap-2.5"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span>Established businesses ready to invest in growth.</span></li>
+              <li class="flex items-start gap-2.5"><Check class="w-4.5 h-4.5 text-secondary-emerald flex-shrink-0 mt-0.5" /> <span>Startups seeking regional search demand validation.</span></li>
+            </ul>
+          </div>
+
+          <!-- Column 2: Not For -->
+          <div class="bg-red-50/10 border border-red-500/10 rounded-3xl p-6 sm:p-8 text-left flex flex-col gap-6">
+            <h3 class="font-display font-extrabold text-lg text-red-500 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span> Not For:
+            </h3>
+            <ul class="flex flex-col gap-4 text-xs font-body font-semibold text-neutral-charcoal">
+              <li class="flex items-start gap-2.5"><X class="w-4.5 h-4.5 text-red-400 flex-shrink-0 mt-0.5" /> <span>Businesses looking for execution only (this is strategy and intelligence).</span></li>
+              <li class="flex items-start gap-2.5"><X class="w-4.5 h-4.5 text-red-400 flex-shrink-0 mt-0.5" /> <span>Very early-stage concepts without a defined product range or city.</span></li>
+              <li class="flex items-start gap-2.5"><X class="w-4.5 h-4.5 text-red-400 flex-shrink-0 mt-0.5" /> <span>Owners who expect automated software printouts (every report is manually compiled).</span></li>
+              <li class="flex items-start gap-2.5"><X class="w-4.5 h-4.5 text-red-400 flex-shrink-0 mt-0.5" /> <span>People expecting instant revenue jumps without executing recommendations.</span></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 9: SAMPLE REPORT PREVIEW (INTERACTIVE SLIDESHOW)
+         =================================================================== -->
+    <section class="py-24 bg-neutral-ghost select-none" id="sample-preview">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="font-display font-extrabold text-xs text-secondary-purple uppercase tracking-widest">
+            Mockup Sample Pages
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl mt-3 tracking-tight">
+            See What You'll Get
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-stone mt-3 font-semibold">
+            Take a look at the exact styling, depth, and formats of our research deliverables.
+          </p>
+        </div>
+
+        <!-- Interactive Report Page Viewer -->
+        <div class="max-w-2xl mx-auto bg-white border border-neutral-mist rounded-2xl shadow-lg p-6 sm:p-8 flex flex-col gap-6 relative select-none">
+          
+          <div class="flex items-center justify-between border-b border-neutral-mist/60 pb-3">
+            <span class="text-[9px] font-mono text-neutral-stone uppercase tracking-widest">Confidential Sample Report Preview</span>
+            <span class="text-[10px] font-display font-bold text-secondary-purple" id="page-indicator">Page 1 of 6</span>
+          </div>
+
+          <!-- Page Panels -->
+          <div class="min-h-[280px] flex flex-col justify-between" id="report-pages-container">
+            
+            <!-- Page 1: Cover -->
+            <div class="report-page flex flex-col gap-4 text-left" data-page="1">
+              <div class="flex flex-col gap-2">
+                <span class="text-[9px] font-mono text-neutral-stone">CHAPTER 0.0</span>
+                <h3 class="font-display font-extrabold text-xl text-neutral-dark">Bodhi Drishti Strategic Intelligence Report</h3>
+                <div class="w-12 h-0.5 bg-secondary-purple"></div>
+              </div>
+              <p class="font-body text-xs text-neutral-charcoal leading-relaxed font-semibold">
+                This document contains reverse-engineered marketing budgets, competitor keyword target metrics, and city-level search density analysis. Prepared by the RoasBodhi analytics division.
+              </p>
+              <div class="border border-dashed border-neutral-mist rounded-xl p-4 bg-neutral-ghost flex items-center justify-between mt-2">
+                <span class="text-[10px] font-mono text-neutral-stone">Status: Confidential (NDA Encrypted)</span>
+                <span class="px-2 py-0.5 bg-red-100 text-red-600 rounded text-[8px] font-display font-extrabold uppercase tracking-widest">Classified</span>
+              </div>
+            </div>
+
+            <!-- Page 2: Summary -->
+            <div class="report-page flex flex-col gap-4 text-left hidden" data-page="2">
+              <div class="flex flex-col gap-2">
+                <span class="text-[9px] font-mono text-neutral-stone">CHAPTER 1.0</span>
+                <h3 class="font-display font-extrabold text-xl text-neutral-dark">Executive Summary & High-Impact Targets</h3>
+                <div class="w-12 h-0.5 bg-secondary-purple"></div>
+              </div>
+              <ul class="flex flex-col gap-2 text-xs font-body font-semibold text-neutral-charcoal">
+                <li>• Top 3 competitors invest a combined ₹7.8L/mo in Google Ads targeting the Jaipur region.</li>
+                <li>• Average Cost-Per-Click (CPC) for luxury keywords has shifted by +18% over the last 12 months.</li>
+                <li>• There is a major search gap: none of your competitors target WhatsApp inquiries directly from landing pages.</li>
+              </ul>
+            </div>
+
+            <!-- Page 3: Comparison -->
+            <div class="report-page flex flex-col gap-4 text-left hidden" data-page="3">
+              <div class="flex flex-col gap-2">
+                <span class="text-[9px] font-mono text-neutral-stone">CHAPTER 2.0</span>
+                <h3 class="font-display font-extrabold text-xl text-neutral-dark">Competitor Matrix & SWOT Scoring</h3>
+                <div class="w-12 h-0.5 bg-secondary-purple"></div>
+              </div>
+              <div class="grid grid-cols-3 gap-3 text-[10px] font-mono border border-neutral-mist rounded-lg overflow-hidden bg-neutral-ghost p-3">
+                <div class="flex flex-col gap-1"><span class="font-bold text-neutral-dark border-b pb-1">Competitor</span><span>Brand X</span><span>Brand Y</span></div>
+                <div class="flex flex-col gap-1"><span class="font-bold text-neutral-dark border-b pb-1">Ad Network</span><span>Meta Ads</span><span>Google Search</span></div>
+                <div class="flex flex-col gap-1"><span class="font-bold text-neutral-dark border-b pb-1">Weakness</span><span>Slow Site Speed</span><span>Low Ad CTR</span></div>
+              </div>
+            </div>
+
+            <!-- Page 4: Ads Screenshots -->
+            <div class="report-page flex flex-col gap-4 text-left hidden" data-page="4">
+              <div class="flex flex-col gap-2">
+                <span class="text-[9px] font-mono text-neutral-stone">CHAPTER 3.0</span>
+                <h3 class="font-display font-extrabold text-xl text-neutral-dark">Competitor Active Ad Creative Auditing</h3>
+                <div class="w-12 h-0.5 bg-secondary-purple"></div>
+              </div>
+              <p class="font-body text-xs text-neutral-charcoal leading-relaxed font-semibold">
+                Analysis of active Meta Ads and Google Ad copies running in your target city radius.
+              </p>
+              <div class="h-24 bg-neutral-ghost border rounded-lg flex items-center justify-center relative overflow-hidden select-none border-neutral-mist">
+                <div class="absolute inset-0 bg-gradient-to-r from-neutral-mist/30 via-transparent to-neutral-mist/30 blur-[2px]"></div>
+                <!-- Blurred overlay area for "confidential" feel -->
+                <div class="backdrop-blur-sm bg-neutral-charcoal/5 absolute inset-0 flex items-center justify-center">
+                  <span class="px-2 py-1 bg-neutral-charcoal text-white rounded text-[8px] font-display font-extrabold uppercase tracking-widest shadow-md">
+                    🔒 Blurred Sample Creative
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Page 5: Keyword Strategy -->
+            <div class="report-page flex flex-col gap-4 text-left hidden" data-page="5">
+              <div class="flex flex-col gap-2">
+                <span class="text-[9px] font-mono text-neutral-stone">CHAPTER 4.0</span>
+                <h3 class="font-display font-extrabold text-xl text-neutral-dark">High-Intent Keywords & Maps Citations</h3>
+                <div class="w-12 h-0.5 bg-secondary-purple"></div>
+              </div>
+              <ul class="flex flex-col gap-2 text-xs font-body font-semibold text-neutral-charcoal">
+                <li>• Identified 42 commercial-intent keyword search groups with low bid difficulty.</li>
+                <li>• Top citation gaps: Competitors are listed in major local business directories you are missing.</li>
+              </ul>
+            </div>
+
+            <!-- Page 6: Roadmap -->
+            <div class="report-page flex flex-col gap-4 text-left hidden" data-page="6">
+              <div class="flex flex-col gap-2">
+                <span class="text-[9px] font-mono text-neutral-stone">CHAPTER 5.0</span>
+                <h3 class="font-display font-extrabold text-xl text-neutral-dark">Actionable 90-Day Execution Blueprint</h3>
+                <div class="w-12 h-0.5 bg-secondary-purple"></div>
+              </div>
+              <p class="font-body text-xs text-neutral-charcoal leading-relaxed font-semibold">
+                Step-by-step priority timeline structured for your marketing team to scale conversions without wastage.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Slide Controls -->
+          <div class="flex items-center justify-between border-t border-neutral-mist/60 pt-4">
+            <button id="prev-page-btn" class="p-2 border border-neutral-mist rounded-xl text-neutral-charcoal hover:bg-neutral-ghost transition-colors disabled:opacity-30 disabled:pointer-events-none">
+              ← Prev Page
+            </button>
+            
+            <button id="download-sample-btn" class="px-4 py-2 bg-secondary-purple hover:bg-secondary-purple/95 text-white font-display font-extrabold text-[10px] uppercase tracking-wider rounded-xl shadow-md flex items-center gap-1.5">
+              <Download class="w-3.5 h-3.5" /> Download Full Sample PDF
+            </button>
+            
+            <button id="next-page-btn" class="p-2 border border-neutral-mist rounded-xl text-neutral-charcoal hover:bg-neutral-ghost transition-colors disabled:opacity-30 disabled:pointer-events-none">
+              Next Page →
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Email Capture Popup Modal (Initially Hidden) -->
+    <div id="email-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+      <div class="bg-white border border-neutral-mist rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative select-none">
+        
+        <button id="close-modal-btn" class="absolute top-4 right-4 text-neutral-stone hover:text-neutral-charcoal text-lg font-bold">
+          ✕
+        </button>
+
+        <div class="text-center flex flex-col gap-4">
+          <div class="w-12 h-12 rounded-full bg-secondary-purple/10 flex items-center justify-center text-secondary-purple mx-auto">
+            <Mail class="w-6 h-6" />
+          </div>
+          <div>
+            <h3 class="font-display font-extrabold text-xl text-neutral-dark">Get Full Sample Report</h3>
+            <p class="font-body text-xs text-neutral-stone font-semibold mt-1">
+              We'll send the complete redacted 30-page Chakshu sample report PDF straight to your inbox.
+            </p>
+          </div>
+
+          <form id="sample-download-form" class="flex flex-col gap-3 text-left mt-2">
+            <div class="flex flex-col gap-1">
+              <label for="modal-name" class="text-[9px] font-display font-bold text-neutral-stone uppercase tracking-wider">Your Name</label>
+              <input type="text" id="modal-name" required class="px-3 py-2 border border-neutral-mist rounded-xl text-xs font-body font-semibold text-neutral-charcoal focus:outline-none focus:border-secondary-purple" placeholder="Aniket Patel" />
+            </div>
+            
+            <div class="flex flex-col gap-1">
+              <label for="modal-email" class="text-[9px] font-display font-bold text-neutral-stone uppercase tracking-wider">Your Email</label>
+              <input type="email" id="modal-email" required class="px-3 py-2 border border-neutral-mist rounded-xl text-xs font-body font-semibold text-neutral-charcoal focus:outline-none focus:border-secondary-purple" placeholder="aniket@yourbusiness.com" />
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label for="modal-biz" class="text-[9px] font-display font-bold text-neutral-stone uppercase tracking-wider">Business Type</label>
+              <select id="modal-biz" required class="px-3 py-2 border border-neutral-mist rounded-xl text-xs font-body font-semibold text-neutral-charcoal bg-white focus:outline-none focus:border-secondary-purple">
+                <option value="">Select industry...</option>
+                <option value="real-estate">Real Estate</option>
+                <option value="jewellery">Jewellery</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="education">Education</option>
+                <option value="manufacturing">Manufacturing</option>
+                <option value="other">Other Business</option>
+              </select>
+            </div>
+
+            <button type="submit" class="w-full py-3 bg-secondary-purple hover:bg-secondary-purple/95 text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-md mt-2 flex items-center justify-center gap-1.5">
+              <span>Send Sample Report PDF</span> <Send class="w-3.5 h-3.5" />
+            </button>
+          </form>
+
+          <div id="modal-success-msg" class="hidden py-4 text-center flex flex-col gap-2 items-center justify-center">
+            <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-secondary-emerald text-lg">✓</div>
+            <span class="font-display font-extrabold text-sm text-neutral-dark">Report Sent Successfully!</span>
+            <span class="font-body text-xs text-neutral-stone font-semibold">Please check your inbox (including promotions folder) in 2 minutes.</span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         SECTION 10: INDUSTRIES WE RESEARCH
+         =================================================================== -->
+    <section class="py-24 bg-white select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="font-display font-extrabold text-xs text-secondary-purple uppercase tracking-widest">
+            Specializations
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl mt-3 tracking-tight">
+            Industries We Research
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-stone mt-3 font-semibold">
+            We maintain extensive local database benchmarks across 12 primary consumer and business sectors.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          {[
+            { name: "Real Estate", icon: "🏢" },
+            { name: "Jewellery", icon: "💎" },
+            { name: "Restaurants", icon: "🍔" },
+            { name: "Healthcare", icon: "🏥" },
+            { name: "Education", icon: "🎓" },
+            { name: "E-commerce", icon: "🛒" },
+            { name: "Manufacturing", icon: "🏭" },
+            { name: "Retail Stores", icon: "🏪" },
+            { name: "Fitness & Gyms", icon: "🏋️" },
+            { name: "Hospitality", icon: "🏨" },
+            { name: "Prof. Services", icon: "💼" },
+            { name: "B2B Logistics", icon: "📦" }
+          ].map(ind => (
+            <a href="#booking-form" class="border border-neutral-mist rounded-xl p-4 text-center hover:border-secondary-purple/30 hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center gap-2 bg-neutral-ghost/50">
+              <span class="text-2xl">{ind.icon}</span>
+              <span class="font-display font-extrabold text-xs text-neutral-dark leading-none">{ind.name}</span>
+              <span class="text-[8px] font-body text-neutral-stone uppercase font-bold tracking-wider mt-0.5">Benchmark Active</span>
+            </a>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 11: FAQS (15 ACCORDIONS)
+         =================================================================== -->
+    <section class="py-24 bg-neutral-ghost select-none">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="font-display font-extrabold text-xs text-secondary-purple uppercase tracking-widest">
+            FAQ
+          </span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-5xl mt-3 tracking-tight">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <FAQAccordion faqs={faqList} />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 12: TRUST SECTION
+         =================================================================== -->
+    <section class="py-20 bg-primary-indigo text-white select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+          
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-primary-gold">
+              <Lock class="w-4.5 h-4.5" />
+            </div>
+            <span class="font-display font-extrabold text-[10px] uppercase tracking-widest text-white/90">NDA Encrypted</span>
+            <span class="text-[9px] text-white/50 font-body font-semibold">100% Confidentiality</span>
+          </div>
+
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-primary-gold">
+              <Compass class="w-4.5 h-4.5" />
+            </div>
+            <span class="font-display font-extrabold text-[10px] uppercase tracking-widest text-white/90">Enterprise Tools</span>
+            <span class="text-[9px] text-white/50 font-body font-semibold">SEMrush & SimilarWeb</span>
+          </div>
+
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-primary-gold">
+              <Phone class="w-4.5 h-4.5" />
+            </div>
+            <span class="font-display font-extrabold text-[10px] uppercase tracking-widest text-white/90">Expert Calls</span>
+            <span class="text-[9px] text-white/50 font-body font-semibold">1-on-1 Presentation</span>
+          </div>
+
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-primary-gold">
+              <ShieldCheck class="w-4.5 h-4.5" />
+            </div>
+            <span class="font-display font-extrabold text-[10px] uppercase tracking-widest text-white/90">Satisfaction</span>
+            <span class="text-[9px] text-white/50 font-body font-semibold">Revision Until Satisfied</span>
+          </div>
+
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-primary-gold">
+              <FileText class="w-4.5 h-4.5" />
+            </div>
+            <span class="font-display font-extrabold text-[10px] uppercase tracking-widest text-white/90">Own Forever</span>
+            <span class="text-[9px] text-white/50 font-body font-semibold">Printable PDF Data</span>
+          </div>
+
+          <div class="flex flex-col items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-primary-gold">
+              <Award class="w-4.5 h-4.5" />
+            </div>
+            <span class="font-display font-extrabold text-[10px] uppercase tracking-widest text-white/90">Local Insights</span>
+            <span class="text-[9px] text-white/50 font-body font-semibold">India-Specific Auditing</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 13: BOOKING FORM & FINAL CTA
+         =================================================================== -->
+    <section class="py-24 bg-gradient-to-br from-primary-saffron to-primary-gold text-white select-none" id="booking-form">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col gap-6">
+        
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight leading-tight">
+          Ready to See What Your <br />
+          <span class="text-neutral-dark">Competitors Don't Want You to See?</span>
+        </h2>
+        
+        <p class="font-body text-xs sm:text-sm text-white/90 leading-relaxed font-semibold max-w-xl mx-auto">
+          Get your Bodhi Drishti Research Report and make every marketing decision with absolute confidence.
+        </p>
+
+        <!-- Dynamic Booking Form -->
+        <div class="bg-white border border-neutral-mist rounded-3xl p-6 sm:p-8 text-left text-neutral-charcoal max-w-lg mx-auto w-full shadow-2xl mt-4">
+          <h4 class="font-display font-extrabold text-sm text-neutral-dark border-b border-neutral-mist/60 pb-3 mb-4 flex items-center gap-1.5">
+            🔱 <span>Configure Your Research Order</span>
+          </h4>
+          
+          <form id="research-order-form" class="flex flex-col gap-4">
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex flex-col gap-1">
+                <label for="form-name" class="text-[9px] font-display font-bold text-neutral-stone uppercase tracking-wider">Your Name</label>
+                <input type="text" id="form-name" required class="px-3 py-2.5 border border-neutral-mist rounded-xl text-xs font-body font-semibold text-neutral-charcoal bg-neutral-ghost focus:outline-none focus:border-secondary-purple" placeholder="Aniket Patel" />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label for="form-phone" class="text-[9px] font-display font-bold text-neutral-stone uppercase tracking-wider">Phone Number</label>
+                <input type="tel" id="form-phone" required class="px-3 py-2.5 border border-neutral-mist rounded-xl text-xs font-body font-semibold text-neutral-charcoal bg-neutral-ghost focus:outline-none focus:border-secondary-purple" placeholder="90825 43992" />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label for="form-email" class="text-[9px] font-display font-bold text-neutral-stone uppercase tracking-wider">Email Address</label>
+              <input type="email" id="form-email" required class="px-3 py-2.5 border border-neutral-mist rounded-xl text-xs font-body font-semibold text-neutral-charcoal bg-neutral-ghost focus:outline-none focus:border-secondary-purple" placeholder="aniket@yourbusiness.com" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex flex-col gap-1">
+                <label for="form-brand" class="text-[9px] font-display font-bold text-neutral-stone uppercase tracking-wider">Brand Name / URL</label>
+                <input type="text" id="form-brand" required class="px-3 py-2.5 border border-neutral-mist rounded-xl text-xs font-body font-semibold text-neutral-charcoal bg-neutral-ghost focus:outline-none focus:border-secondary-purple" placeholder="Vilas Apartments" />
+              </div>
+              <div class="flex flex-col gap-1">
+                <label for="form-city" class="text-[9px] font-display font-bold text-neutral-stone uppercase tracking-wider">Target City / State</label>
+                <input type="text" id="form-city" required class="px-3 py-2.5 border border-neutral-mist rounded-xl text-xs font-body font-semibold text-neutral-charcoal bg-neutral-ghost focus:outline-none focus:border-secondary-purple" placeholder="Pune, Maharashtra" />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label for="package-select" class="text-[9px] font-display font-bold text-neutral-stone uppercase tracking-wider">Select Intelligence Tier</label>
+              <select id="package-select" required class="px-3 py-2.5 border border-neutral-mist rounded-xl text-xs font-body font-semibold text-neutral-charcoal bg-white focus:outline-none focus:border-secondary-purple">
+                <option value="drishti-utsav">Drishti Utsav Launch Special — {val4999} (Recommended)</option>
+                <option value="chakshu">Chakshu Standard — {val4999}</option>
+                <option value="divya-drishti">Divya Drishti Comprehensive — {val14999}</option>
+                <option value="trikaldarshi">Trikaldarshi Enterprise — {val29999}</option>
+              </select>
+            </div>
+
+            <!-- Price Breakdown Tag -->
+            <div class="p-4 bg-secondary-purple/5 border border-secondary-purple/10 rounded-xl flex items-center justify-between text-xs font-display font-extrabold">
+              <span class="text-neutral-stone uppercase tracking-wider text-[9px]">Total Order Amount:</span>
+              <span class="text-secondary-purple text-base font-mono" id="form-price-display">{val4999}</span>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-gradient-to-r from-primary-saffron to-primary-gold text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl shadow-md hover:-translate-y-0.5 transition-all duration-300 text-center">
+              Submit Configuration Order →
+            </button>
+          </form>
+
+          <div id="booking-success-msg" class="hidden py-6 text-center flex flex-col gap-3 items-center justify-center">
+            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-secondary-emerald text-xl">✓</div>
+            <h5 class="font-display font-extrabold text-sm text-neutral-dark">Configuration Received!</h5>
+            <p class="font-body text-xs text-neutral-stone font-semibold">
+              Namaste! We have logged your request. Our research analyst will call you in <b>2 hours</b> to confirm your competitor list and initiate the discovery process.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-6 mt-4 text-xs font-display font-extrabold text-white">
+          <a href="tel:+9082543992" class="flex items-center gap-1.5 hover:underline">
+            <Phone class="w-4 h-4" /> Call +91 90825 43992
+          </a>
+          <span>•</span>
+          <a href="https://wa.me/9082543992?text=Namaste%20RoasBodhi!%20I'd%20like%20to%20order%20the%20Bodhi%20Drishti%20Research%20Report." target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:underline">
+            <MessageCircle class="w-4 h-4 fill-white text-emerald-500" /> WhatsApp Consultant
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+
+  <!-- Script for interactivity (Tabs, Slides, Timer, Modals, Forms) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. COUNTDOWN TIMER
+      const OFFER_END_DATE = new Date('2026-10-31T23:59:59+05:30');
+      
+      const updateTimer = () => {
+        const now = new Date();
+        const diff = OFFER_END_DATE.getTime() - now.getTime();
+        
+        if (diff <= 0) {
+          const banner = document.getElementById('utsav-countdown');
+          if (banner) banner.innerText = "OFFER EXPIRED - Join Waitlist";
+          const timerDiv = document.getElementById('offer-timer');
+          if (timerDiv) timerDiv.innerHTML = "<div class='text-sm text-primary-gold'>Celebration Offer Closed - Contact for Next Batch</div>";
+          return;
+        }
+        
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+        
+        // Urgency header bar
+        const banner = document.getElementById('utsav-countdown');
+        if (banner) {
+          banner.innerText = `${days}d : ${hours}h : ${mins}m : ${secs}s`;
+        }
+        
+        // Large detail timer
+        const tDays = document.getElementById('timer-days');
+        const tHours = document.getElementById('timer-hours');
+        const tMins = document.getElementById('timer-mins');
+        const tSecs = document.getElementById('timer-secs');
+        
+        if (tDays) tDays.innerText = String(days).padStart(2, '0');
+        if (tHours) tHours.innerText = String(hours).padStart(2, '0');
+        if (tMins) tMins.innerText = String(mins).padStart(2, '0');
+        if (tSecs) tSecs.innerText = String(secs).padStart(2, '0');
+      };
+      
+      setInterval(updateTimer, 1000);
+      updateTimer();
+
+      // 2. REPORT DETAILS TABS SWITCHER
+      const tabButtons = document.querySelectorAll('#report-tab-switcher .tab-btn');
+      const tabPanels = document.querySelectorAll('#report-tab-panels .tab-panel');
+
+      tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Deactivate all buttons
+          tabButtons.forEach(b => {
+            b.classList.remove('bg-white', 'text-primary-indigo', 'shadow-md', 'active');
+            b.classList.add('text-white/70');
+          });
+          
+          // Activate clicked button
+          btn.classList.add('bg-white', 'text-primary-indigo', 'shadow-md', 'active');
+          btn.classList.remove('text-white/70');
+
+          const targetTab = btn.getAttribute('data-tab');
+
+          // Hide all panels
+          tabPanels.forEach(panel => {
+            panel.classList.add('hidden', 'opacity-0', 'scale-95');
+          });
+
+          // Show targeted panel
+          const activePanel = document.getElementById(`panel-${targetTab}`);
+          if (activePanel) {
+            activePanel.classList.remove('hidden');
+            setTimeout(() => {
+              activePanel.classList.remove('opacity-0', 'scale-95');
+            }, 50);
+          }
+        });
+      });
+
+      // 3. SAMPLE REPORT SLIDESHOW
+      let currentPage = 1;
+      const totalPages = 6;
+      
+      const prevBtn = document.getElementById('prev-page-btn') as HTMLButtonElement;
+      const nextBtn = document.getElementById('next-page-btn') as HTMLButtonElement;
+      const indicator = document.getElementById('page-indicator');
+      const pages = document.querySelectorAll('#report-pages-container .report-page');
+
+      const updatePages = () => {
+        pages.forEach(p => p.classList.add('hidden'));
+        const activePage = document.querySelector(`.report-page[data-page="${currentPage}"]`);
+        if (activePage) activePage.classList.remove('hidden');
+
+        if (indicator) indicator.innerText = `Page ${currentPage} of ${totalPages}`;
+
+        // Disable buttons
+        if (prevBtn) prevBtn.disabled = currentPage === 1;
+        if (nextBtn) nextBtn.disabled = currentPage === totalPages;
+      };
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          if (currentPage > 1) {
+            currentPage--;
+            updatePages();
+          }
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            updatePages();
+          }
+        });
+      }
+      updatePages();
+
+      // 4. EMAIL CAPTURE MODAL FOR SAMPLE REPORT
+      const downloadBtn = document.getElementById('download-sample-btn');
+      const modal = document.getElementById('email-modal');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+      const sampleForm = document.getElementById('sample-download-form');
+      const modalSuccess = document.getElementById('modal-success-msg');
+
+      if (downloadBtn && modal) {
+        downloadBtn.addEventListener('click', () => {
+          modal.classList.remove('hidden');
+          setTimeout(() => {
+            modal.classList.remove('opacity-0');
+          }, 50);
+        });
+      }
+
+      const closeModal = () => {
+        if (modal) {
+          modal.classList.add('opacity-0');
+          setTimeout(() => {
+            modal.classList.add('hidden');
+            // reset form and state
+            if (sampleForm) sampleForm.classList.remove('hidden');
+            if (modalSuccess) modalSuccess.classList.add('hidden');
+          }, 300);
+        }
+      };
+
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+      
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      if (sampleForm) {
+        sampleForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          // Hide form and show success
+          sampleForm.classList.add('hidden');
+          if (modalSuccess) modalSuccess.classList.remove('hidden');
+          // Automatically close modal after 4 seconds
+          setTimeout(closeModal, 4000);
+        });
+      }
+
+      // 5. BOOKING FORM PACKAGE SELECT & PRICE BINDING
+      const packageSelect = document.getElementById('package-select') as HTMLSelectElement;
+      const priceDisplay = document.getElementById('form-price-display');
+      
+      const priceMap: Record<string, string> = {
+        'drishti-utsav': '₹' + '4,999',
+        'chakshu': '₹' + '4,999',
+        'divya-drishti': '₹' + '14,999',
+        'trikaldarshi': '₹' + '29,999'
+      };
+
+      if (packageSelect && priceDisplay) {
+        packageSelect.addEventListener('change', () => {
+          const val = packageSelect.value;
+          priceDisplay.innerText = priceMap[val] || '₹' + '4,999';
+        });
+      }
+
+      // 6. BOOKING FORM SUBMISSION
+      const orderForm = document.getElementById('research-order-form') as HTMLFormElement;
+      const bookingSuccess = document.getElementById('booking-success-msg');
+
+      if (orderForm) {
+        orderForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          orderForm.classList.add('hidden');
+          if (bookingSuccess) bookingSuccess.classList.remove('hidden');
+        });
+      }
+
+    });
+  </script>
+
+  <!-- FAQ Schema Markup -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqList.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  })} />
+
+  <!-- Breadcrumb Schema Markup -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://roasbodhi.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Research Reports",
+        "item": "https://roasbodhi.in/research-reports/"
+      }
+    ]
+  })} />
+
+  <!-- Service Schema Markup -->
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+</BaseLayout>

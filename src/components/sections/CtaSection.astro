@@ -1,0 +1,231 @@
+---
+import { MessageCircle, ArrowRight } from 'lucide-astro';
+---
+
+<section id="contact-form-section" class="py-24 bg-gradient-to-r from-primary-saffron to-primary-gold relative overflow-hidden select-none text-white text-center">
+  
+  <!-- Noise Texture overlay -->
+  <div class="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-40 z-0"></div>
+  <div class="absolute inset-0 bg-black/5 pointer-events-none z-0"></div>
+
+  <!-- FLOATING DECORATIONS (Floating emojis) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    <span class="absolute top-10 left-10 text-3xl opacity-20 animate-float">🚀</span>
+    <span class="absolute bottom-10 left-20 text-3xl opacity-20 animate-float" style="animation-delay: 2s;">🎯</span>
+    <span class="absolute top-20 right-10 text-3xl opacity-20 animate-float" style="animation-delay: 4s;">📈</span>
+    <span class="absolute bottom-20 right-20 text-3xl opacity-20 animate-float" style="animation-delay: 6s;">🔱</span>
+    <span class="absolute top-1/2 left-1/3 text-3xl opacity-10 animate-float" style="animation-delay: 1.5s;">⭐</span>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- BADGE -->
+    <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white text-primary-saffron text-xs font-display font-extrabold uppercase tracking-widest shadow-md mb-6">
+      🔱 Limited Time — Bodhi Utsav Offer Active
+    </div>
+
+    <!-- HEADINGS -->
+    <h2 class="font-display font-extrabold text-3xl sm:text-6xl text-white tracking-tight leading-tight max-w-3xl mx-auto">
+      Ready to Awaken <br />
+      <span>Your Ad Returns?</span>
+    </h2>
+    
+    <p class="font-body text-xs sm:text-base text-white/90 mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+      Get your FREE ROAS Audit in under 24 hours. <br />
+      No commitment. No credit card. Just clarity.
+    </p>
+
+    <!-- INLINE FORM -->
+    <form 
+      id="local-page-form"
+      action="https://api.web3forms.com/submit" 
+      method="POST" 
+      class="mt-12 max-w-4xl mx-auto flex flex-col sm:flex-row gap-4 items-stretch select-none text-neutral-dark"
+    >
+      <!-- Web3Forms Hidden Inputs -->
+      <input type="hidden" name="access_key" value="[USER_WILL_ADD_KEY]">
+      <input type="hidden" name="subject" value="Inline Free Audit Inquiry - RoasBodhi Website">
+      <input type="hidden" name="from_name" value="RoasBodhi Website">
+      <input type="hidden" name="redirect" value="https://roasbodhi.in/thank-you/">
+      
+      <!-- Honeypot Anti-Spam field -->
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+      
+      <!-- UTM Parameter Captures -->
+      <input type="hidden" name="utm_source" id="cta_utm_source" value="website">
+      <input type="hidden" name="utm_medium" id="cta_utm_medium" value="form">
+      <input type="hidden" name="utm_campaign" id="cta_utm_campaign" value="cta_section">
+
+      <input 
+        type="text" 
+        name="name" 
+        required 
+        placeholder="Your Name" 
+        class="flex-grow px-6 py-4 rounded-full bg-white text-neutral-dark placeholder-neutral-stone border-none focus:outline-none focus:ring-2 focus:ring-primary-indigo text-sm font-body font-semibold shadow-inner"
+      />
+      <input 
+        type="tel" 
+        name="phone" 
+        required 
+        placeholder="WhatsApp Number" 
+        class="flex-grow px-6 py-4 rounded-full bg-white text-neutral-dark placeholder-neutral-stone border-none focus:outline-none focus:ring-2 focus:ring-primary-indigo text-sm font-body font-semibold shadow-inner"
+      />
+      <select 
+        name="business_type" 
+        required 
+        class="flex-grow px-6 py-4 rounded-full bg-white text-neutral-charcoal border-none focus:outline-none focus:ring-2 focus:ring-primary-indigo text-sm font-body font-semibold shadow-inner cursor-pointer"
+      >
+        <option value="" disabled selected>Business Type</option>
+        <option value="Restaurant">Restaurant / Cafe</option>
+        <option value="Clinic">Dental / Medical Clinic</option>
+        <option value="Real Estate">Real Estate Agent/Developer</option>
+        <option value="Retail">Retail Store / Jewellery</option>
+        <option value="Education">Coaching / Education</option>
+        <option value="Manufacturing">B2B Manufacturing</option>
+        <option value="E-commerce">E-commerce Brand</option>
+        <option value="Other">Other SMB Business</option>
+      </select>
+      
+      <button 
+        type="submit" 
+        class="px-8 py-4 bg-primary-indigo hover:bg-neutral-dark text-white rounded-full font-display font-extrabold text-xs tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-1.5 shadow-lg flex-shrink-0 hover:scale-105 active:scale-95"
+      >
+        <span>Get Free Audit</span>
+        <ArrowRight class="w-4 h-4" />
+      </button>
+    </form>
+
+    <!-- Form Footer text -->
+    <p class="text-[10px] font-body text-white/70 font-semibold tracking-wider mt-4">
+      🔒 100% Private. We respect your inbox privacy and will never spam you.
+    </p>
+
+    <!-- OR Divider -->
+    <div class="flex items-center justify-center gap-4 my-8 max-w-xs mx-auto">
+      <span class="h-px bg-white/20 flex-grow"></span>
+      <span class="text-[10px] font-display font-extrabold uppercase tracking-widest text-white/50">OR</span>
+      <span class="h-px bg-white/20 flex-grow"></span>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <a 
+      id="cta-whatsapp-link"
+      href="https://wa.me/919082543992?text=Namaste%20RoasBodhi%E2%84%A2!%20I%27d%20like%20to%20claim%20my%20Free%20ROAS%20Audit%20for%20my%20business.&utm_source=website&utm_medium=button&utm_campaign=cta_section" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-700 rounded-full font-display font-extrabold text-xs tracking-wider uppercase shadow-md hover:scale-105 transition-all duration-300"
+    >
+      <MessageCircle class="w-4.5 h-4.5 fill-white text-white" />
+      <span>Chat on WhatsApp</span>
+    </a>
+
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Capture and Set UTMs in form
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get('utm_source') || 'website';
+    const utmMedium = urlParams.get('utm_medium') || 'form';
+    const utmCampaign = urlParams.get('utm_campaign') || 'cta_section';
+
+    const sourceInput = document.getElementById('cta_utm_source');
+    const mediumInput = document.getElementById('cta_utm_medium');
+    const campaignInput = document.getElementById('cta_utm_campaign');
+
+    if (sourceInput) sourceInput.value = utmSource;
+    if (mediumInput) mediumInput.value = utmMedium;
+    if (campaignInput) campaignInput.value = utmCampaign;
+
+    // 2. Track WhatsApp Click
+    const waLink = document.getElementById('cta-whatsapp-link');
+    if (waLink) {
+      waLink.addEventListener('click', () => {
+        if (window.gtag) {
+          window.gtag('event', 'whatsapp_click', { button_location: 'cta_section' });
+        }
+      });
+    }
+
+    // 3. Client side Validation & AJAX Submission
+    const form = document.getElementById('local-page-form');
+    if (form) {
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const submitBtnSpan = submitBtn.querySelector('span');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Basic validation checks
+        const name = form.elements['name'].value.trim();
+        const phone = form.elements['phone'].value.trim();
+        const businessType = form.elements['business_type'].value;
+
+        if (!name || !phone || !businessType) {
+          window.showToast("Please fill in all required fields.", "error");
+          return;
+        }
+
+        // Phone check (10 to 15 digits)
+        const phoneRegex = /^\+?[0-9\s-]{10,15}$/;
+        if (!phoneRegex.test(phone.replace(/\+/g, ''))) {
+          window.showToast("Please enter a valid 10-15 digit phone number.", "error");
+          return;
+        }
+
+        // Honeypot check
+        if (form.elements['botcheck'].checked) {
+          console.warn("Spam detected");
+          return;
+        }
+
+        // Load State (Disable button and show status text)
+        submitBtn.disabled = true;
+        const origText = submitBtnSpan.textContent;
+        submitBtnSpan.textContent = "Sending...";
+
+        const formData = new FormData(form);
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(async (response) => {
+          const json = await response.json();
+          if (response.status === 200) {
+            // GA4 event
+            if (window.gtag) {
+              window.gtag('event', 'form_submit', {
+                form_location: 'cta_section',
+                utm_source: utmSource,
+                utm_medium: utmMedium,
+                utm_campaign: utmCampaign
+              });
+            }
+            window.showToast("Inquiry submitted! Redirecting...", "success");
+            setTimeout(() => {
+              window.location.href = '/thank-you/';
+            }, 1500);
+          } else {
+            if (window.gtag) {
+              window.gtag('event', 'form_error', { form_location: 'cta_section', error_message: json.message || 'unknown_error' });
+            }
+            window.showToast(json.message || "Failed to submit. Please check access key.", "error");
+            submitBtn.disabled = false;
+            submitBtnSpan.textContent = origText;
+          }
+        })
+        .catch((err) => {
+          if (window.gtag) {
+            window.gtag('event', 'form_error', { form_location: 'cta_section', error_message: 'network_failure' });
+          }
+          window.showToast("Network failure. Please chat on WhatsApp instead.", "error");
+          submitBtn.disabled = false;
+          submitBtnSpan.textContent = origText;
+        });
+      });
+    }
+  });
+</script>
+

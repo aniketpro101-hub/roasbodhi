@@ -1,0 +1,240 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const pageTitle = "Legal Center & Annexures | RoasBodhi";
+const pageDescription = "Access all legal policies, acceptable use terms, cancellation guidelines, DPDP compliance notices, and data processing agreements for RoasBodhi™.";
+
+// Active date markers
+const effectiveDate = "July 18, 2026";
+const lastUpdated = "July 18, 2026";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} noIndex={true}>
+  
+  <Header />
+
+  <main class="flex-grow pt-32 pb-24 bg-neutral-ghost text-neutral-charcoal text-left select-none">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Page Header -->
+      <div class="mb-12 border-b border-neutral-mist pb-8">
+        <span class="px-3 py-1 rounded-full bg-primary-saffron/10 text-primary-saffron text-[10px] font-display font-extrabold uppercase tracking-widest">
+          Namaste Sales Enterprises
+        </span>
+        <h1 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl mt-3 tracking-tight">
+          Legal Center & Annexures
+        </h1>
+        <p class="font-body text-xs text-neutral-stone mt-2 font-semibold">
+          Effective: {effectiveDate} | Last Updated: {lastUpdated}
+        </p>
+      </div>
+
+      <!-- Legal Hub Grid layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Sidebar Navigation Menu (lg:col-span-3) -->
+        <aside class="lg:col-span-3 bg-white border border-neutral-mist rounded-3xl p-6 shadow-sm sticky top-28 flex flex-col gap-4">
+          <h3 class="font-display font-extrabold text-xs text-neutral-dark uppercase tracking-wider border-b border-neutral-mist pb-2">
+            Legal Directory
+          </h3>
+          <nav class="flex flex-col gap-2 font-display font-extrabold text-xs text-neutral-stone uppercase tracking-wide">
+            <a href="#aup" class="hover:text-primary-saffron transition-all block">1. Acceptable Use</a>
+            <a href="#cancellation" class="hover:text-primary-saffron transition-all block">2. Cancellation</a>
+            <a href="#dpdp" class="hover:text-primary-saffron transition-all block">3. DPDP Act Notice</a>
+            <a href="#grievance" class="hover:text-primary-saffron transition-all block">4. Grievance Redressal</a>
+            <a href="#email" class="hover:text-primary-saffron transition-all block">5. Email Disclaimer</a>
+            <a href="#whatsapp" class="hover:text-primary-saffron transition-all block">6. WhatsApp Policy</a>
+            <a href="#onboarding" class="hover:text-primary-saffron transition-all block">7. Client KYC Onboarding</a>
+            <a href="#dpa" class="hover:text-primary-saffron transition-all block">8. Data Processing (DPA)</a>
+          </nav>
+        </aside>
+
+        <!-- Main legal contents (lg:col-span-9) -->
+        <div class="lg:col-span-9 bg-white border border-neutral-mist rounded-3xl p-6 sm:p-10 shadow-sm space-y-16">
+          
+          <!-- DOCUMENT 1: ACCEPTABLE USE POLICY -->
+          <section id="aup" class="space-y-4 border-b border-neutral-mist pb-12">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-primary-saffron text-white text-[9px] font-display font-extrabold uppercase">Doc 1</span>
+              <h2 class="font-display font-extrabold text-lg text-neutral-dark">1. ACCEPTABLE USE POLICY</h2>
+            </div>
+            <div class="prose prose-sm text-neutral-charcoal/90 text-xs space-y-3 leading-relaxed">
+              <p>
+                This Acceptable Use Policy defines the parameters for accessing and utilizing the Website, marketing tools, code frameworks, and advertising channels managed by the Company. Any use of our systems that compromises performance or violates local laws is strictly prohibited.
+              </p>
+              <p class="font-bold uppercase tracking-wider text-primary-saffron text-[10px]">Prohibited Activities List:</p>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>Deploying scripts or bots for illegal activity or unauthorized access attempts.</li>
+                <li>Transmitting malicious programs, trojans, ransomware, or keyloggers.</li>
+                <li>Engaging in system attacks, SQL injections, or server overloading.</li>
+                <li>Scraping, mining, or extracting data from our location-specific landing pages.</li>
+                <li>Sharing dashboard credentials or client credentials with unauthorized third parties.</li>
+                <li>Creating multiple user accounts to bypass account restrictions or payment defaults.</li>
+                <li>Attempting to reverse-engineer our custom Astro.js layouts or sitemap crawlers.</li>
+                <li>Filing false payment disputes or fraudulent gateway claims.</li>
+                <li>Using our GMB optimizations to list nonexistent storefronts or dummy addresses.</li>
+                <li>Sending unsolicited spam, marketing broadcasts, or phishing emails.</li>
+              </ul>
+              <p>
+                **Consequences of Violation:** Violation of this policy results in the immediate termination of all active campaigns, access restrictions, and blacklisting from future services. The Company reserves the right to report illegal activities to the **Cyber Crime Cell of Navi Mumbai** and seek damages up to **₹10,00,000 INR**.
+              </p>
+            </div>
+          </section>
+
+          <!-- DOCUMENT 2: CANCELLATION POLICY -->
+          <section id="cancellation" class="space-y-4 border-b border-neutral-mist pb-12">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-primary-saffron text-white text-[9px] font-display font-extrabold uppercase">Doc 2</span>
+              <h2 class="font-display font-extrabold text-lg text-neutral-dark">2. CANCELLATION POLICY</h2>
+            </div>
+            <div class="prose prose-sm text-neutral-charcoal/90 text-xs space-y-3 leading-relaxed">
+              <p>
+                We maintain clear cancellation policies across our services to protect campaign performance and upfront investments.
+              </p>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>**Web Design Projects:** The Client can cancel web projects at any time before design approval. Setup fees and domain costs are non-refundable once registered.</li>
+                <li>**Monthly Ad Management Retainers:** Billed monthly in advance. To cancel, the Client must provide a **15-day written notice** before the next billing cycle. If notice is given later than 15 days, the current month will be billed in full, and the cancellation will take effect the following month.</li>
+                <li>**Reactivation:** Paused accounts due to late payments require a **₹2,000 reactivation fee** to cover account restructuring and ad redeployments.</li>
+                <li>**Access Removal:** Upon termination, all agency partner access to Meta Business Managers, Google Ads, and GMB accounts will be removed within **48 hours**. The Client must remove our agency permissions from their platforms.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- DOCUMENT 3: DPDP ACT 2023 COMPLIANCE NOTICE -->
+          <section id="dpdp" class="space-y-4 border-b border-neutral-mist pb-12">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-primary-saffron text-white text-[9px] font-display font-extrabold uppercase">Doc 3</span>
+              <h2 class="font-display font-extrabold text-lg text-neutral-dark">3. DPDP ACT 2023 COMPLIANCE NOTICE</h2>
+            </div>
+            <div class="prose prose-sm text-neutral-charcoal/90 text-xs space-y-3 leading-relaxed">
+              <p>
+                In compliance with Section 5 of the **Digital Personal Data Protection Act, 2023 (DPDP Act)**, this notice details the categories of personal data we collect, process, and store, and your rights as a **Data Principal**.
+              </p>
+              <p class="font-bold text-neutral-dark">Processed Categories & Purpose:</p>
+              <p>
+                We collect names, emails, mobile numbers, WhatsApp numbers, and business metrics to configure ad campaigns, construct web previews, process payments, and verify identities. Processing is done with your explicit, specific, informed, and withdrawable consent, or for contractual obligations.
+              </p>
+              <p class="font-bold text-neutral-dark">Your Rights as a Data Principal:</p>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>**Right to Information:** Access details about your personal data processed by us and the processing activities performed.</li>
+                <li>**Right to Correction & Erasure:** Request updates to incorrect records or permanent deletion of your data when the consent purpose is completed.</li>
+                <li>**Right to Nominate:** Nominate another individual to exercise your rights in the event of death or incapacity.</li>
+                <li>**Right to Grievance Redressal:** Submit formal complaints to our Grievance Officer, or escalate unresolved disputes to the **Data Protection Board of India (DPBI)**.</li>
+              </ul>
+              <p>
+                To withdraw consent or exercise your rights, email us at <a href="mailto:roasbodhi@gmail.com" class="text-primary-saffron hover:underline font-semibold">roasbodhi@gmail.com</a>. We will process and address your request within 30 days.
+              </p>
+            </div>
+          </section>
+
+          <!-- DOCUMENT 4: GRIEVANCE REDRESSAL POLICY -->
+          <section id="grievance" class="space-y-4 border-b border-neutral-mist pb-12">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-primary-saffron text-white text-[9px] font-display font-extrabold uppercase">Doc 4</span>
+              <h2 class="font-display font-extrabold text-lg text-neutral-dark">4. GRIEVANCE REDRESSAL POLICY</h2>
+            </div>
+            <div class="prose prose-sm text-neutral-charcoal/90 text-xs space-y-3 leading-relaxed">
+              <p>
+                In compliance with the IT Act 2000 and the DPDP Act 2023, we provide a structured grievance redressal mechanism for all users:
+              </p>
+              <div class="bg-neutral-ghost/50 border border-neutral-mist p-4 rounded-xl space-y-1 text-xs">
+                <p>**Grievance Officer:** Aniket (Founder)</p>
+                <p>**Contact Email:** <a href="mailto:roasbodhi@gmail.com" class="text-primary-saffron hover:underline">roasbodhi@gmail.com</a></p>
+                <p>**Registered Address:** 501 Shankar Apartment Sec 20 Nerul W Navi Mumbai 400706</p>
+                <p>**Business Hours:** Monday - Saturday, 10 AM - 5 PM IST</p>
+              </div>
+              <p class="font-bold text-neutral-dark">Escalation Matrix:</p>
+              <ul class="list-disc pl-6 space-y-1">
+                <li>**Level 1 (Customer Support):** Submitted to support representatives. Response within 5 business days.</li>
+                <li>**Level 2 (Grievance Officer):** Formal complaints escalated to the Grievance Officer. Acknowledged within 24 hours and resolved within 15 business days.</li>
+                <li>**Level 3 (Company Head):** Escalated directly to the founder. Final agency decision within 15 days.</li>
+                <li>**Level 4 (Arbitration):** Binding arbitration held in Navi Mumbai, Maharashtra.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- DOCUMENT 5: EMAIL DISCLAIMER -->
+          <section id="email" class="space-y-4 border-b border-neutral-mist pb-12">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-primary-saffron text-white text-[9px] font-display font-extrabold uppercase">Doc 5</span>
+              <h2 class="font-display font-extrabold text-lg text-neutral-dark">5. EMAIL DISCLAIMER</h2>
+            </div>
+            <div class="prose prose-sm text-neutral-charcoal/90 text-xs space-y-3 leading-relaxed">
+              <p>
+                The following disclaimer applies to all business emails sent by RoasBodhi™ representatives:
+              </p>
+              <div class="bg-neutral-ghost/50 border border-neutral-mist p-4 rounded-xl text-[10px] font-mono leading-relaxed text-neutral-charcoal/80">
+                **CONFIDENTIALITY NOTICE:** This email transmission, including any attachments, is intended strictly for the designated recipient and may contain proprietary or legally privileged information. If you are not the intended recipient, any dissemination, copying, distribution, or action taken in reliance on this information is strictly prohibited. If you received this mail in error, please notify the sender immediately and delete the original message. We do not warrant that this email is free of viruses or transmission errors. Views expressed in this mail belong to the individual sender and do not bind the company unless explicitly confirmed in writing by an authorized representative of Namaste Sales Enterprises.
+              </div>
+            </div>
+          </section>
+
+          <!-- DOCUMENT 6: WHATSAPP COMMUNICATION POLICY -->
+          <section id="whatsapp" class="space-y-4 border-b border-neutral-mist pb-12">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-primary-saffron text-white text-[9px] font-display font-extrabold uppercase">Doc 6</span>
+              <h2 class="font-display font-extrabold text-lg text-neutral-dark">6. WHATSAPP COMMUNICATION POLICY</h2>
+            </div>
+            <div class="prose prose-sm text-neutral-charcoal/90 text-xs space-y-3 leading-relaxed">
+              <p>
+                We use WhatsApp Business APIs (+91 9082543992) to facilitate fast campaign updates, previews, and support communications:
+              </p>
+              <ul class="list-disc pl-6 space-y-1.5">
+                <li>**Consent:** By submitting your number on our website forms, you consent to receive updates, reports, and marketing messages on WhatsApp.</li>
+                <li>**Opt-Out:** You can opt-out at any time by replying **"STOP"** to our chat thread or emailing <a href="mailto:roasbodhi@gmail.com" class="text-primary-saffron hover:underline font-semibold">roasbodhi@gmail.com</a>.</li>
+                <li>**Legal Validity:** In accordance with the IT Act 2000, written project approvals, design sign-offs, and payment confirmations sent via WhatsApp are legally binding.</li>
+                <li>**Grievance Policy:** Abuse, threat messages, or spamming inside our support chats will result in the immediate termination of services.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- DOCUMENT 7: CLIENT ONBOARDING CHECKLIST -->
+          <section id="onboarding" class="space-y-4 border-b border-neutral-mist pb-12">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-primary-saffron text-white text-[9px] font-display font-extrabold uppercase">Doc 7</span>
+              <h2 class="font-display font-extrabold text-lg text-neutral-dark">7. CLIENT ONBOARDING CHECKLIST</h2>
+            </div>
+            <div class="prose prose-sm text-neutral-charcoal/90 text-xs space-y-3 leading-relaxed">
+              <p>
+                To ensure compliance and smooth project execution, all Clients must complete the following onboarding steps:
+              </p>
+              <ul class="list-disc pl-6 space-y-1.5">
+                <li>**KYC Verification:** Provide business registration proof (GSTIN certificate, Proprietorship PAN, or Partnership Deed) and registered address verification.</li>
+                <li>**Agreement Execution:** Sign the Master Service Agreement (MSA) template digitally.</li>
+                <li>**Platform Access:** Grant agency permissions to Meta Business Managers, Google Ads managers, or Google Business Profiles.</li>
+                <li>**Onboarding Brief:** Complete our campaign brief details (budget allocations, target locations, top competitor keywords).</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- DOCUMENT 8: DATA PROCESSING AGREEMENT (DPA) -->
+          <section id="dpa" class="space-y-4">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded bg-primary-saffron text-white text-[9px] font-display font-extrabold uppercase">Doc 8</span>
+              <h2 class="font-display font-extrabold text-lg text-neutral-dark">8. DATA PROCESSING AGREEMENT (DPA)</h2>
+            </div>
+            <div class="prose prose-sm text-neutral-charcoal/90 text-xs space-y-3 leading-relaxed">
+              <p>
+                This Data Processing Agreement (DPA) defines the data privacy roles and obligations when the Company processes personal data on behalf of the Client:
+              </p>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>**Roles:** The Client acts as the **Data Controller** (determines the purpose of processing), and the Company acts as the **Data Processor** (processes data strictly on the Client's written instructions).</li>
+                <li>**Data Security:** The Processor implements reasonable security practices (SSL encryption, access controls, database isolation) to protect customer details from unauthorized access.</li>
+                <li>**Breach Notification:** In the event of a security breach affecting the Client's customer data, the Processor will notify the Controller within **72 hours**, detailing the breach and mitigation steps taken.</li>
+                <li>**Data Deletion:** Upon termination of services, the Processor will delete or return all customer data in its possession, unless statutory storage mandates require retention.</li>
+              </ul>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+
+</BaseLayout>

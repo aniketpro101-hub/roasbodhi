@@ -1,0 +1,14 @@
+---
+interface Props {
+  schema: Record<string, any> | Record<string, any>[];
+}
+
+const { schema } = Astro.props;
+
+// Basic validation to check that the schema property is an object/array and not empty
+const isValid = schema && typeof schema === 'object';
+---
+
+{isValid && (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+)}

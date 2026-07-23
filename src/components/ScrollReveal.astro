@@ -1,0 +1,57 @@
+---
+interface Props {
+  delay?: number; // in ms
+  direction?: 'up' | 'left' | 'right' | 'fade';
+  class?: string;
+}
+
+const { delay = 0, direction = 'up', class: className = '' } = Astro.props;
+
+// Translate direction prop to CSS initial class states
+const directionClasses = {
+  up: 'translate-y-8 opacity-0',
+  left: 'translate-x-8 opacity-0',
+  right: '-translate-x-8 opacity-0',
+  fade: 'opacity-0'
+};
+
+const initialClass = directionClasses[direction];
+---
+
+<div 
+  class={`scroll-reveal transition-all duration-700 ease-out ${initialClass} ${className}`}
+  data-delay={delay}
+>
+  <slot />
+</div>
+
+<script>
+  // Simple, token-efficient intersection observer for scroll reveals
+  document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('.scroll-reveal');
+    
+    // Disable animations if user prefers reduced motion (accessibility)
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      elements.forEach(el => el.classList.remove('translate-y-8', 'translate-x-8', '-translate-x-8', 'opacity-0'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const delay = el.dataset.delay ? parseInt(el.dataset.delay) : 0;
+          
+          setTimeout(() => {
+            el.classList.remove('translate-y-8', 'translate-x-8', '-translate-x-8', 'opacity-0');
+            el.classList.add('translate-y-0', 'translate-x-0', 'opacity-100');
+          }, delay);
+          
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    elements.forEach(el => observer.observe(el));
+  });
+</script>

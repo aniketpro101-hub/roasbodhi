@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CityHero from '../components/sections/CityHero.astro';
+import LocalInsights from '../components/sections/LocalInsights.astro';
+import CityServices from '../components/sections/CityServices.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import CtaSection from '../components/sections/CtaSection.astro';
+import { MapPin, Users, Briefcase } from 'lucide-astro';
+
+// Load our databases
+import citiesData from '../data/cities.json';
+import servicesData from '../data/services.json';
+
+// Import SEO & Schema Utilities
+import { generateCityServiceTitle, generateCityServiceMeta } from '../utils/seo';
+import { generateLocalBusinessSchema, generateServiceSchema, generateFAQSchema } from '../utils/schema';
+
+// Import FAQ Content Builder
+import { generateCitySpecificFAQs } from '../utils/content-generator';
+
+// Static Paths generation combining every city with every service
+export async function getStaticPaths() {
+  const paths = [];
+  
+  for (const city of citiesData) {
+    for (const service of servicesData) {
+      paths.push({
+        params: {
+          service: service.slug,
+          city: city.slug
+        },
+        props: {
+          city,
+          service
+        }
+      });
+    }
+  }
+  
+  return paths;
+}
+
+interface Props {
+  city: typeof citiesData[0];
+  service: typeof servicesData[0];
+}
+
+const { city, service } = Astro.props;
+
+// Compile Dynamic SEO Metadata
+const pageTitle = generateCityServiceTitle(service.name, city.name, city.state);
+const pageDescription = generateCityServiceMeta(service.id, city.name, city.state, city.top_industries);
+
+// Generate city-specific local FAQs dynamically
+const localFaqs = generateCitySpecificFAQs(city, service.name);
+
+// Generate Combined Structured JSON-LD Data
+const localBusinessSchema = generateLocalBusinessSchema(city, service);
+const serviceSchema = generateServiceSchema(service, city);
+const faqSchema = generateFAQSchema(localFaqs);
+
+const combinedSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    localBusinessSchema,
+    serviceSchema,
+    faqSchema
+  ]
+};
+const pageKeywords = `${service.name} in ${city.name}, ${service.short_name} agency in ${city.name}, best ${service.short_name} expert ${city.name}, ${city.name} performance ads marketing`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} keywords={pageKeywords} schema={combinedSchema}>
+  
+  <!-- Sticky Header -->
+  <Header />
+
+  <main class="flex-grow">
+    
+    <!-- 1. City Hero Section -->
+    <CityHero city={city} service={service} />
+
+    <!-- 2. Local Market Insights -->
+    <LocalInsights city={city} service={service} />
+
+    <!-- 3. Dynamic FAQ Accordions -->
+    <section class="py-24 bg-white select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-16">
+          <span class="font-display font-extrabold text-xs text-primary-saffron uppercase tracking-widest">
+            FAQ DIRECTORY
+          </span>
+          <h2 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl tracking-tight mt-2">
+            Got Questions About {service.short_name}? <br />
+            <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">We Have Answers.</span>
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-2 max-w-xl leading-relaxed font-semibold">
+            Frequently asked questions about scaling local business models in {city.name}.
+          </p>
+        </div>
+
+        <FAQAccordion faqs={localFaqs} />
+      </div>
+    </section>
+
+    <!-- 4. Other Available Services Grid (Interlinking) -->
+    <CityServices city={city} activeServiceSlug={service.slug} />
+
+    <!-- 5. Nearby Cities Interlinking Section -->
+    <section class="py-24 bg-white border-t border-neutral-mist select-none text-neutral-charcoal">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="font-display font-extrabold text-xs text-primary-saffron uppercase tracking-widest">
+          PAN-INDIA DIRECTORY
+        </span>
+        <h3 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark tracking-tight mt-3">
+          Also Serving Nearby Cities
+        </h3>
+        <p class="font-body text-xs sm:text-sm text-neutral-stone font-semibold mt-1">
+          Scaling ad returns and custom websites for businesses near {city.name}.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-5 gap-4 mt-12 max-w-5xl mx-auto">
+          {city.nearby_cities.map(nb => (
+            <a 
+              href={`/${service.slug}-agency-${nb.slug}/`}
+              class="p-5 rounded-2xl bg-neutral-ghost border border-neutral-mist hover:border-primary-saffron hover:bg-white hover:shadow-card-default transition-all duration-300 flex flex-col items-start text-left gap-3 group"
+            >
+              <div class="flex items-center justify-between w-full">
+                <span class="font-display font-extrabold text-xs text-neutral-dark group-hover:text-primary-saffron transition-colors">
+                  {nb.name}
+                </span>
+                <MapPin class="w-3.5 h-3.5 text-neutral-stone group-hover:text-primary-saffron transition-colors flex-shrink-0" />
+              </div>
+              
+              <div class="flex flex-col gap-1.5 font-body text-[10px] text-neutral-stone font-semibold mt-1">
+                <span class="flex items-center gap-1 leading-none"><Users class="w-3 h-3 text-neutral-stone" /> Pop: {nb.population}</span>
+                <span class="flex items-center gap-1 leading-none"><Briefcase class="w-3 h-3 text-neutral-stone" /> {nb.top_industry}</span>
+              </div>
+              
+              <span class="text-[9px] font-display font-extrabold text-primary-saffron tracking-wider mt-2 border-t border-neutral-mist/50 pt-2 w-full text-center">
+                {nb.distance_km} KM AWAY →
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Audit Form Capture -->
+    <CtaSection />
+
+  </main>
+
+  <!-- Sticky Footer -->
+  <Footer />
+
+</BaseLayout>

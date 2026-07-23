@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Exclude Admin, Login, and API endpoints
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login/
+Disallow: /cart/
+Disallow: /checkout/
+
+# Sitemap location
+Sitemap: https://roasbodhi.in/sitemap-index.xml

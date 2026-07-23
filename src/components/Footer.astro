@@ -1,0 +1,296 @@
+---
+import { Phone, Mail, MapPin, MessageCircle, ArrowRight, ShieldCheck, Heart } from 'lucide-astro';
+
+// Import our databases to map links in the footer
+import servicesData from '../data/services.json';
+import citiesData from '../data/cities.json';
+
+const currentYear = new Date().getFullYear();
+
+// Define top 20 cities to display in the footer
+const topCities = [
+  { name: "Mumbai", slug: "mumbai" },
+  { name: "Delhi", slug: "delhi" },
+  { name: "Bangalore", slug: "bangalore" },
+  { name: "Chennai", slug: "chennai" },
+  { name: "Hyderabad", slug: "hyderabad" },
+  { name: "Kolkata", slug: "kolkata" },
+  { name: "Pune", slug: "pune" },
+  { name: "Ahmedabad", slug: "ahmedabad" },
+  { name: "Jaipur", slug: "jaipur" },
+  { name: "Lucknow", slug: "lucknow" },
+  { name: "Nagpur", slug: "nagpur" },
+  { name: "Surat", slug: "surat" },
+  { name: "Kanpur", slug: "kanpur" },
+  { name: "Indore", slug: "indore" },
+  { name: "Bhopal", slug: "bhopal" },
+  { name: "Visakhapatnam", slug: "visakhapatnam" },
+  { name: "Nashik", slug: "nashik" },
+  { name: "Coimbatore", slug: "coimbatore" },
+  { name: "Vadodara", slug: "vadodara" },
+  { name: "Kochi", slug: "kochi" }
+];
+---
+
+<footer class="bg-neutral-dark text-white select-none relative overflow-hidden">
+  
+  <!-- Saffron glow accent background -->
+  <div class="absolute -right-60 -top-60 w-[420px] h-[420px] bg-primary-saffron/5 rounded-full blur-[120px]"></div>
+
+  <!-- SECTION 1 — TOP CTA STRIP (Saffron to Gold) -->
+  <section class="bg-gradient-to-r from-primary-saffron to-primary-gold py-12 relative overflow-hidden">
+    <!-- Grid overlay pattern -->
+    <div class="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] bg-[size:16px_16px]"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-6 text-center lg:text-left">
+        <div class="flex flex-col gap-2">
+          <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight leading-tight">
+            Ready to Awaken Your Ad Returns?
+          </h2>
+          <p class="font-body text-xs sm:text-sm text-white/90 font-medium">
+            Join 200+ Indian businesses scaling their physical stores and e-commerce models with RoasBodhi™.
+          </p>
+        </div>
+        <a 
+          href="/contact/" 
+          class="px-7 py-3.5 bg-primary-indigo hover:bg-neutral-dark text-white font-display font-extrabold text-xs tracking-wider uppercase rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-1.5"
+        >
+          <span>Get Free ROAS Audit</span>
+          <ArrowRight class="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 — MEGA FOOTER GRID -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+      
+      <!-- COLUMN 1 — BRAND (span 4) -->
+      <div class="lg:col-span-4 flex flex-col items-start gap-6">
+        <!-- White Logo version -->
+        <a href="/" class="flex items-center gap-3 group focus:outline-none" aria-label="RoasBodhi Home">
+          <svg class="w-10 h-10 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 40 40" fill="none">
+            <linearGradient id="logoGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF6B2B" />
+              <stop offset="100%" stop-color="#F5A623" />
+            </linearGradient>
+            <path d="M20 2C20 2 34 16 34 26C34 32.6274 27.732 38 20 38C12.268 38 6 32.6274 6 26C6 16 20 2 20 2Z" fill="url(#logoGradWhite)" />
+            <path d="M20 34V10" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M20 30L26 24" stroke="white" stroke-width="2" stroke-linecap="round" />
+            <path d="M20 24L29 15" stroke="white" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          <div class="flex flex-col">
+            <span class="font-display font-extrabold text-xl sm:text-2xl tracking-tight leading-none text-white">
+              Roas<span class="text-primary-saffron">Bodhi</span><span class="text-[10px] font-semibold text-primary-gold align-super ml-0.5 opacity-80">™</span>
+            </span>
+            <span class="text-[9px] font-body font-bold text-white/50 uppercase tracking-widest mt-0.5 leading-none">
+              Awakening Your Ad Returns
+            </span>
+          </div>
+        </a>
+
+        <!-- Description -->
+        <p class="font-body text-xs text-white/60 leading-relaxed max-w-sm">
+          RoasBodhi™ combines high-speed Astro.js websites with specialized local advertising funnels. 
+          We rescue Indian SMBs from click-focused agencies by delivering transparent, cash-generating returns.
+        </p>
+
+        <!-- Social Media Icons Row -->
+        <div class="flex items-center gap-3">
+          <!-- Instagram -->
+          <a href="https://instagram.com/roasbodhi" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/5 hover:bg-primary-saffron text-white/60 hover:text-white flex items-center justify-center transition-all duration-300" aria-label="Follow RoasBodhi on Instagram">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01" />
+            </svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="https://linkedin.com/company/roasbodhi" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/5 hover:bg-primary-saffron text-white/60 hover:text-white flex items-center justify-center transition-all duration-300" aria-label="Follow RoasBodhi on LinkedIn">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.67c0-.25.02-.5.1-.68a1.14 1.14 0 0 1 1-.77c.76 0 1 .56 1 1.39v4.73h2.78M8 8.66a1.5 1.5 0 0 0-1.5-1.5 1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 8 8.66m-2.8 9.84h2.8v-8.37H5.2v8.37z" />
+            </svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="https://twitter.com/roasbodhi" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/5 hover:bg-primary-saffron text-white/60 hover:text-white flex items-center justify-center transition-all duration-300" aria-label="Follow RoasBodhi on X">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
+          <!-- YouTube -->
+          <a href="https://youtube.com/roasbodhi" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/5 hover:bg-primary-saffron text-white/60 hover:text-white flex items-center justify-center transition-all duration-300" aria-label="Follow RoasBodhi on YouTube">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.5 12 3.5 12 3.5s-7.518 0-9.388.553a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11C4.482 20.5 12 20.5 12 20.5s7.518 0 9.388-.553a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://facebook.com/roasbodhi" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-full bg-white/5 hover:bg-primary-saffron text-white/60 hover:text-white flex items-center justify-center transition-all duration-300" aria-label="Follow RoasBodhi on Facebook">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Direct Contact Info -->
+        <div class="flex flex-col gap-2.5 font-body text-xs text-white/70">
+          <a href="tel:+919082543992" class="flex items-center gap-2 hover:text-primary-saffron transition-colors">
+            <Phone class="w-4 h-4 text-primary-saffron" />
+            <span>+91 9082543992 <span class="text-[10px] text-white/40 block mt-0.5">(Missed call to get WhatsApp back)</span></span>
+          </a>
+          <a href="mailto:roasbodhi@gmail.com" class="flex items-center gap-2 hover:text-primary-saffron transition-colors">
+            <Mail class="w-4 h-4 text-primary-saffron" />
+            <span>roasbodhi@gmail.com</span>
+          </a>
+          <div class="flex items-start gap-2">
+            <MapPin class="w-4 h-4 text-primary-saffron mt-0.5 flex-shrink-0" />
+            <span>501 Shankar Apartment Sec 20 Nerul W Navi Mumbai 400706</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COLUMN 2 — SERVICES (span 3) -->
+      <div class="lg:col-span-3 flex flex-col items-start gap-5">
+        <h4 class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest border-b border-white/5 pb-2 w-full">
+          Services
+        </h4>
+        <ul class="flex flex-col gap-3 font-body text-xs text-white/60">
+          {servicesData.map(service => (
+            <li>
+              <a 
+                href={`/services/${service.slug}/`} 
+                class="hover:text-primary-saffron hover:translate-x-1 block transition-all duration-200"
+              >
+                {service.name} ({service.sanskrit_plan_name})
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- COLUMN 3 — TOP CITIES (span 3) -->
+      <div class="lg:col-span-3 flex flex-col items-start gap-5">
+        <h4 class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest border-b border-white/5 pb-2 w-full">
+          Top Cities
+        </h4>
+        <!-- 2 Sub columns for 20 cities layout -->
+        <div class="grid grid-cols-2 gap-x-4 gap-y-3 font-body text-xs text-white/60 w-full">
+          {topCities.map(city => (
+            <a 
+              href={`/meta-ads-agency-${city.slug}/`} 
+              class="hover:text-primary-saffron hover:translate-x-1 block transition-all duration-200"
+            >
+              {city.name}
+            </a>
+          ))}
+        </div>
+        <a href="/contact/" class="font-display font-extrabold text-[10px] text-primary-saffron hover:underline mt-2">
+          View all 180+ cities →
+        </a>
+      </div>
+
+      <!-- COLUMN 4 — COMPANY & LEGAL (span 2) -->
+      <div class="lg:col-span-2 flex flex-col gap-8">
+        <!-- Company Section -->
+        <div class="flex flex-col items-start gap-4">
+          <h4 class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest border-b border-white/5 pb-2 w-full">
+            Company
+          </h4>
+          <ul class="flex flex-col gap-2.5 font-body text-xs text-white/60">
+            <li><a href="/about/" class="hover:text-primary-saffron transition-colors">About RoasBodhi</a></li>
+            <li><a href="/#results" class="hover:text-primary-saffron transition-colors">Case Studies</a></li>
+            <li><a href="/pricing/" class="hover:text-primary-saffron transition-colors">Pricing Plans</a></li>
+            <li><a href="/contact/" class="hover:text-primary-saffron transition-colors font-semibold text-primary-gold">Utsav Offer</a></li>
+            <li>
+              <span class="flex items-center gap-1.5">
+                <span>Careers</span>
+                <span class="px-1.5 py-0.5 rounded bg-white/10 text-[8px] font-semibold text-white/40 uppercase tracking-wide">Soon</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Legal Section -->
+        <div class="flex flex-col items-start gap-4">
+          <h4 class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest border-b border-white/5 pb-2 w-full">
+            Legal
+          </h4>
+          <ul class="flex flex-col gap-2.5 font-body text-xs text-white/60">
+            <li><a href="/privacy/" class="hover:text-primary-saffron transition-colors">Privacy Policy</a></li>
+            <li><a href="/terms/" class="hover:text-primary-saffron transition-colors">Terms of Service</a></li>
+            <li><a href="/refunds/" class="hover:text-primary-saffron transition-colors">Refund Policy</a></li>
+            <li><a href="/disclaimer/" class="hover:text-primary-saffron transition-colors">Disclaimer</a></li>
+            <li><a href="/cookie-policy/" class="hover:text-primary-saffron transition-colors">Cookie Policy</a></li>
+            <li><a href="/msa/" class="hover:text-primary-saffron transition-colors">Service Agreement</a></li>
+            <li><a href="/legal/" class="hover:text-primary-saffron transition-colors">Legal Portal</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3 — TRUST BAR -->
+  <section class="bg-white/[0.03] border-t border-white/[0.06] py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+        
+        <!-- Trust values checklist row -->
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[10px] font-body font-semibold text-white/70">
+          <span class="flex items-center gap-1.5"><ShieldCheck class="w-4 h-4 text-secondary-emerald" /> 256-bit SSL Secured</span>
+          <span class="flex items-center gap-1.5"><ShieldCheck class="w-4 h-4 text-primary-gold" /> Meta Ads Partner</span>
+          <span class="flex items-center gap-1.5"><ShieldCheck class="w-4 h-4 text-secondary-emerald" /> 100% Refund Policy</span>
+          <span class="flex items-center gap-1.5">🇮🇳 Made in India</span>
+        </div>
+
+        <!-- Secure payment indicators with inline SVGs -->
+        <div class="flex items-center gap-4 border-l border-white/10 pl-0 lg:pl-6">
+          <span class="text-[9px] font-body font-bold text-white/40 uppercase tracking-wider">Secure Payments via Razorpay</span>
+          <div class="flex items-center gap-2">
+            <!-- UPI Logo Icon -->
+            <div class="h-6 w-9 rounded bg-white/5 border border-white/10 flex items-center justify-center text-[8px] font-display font-extrabold tracking-widest text-white/60 select-none">
+              UPI
+            </div>
+            <!-- Visa -->
+            <div class="h-6 w-9 rounded bg-white/5 border border-white/10 flex items-center justify-center select-none text-[8px] font-display font-bold text-white/60">
+              VISA
+            </div>
+            <!-- MasterCard -->
+            <div class="h-6 w-9 rounded bg-white/5 border border-white/10 flex items-center justify-center select-none text-[8px] font-display font-bold text-white/60">
+              MC
+            </div>
+            <!-- RuPay -->
+            <div class="h-6 w-9 rounded bg-white/5 border border-white/10 flex items-center justify-center select-none text-[7px] font-display font-extrabold text-white/60 tracking-tight">
+              RUPAY
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — BOTTOM BAR -->
+  <section class="bg-black/30 py-6 text-center select-none border-t border-white/[0.04]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-body text-white/40">
+        <span>
+          © {currentYear} RoasBodhi™ Digital Pvt. Ltd. All rights reserved.
+        </span>
+        
+        <div class="flex items-center gap-4">
+          <a href="/privacy/" class="hover:text-white transition-colors">Privacy</a>
+          <span>•</span>
+          <a href="/terms/" class="hover:text-white transition-colors">Terms</a>
+          <span>•</span>
+          <a href="/refunds/" class="hover:text-white transition-colors">Refunds</a>
+        </div>
+
+        <span class="flex items-center gap-1">
+          Made with <Heart class="w-3.5 h-3.5 text-primary-saffron fill-primary-saffron" /> in Aamchi Mumbai, India
+        </span>
+      </div>
+    </div>
+  </section>
+
+</footer>

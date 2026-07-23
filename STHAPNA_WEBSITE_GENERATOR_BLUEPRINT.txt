@@ -1,0 +1,138 @@
+================================================================================
+           STHAPNA INSTANT WEBSITE GENERATOR — FULL ARCHITECTURE & BLUEPRINT
+================================================================================
+Generated Date: July 20, 2026
+Project: Sthapna Website Builder (RoasBodhi)
+Target Audience: Local SMBs in India (Clinics, Salons, Cafes, Gyms, Real Estate, Retail)
+Core Mission: Generate 100% Agency-Grade, Long-Scrolling, Responsive Websites in 60 Seconds @ ₹1,999
+
+--------------------------------------------------------------------------------
+1. EXECUTIVE SUMMARY & HOW EVERYTHING WORKS
+--------------------------------------------------------------------------------
+Sthapna Instant Website Builder is an AI-powered SaaS engine designed for local businesses across India.
+A user inputs their Business Name, City/Location, Industry Category, and a short description.
+
+Within 60 seconds:
+1. THE COPYWRITING ENGINE calls the Google Gemini API (gemini-2.5-flash / gemini-1.5-flash) to write localized headlines, taglines, about sections, 6 service descriptions with INR pricing, customer FAQs, and urgency promotional offers.
+2. If the API key is missing or encounters a rate limit, the system seamlessly uses an INDUSTRY-AWARE FALLBACK ENGINE (`src/utils/templates.ts`), ensuring 0% failure rate (never blank).
+3. THE LAYOUT ENGINE (`src/scripts/preview-layouts.js`) renders 10+ long-form sections complete with Google Fonts (Inter + Playfair Display), custom glassmorphism navigation, full-viewport 100vh hero headers with AI-generated 8K images, key metrics counters, interactive FAQ accordions, filterable category tabs, 5-star customer reviews, interactive Google Maps links, and a persistent pulsing WhatsApp float button.
+4. THE RESPONSIVE PREVIEW SYSTEM allows testing in both Smartphone View and Full-Screen Browser Tab View.
+
+--------------------------------------------------------------------------------
+2. TECHNICAL STACK & FILE STRUCTURE
+--------------------------------------------------------------------------------
+- Framework: Astro v4.16.19 (Hybrid mode with @astrojs/node adapter)
+- Styling: Vanilla CSS with custom properties, glassmorphism, keyframe animations & CSS Grid
+- Logic & Hydration: Client-side JavaScript (Vanilla ES6)
+- AI Engine: Google Gemini Flash API (`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash`)
+- Image Assets: High-Res Unsplash API mapping + Custom AI Generated Hero Banners (saved in `public/images/demo/`)
+
+Key File Locations:
+- `src/pages/instant-site.astro`: Master 5-Step Wizard UI & Device Preview Screen
+- `src/scripts/wizard.js`: Wizard state management, industry auto-detection, domain check & checkout modal
+- `src/scripts/preview-layouts.js`: 3 Distinct Layout Renderers (Trust Builder, Visual Showcase, Lead Machine)
+- `src/pages/api/generate-copy.ts`: SSR Endpoint calling Gemini API with fallback handling
+- `src/utils/templates.ts`: Industry Copy & Content Fallback System for 8 categories
+- `public/images/demo/`: Local AI-generated 8K Hero Banners for Pizza/Cafe, Salon, Clinic, Gym & Real Estate
+
+--------------------------------------------------------------------------------
+3. CORE CODE SNIPPETS FOR OTHER AI / DEVELOPERS TO IMPROVISE
+--------------------------------------------------------------------------------
+
+[SNIPPET A: API ROUTE - src/pages/api/generate-copy.ts]
+```typescript
+import type { APIRoute } from 'astro';
+import { getFallbackTemplateData } from '../../utils/templates';
+
+export const prerender = false;
+
+export const POST: APIRoute = async ({ request }) => {
+  try {
+    const body = await request.json();
+    const { businessName, location, description, industry, phone, whatsapp } = body;
+    const apiKey = import.meta.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY;
+
+    if (!apiKey) {
+      const templateData = getFallbackTemplateData(businessName, location, industry, description, phone, whatsapp);
+      return new Response(JSON.stringify(templateData), { status: 200, headers: { 'Content-Type': 'application/json' } });
+    }
+
+    const prompt = `Write high-converting website copy for local Indian small business: Name: ${businessName}, City: ${location}, Industry: ${industry}...`;
+    // Gemini API fetch logic...
+  } catch (err) {
+    return new Response(JSON.stringify({ error: 'Server Error' }), { status: 500 });
+  }
+};
+```
+
+[SNIPPET B: LAYOUT RENDERER ENGINE - src/scripts/preview-layouts.js]
+```javascript
+export function renderLayoutA(data, themeKey = 'saffron') {
+  const t = THEMES[themeKey] || THEMES.saffron;
+  const imgs = getImages(data.industry);
+  
+  return `
+    ${generateCSS(themeKey)}
+    <div class="sp-site">
+      ${sectionNav(data, t)}
+      ${sectionHeroFullscreen(data, t, imgs)}
+      ${sectionStats(data, t)}
+      ${sectionAbout(data, t, imgs)}
+      ${sectionServices(data, t, imgs)}
+      ${sectionGallery(data, t, imgs)}
+      ${sectionTestimonials(data, t)}
+      ${sectionFAQ(data, t)}
+      ${sectionOfferBanner(data, t)}
+      ${sectionContact(data, t)}
+      ${sectionFooter(data, t)}
+      ${floatingWhatsApp(data)}
+      ${scrollScript()}
+    </div>
+  `;
+}
+```
+
+--------------------------------------------------------------------------------
+4. IDEAS & PROMPTS FOR OTHER AIs TO MAKE THIS A BILLION-DOLLAR SAAS
+--------------------------------------------------------------------------------
+
+Ask another AI to implement these high-value features:
+
+💡 IDEA 1: AI LOGO & BRAND KIT GENERATOR
+- Ask AI: "Add an automatic SVG logo generator based on the business name and industry initials, rendering a polished modern emblem on the navbar."
+
+💡 IDEA 2: DYNAMIC AI SECTION RE-ORDERING & CUSTOMIZER
+- Ask AI: "Allow users to drag-and-drop or toggle sections (e.g. turn off Gallery, add Price Table, move Testimonials above About)."
+
+💡 IDEA 3: MULTI-LANGUAGE GENERATOR (HINDI, MARATHI, TAMIL, GUJARATI)
+- Ask AI: "Add a language toggle selector in Step 2 so Gemini generates the website copy in local Indian languages (Hindi / Hinglish / Regional)."
+
+💡 IDEA 4: AUTOMATED RESELLERCLUB / CLOUDFLARE DOMAIN & SSL PROVISIONING
+- Ask AI: "Connect the backend to ResellerClub API and Cloudflare API so when a user pays ₹1,999 via Razorpay, the `.in` domain is automatically bought and DNS is pointed to Cloudflare Edge Pages without human intervention."
+
+💡 IDEA 5: LIVE EDITABLE IN-PLACE CONTENT (WYSIWYG)
+- Ask AI: "Make text elements inside the phone preview `contenteditable="true"` so local business owners can click any text or price directly on the preview screen to edit before publishing."
+
+💡 IDEA 6: INSTANT WHATSAPP CATALOG & ORDER FORM INTEGRATION
+- Ask AI: "Add a 1-click 'Order on WhatsApp' cart button on each service card that pre-fills a detailed WhatsApp order invoice message."
+
+--------------------------------------------------------------------------------
+5. UNIT ECONOMICS, COST CONTROL & REGENERATION SAFEGUARDS
+--------------------------------------------------------------------------------
+
+Financial Breakdown (@ ₹1,999 Selling Price):
+- Gemini 2.0 / 1.5 Flash Copy Cost: ₹1.50 – ₹4.00 per site (~$0.02 - $0.05)
+- Unsplash / Curated Image API: ₹0.00 (Free)
+- Client Previews (Local Machine): ₹0.00
+- Gross Profit Margin: ~98% (before domain registration & 2% Razorpay fee)
+
+Cost Safeguards to Prevent Abuse:
+1. Server-Side API Key Storage: Key is ALWAYS kept in Astro server-side endpoint (`src/pages/api/generate-copy.ts`). Never exposed in browser JS.
+2. Token Caps: `maxOutputTokens: 2000` to prevent token inflation.
+3. Free Preview Limit: 1-2 free generations during preview phase.
+4. Paid Plan Quota: 5 regenerations included after payment. Extra regenerations charged @ ₹49 each.
+5. Two-Stage Fallback Cascade: Gemini 2.0 Flash -> 1.5 Flash -> Flash-Lite 2.0 -> Local Offline Template (`templates.ts`).
+
+================================================================================
+END OF STHAPNA ARCHITECTURE BLUEPRINT
+================================================================================

@@ -1,0 +1,207 @@
+---
+import SectionLabel from '../SectionLabel.astro';
+import { Eye, ShieldCheck, BarChart, MapPin, RefreshCw, Star, Shield } from 'lucide-astro';
+
+// Features checklist structure
+const features = [
+  {
+    title: "Pay After Seeing™",
+    icon: "eye",
+    color: "bg-primary-saffron text-primary-saffron",
+    desc: "We build your website first. You see it live on preview. Love it? Then pay. Don't love it? ₹0 charge."
+  },
+  {
+    title: "100% Refund Policy",
+    icon: "shield-check",
+    color: "bg-secondary-emerald text-secondary-emerald",
+    desc: "Before your site goes live, if you're not completely satisfied, we refund every rupee. No questions asked."
+  },
+  {
+    title: "Real-Time ROAS Reporting",
+    icon: "bar-chart",
+    color: "bg-secondary-purple text-secondary-purple",
+    desc: "Live dashboards. Weekly reports. You always know exactly how your ad spend is performing."
+  },
+  {
+    title: "Pan-India Coverage",
+    icon: "map-pin",
+    color: "bg-primary-gold text-primary-gold",
+    desc: "180+ cities. 28 states. We understand local markets — from Kolhapur to Kohima."
+  },
+  {
+    title: "Aseem Revisions Before Launch",
+    icon: "refresh-cw",
+    color: "bg-secondary-blue text-secondary-blue",
+    desc: "We revise until you're 100% happy. Multiple rounds. No rush. Perfect before we go live."
+  },
+  {
+    title: "Data-Driven Sacred Strategy",
+    icon: "leaf",
+    color: "bg-primary-saffron text-primary-saffron",
+    desc: "Where data meets dharma. Every campaign decision backed by numbers, never guesswork."
+  }
+];
+---
+
+<section class="py-24 bg-primary-indigo text-white relative overflow-hidden select-none">
+  
+  <!-- Saffron gradient glow -->
+  <div class="absolute -left-60 -bottom-60 w-[500px] h-[500px] bg-primary-saffron/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- HEADER -->
+    <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-20">
+      <SectionLabel text="WHY CHOOSE US" />
+      
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight leading-tight mt-2">
+        Other Agencies Make Promises. <br />
+        <span class="text-primary-saffron">We Show Receipts.</span>
+      </h2>
+      
+      <p class="font-body text-sm sm:text-base text-white/70 mt-2 max-w-xl leading-relaxed font-semibold">
+        Every claim backed by real data from real campaigns.
+      </p>
+    </div>
+
+    <!-- 2-COLUMN LAYOUT (60/40) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12 items-center">
+      
+      <!-- LEFT COLUMN — FEATURE LIST (span 7) -->
+      <div class="lg:col-span-7 flex flex-col gap-8">
+        {features.map((feat) => (
+          <div class="flex items-start gap-4 hover:translate-x-1.5 transition-transform duration-300">
+            <!-- Icon container -->
+            <div class={`w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 bg-white/5 border border-white/10 text-white`}>
+              {feat.icon === 'eye' && <Eye class="w-5 h-5 text-primary-saffron" />}
+              {feat.icon === 'shield-check' && <ShieldCheck class="w-5 h-5 text-secondary-emerald" />}
+              {feat.icon === 'bar-chart' && <BarChart class="w-5 h-5 text-secondary-purple" />}
+              {feat.icon === 'map-pin' && <MapPin class="w-5 h-5 text-primary-gold" />}
+              {feat.icon === 'refresh-cw' && <RefreshCw class="w-5 h-5 text-secondary-blue" />}
+              {feat.icon === 'leaf' && (
+                <!-- SVG Leaf -->
+                <svg class="w-5 h-5 fill-current text-primary-saffron" viewBox="0 0 40 40">
+                  <path d="M20 2C20 2 34 16 34 26C34 32.6274 27.732 38 20 38C12.268 38 6 32.6274 6 26C6 16 20 2 20 2Z" />
+                </svg>
+              )}
+            </div>
+            <!-- Text content -->
+            <div class="flex flex-col gap-1.5 text-left">
+              <h3 class="font-display font-extrabold text-white text-base tracking-wide">
+                {feat.title}
+              </h3>
+              <p class="font-body text-xs sm:text-sm text-white/70 leading-relaxed max-w-xl font-medium">
+                {feat.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- RIGHT COLUMN — VISUAL PROOF (span 5) -->
+      <div class="lg:col-span-5 flex flex-col gap-8 relative pt-12 lg:pt-0">
+        
+        <!-- Case Study Glassmorphism Card -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 shadow-2xl backdrop-blur-xl relative z-10 w-full max-w-[400px] mx-auto">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3.5 mb-4">
+            <div class="flex flex-col text-left">
+              <span class="text-[9px] font-body font-bold text-white/40 uppercase tracking-widest">Case Proof</span>
+              <span class="font-display font-extrabold text-sm text-white mt-0.5">Quick-Service Restaurant, Mumbai</span>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-secondary-emerald/10 text-[9px] font-display font-bold text-secondary-emerald uppercase border border-secondary-emerald/20">
+              Verified ROAS
+            </span>
+          </div>
+
+          <!-- Before/After Table -->
+          <table class="w-full text-xs font-body text-white/80 mb-4 select-none">
+            <thead>
+              <tr class="border-b border-white/5 text-[9px] font-display font-extrabold text-white/40 uppercase tracking-wider text-left">
+                <th class="pb-2">Metric</th>
+                <th class="pb-2 text-center">Before</th>
+                <th class="pb-2 text-right">After</th>
+              </tr>
+            </thead>
+            <tbody class="font-medium">
+              <tr class="border-b border-white/5">
+                <td class="py-2.5 text-left">Cost Per Lead (CPL)</td>
+                <td class="py-2.5 text-center text-rose-400">₹850</td>
+                <td class="py-2.5 text-right text-secondary-emerald font-bold">₹210 (↓75%)</td>
+              </tr>
+              <tr class="border-b border-white/5">
+                <td class="py-2.5 text-left">Campaign ROAS</td>
+                <td class="py-2.5 text-center text-rose-400">1.2X</td>
+                <td class="py-2.5 text-right text-secondary-emerald font-bold">4.8X (↑300%)</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 text-left">Monthly Leads</td>
+                <td class="py-2.5 text-center text-rose-400">23</td>
+                <td class="py-2.5 text-right text-secondary-emerald font-bold">847 (↑36X)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="flex items-center gap-2 border-t border-white/10 pt-3 text-[9px] font-body text-white/40 font-bold uppercase tracking-wider">
+            <span>Channels:</span>
+            <span class="text-white/60">Meta Lead Gen + Google Maps Local Search</span>
+          </div>
+        </div>
+
+        <!-- FLOATING BADGES -->
+        <!-- Badge 1: Top Right -->
+        <div 
+          class="absolute -top-4 right-2 lg:-right-4 z-20 bg-white border border-emerald-500/20 border-l-4 border-l-secondary-emerald rounded-xl px-3 py-2 shadow-lg flex flex-col text-left select-none animate-float"
+          style="animation-delay: 1.5s;"
+        >
+          <span class="font-display font-extrabold text-[10px] text-neutral-dark flex items-center gap-1">
+            <span class="text-secondary-emerald">✓</span> 4.8X ROAS Achieved
+          </span>
+          <span class="text-[8px] font-body text-neutral-stone font-semibold mt-0.5">Client: Jewellery Showroom, Jaipur</span>
+        </div>
+
+        <!-- Badge 2: Bottom Left -->
+        <div 
+          class="absolute -bottom-6 left-2 lg:-left-6 z-20 bg-white border border-purple-500/20 border-l-4 border-l-secondary-purple rounded-xl px-3 py-2 shadow-lg flex flex-col text-left select-none animate-float"
+          style="animation-delay: 3s;"
+        >
+          <span class="font-display font-extrabold text-[10px] text-neutral-dark flex items-center gap-1">
+            📞 847 Calls in 30 Days
+          </span>
+          <span class="text-[8px] font-body text-neutral-stone font-semibold mt-0.5">Client: Dental Clinic, Pune</span>
+        </div>
+
+        <!-- Badge 3: Right Center -->
+        <div 
+          class="absolute -right-4 top-[50%] z-20 bg-white border border-orange-500/20 border-l-4 border-l-primary-saffron rounded-xl px-3 py-1.5 shadow-lg flex flex-col text-left select-none animate-float"
+          style="animation-delay: 4.5s;"
+        >
+          <span class="font-display font-extrabold text-[10px] text-neutral-dark">+218% Revenue</span>
+          <span class="text-[7px] font-body text-neutral-stone font-bold uppercase tracking-wider mt-0.5">E-com Brand</span>
+        </div>
+
+        <!-- Trust badges row (below card) -->
+        <div class="mt-8 bg-white/5 border border-white/10 rounded-2xl p-4 w-full max-w-[400px] mx-auto grid grid-cols-4 gap-3 text-center">
+          <div class="flex flex-col items-center justify-center">
+            <Shield class="w-4.5 h-4.5 text-secondary-emerald" />
+            <span class="text-[8px] font-display font-bold text-white/80 mt-1 uppercase tracking-wider leading-none">SSL Secured</span>
+          </div>
+          <div class="flex flex-col items-center justify-center">
+            <span class="text-xs text-primary-gold">✓</span>
+            <span class="text-[8px] font-display font-bold text-white/80 mt-1.5 uppercase tracking-wider leading-none">Partner</span>
+          </div>
+          <div class="flex flex-col items-center justify-center">
+            <ShieldCheck class="w-4.5 h-4.5 text-secondary-emerald" />
+            <span class="text-[8px] font-display font-bold text-white/80 mt-1 uppercase tracking-wider leading-none">100% Refund</span>
+          </div>
+          <div class="flex flex-col items-center justify-center">
+            <Star class="w-4.5 h-4.5 text-primary-gold fill-primary-gold" />
+            <span class="text-[8px] font-display font-bold text-white/80 mt-1 uppercase tracking-wider leading-none">4.9/5 Rating</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

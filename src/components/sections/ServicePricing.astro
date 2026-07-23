@@ -1,0 +1,61 @@
+---
+import SectionLabel from '../SectionLabel.astro';
+import PricingCard from '../PricingCard.astro';
+import pricingData from '../../data/pricing.json';
+
+interface Props {
+  serviceKey: string;
+  serviceName: string;
+}
+
+const { serviceKey, serviceName } = Astro.props;
+
+// Load and format matching plans
+const getFormattedPlans = () => {
+  const service = pricingData[serviceKey as keyof typeof pricingData];
+  if (!service) return [];
+  
+  return service.plans.map(plan => ({
+    id: plan.id,
+    name: plan.name,
+    hindi: plan.hindi,
+    meaning: plan.meaning,
+    price: `₹${plan.price.toLocaleString('en-IN')}`,
+    period: plan.period === 'one-time' ? 'one-time' : '/month',
+    popular: plan.popular,
+    description: plan.description,
+    best_for: plan.id === 'vriddhi' || plan.id === 'agni' || plan.id === 'chakra' || plan.id === 'unnati' ? 'Most Popular' : undefined,
+    features: plan.features.map(f => ({
+      text: `${f.name}: ${f.value}`,
+      included: f.included,
+      emphasis: f.included && (f.name.toLowerCase().includes('guarantee') || f.name.toLowerCase().includes('roas') || f.name.toLowerCase().includes('leads') || f.name.toLowerCase().includes('pagespeed'))
+    }))
+  }));
+};
+
+const plans = getFormattedPlans();
+---
+
+{plans.length > 0 && (
+  <section class="py-24 bg-white relative overflow-hidden select-none">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- HEADER -->
+      <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-16">
+        <SectionLabel text="TRANSPARENT PLANS" />
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight mt-2 text-center">
+          Packages & Transparent Fees <br />
+          <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">For {serviceName} Setup</span>
+        </h2>
+      </div>
+
+      <!-- PRICING GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 items-stretch max-w-6xl mx-auto">
+        {plans.map(plan => (
+          <PricingCard plan={plan} serviceName={serviceName} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+)}

@@ -1,0 +1,255 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import StatsCounter from '../components/StatsCounter.astro';
+import { ShieldCheck, Compass, Users, Sparkles, MessageCircle, Heart, Star, Award, Code } from 'lucide-astro';
+
+const aboutTitle = "About RoasBodhi™ | Data, Dharma & Digital Mastery";
+const aboutDescription = "Learn about the mission, values, and story of RoasBodhi™. How we transitioned from MahadevYatra.in to bridge the gap in ethical performance marketing.";
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About RoasBodhi",
+  "description": "Learn about the background, mission, values, and performance methodology of RoasBodhi.",
+  "url": "https://roasbodhi.in/about/"
+};
+const aboutKeywords = "about RoasBodhi, Namaste Sales Enterprises, digital marketing company India, ethical marketing, ROAS growth";
+---
+
+<BaseLayout title={aboutTitle} description={aboutDescription} keywords={aboutKeywords} schema={aboutSchema}>
+  
+  <!-- Header -->
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal text-left">
+    
+    <!-- 1. About Hero -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 select-none">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary-saffron/10 text-primary-saffron text-[10px] font-display font-extrabold uppercase tracking-widest mb-4">
+        🔱 Our Philosophy
+      </span>
+      <h1 class="font-display font-extrabold text-neutral-dark text-4xl sm:text-6xl tracking-tight leading-[1.05]">
+        We Awaken Indian Businesses. <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">With Data, Dharma & Digital Mastery.</span>
+      </h1>
+      <p class="font-body text-sm sm:text-base text-neutral-stone mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+        Combining Silicon Valley analytics frameworks with traditional Indian business values.
+      </p>
+    </section>
+
+    <!-- 2. Founder Story (Aniket) & MahadevYatra Connection -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 select-none mb-16 border-t border-neutral-mist/40 pt-16">
+      <div class="flex flex-col items-center text-center gap-4">
+        <SectionLabel text="FOUNDER JOURNEY" />
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-neutral-dark tracking-tight leading-tight mt-1">
+          Meet Aniket Samant
+        </h2>
+        <span class="font-display font-bold text-xs uppercase tracking-wider text-primary-saffron leading-none -mt-2">
+          Founder, RoasBodhi (Namaste Sales Enterprises)
+        </span>
+        
+        <!-- Skills outline -->
+        <div class="flex flex-wrap gap-2 justify-center mt-2">
+          <span class="px-2.5 py-1 rounded bg-primary-indigo/5 border border-primary-indigo/10 text-primary-indigo text-[10px] font-display font-extrabold uppercase tracking-wider">📊 ad systems design</span>
+          <span class="px-2.5 py-1 rounded bg-secondary-purple/5 border border-secondary-purple/10 text-secondary-purple text-[10px] font-display font-extrabold uppercase tracking-wider">⚛️ Astro framework</span>
+          <span class="px-2.5 py-1 rounded bg-secondary-emerald/5 border border-secondary-emerald/10 text-secondary-emerald text-[10px] font-display font-extrabold uppercase tracking-wider">🕉️ dharma first</span>
+        </div>
+
+        <span class="font-display font-extrabold text-[10px] uppercase tracking-widest text-secondary-purple bg-secondary-purple/5 border border-secondary-purple/10 px-3.5 py-1.5 rounded-full mt-2">
+          🔱 14+ Years Experience in Digital Marketing, Ads & Design
+        </span>
+
+        <div class="font-body text-xs sm:text-sm text-neutral-charcoal/80 leading-relaxed font-semibold flex flex-col gap-4 mt-6 text-left w-full">
+          <p>
+            Aniket founded RoasBodhi to bridge the massive gap between high-charging digital agencies and local Indian merchants. Having experienced the challenges of scaling operations first-hand while building <strong>MahadevYatra.in</strong> (a digital pilgrimage route showcase), he observed how agencies charge high retainers for impressions and clicks while delivering zero conversions or qualified leads.
+          </p>
+          <p>
+            This lack of alignment and high financial risk for small business owners inspired the creation of RoasBodhi under Namaste Sales Enterprises. Our agency operates under a unique <strong>Dharma First</strong> marketing model—featuring our risk-free <strong>Pay-After-Seeing™</strong> guarantee for website builds and performance campaigns that align agency compensations strictly with real lead metrics and ROAS growth indices.
+          </p>
+          <p>
+            Today, Aniket’s vision is to empower Indian SMBs in Tier 1, Tier 2, and Tier 3 cities to scale their ad reach, capture high-quality WhatsApp lead flows, and build blazing-fast web assets without massive upfront fees. By marrying modern data analytics with traditional principles of fair business trade (Dharma), RoasBodhi offers a transparent, return-driven marketing house.
+          </p>
+        </div>
+
+        <!-- Credentials / Value points grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 w-full border-t border-neutral-mist/50 pt-6 text-left">
+          <div class="flex items-start gap-3">
+            <span class="text-lg">📊</span>
+            <div>
+              <h4 class="font-display font-extrabold text-xs text-neutral-dark">Data-Driven Approach</h4>
+              <p class="font-body text-[10px] text-neutral-stone leading-relaxed font-semibold mt-0.5">Focuses on Conversion API tracking, micro-conversions, and custom sales-funnel design.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-lg">🕉️</span>
+            <div>
+              <h4 class="font-display font-extrabold text-xs text-neutral-dark">Dharma (Ethical Conduct)</h4>
+              <p class="font-body text-[10px] text-neutral-stone leading-relaxed font-semibold mt-0.5">Upholds total transparency, detailed attribution, and absolute pricing integrity with zero hidden fees.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Our Mission -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-gradient-to-r from-primary-indigo to-neutral-dark rounded-3xl text-white relative overflow-hidden select-none mb-16 text-center">
+      <div class="absolute inset-0 bg-[radial-gradient(#ffffff04_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none"></div>
+      <div class="relative z-10 flex flex-col items-center gap-4 max-w-3xl mx-auto">
+        <span class="text-3xl">🎯</span>
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">OUR MISSION</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight">Dharmic Growth for Every Indian Storefront</h2>
+        <p class="font-body text-xs sm:text-sm text-white/70 leading-relaxed font-semibold">
+          To build high-performance, risk-free digital operations for local merchants, retailers, and direct-to-consumer operations. By matching elite tech with fair trade values, we make advanced growth systems accessible and affordable.
+        </p>
+      </div>
+    </section>
+
+    <!-- 4. Core Values -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-center mb-12">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">ETHICAL PATHS</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-2 tracking-tight">The Principles That Guide Us</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+        <!-- Value 1 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary-saffron/10 border border-primary-saffron/20 flex items-center justify-center text-primary-saffron font-bold text-lg">📊</div>
+          <h4 class="font-display font-extrabold text-sm text-neutral-dark">Data Driven</h4>
+          <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">Every budget decision is guided by cold analytics, conversion events, and server event logs.</p>
+        </div>
+
+        <!-- Value 2 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary-gold/10 border border-primary-gold/20 flex items-center justify-center text-primary-gold font-bold text-lg">🔱</div>
+          <h4 class="font-display font-extrabold text-sm text-neutral-dark">Dharma First (Ethical)</h4>
+          <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">No fake clicks, no locking contracts. We treat your ad budgets like our own sacred investments.</p>
+        </div>
+
+        <!-- Value 3 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col gap-3">
+          <div class="w-10 h-10 rounded-xl bg-secondary-purple/10 border border-secondary-purple/20 flex items-center justify-center text-secondary-purple font-bold text-lg">🧡</div>
+          <h4 class="font-display font-extrabold text-sm text-neutral-dark">Pan-India Heart</h4>
+          <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">From metro hubs to Tier 3 towns, we write campaigns that connect with local markets in their native language.</p>
+        </div>
+
+        <!-- Value 4 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col gap-3">
+          <div class="w-10 h-10 rounded-xl bg-secondary-emerald/10 border border-secondary-emerald/20 flex items-center justify-center text-secondary-emerald font-bold text-lg">👁️</div>
+          <h4 class="font-display font-extrabold text-sm text-neutral-dark">Transparent Always</h4>
+          <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">Real-time reports, transparent pricing plans, and no hidden setup fees.</p>
+        </div>
+
+        <!-- Value 5 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary-indigo/10 border border-primary-indigo/20 flex items-center justify-center text-primary-indigo font-bold text-lg">🎯</div>
+          <h4 class="font-display font-extrabold text-sm text-neutral-dark">Results Obsessed</h4>
+          <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">Vanity clicks don't pay bills. We target conversion events that drive bookings and phone calls.</p>
+        </div>
+
+        <!-- Value 6 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary-saffron/10 border border-primary-saffron/20 flex items-center justify-center text-primary-saffron font-bold text-lg">🤝</div>
+          <h4 class="font-display font-extrabold text-sm text-neutral-dark">Client First</h4>
+          <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">Flexible support pathways via direct WhatsApp chat, weekly calls, and rapid response models.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Stats Counters -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-20 select-none">
+      <div class="bg-white border border-neutral-mist rounded-3xl p-8 shadow-sm">
+        <StatsCounter />
+      </div>
+    </section>
+
+    <!-- 6. Tech Stack Section -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16 text-center">
+      <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">OUR TOOLKIT</span>
+      <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark tracking-tight mt-2">Specialized Technology We Use</h2>
+      <p class="font-body text-xs sm:text-sm text-neutral-stone font-semibold mt-1">Tools and platforms that run our high-performance setups.</p>
+      
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10 text-left max-w-4xl mx-auto">
+        <div class="p-4 bg-white border border-neutral-mist rounded-xl flex items-center gap-3">
+          <Code class="w-5 h-5 text-primary-saffron" />
+          <span class="font-display font-bold text-xs text-neutral-dark">Astro.js (Speed)</span>
+        </div>
+        <div class="p-4 bg-white border border-neutral-mist rounded-xl flex items-center gap-3">
+          <Code class="w-5 h-5 text-primary-gold" />
+          <span class="font-display font-bold text-xs text-neutral-dark">Meta Conversions API</span>
+        </div>
+        <div class="p-4 bg-white border border-neutral-mist rounded-xl flex items-center gap-3">
+          <Code class="w-5 h-5 text-primary-indigo" />
+          <span class="font-display font-bold text-xs text-neutral-dark">Google Tag Manager</span>
+        </div>
+        <div class="p-4 bg-white border border-neutral-mist rounded-xl flex items-center gap-3">
+          <Code class="w-5 h-5 text-secondary-purple" />
+          <span class="font-display font-bold text-xs text-neutral-dark">Razorpay Secure</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Team Section -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16 text-center">
+      <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">TEAM DIRECTORY</span>
+      <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark tracking-tight mt-2">Meet Our Leadership</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto mt-10 text-left">
+        <!-- Founder -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary-saffron to-primary-gold flex items-center justify-center text-white text-xl">
+            🔱
+          </div>
+          <div>
+            <h4 class="font-display font-extrabold text-sm text-neutral-dark">Aniket Samant</h4>
+            <span class="text-[10px] text-neutral-stone font-semibold uppercase tracking-wider block font-display">Founder & Performance Director</span>
+            <p class="font-body text-xs text-neutral-charcoal/80 leading-relaxed font-semibold mt-2">
+              14+ years experience in digital marketing, ads, and design. Leads performance ad strategy, server-side Conversions API (CAPI) integrations, and custom conversion tracking architectures.
+            </p>
+          </div>
+        </div>
+
+        <!-- Specialist Network -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary-saffron to-primary-gold flex items-center justify-center text-white text-xl">
+            ⚡
+          </div>
+          <div>
+            <h4 class="font-display font-extrabold text-sm text-neutral-dark">Specialist Partner Network</h4>
+            <span class="text-[10px] text-neutral-stone font-semibold uppercase tracking-wider block font-display">Elite Developers & Media Buyers</span>
+            <p class="font-body text-xs text-neutral-charcoal/80 leading-relaxed font-semibold mt-2">
+              We operate via a high-performance network of senior copywriters, specialized Astro developers, and advanced AI automation systems. This lean structure enables 10x faster execution without bloated agency margins.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Audit Work CTA -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none">
+      <div class="bg-gradient-to-r from-primary-saffron to-primary-gold rounded-3xl p-8 text-white text-center flex flex-col items-center gap-4">
+        <span class="text-4xl">🔱</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight">
+          Ready to Work With Us?
+        </h2>
+        <p class="font-body text-xs sm:text-sm text-white/90 max-w-md leading-relaxed font-semibold">
+          Get a free local audit and ROAS strategy plan for your business. No sales pressure, just pure analytics.
+        </p>
+        <a 
+          href="/contact/" 
+          class="px-7 py-3.5 bg-primary-indigo hover:bg-neutral-dark text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all"
+        >
+          Schedule Strategy Call
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sticky Footer -->
+  <Footer />
+
+</BaseLayout>

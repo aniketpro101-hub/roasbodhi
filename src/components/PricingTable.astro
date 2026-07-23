@@ -1,0 +1,182 @@
+---
+interface Props {
+  service: 'web' | 'meta' | 'google' | 'gmb';
+}
+
+const { service } = Astro.props;
+
+// Accent colors
+const colors = {
+  web: { text: 'text-primary-indigo', border: 'border-primary-indigo/20', bg: 'bg-primary-indigo/5', fill: 'bg-primary-indigo' },
+  meta: { text: 'text-primary-saffron', border: 'border-primary-saffron/20', bg: 'bg-primary-saffron/5', fill: 'bg-primary-saffron' },
+  google: { text: 'text-secondary-purple', border: 'border-secondary-purple/20', bg: 'bg-secondary-purple/5', fill: 'bg-secondary-purple' },
+  gmb: { text: 'text-secondary-emerald', border: 'border-secondary-emerald/20', bg: 'bg-secondary-emerald/5', fill: 'bg-secondary-emerald' }
+};
+
+const c = colors[service];
+
+// Comparison Matrix Data
+const matrices = {
+  web: {
+    plans: ['Ankur (1 Page)', 'Vriddhi (7 Pages)', 'Siddhi (15 Pages)'],
+    recommended: 1, // Vriddhi
+    features: [
+      { name: 'Package Price', values: ['₹7,999 one-time', '₹19,999 one-time', '₹39,999 one-time'], highlight: true },
+      { name: 'Setup / Advance Fee', values: ['₹0 (Pay After Seeing)', '₹0 (Pay After Seeing)', '₹0 (Pay After Seeing)'] },
+      { name: 'Page Count', values: ['1 Page Showcase', '7 Pages Funnel', '15 Pages Portal'] },
+      { name: 'Custom Copywriting', values: ['Basic Outline', 'Pro Sales Copy', 'SEO Optimized Copy'] },
+      { name: 'WhatsApp Lead Flow', values: ['Direct Link API', 'Verifying Form API', 'Automated CRM Webhook'] },
+      { name: 'Turnaround Time', values: ['3 Days', '7 Days', '14 Days'] },
+      { name: 'Mobile Responsive', values: ['✓', '✓', '✓'] },
+      { name: '90+ PageSpeed Index', values: ['✓', '✓', '✓'] },
+      { name: 'SSL & Security Locks', values: ['✓', '✓', '✓'] },
+      { name: 'Domain + Hosting', values: ['Basic Setup assistance', 'Free .in (1 Year)', 'Free .com / .in (1 Year)'] },
+      { name: 'Payment Gateways', values: ['✗', '✓', '✓'] },
+      { name: 'Support Retainer', values: ['1 Month', '3 Months', '12 Months'] }
+    ]
+  },
+  meta: {
+    plans: ['Jyoti (Starter)', 'Agni (Growth)', 'Tejas (Scale)'],
+    recommended: 1, // Agni
+    features: [
+      { name: 'Monthly Retainer', values: ['₹7,999/mo', '₹14,999/mo', '₹29,999/mo'], highlight: true },
+      { name: 'One-Time Setup Fee', values: ['₹2,999', '₹4,999', '₹5,999'] },
+      { name: 'Ad Budget Scope', values: ['Up to ₹30,000/mo', 'Up to ₹1,00,000/mo', 'Unlimited'] },
+      { name: 'Design Creatives & Copy', values: ['4 monthly sets', '12 monthly sets', 'Unlimited Custom hooks'] },
+      { name: 'Lead Form Architecture', values: ['Basic Lead form', 'Filtered Qualifying form', 'Custom Landing funnel'] },
+      { name: 'Server-side CAPI Hook', values: ['✗', '✓', '✓'] },
+      { name: 'GA4 UTM Audits', values: ['Basic tracking', 'Monthly Dashboard', 'Custom attribution map'] },
+      { name: 'Weekly Optimization', values: ['✓', '✓', '✓'] },
+      { name: 'Bi-Weekly Review Call', values: ['✗', '✓', '✓'] },
+      { name: 'Net Profit Auditing', values: ['✗', '✓', '✓'] }
+    ]
+  },
+  google: {
+    plans: ['Chakra (Starter)', 'Trishul (Growth)', 'Vajra (Scale)'],
+    recommended: 1, // Trishul
+    features: [
+      { name: 'Monthly Retainer', values: ['₹7,999/mo', '₹14,999/mo', '₹29,999/mo'], highlight: true },
+      { name: 'One-Time Setup Fee', values: ['₹2,999', '₹4,999', '₹5,999'] },
+      { name: 'Ad Budget Scope', values: ['Up to ₹30,000/mo', 'Up to ₹1,00,000/mo', 'Unlimited'] },
+      { name: 'Google Search Ads', values: ['✓', '✓', '✓'] },
+      { name: 'PMax (Performance Max)', values: ['✗', '✓', '✓'] },
+      { name: 'YouTube Video Ads', values: ['✗', '✗', '✓'] },
+      { name: 'Click Fraud Protection', values: ['Basic config', 'IP Block filters', 'Automated click exclusion'] },
+      { name: 'Negative Keywords Audits', values: ['Monthly', 'Weekly', 'Bi-weekly'] },
+      { name: 'Landing Page Audits', values: ['✗', '✓', '✓'] },
+      { name: 'Weekly Reports', values: ['✓', '✓', '✓'] }
+    ]
+  },
+  gmb: {
+    plans: ['Uday (Starter)', 'Vikas (Growth)', 'Unnati (Scale)'],
+    recommended: 1, // Vikas
+    features: [
+      { name: 'Monthly Retainer', values: ['₹4,999/mo', '₹9,999/mo', '₹19,999/mo'], highlight: true },
+      { name: 'One-Time Setup Fee', values: ['₹0', '₹0', '₹0'] },
+      { name: 'Profile Optimization', values: ['✓', '✓', '✓'] },
+      { name: 'Local Target Keywords', values: ['5 keywords', '15 keywords', '50 keywords'] },
+      { name: 'Geotagged Image Uploads', values: ['5 monthly', '15 monthly', '50 monthly'] },
+      { name: 'Local Citation Audits', values: ['10 monthly', '30 monthly', '100 monthly'] },
+      { name: 'Review Response System', values: ['✓', '✓', '✓'] },
+      { name: 'Maps Search Ads Setup', values: ['✗', '✓', '✓'] },
+      { name: 'Monthly Performance Audit', values: ['✓', '✓', '✓'] },
+      { name: 'Hijack & Spam Protection', values: ['✗', '✓', '✓'] }
+    ]
+  }
+};
+
+const matrix = matrices[service];
+---
+
+<div class="mt-12 select-none">
+  <!-- DESKTOP SIDE-BY-SIDE MATRIX -->
+  <div class="hidden md:block overflow-x-auto rounded-2xl border border-neutral-mist bg-white shadow-sm">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="border-b border-neutral-mist bg-neutral-ghost">
+          <th class="p-5 font-display font-extrabold text-xs text-neutral-stone uppercase tracking-wider w-2/5">
+            Features & Deliverables
+          </th>
+          {matrix.plans.map((plan, idx) => (
+            <th class={`p-5 font-display font-extrabold text-xs uppercase tracking-wider text-center w-1/5 relative ${
+              idx === matrix.recommended ? 'bg-primary-saffron/5 text-primary-saffron' : 'text-neutral-dark'
+            }`}>
+              {idx === matrix.recommended && (
+                <span class="absolute top-0 inset-x-0 h-1 bg-primary-saffron"></span>
+              )}
+              {plan}
+              {idx === matrix.recommended && (
+                <span class="block text-[8px] text-primary-saffron mt-0.5 tracking-widest font-extrabold">(RECOMMENDED)</span>
+              )}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-neutral-mist/50">
+        {matrix.features.map(feat => (
+          <tr class={`hover:bg-neutral-ghost/50 transition-colors ${feat.highlight ? 'bg-neutral-ghost/25' : ''}`}>
+            <td class={`p-4.5 font-display font-bold text-xs text-neutral-dark ${feat.highlight ? 'font-extrabold' : ''}`}>
+              {feat.name}
+            </td>
+            {feat.values.map((val, idx) => (
+              <td class={`p-4.5 font-body text-xs text-center font-semibold ${
+                idx === matrix.recommended ? 'bg-primary-saffron/5 text-neutral-charcoal' : 'text-neutral-stone'
+              } ${feat.highlight ? 'text-neutral-dark font-extrabold' : ''}`}>
+                {val === '✓' ? (
+                  <span class="text-secondary-emerald text-sm">✓</span>
+                ) : val === '✗' ? (
+                  <span class="text-neutral-mist text-sm">✗</span>
+                ) : (
+                  val
+                )}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MOBILE ACCORDION VIEW -->
+  <div class="block md:hidden flex flex-col gap-4">
+    <div class="text-center mb-2">
+      <span class="text-[9px] font-display font-extrabold text-neutral-stone uppercase tracking-widest block">
+        Swipe to expand feature matrices below
+      </span>
+    </div>
+    
+    <div class="flex flex-col gap-3">
+      {matrix.plans.map((plan, planIdx) => (
+        <details class="bg-white border border-neutral-mist rounded-xl overflow-hidden group shadow-sm transition-all">
+          <summary class="p-4 flex items-center justify-between font-display font-extrabold text-xs text-neutral-dark uppercase tracking-wider cursor-pointer list-none select-none hover:bg-neutral-ghost">
+            <div class="flex items-center gap-2">
+              <span class={`w-2.5 h-2.5 rounded-full ${planIdx === matrix.recommended ? 'bg-primary-saffron' : c.fill}`}></span>
+              <span>{plan}</span>
+              {planIdx === matrix.recommended && (
+                <span class="text-[8px] text-primary-saffron font-bold ml-1">(RECOMMENDED)</span>
+              )}
+            </div>
+            <span class="text-neutral-stone group-open:rotate-180 transition-transform duration-200 text-xs">▼</span>
+          </summary>
+          
+          <div class="border-t border-neutral-mist/50 p-4 bg-neutral-ghost/50 flex flex-col gap-2.5 divide-y divide-neutral-mist/20">
+            {matrix.features.map(feat => (
+              <div class="flex justify-between items-center text-xs font-body font-semibold pt-2 first:pt-0">
+                <span class="text-neutral-stone font-medium text-[11px]">{feat.name}</span>
+                <span class={`text-right ${feat.highlight ? 'text-neutral-dark font-extrabold' : 'text-neutral-charcoal'}`}>
+                  {feat.values[planIdx] === '✓' ? (
+                    <span class="text-secondary-emerald text-sm font-bold">✓ Included</span>
+                  ) : feat.values[planIdx] === '✗' ? (
+                    <span class="text-neutral-stone/50 text-sm">✗ Not Included</span>
+                  ) : (
+                    feat.values[planIdx]
+                  )}
+                </span>
+              </div>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</div>

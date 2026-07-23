@@ -1,0 +1,61 @@
+---
+import { ChevronRight } from 'lucide-astro';
+
+interface Props {
+  items: {
+    label: string;
+    href: string;
+  }[];
+  separator?: 'slash' | 'chevron';
+}
+
+const { items, separator = 'chevron' } = Astro.props;
+
+const siteUrl = 'https://roasbodhi.in';
+
+// Auto-generate BreadcrumbList JSON-LD Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.label,
+    "item": item.href.startsWith('http') ? item.href : `${siteUrl}${item.href}`
+  }))
+};
+---
+
+<nav class="w-full py-4 select-none" aria-label="Breadcrumb">
+  <!-- Dynamic Schema script -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <ol class="flex flex-wrap items-center gap-2 text-xs font-body font-semibold text-neutral-stone">
+    <li>
+      <a href="/" class="hover:text-primary-saffron transition-colors">Home</a>
+    </li>
+    
+    {items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <li class="flex items-center gap-2">
+          {separator === 'chevron' ? (
+            <ChevronRight class="w-3.5 h-3.5 text-neutral-mist" />
+          ) : (
+            <span class="text-neutral-mist">/</span>
+          )}
+          
+          {isLast ? (
+            <span class="text-neutral-charcoal font-bold max-w-[150px] sm:max-w-none truncate" aria-current="page">
+              {item.label}
+            </span>
+          ) : (
+            <a href={item.href} class="hover:text-primary-saffron transition-colors">
+              {item.label}
+            </a>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>

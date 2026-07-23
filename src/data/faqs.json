@@ -1,0 +1,94 @@
+{
+  "general": [
+    {
+      "q": "What does the name RoasBodhi mean?",
+      "a": "ROAS stands for Return on Ad Spend (your financial return). Bodhi is a Sanskrit word meaning awakening or enlightenment. RoasBodhi literally means 'Awakening Your Ad Returns' — bringing strategy, clarity, and growth to your marketing investments."
+    },
+    {
+      "q": "Which locations or cities do you serve in India?",
+      "a": "We serve business owners across all states in India. Our programmatic database maps 500+ commercial cities from metros like Mumbai and Delhi to growing hubs in Gujarat, Maharashtra, Rajasthan, and Tamil Nadu."
+    },
+    {
+      "q": "What is your primary communication channel?",
+      "a": "We use WhatsApp Business as our primary communication and lead routing channel. It allows for instant query responses and direct communication between our optimization experts and your business team."
+    },
+    {
+      "q": "How do we get started?",
+      "a": "You can click any of our WhatsApp CTA buttons to begin. We will schedule a quick 10-minute discovery call to align on your business requirements."
+    }
+  ],
+  "pricing": [
+    {
+      "q": "How does the Pay-After-Seeing website design model work?",
+      "a": "For our website development plans, we charge zero upfront fees. We discuss your needs, build the staging preview website, and present it to you. If you love it, you pay the package price and we register your domain and push it live. If you don't approve it, you pay nothing."
+    },
+    {
+      "q": "Are ad spends included in your monthly fees?",
+      "a": "No, the ad budget paid directly to Meta or Google is separate. Our monthly fees strictly cover creative graphic designs, reels video edits, campaign setup, copywriting, and daily target optimizations."
+    },
+    {
+      "q": "What is your refund policy?",
+      "a": "We offer a 100% refund at any point before your domain is registered and the website is pushed live. Once your custom domain is registered and the website is live, we cannot issue a refund. Monthly ads support retainers can be cancelled with a 15-day notice."
+    },
+    {
+      "q": "Do you charge setup fees?",
+      "a": "Our standard advertising packages have a setup fee starting at ₹2,999. However, during our Anniversary Utsav offer, all setup fees are waived."
+    }
+  ],
+  "meta_ads": [
+    {
+      "q": "How long does it take for Meta ads to start generating leads?",
+      "a": "Most lead generation campaigns start generating WhatsApp chats and form inquiries within 48 hours of launch. However, the first 14 days are the learning phase where the algorithm optimizes target bids."
+    },
+    {
+      "q": "Do you edit video Reels for Instagram ads?",
+      "a": "Yes, our monthly Agni and Pralaya plans include vertical video editing for Reels. You share raw footage of your products or showroom, and our editors turn them into high-converting ad Reels."
+    },
+    {
+      "q": "What is Meta Conversions API?",
+      "a": "It is a server-to-server connection that sends conversion events directly from our server to Meta, bypassing browser cookie blockers (like Safari/iOS 14 blocks) to ensure correct tracking."
+    }
+  ],
+  "google_ads": [
+    {
+      "q": "What is the difference between Meta Ads and Google Ads?",
+      "a": "Meta Ads are push marketing (showing product graphics to users based on interests on Instagram/Facebook). Google Ads are pull marketing (intercepting users actively searching for services like 'dentists near me' on Google Search/Maps)."
+    },
+    {
+      "q": "What is negative keyword scrubbing?",
+      "a": "It is the process of adding search terms that you do not want your ads to show for (e.g. if you are a premium dental clinic, we add 'free treatment' or 'jobs' as negative keywords to save your budget)."
+    },
+    {
+      "q": "Do you write search ad copy?",
+      "a": "Yes, we write all ad extensions, headings, descriptions, and site link copies optimized for high Quality Score values."
+    }
+  ],
+  "web_design": [
+    {
+      "q": "Why do you build websites using Astro.js?",
+      "a": "Astro.js delivers zero javascript by default, which ensures that pages load instantly (under 1 second). Faster load speeds improve your conversion rates and help you rank higher on Google search results."
+    },
+    {
+      "q": "Is a domain and SSL certificate included?",
+      "a": "Yes, our Vriddhi and Siddhi website design packages include a free .in domain for 1 year and a lifetime free SSL certificate from Cloudflare Pages."
+    },
+    {
+      "q": "Can I update the website content myself?",
+      "a": "Yes, we set up simple JSON data files. You can update pricing or text directly without writing code, or request our team to do it for free under our support terms."
+    }
+  ],
+  "gmb": [
+    {
+      "q": "How do you optimize Google My Business map listings?",
+      "a": "We clean up Name, Address, Phone (NAP) citations, upload geotagged high-resolution photographs of your business location monthly, and build local directory citations to improve your map rank."
+    },
+    {
+      "q": "What is the Google Maps Local 3-Pack?",
+      "a": "It is the top three local business listings that appear on Google Search when a user searches for local services (e.g. 'builders near me'). Raking in the Local 3-pack accounts for 70% of local search clicks."
+    },
+    {
+      "q": "Do you help with getting reviews?",
+      "a": "Yes, we set up customized WhatsApp feedback templates and review links that make it easy for your clients to leave five-star ratings on Google."
+    }
+  ]
+}

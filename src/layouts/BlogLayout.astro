@@ -1,0 +1,179 @@
+---
+import PageLayout from './PageLayout.astro';
+import { Calendar, User, Clock, Share2 } from 'lucide-astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    pubDate: string;
+    author: string;
+    image: string;
+    tags: string[];
+    readTime?: string;
+  };
+  headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { frontmatter, headings } = Astro.props;
+
+// Calculate reading time (Fallback to 5 mins if not set)
+const readTime = frontmatter.readTime || '5 mins read';
+
+// Article JSON-LD Schema
+const siteUrl = 'https://roasbodhi.in';
+const pathname = Astro.url.pathname;
+const resolvedUrl = `${siteUrl}${pathname}`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": frontmatter.title,
+  "description": frontmatter.description,
+  "image": frontmatter.image.startsWith('http') ? frontmatter.image : `${siteUrl}${frontmatter.image}`,
+  "datePublished": frontmatter.pubDate,
+  "author": {
+    "@type": "Person",
+    "name": frontmatter.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "RoasBodhi",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/favicon.svg`
+    }
+  },
+  "mainEntityOfPage": resolvedUrl
+};
+
+// Social Share Link Builders
+const encodedUrl = encodeURIComponent(resolvedUrl);
+const encodedTitle = encodeURIComponent(frontmatter.title);
+
+const shareLinks = {
+  twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+  facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+  whatsapp: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`
+};
+---
+
+<PageLayout 
+  title={frontmatter.title} 
+  description={frontmatter.description} 
+  ogImage={frontmatter.image} 
+  schema={articleSchema}
+  breadcrumbs={[
+    { label: 'Blog', link: '/blog/' },
+    { label: frontmatter.title, link: pathname }
+  ]}
+>
+  
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Article Header -->
+    <header class="flex flex-col gap-4 mb-10 select-none">
+      <div class="flex flex-wrap gap-2">
+        {frontmatter.tags.map(tag => (
+          <span class="px-2.5 py-0.5 rounded-full bg-primary-saffron/10 text-primary-saffron text-[10px] font-display font-extrabold uppercase tracking-wider">
+            {tag}
+          </span>
+        ))}
+      </div>
+      <h1 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl tracking-tight leading-tight">
+        {frontmatter.title}
+      </h1>
+      
+      <!-- Meta parameters -->
+      <div class="flex flex-wrap items-center gap-6 text-xs text-neutral-stone font-body font-semibold border-b border-neutral-mist pb-6">
+        <span class="flex items-center gap-1.5"><Calendar class="w-4 h-4 text-primary-saffron" /> {frontmatter.pubDate}</span>
+        <span class="flex items-center gap-1.5"><User class="w-4 h-4 text-secondary-purple" /> By {frontmatter.author}</span>
+        <span class="flex items-center gap-1.5"><Clock class="w-4 h-4 text-secondary-emerald" /> {readTime}</span>
+      </div>
+    </header>
+
+    <!-- Visual Banner Image -->
+    {frontmatter.image && (
+      <div class="w-full h-80 sm:h-[420px] rounded-2xl overflow-hidden mb-12 shadow-card-default select-none">
+        <img 
+          src={frontmatter.image} 
+          alt={frontmatter.title} 
+          class="w-full h-full object-cover" 
+        />
+      </div>
+    )}
+
+    <!-- Table of Contents and Main Body Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Left Column: Table of Contents (Shown on desktop lg and up) -->
+      {headings && headings.length > 0 && (
+        <aside class="hidden lg:block lg:col-span-3 sticky top-28 bg-white border border-neutral-mist rounded-xl p-5 select-none">
+          <h4 class="font-display font-bold text-xs text-neutral-dark uppercase tracking-wider border-b border-neutral-mist pb-3 mb-3">
+            Table of Contents
+          </h4>
+          <ul class="flex flex-col gap-2.5">
+            {headings.filter(h => h.depth <= 3).map(heading => (
+              <li class={`text-xs font-body leading-snug font-medium transition-colors hover:text-primary-saffron ${heading.depth === 3 ? 'pl-3 text-neutral-stone' : 'text-neutral-charcoal'}`}>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
+
+      <!-- Center Column: Post Body Content -->
+      <div class={`col-span-1 lg:col-span-9 prose prose-neutral max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary-saffron prose-a:font-semibold`}>
+        <slot />
+      </div>
+
+    </div>
+
+    <!-- Social Share Buttons -->
+    <footer class="mt-16 pt-8 border-t border-neutral-mist flex flex-col sm:flex-row items-center justify-between gap-6 select-none">
+      <div class="flex items-center gap-2 text-xs font-display font-extrabold text-neutral-dark uppercase tracking-wider">
+        <Share2 class="w-4 h-4 text-primary-saffron" />
+        <span>Share This Article</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href={shareLinks.twitter} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-neutral-mist hover:border-primary-saffron hover:bg-neutral-ghost flex items-center justify-center text-neutral-charcoal hover:text-primary-saffron transition-all" aria-label="Share on X / Twitter">
+          <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+
+        <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-neutral-mist hover:border-primary-saffron hover:bg-neutral-ghost flex items-center justify-center text-neutral-charcoal hover:text-primary-saffron transition-all" aria-label="Share on Facebook">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" />
+          </svg>
+        </a>
+
+        <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-neutral-mist hover:border-primary-saffron hover:bg-neutral-ghost flex items-center justify-center text-neutral-charcoal hover:text-primary-saffron transition-all" aria-label="Share on LinkedIn">
+          <svg class="w-4.5 h-4.5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.67c0-.25.02-.5.1-.68a1.14 1.14 0 0 1 1-.77c.76 0 1 .56 1 1.39v4.73h2.78M8 8.66a1.5 1.5 0 0 0-1.5-1.5 1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 8 8.66m-2.8 9.84h2.8v-8.37H5.2v8.37z" />
+          </svg>
+        </a>
+
+        <a href={shareLinks.whatsapp} target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-neutral-mist hover:border-primary-saffron hover:bg-neutral-ghost flex items-center justify-center text-neutral-charcoal hover:text-primary-saffron transition-all" aria-label="Share on WhatsApp">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.37 5.054L2 22l5.077-1.332a9.936 9.936 0 0 0 4.933 1.318h.005c5.505 0 9.99-4.478 9.99-9.984a9.986 9.986 0 0 0-9.993-9.998zm5.794 14.41c-.243.688-1.22 1.259-1.685 1.309-.459.049-.915.222-2.923-.591-2.413-.976-3.97-3.432-4.092-3.593-.122-.162-.992-1.32-.992-2.52 0-1.2.628-1.79.851-2.036.223-.246.486-.309.649-.309.162 0 .324.004.466.01.149.006.347-.057.542.417.202.493.689 1.684.75 1.807.061.122.102.264.02.427-.081.162-.122.264-.243.406-.122.142-.257.318-.366.427-.122.122-.249.254-.108.497.142.243.63 1.037 1.353 1.68.93.826 1.712 1.082 1.956 1.203.243.122.385.102.528-.061.142-.162.608-.71.77-.954.162-.243.324-.203.547-.122.223.081 1.417.669 1.66 1.815c.243.243.243.446.122.688z" />
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+    <!-- Related Posts Slot -->
+    <div class="mt-16">
+      <slot name="related" />
+    </div>
+
+    <!-- Newsletter CTA Slot -->
+    <div class="mt-12">
+      <slot name="newsletter" />
+    </div>
+
+  </article>
+
+</PageLayout>

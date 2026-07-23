@@ -1,0 +1,153 @@
+---
+import SectionLabel from '../SectionLabel.astro';
+import PricingCard from '../PricingCard.astro';
+import pricingData from '../../data/pricing.json';
+import { ArrowRight } from 'lucide-astro';
+
+// Map service keys to readable tabs names
+const serviceTabs = [
+  { key: 'web_design', name: 'Web Design' },
+  { key: 'meta_ads', name: 'Meta Ads' },
+  { key: 'google_ads', name: 'Google Ads' },
+  { key: 'gmb', name: 'Google Maps GMB' },
+  { key: 'research_reports', name: 'Research Reports' }
+];
+
+// Helper to format plan price and features
+const getFormattedPlans = (key: string) => {
+  const service = pricingData[key as keyof typeof pricingData];
+  if (!service) return [];
+  
+  return service.plans.map(plan => ({
+    id: plan.id,
+    name: plan.name,
+    hindi: plan.hindi,
+    meaning: plan.meaning,
+    price: `₹${plan.price.toLocaleString('en-IN')}`,
+    period: plan.period === 'one-time' ? 'one-time' : '/month',
+    popular: plan.popular,
+    description: plan.description,
+    best_for: plan.id === 'vriddhi' || plan.id === 'agni' || plan.id === 'chakra' || plan.id === 'unnati' ? 'Most Popular' : undefined,
+    features: plan.features.map(f => ({
+      text: `${f.name}: ${f.value}`,
+      included: f.included,
+      emphasis: f.included && (f.name.toLowerCase().includes('guarantee') || f.name.toLowerCase().includes('roas') || f.name.toLowerCase().includes('leads') || f.name.toLowerCase().includes('pagespeed'))
+    }))
+  }));
+};
+---
+
+<section class="py-24 bg-white relative overflow-hidden select-none">
+  
+  <!-- Saffron gradient glow -->
+  <div class="absolute left-[-200px] top-[10%] w-[450px] h-[450px] bg-primary-saffron/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- HEADER -->
+    <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-12">
+      <SectionLabel text="TRANSPARENT PRICING" />
+      
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight mt-2">
+        Simple Pricing. <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">No Surprises. Ever.</span>
+      </h2>
+      
+      <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-2 max-w-xl leading-relaxed font-semibold">
+        All plans include our legendary Pay-After-Seeing™ or ROI setup safeguards.
+      </p>
+    </div>
+
+    <!-- SERVICE SWITCHER (Segmented control tabs) -->
+    <div class="flex items-center justify-center mb-16">
+      <div class="inline-flex p-1.5 bg-neutral-ghost border border-neutral-mist/60 rounded-full shadow-inner select-none max-w-full overflow-x-auto no-scrollbar" id="pricing-switcher">
+        {serviceTabs.map((tab, index) => (
+          <button
+            class={`px-6 py-3 rounded-full text-xs font-display font-extrabold uppercase tracking-wider transition-all duration-300 whitespace-nowrap focus:outline-none ${
+              index === 0 
+                ? 'bg-white text-neutral-dark shadow-sm scale-100 active-tab' 
+                : 'text-neutral-stone hover:text-neutral-charcoal'
+            }`}
+            data-tab-target={tab.key}
+          >
+            {tab.name}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- PRICING GRIDS (Toggled via JS) -->
+    {serviceTabs.map((tab, tabIdx) => {
+      const plans = getFormattedPlans(tab.key);
+      return (
+        <div 
+          class={`grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 items-stretch transition-all duration-500 pricing-grid-panel ${
+            tabIdx === 0 ? 'opacity-100 scale-100' : 'hidden opacity-0 scale-95'
+          }`}
+          data-panel-key={tab.key}
+        >
+          {plans.map(plan => (
+            <PricingCard plan={plan} serviceName={tab.name} />
+          ))}
+        </div>
+      );
+    })}
+
+    <!-- BELOW PRICING GRID -->
+    <div class="mt-12 text-center max-w-2xl mx-auto">
+      <p class="font-body text-[11px] text-neutral-stone leading-relaxed font-semibold">
+        *Note: Ad spend is paid directly by you to Meta or Google. Our management fee covers campaign creation, creative direction, copy, and optimization reports only.
+      </p>
+      
+      <div class="border-t border-neutral-mist/50 my-6"></div>
+
+      <a 
+        href="/pricing/" 
+        class="font-display font-extrabold text-xs text-primary-saffron hover:underline flex items-center justify-center gap-1.5 uppercase tracking-wider"
+      >
+        <span>View All Combo Bundles & Enterprise Details</span>
+        <ArrowRight class="w-4 h-4" />
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const switcherButtons = document.querySelectorAll('#pricing-switcher button');
+    const panels = document.querySelectorAll('.pricing-grid-panel');
+
+    switcherButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle active tab style
+        switcherButtons.forEach(b => {
+          b.classList.remove('bg-white', 'text-neutral-dark', 'shadow-sm', 'scale-100', 'active-tab');
+          b.classList.add('text-neutral-stone');
+        });
+
+        btn.classList.remove('text-neutral-stone');
+        btn.classList.add('bg-white', 'text-neutral-dark', 'shadow-sm', 'scale-100', 'active-tab');
+
+        const activeKey = btn.getAttribute('data-tab-target')!;
+
+        panels.forEach(panel => {
+          const gridPanel = panel as HTMLElement;
+          const panelKey = gridPanel.getAttribute('data-panel-key')!;
+
+          if (panelKey === activeKey) {
+            gridPanel.classList.remove('hidden', 'opacity-0', 'scale-95');
+            setTimeout(() => {
+              gridPanel.classList.add('opacity-100', 'scale-100');
+            }, 10);
+          } else {
+            gridPanel.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+              gridPanel.classList.add('hidden');
+            }, 300);
+          }
+        });
+      });
+    });
+  });
+</script>

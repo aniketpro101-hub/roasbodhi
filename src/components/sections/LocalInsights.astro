@@ -1,0 +1,263 @@
+---
+import SectionLabel from '../SectionLabel.astro';
+import { HelpCircle, Sparkles, Languages, Check, BookOpen, ExternalLink, Globe } from 'lucide-astro';
+
+// Import our content builders
+import { generateLocalInsights, generateLocalCaseStudy } from '../../utils/content-generator';
+
+interface Props {
+  city: {
+    name: string;
+    slug: string;
+    state: string;
+    state_slug: string;
+    tier: number;
+    population: string;
+    region: string;
+    languages: string[];
+    top_industries: string[];
+    economic_notes: string;
+    digital_maturity: string;
+    local_market_note: string;
+    local_language_greeting: string;
+    local_stats: {
+      business_count: number;
+      digital_adoption_rate: string;
+      avg_cpl: number;
+    };
+    nearby_cities: Array<{
+      name: string;
+      slug: string;
+      population: string;
+      top_industry: string;
+      distance_km: number;
+    }>;
+    local_resources: Array<{
+      name: string;
+      url: string;
+    }>;
+    local_phrases?: {
+      hello: string;
+      business: string;
+    };
+  };
+  service: {
+    id: string;
+    name: string;
+    short_name: string;
+    description: string;
+  };
+}
+
+const { city, service } = Astro.props;
+
+const localGreeting = city.local_phrases?.hello || "Namaste";
+const localGreetingText = `When local customers in ${city.name} search for your business, establishing a warm connection in their preferred regional style makes all the difference. In ${city.state}, greeting prospects with a local context helps establish trust.`;
+
+const whyNeededText = `For SMBs operating in ${city.name}'s active sectors like ${city.top_industries.slice(0, 2).join(' and ')}, standard click-focused digital campaigns fail to translate into raw cash returns. With ${city.name}'s digital maturity index marked as ${city.digital_maturity}, local business owners need highly optimized search and social funnels that focus on phone calls and store visits.`;
+
+const marketLandscapeText = `${city.economic_notes} Since many store owners in the region compete for the same audience, high-performance ${service.short_name} optimization is no longer optional. RoasBodhi™ addresses this by building lightning-fast layouts and targeting ad budgets directly at local clusters, preventing waste.`;
+
+const languageRelevanceText = `By integrating campaigns in regional languages like ${city.languages.join(' and ')} in ${city.name}, we bypass traditional ad friction. Local ad creatives, optimized headlines, and regional landing pages ensure that your business speaks directly to customers in their native language, resulting in a higher conversion rate.`;
+
+// Build pSEO custom paragraphs
+const fullLandscapeParagraph = generateLocalInsights(city);
+const activeCaseStudy = generateLocalCaseStudy(city);
+---
+
+<section class="py-24 bg-white relative overflow-hidden select-none text-neutral-charcoal">
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- HEADER -->
+    <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-20">
+      <SectionLabel text="LOCAL MARKET REVIEW" />
+      
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight mt-2 text-center">
+        Market Insights for <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">{city.name} Business Owners</span>
+      </h2>
+      
+      <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-2 max-w-xl leading-relaxed font-semibold">
+        How local demographics, languages, and industries affect your {service.name} ROI.
+      </p>
+    </div>
+
+    <!-- MAIN GRID LAYOUT -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- Left Column: Unique Local Context (span 7) -->
+      <div class="lg:col-span-7 flex flex-col gap-10 text-left">
+        
+        <!-- Regional Greeting Banner -->
+        <div class="bg-primary-saffron/5 border border-primary-saffron/20 rounded-2xl p-6 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-primary-saffron/10 flex items-center justify-center text-primary-saffron text-2xl font-semibold flex-shrink-0">
+            🔱
+          </div>
+          <div>
+            <h4 class="font-display font-extrabold text-sm text-neutral-dark">Regional Language Engagement</h4>
+            <p class="font-body text-[11px] sm:text-xs text-neutral-stone font-semibold mt-1">
+              Greeting prospects in their native language builds instant local credibility.
+            </p>
+            <blockquote class="font-display font-extrabold text-xs sm:text-sm text-primary-saffron mt-3 bg-white border border-primary-saffron/15 rounded-lg py-2 px-3 inline-block">
+              "{city.local_language_greeting}"
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- 300-500 Word Unique Landscape Text -->
+        <div class="flex flex-col gap-4">
+          <h3 class="font-display font-extrabold text-neutral-dark text-lg sm:text-xl flex items-center gap-2">
+            <Globe class="w-5.5 h-5.5 text-primary-saffron" />
+            <span>Digital Marketing Landscape in {city.name}</span>
+          </h3>
+          <div class="font-body text-xs sm:text-sm text-neutral-stone leading-relaxed font-semibold flex flex-col gap-4 whitespace-pre-line">
+            {fullLandscapeParagraph}
+          </div>
+        </div>
+
+        <!-- Dynamic Rotating Local Case Study -->
+        <div class="bg-neutral-ghost border border-neutral-mist/60 rounded-3xl p-6 sm:p-8 flex flex-col gap-6 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary-saffron/10 to-transparent rounded-bl-3xl pointer-events-none"></div>
+          
+          <div class="flex items-center gap-2.5">
+            <span class="px-3 py-1 rounded-full bg-secondary-emerald/10 text-secondary-emerald text-[9px] font-display font-extrabold uppercase tracking-widest">
+              Success Story
+            </span>
+            <span class="text-xs text-neutral-stone font-bold">Local Verified Study</span>
+          </div>
+
+          <h3 class="font-display font-extrabold text-neutral-dark text-base sm:text-lg tracking-tight">
+            {activeCaseStudy.title}
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-neutral-mist/50 pt-4 text-xs font-body">
+            <div>
+              <span class="text-neutral-stone font-extrabold block uppercase tracking-wider text-[10px]">The Challenge</span>
+              <p class="text-neutral-charcoal font-semibold mt-1 leading-relaxed">
+                {activeCaseStudy.challenge}
+              </p>
+            </div>
+            <div>
+              <span class="text-neutral-stone font-extrabold block uppercase tracking-wider text-[10px]">The Solution</span>
+              <p class="text-neutral-charcoal font-semibold mt-1 leading-relaxed">
+                {activeCaseStudy.solution}
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-white border border-neutral-mist/50 rounded-xl p-4 flex items-center justify-between text-xs mt-2">
+            <div class="flex flex-col">
+              <span class="text-[9px] font-display font-extrabold text-neutral-stone uppercase tracking-wider">Metrics Delivered</span>
+              <span class="font-display font-extrabold text-neutral-dark text-xs sm:text-sm mt-0.5">{activeCaseStudy.result}</span>
+            </div>
+            <a href="/contact/" class="px-4 py-2 bg-primary-indigo hover:bg-neutral-dark text-white font-display font-extrabold text-[10px] uppercase tracking-wider rounded-lg transition-all">
+              Replicate Result
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Local Stats Table & Directory (span 5) -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        
+        <!-- Table Card -->
+        <div class="bg-neutral-ghost border border-neutral-mist rounded-3xl p-6 shadow-sm flex flex-col gap-6">
+          <h4 class="font-display font-extrabold text-xs text-neutral-dark uppercase tracking-wider border-b border-neutral-mist pb-3 flex items-center justify-between">
+            <span>Geographic & Market Profile</span>
+            <span class="text-[9px] text-neutral-stone">Tier {city.tier} City</span>
+          </h4>
+
+          <div class="flex flex-col gap-4 font-body text-xs text-neutral-charcoal">
+            <!-- State -->
+            <div class="flex justify-between items-center border-b border-neutral-mist/50 pb-2">
+              <span class="text-neutral-stone font-semibold">State:</span>
+              <span class="font-bold">{city.state}</span>
+            </div>
+
+            <!-- Est. Population -->
+            <div class="flex justify-between items-center border-b border-neutral-mist/50 pb-2">
+              <span class="text-neutral-stone font-semibold">Est. Population:</span>
+              <span class="font-mono font-bold text-neutral-dark">{city.population}</span>
+            </div>
+
+            <!-- Active Businesses -->
+            <div class="flex justify-between items-center border-b border-neutral-mist/50 pb-2">
+              <span class="text-neutral-stone font-semibold">Registered Enterprises:</span>
+              <span class="font-mono font-bold text-neutral-dark">{city.local_stats.business_count.toLocaleString('en-IN')}+</span>
+            </div>
+
+            <!-- Digital Adoption -->
+            <div class="flex justify-between items-center border-b border-neutral-mist/50 pb-2">
+              <span class="text-neutral-stone font-semibold">Digital Adoption Index:</span>
+              <span class="font-bold text-secondary-emerald">{city.local_stats.digital_adoption_rate}</span>
+            </div>
+
+            <!-- Avg CPL -->
+            <div class="flex justify-between items-center border-b border-neutral-mist/50 pb-2">
+              <span class="text-neutral-stone font-semibold">Avg. CPL Range:</span>
+              <span class="font-mono font-bold text-neutral-dark">₹{city.local_stats.avg_cpl} - ₹{city.local_stats.avg_cpl + 80}</span>
+            </div>
+
+            <!-- Local Languages -->
+            <div class="flex justify-between items-center border-b border-neutral-mist/50 pb-2">
+              <span class="text-neutral-stone font-semibold">Local Languages:</span>
+              <span class="font-bold">{city.languages.join(', ')}</span>
+            </div>
+
+            <!-- Top Industries -->
+            <div class="flex flex-col items-start gap-1">
+              <span class="text-neutral-stone font-semibold">Dominant Niche Industries:</span>
+              <div class="flex flex-wrap gap-1.5 mt-1.5">
+                {city.top_industries.map(ind => (
+                  <span class="px-2.5 py-1 rounded bg-white border border-neutral-mist text-[10px] font-semibold text-neutral-dark">
+                    {ind}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="border-t border-neutral-mist/60 pt-4 flex flex-col gap-2 text-left">
+            <span class="font-display font-extrabold text-[10px] text-neutral-dark uppercase tracking-widest flex items-center gap-1">
+              <Sparkles class="w-3.5 h-3.5 text-primary-saffron" /> Local Market Insight
+            </span>
+            <p class="font-body text-[11px] text-neutral-charcoal/80 leading-relaxed font-semibold italic">
+              "{city.local_market_note}"
+            </p>
+          </div>
+        </div>
+
+        <!-- Local Business Resource Directory -->
+        <div class="bg-white border border-neutral-mist rounded-3xl p-6 shadow-sm flex flex-col gap-4 text-left">
+          <h4 class="font-display font-extrabold text-xs text-neutral-dark uppercase tracking-wider border-b border-neutral-mist pb-3 flex items-center gap-1.5">
+            <BookOpen class="w-4 h-4 text-primary-indigo" />
+            <span>Local {city.name} Business Resources</span>
+          </h4>
+          <p class="font-body text-[11px] text-neutral-stone font-semibold leading-relaxed">
+            Real, verified government business resources for entrepreneurs in {city.name}, {city.state}:
+          </p>
+          <ul class="flex flex-col gap-2.5 mt-2 font-display font-bold text-[10px] uppercase tracking-wider text-primary-indigo">
+            {city.local_resources.map(res => (
+              <li>
+                <a 
+                  href={res.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="flex items-center gap-1.5 hover:text-primary-saffron transition-colors"
+                >
+                  <ExternalLink class="w-3.5 h-3.5 flex-shrink-0" />
+                  {res.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

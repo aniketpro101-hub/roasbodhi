@@ -1,0 +1,125 @@
+---
+import { Shield, Cloud, Award, CheckSquare, ShieldAlert, Star, Compass, UserCheck } from 'lucide-astro';
+
+interface Props {
+  variant?: 'light' | 'dark' | 'saffron';
+}
+
+const { variant = 'light' } = Astro.props;
+
+// Class style sets depending on light/dark/saffron background variants
+const styles = {
+  light: {
+    card: 'bg-white border-neutral-mist hover:border-primary-saffron/30 hover:shadow-card-default text-neutral-dark',
+    iconBg: 'bg-neutral-ghost border-neutral-mist/50',
+    title: 'text-neutral-dark',
+    desc: 'text-neutral-stone'
+  },
+  dark: {
+    card: 'bg-white/5 border-white/10 hover:border-primary-gold/40 hover:shadow-2xl text-white',
+    iconBg: 'bg-white/5 border-white/5',
+    title: 'text-white',
+    desc: 'text-white/60'
+  },
+  saffron: {
+    card: 'bg-gradient-to-br from-primary-saffron to-primary-gold border-white/20 hover:border-white/40 text-white',
+    iconBg: 'bg-white/10 border-white/10',
+    title: 'text-white',
+    desc: 'text-white/90'
+  }
+};
+
+const curStyle = styles[variant];
+---
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto w-full select-none">
+  
+  <!-- Badge 1: SSL -->
+  <div class={`border rounded-xl p-5 shadow-sm transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 ${curStyle.card}`}>
+    <div class={`w-10 h-10 rounded-full flex items-center justify-center border ${curStyle.iconBg}`}>
+      <Shield class="w-5 h-5 text-secondary-emerald" />
+    </div>
+    <div class="flex flex-col">
+      <span class={`font-display font-extrabold text-xs ${curStyle.title}`}>SSL Secured</span>
+      <span class={`font-body text-[10px] mt-0.5 ${curStyle.desc}`}>256-bit Encryption</span>
+    </div>
+  </div>
+
+  <!-- Badge 2: Cloudflare -->
+  <div class={`border rounded-xl p-5 shadow-sm transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 ${curStyle.card}`}>
+    <div class={`w-10 h-10 rounded-full flex items-center justify-center border ${curStyle.iconBg}`}>
+      <Cloud class="w-5 h-5 text-orange-500" />
+    </div>
+    <div class="flex flex-col">
+      <span class={`font-display font-extrabold text-xs ${curStyle.title}`}>Cloudflare Active</span>
+      <span class={`font-body text-[10px] mt-0.5 ${curStyle.desc}`}>DDoS Shield Guard</span>
+    </div>
+  </div>
+
+  <!-- Badge 3: Google Certified -->
+  <div class={`border rounded-xl p-5 shadow-sm transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 ${curStyle.card}`}>
+    <div class={`w-10 h-10 rounded-full flex items-center justify-center border ${curStyle.iconBg}`}>
+      <Award class="w-5 h-5 text-primary-gold" />
+    </div>
+    <div class="flex flex-col">
+      <span class={`font-display font-extrabold text-xs ${curStyle.title}`}>Meta Ads Partner</span>
+      <span class={`font-body text-[10px] mt-0.5 ${curStyle.desc}`}>Verified Business Partner</span>
+    </div>
+  </div>
+
+  <!-- Badge 4: Razorpay -->
+  <div class={`border rounded-xl p-5 shadow-sm transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 ${curStyle.card}`}>
+    <div class={`w-10 h-10 rounded-full flex items-center justify-center border ${curStyle.iconBg}`}>
+      <CheckSquare class="w-5 h-5 text-primary-indigo" />
+    </div>
+    <div class="flex flex-col">
+      <span class={`font-display font-extrabold text-xs ${curStyle.title}`}>Razorpay Secure</span>
+      <span class={`font-body text-[10px] mt-0.5 ${curStyle.desc}`}>UPI & Cards Payment</span>
+    </div>
+  </div>
+
+  <!-- Badge 5: Refund Policy -->
+  <div class={`border rounded-xl p-5 shadow-sm transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 ${curStyle.card}`}>
+    <div class={`w-10 h-10 rounded-full flex items-center justify-center border ${curStyle.iconBg}`}>
+      <ShieldAlert class="w-5 h-5 text-secondary-emerald" />
+    </div>
+    <div class="flex flex-col">
+      <span class={`font-display font-extrabold text-xs ${curStyle.title}`}>100% Refund Policy</span>
+      <span class={`font-body text-[10px] mt-0.5 ${curStyle.desc}`}>Before Website Launch</span>
+    </div>
+  </div>
+
+  <!-- Badge 6: Google Reviews -->
+  <div class={`border rounded-xl p-5 shadow-sm transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 ${curStyle.card}`}>
+    <div class={`w-10 h-10 rounded-full flex items-center justify-center border ${curStyle.iconBg}`}>
+      <Star class="w-5 h-5 text-primary-gold fill-primary-gold" />
+    </div>
+    <div class="flex flex-col">
+      <span class={`font-display font-extrabold text-xs ${curStyle.title}`}>4.9/5 Rating</span>
+      <span class={`font-body text-[10px] mt-0.5 ${curStyle.desc}`}>Verified Client Reviews</span>
+    </div>
+  </div>
+
+  <!-- Badge 7: India Coverage -->
+  <div class={`border rounded-xl p-5 shadow-sm transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 ${curStyle.card}`}>
+    <div class={`w-10 h-10 rounded-full flex items-center justify-center border ${curStyle.iconBg}`}>
+      <Compass class="w-5 h-5 text-primary-saffron" />
+    </div>
+    <div class="flex flex-col">
+      <span class={`font-display font-extrabold text-xs ${curStyle.title}`}>Pan-India Support</span>
+      <span class={`font-body text-[10px] mt-0.5 ${curStyle.desc}`}>Active in 180+ Cities</span>
+    </div>
+  </div>
+
+  <!-- Badge 8: Real Humans -->
+  <div class={`border rounded-xl p-5 shadow-sm transition-all duration-300 flex flex-col items-center justify-center text-center gap-3 ${curStyle.card}`}>
+    <div class={`w-10 h-10 rounded-full flex items-center justify-center border ${curStyle.iconBg}`}>
+      <UserCheck class="w-5 h-5 text-primary-indigo" />
+    </div>
+    <div class="flex flex-col">
+      <span class={`font-display font-extrabold text-xs ${curStyle.title}`}>Real Support</span>
+      <span class={`font-body text-[10px] mt-0.5 ${curStyle.desc}`}>Direct Calls & WhatsApp</span>
+    </div>
+  </div>
+
+</div>

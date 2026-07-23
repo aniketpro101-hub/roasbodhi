@@ -1,0 +1,126 @@
+---
+import { Check, ArrowRight } from 'lucide-astro';
+
+interface Props {
+  service: {
+    id: string;
+    name: string;
+    sanskrit_plan_name: string;
+    slug: string;
+    icon: string;
+    color: string;
+    gradient: string;
+    short_description: string;
+    benefits: string[];
+    starting_price: string;
+  };
+}
+
+const { service } = Astro.props;
+
+// Accent border color mappings to convert hex strings to inline border variations
+const borderColors = {
+  'meta-ads': 'hover:border-primary-saffron/40',
+  'google-ads': 'hover:border-primary-gold/40',
+  'web-development': 'hover:border-secondary-purple/40',
+  'google-my-business': 'hover:border-secondary-emerald/40',
+  'performance-marketing': 'hover:border-secondary-blue/40',
+  'social-media-marketing': 'hover:border-primary-saffron/40'
+};
+
+const curBorderHover = borderColors[service.id as keyof typeof borderColors] || 'hover:border-primary-saffron/40';
+---
+
+<div 
+  class={`relative bg-white border border-neutral-mist rounded-3xl p-8 shadow-[0_4px_20px_rgba(30,27,75,0.06)] hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(30,27,75,0.15)] transition-all duration-300 overflow-hidden flex flex-col group ${curBorderHover}`}
+>
+  
+  <!-- TOP GRADIENT LINE -->
+  <div class={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${service.gradient}`}></div>
+
+  <!-- ICON AREA -->
+  <div 
+    class="w-14 h-14 rounded-2xl flex items-center justify-center border flex-shrink-0 transition-transform duration-300 group-hover:-translate-y-1"
+    style={`background-color: ${service.color}15; border-color: ${service.color}30; color: ${service.color};`}
+  >
+    {service.icon === 'flame' && (
+      <svg class="w-6 h-6 fill-current animate-pulse-glow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10c0-5.523-4.477-10-10-10zm4.25 13.5h-8.5v-1.5h8.5v1.5zm0-2.5h-8.5v-1.5h8.5v1.5zm0-2.5h-8.5v-1.5h8.5v1.5z" />
+      </svg>
+    )}
+    {service.icon === 'target' && (
+      <svg class="w-6 h-6 stroke-current stroke-2 fill-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    )}
+    {service.icon === 'code' && (
+      <svg class="w-6 h-6 stroke-current stroke-2 fill-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" />
+      </svg>
+    )}
+    {service.icon === 'map-pin' && (
+      <svg class="w-6 h-6 stroke-current stroke-2 fill-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+      </svg>
+    )}
+    {service.icon === 'trending-up' && (
+      <svg class="w-6 h-6 stroke-current stroke-2 fill-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 6l-9.5 9.5-5-5L1 18" />
+      </svg>
+    )}
+    {service.icon === 'instagram' && (
+      <svg class="w-6 h-6 stroke-current stroke-2 fill-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
+      </svg>
+    )}
+  </div>
+
+  <!-- CONTENT -->
+  <div class="mt-6 flex flex-col items-start gap-1 select-none">
+    <h3 class="font-display font-extrabold text-neutral-dark text-lg group-hover:text-primary-saffron transition-colors leading-tight">
+      {service.name}
+    </h3>
+    <span class="font-body font-semibold italic text-[11px] text-neutral-stone">
+      ({service.sanskrit_plan_name})
+    </span>
+  </div>
+
+  <!-- Description paragraph -->
+  <p class="font-body text-xs sm:text-[13px] text-neutral-charcoal/80 mt-4 leading-relaxed line-clamp-3 select-none">
+    {service.short_description}
+  </p>
+
+  <!-- Feature List -->
+  <ul class="flex flex-col gap-2.5 mt-6 border-t border-neutral-mist/50 pt-6 flex-grow select-none">
+    {service.benefits.slice(0, 4).map(benefit => (
+      <li class="flex items-start gap-2.5 text-xs font-body text-neutral-charcoal leading-relaxed font-semibold">
+        <div class="w-4 h-4 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-0.5" style={`background-color: ${service.color};`}>
+          <Check class="w-2.5 h-2.5 stroke-[3]" />
+        </div>
+        <span>{benefit}</span>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Card Footer and Pricing -->
+  <div class="mt-8 pt-5 border-t border-neutral-mist/50 flex items-center justify-between select-none">
+    <div class="flex flex-col">
+      <span class="text-[9px] font-body font-bold text-neutral-stone uppercase tracking-wider">Starting At</span>
+      <span class="font-mono font-bold text-xs sm:text-sm text-secondary-emerald mt-0.5">
+        {service.starting_price}
+      </span>
+    </div>
+    
+    <a 
+      href={`/services/${service.slug}/`} 
+      class="font-display font-extrabold text-[10px] uppercase tracking-wider flex items-center gap-1 group-hover:underline"
+      style={`color: ${service.color};`}
+    >
+      <span>Explore</span>
+      <ArrowRight class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+    </a>
+  </div>
+
+</div>

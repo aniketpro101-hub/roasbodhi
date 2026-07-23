@@ -1,0 +1,385 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import Footer from '../components/Footer.astro';
+import PricingCard from '../components/PricingCard.astro';
+import PricingTable from '../components/PricingTable.astro';
+import { ShieldCheck, MessageCircle, ArrowRight } from 'lucide-astro';
+import pricingData from '../data/pricing.json';
+
+const { web_design, meta_ads, google_ads, gmb, bundles, bodhi_utsav_offers, research_reports } = pricingData;
+
+const pricingTitle = "Transparent Pricing Plans | Pay-After-Seeing Model - RoasBodhi";
+const pricingDescription = "Explore transparent, performance-driven Sanskrit pricing packages for web design, Meta ads, Google ads, GMB SEO, and high-saving bundle plans.";
+
+const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "RoasBodhi Digital Marketing Packages",
+  "image": "https://roasbodhi.in/images/roasbodhi-og.jpg",
+  "description": "Premium performance marketing and website design services using a Pay-After-Seeing risk-free structure.",
+  "brand": {
+    "@type": "Brand",
+    "name": "RoasBodhi"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "INR",
+    "lowPrice": "4999",
+    "highPrice": "89999",
+    "offerCount": "15"
+  }
+};
+
+const pricingFaqs = [
+  {
+    question: "Why do you use Sanskrit names for your plans?",
+    answer: "It aligns with our brand identity of bringing clarity and wisdom (Bodhi) to marketing. Instead of boring corporate names like 'Basic' or 'Pro', our plans like Ankur (Sprout) or Vajra (Thunderbolt) carry deep meanings that define their exact performance levels."
+  },
+  {
+    question: "Is there a setup fee for ad accounts?",
+    answer: "Yes, our standard ads packages carry a small one-time setup fee (starting ₹2,999) to cover Meta Pixel integration, custom audience research, and conversions API config. However, during our **Bodhi Utsav** launch offer, all setup fees are **100% waived**."
+  },
+  {
+    question: "Do you offer custom pricing for larger budgets?",
+    answer: "Yes. If your monthly ad spend exceeds ₹2,00,000, we customize a strategy and fee structure based on your specific requirements. Contact us on WhatsApp for a custom quote."
+  },
+  {
+    question: "How does the Pay-After-Seeing model work?",
+    answer: "We build your website first on a staging preview link. You see it live. If you love it, you pay and we push it to your main domain. If you do not love it, you pay ₹0. We take all the design risk."
+  },
+  {
+    question: "Is ad spend included in the monthly retainer fee?",
+    answer: "No. All ad spend is paid directly by you to Meta or Google via your ad account. Our fee covers strategy, copywriting, media buying, live reporting dashboards, and weekly optimization."
+  },
+  {
+    question: "What is your contract duration?",
+    answer: "Our retainers are month-to-month after a minimum 3-month setup period. The first 3 months are required to gather pixel data and optimize targets correctly. You can cancel with a 15-day notice thereafter."
+  },
+  {
+    question: "Do you charge extra for AMC (Annual Maintenance)?",
+    answer: "Our web design packages include 30 days of free support. After that, we offer an optional AMC package starting ₹1,499/month covering host transfers, text edits, and daily sitemap backup reviews."
+  },
+  {
+    question: "Can I upgrade or downgrade my plan?",
+    answer: "Yes, you can upgrade or downgrade your active ads plan at the start of any billing cycle to match your seasonal budget requirements."
+  },
+  {
+    question: "Which industries do you specialize in?",
+    answer: "We specialize in local storefronts and service industries, including real estate developers, dental clinics, jewellery showrooms, manufacturing plants, coaching classes, and restaurants."
+  },
+  {
+    question: "What payment modes do you accept?",
+    answer: "We accept payments securely via Razorpay, supporting UPI, NetBanking, Visa, Mastercard, and RuPay card networks."
+  }
+];
+
+const formatPlans = (categoryPlans: any[], serviceName: string) => {
+  return categoryPlans.map(plan => {
+    let bestFor = undefined;
+    if (plan.id === 'vriddhi' || plan.id === 'agni' || plan.id === 'chakra' || plan.id === 'unnati' || plan.id === 'shakti') {
+      bestFor = 'Most Popular';
+    }
+    
+    let priceText = `₹${plan.price.toLocaleString('en-IN')}`;
+    let description = plan.description;
+    
+    if (plan.setup_fee && plan.setup_fee > 0) {
+      description = `+ ₹${plan.setup_fee.toLocaleString('en-IN')} setup fee. ${description}`;
+    }
+
+    return {
+      id: plan.id,
+      name: plan.name,
+      hindi: plan.hindi,
+      meaning: plan.meaning,
+      price: priceText,
+      period: plan.period === 'one-time' ? 'one-time' : '/month',
+      popular: plan.popular,
+      description: description,
+      best_for: bestFor,
+      features: plan.features.map((f: any) => ({
+        text: `${f.name}: ${f.value}`,
+        included: f.included,
+        emphasis: f.included && (
+          f.name.toLowerCase().includes('guarantee') || 
+          f.name.toLowerCase().includes('roas') || 
+          f.name.toLowerCase().includes('leads') || 
+          f.name.toLowerCase().includes('pagespeed')
+        )
+      }))
+    };
+  });
+};
+const pricingKeywords = "digital marketing pricing India, web design packages, Meta ads packages, Google ads packages, GMB pricing";
+---
+
+<BaseLayout title={pricingTitle} description={pricingDescription} keywords={pricingKeywords} schema={pricingSchema}>
+  
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal">
+    
+    <!-- 1. PRICING HERO -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16 select-none relative z-10">
+      <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-primary-saffron/10 text-primary-saffron text-[10px] font-display font-extrabold uppercase tracking-widest mb-4">
+        🔱 Transparent Packages
+      </span>
+      <h1 class="font-display font-extrabold text-neutral-dark text-4xl sm:text-6xl tracking-tight leading-[1.05]">
+        Transparent Pricing. <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">Zero Surprises.</span>
+      </h1>
+      <p class="font-body text-sm sm:text-base text-neutral-stone mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+        All packages include our legendary Pay-After-Seeing™ or ROI setup safeguards.
+      </p>
+
+      <!-- Trust Badges Row (4 badges) -->
+      <div class="flex flex-wrap items-center justify-center gap-6 mt-8 text-[10px] font-display font-extrabold uppercase tracking-widest text-neutral-stone">
+        <span class="flex items-center gap-1.5"><ShieldCheck class="w-4.5 h-4.5 text-secondary-emerald" /> SSL Secured</span>
+        <span class="flex items-center gap-1.5"><ShieldCheck class="w-4.5 h-4.5 text-primary-gold" /> Meta Ads Partner</span>
+        <span class="flex items-center gap-1.5"><ShieldCheck class="w-4.5 h-4.5 text-secondary-emerald" /> 100% Refund</span>
+        <span class="flex items-center gap-1.5"><ShieldCheck class="w-4.5 h-4.5 text-primary-gold" /> ⭐ 4.9/5 Rating</span>
+      </div>
+
+      <!-- Quick anchor links to sections -->
+      <div class="flex flex-wrap justify-center gap-4 mt-8 text-xs font-display font-extrabold uppercase tracking-wider">
+        <a href="#pricing-intro" class="text-neutral-stone hover:text-primary-saffron transition-colors">How it works</a>
+        <span class="text-neutral-mist">•</span>
+        <a href="#web-pricing" class="text-neutral-stone hover:text-primary-saffron transition-colors">Web Design</a>
+        <span class="text-neutral-mist">•</span>
+        <a href="#meta-pricing" class="text-neutral-stone hover:text-primary-saffron transition-colors">Meta Ads</a>
+        <span class="text-neutral-mist">•</span>
+        <a href="#google-pricing" class="text-neutral-stone hover:text-primary-saffron transition-colors">Google Ads</a>
+        <span class="text-neutral-mist">•</span>
+        <a href="#gmb-pricing" class="text-neutral-stone hover:text-primary-saffron transition-colors">GMB Map SEO</a>
+        <span class="text-neutral-mist">•</span>
+        <a href="#research-pricing" class="text-neutral-stone hover:text-primary-saffron transition-colors">Research Reports</a>
+        <span class="text-neutral-mist">•</span>
+        <a href="#combos" class="text-neutral-stone hover:text-primary-saffron transition-colors">Combo Packages</a>
+      </div>
+    </section>
+
+    <!-- 2. PRICING INTRODUCTION -->
+    <section id="pricing-intro" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-center mb-10">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest">Pricing DNA</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-2 tracking-tight">How Our Pricing Works</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col items-start text-left gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary-saffron/10 border border-primary-saffron/20 flex items-center justify-center text-primary-saffron">
+            💳
+          </div>
+          <h3 class="font-display font-extrabold text-sm text-neutral-dark">No Advance Payment (Websites)</h3>
+          <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">
+            We build your website preview first. If you don't love it, you pay absolutely ₹0. Zero initial deposits.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col items-start text-left gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary-gold/10 border border-primary-gold/20 flex items-center justify-center text-primary-gold">
+            🌐
+          </div>
+          <h3 class="font-display font-extrabold text-sm text-neutral-dark">Ad Spend is Separate</h3>
+          <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">
+            You pay ad spend budgets directly to Meta and Google ad networks. Our monthly retainers cover only management.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col items-start text-left gap-3">
+          <div class="w-10 h-10 rounded-xl bg-secondary-purple/10 border border-secondary-purple/20 flex items-center justify-center text-secondary-purple">
+            📅
+          </div>
+          <h3 class="font-display font-extrabold text-sm text-neutral-dark">Month-to-Month After 3 Months</h3>
+          <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold">
+            Our contracts are flexible. A 3-month setup is required initially, followed by month-to-month terms.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. WEB DESIGN PRICING (Ankur/Vriddhi/Siddhi) -->
+    <section id="web-pricing" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-left mb-8 flex flex-col items-start gap-1">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">Web Design Solutions</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-1 tracking-tight">
+          Sthapna Plan (Ankur → Vriddhi → Siddhi)
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {formatPlans(web_design.plans, 'Web Design').map(plan => (
+          <PricingCard plan={plan} serviceName="Web Design" />
+        ))}
+      </div>
+
+      <PricingTable service="web" />
+
+      <div class="p-4 bg-primary-saffron/5 border border-primary-saffron/10 rounded-xl text-center text-xs font-semibold leading-relaxed">
+        🔧 Need website updates later? Optional website AMC starting from ₹1,499/month. Includes hosting support & copy edits.
+      </div>
+    </section>
+
+    <!-- 4. META ADS PRICING (Jyoti/Agni/Pralaya) -->
+    <section id="meta-pricing" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-left mb-8 flex flex-col items-start gap-1">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">Meta Advertising</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-1 tracking-tight">
+          Meta Ads Packages (Jyoti → Agni → Pralaya)
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {formatPlans(meta_ads.plans, 'Meta Ads').map(plan => (
+          <PricingCard plan={plan} serviceName="Meta Ads" />
+        ))}
+      </div>
+
+      <PricingTable service="meta" />
+
+      <div class="p-4 bg-primary-saffron/5 border border-primary-saffron/10 rounded-xl text-center text-xs font-semibold leading-relaxed">
+        🔔 Standard ads setup fee applies. Waived entirely for clients ordering combo packages!
+      </div>
+    </section>
+
+    <!-- 5. GOOGLE ADS PRICING (Disha/Chakra/Vajra) -->
+    <section id="google-pricing" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-left mb-8 flex flex-col items-start gap-1">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">Search Marketing</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-1 tracking-tight">
+          Google Ads Packages (Disha → Chakra → Vajra)
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {formatPlans(google_ads.plans, 'Google Ads').map(plan => (
+          <PricingCard plan={plan} serviceName="Google Ads" />
+        ))}
+      </div>
+
+      <PricingTable service="google" />
+
+      <div class="p-4 bg-primary-saffron/5 border border-primary-saffron/10 rounded-xl text-center text-xs font-semibold leading-relaxed">
+        🔔 Standard ads setup fee applies. Waived entirely for clients ordering combo packages!
+      </div>
+    </section>
+
+    <!-- 6. GMB SEO PRICING (Sthapna/Unnati/Samrajya) -->
+    <section id="gmb-pricing" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-left mb-8 flex flex-col items-start gap-1">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">Local Map Optimization</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-1 tracking-tight">
+          GMB Maps SEO Packages (Sthapna → Unnati → Samrajya)
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {formatPlans(gmb.plans, 'GMB Maps SEO').map(plan => (
+          <PricingCard plan={plan} serviceName="GMB Maps SEO" />
+        ))}
+      </div>
+
+      <PricingTable service="gmb" />
+
+      <div class="p-4 bg-primary-saffron/5 border border-primary-saffron/10 rounded-xl text-center text-xs font-semibold leading-relaxed">
+        📍 Increase your local footprint on Google Maps packs. Setup is entirely one-time for the Sthapna foundation!
+      </div>
+    </section>
+
+    <!-- 6.5. BODHI DRISHTI RESEARCH REPORTS PRICING (Chakshu/Divya Drishti/Trikaldarshi) -->
+    <section id="research-pricing" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-left mb-8 flex flex-col items-start gap-1">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">Market Intelligence</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-1 tracking-tight">
+          Bodhi Drishti Research Reports (Chakshu → Divya Drishti → Trikaldarshi)
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {formatPlans(research_reports.plans, 'Research Report').map(plan => (
+          <PricingCard plan={plan} serviceName="Research Report" />
+        ))}
+      </div>
+
+      <div class="p-4 bg-primary-saffron/5 border border-primary-saffron/10 rounded-xl text-center text-xs font-semibold leading-relaxed">
+        🔬 100% money-back guarantee if we do not uncover strategic insights for your business. Presentation consult calls are included!
+      </div>
+    </section>
+
+    <!-- 7. BUNDLE PACKAGES (Arambh/Shakti/Moksha) -->
+    <section id="combos" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-center mb-10 flex flex-col items-center gap-1">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">COMBO SAVINGS</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark tracking-tight">Sanskrit Combo Bundles</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-12">
+        {formatPlans(bundles.plans, 'Combo Bundle').map(plan => (
+          <PricingCard plan={plan} serviceName="Combo Bundle" />
+        ))}
+      </div>
+    </section>
+
+    <!-- 8. BODHI UTSAV OFFER CALLOUT -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 mb-20 select-none">
+      <div class="bg-gradient-to-r from-primary-saffron to-primary-gold rounded-3xl p-8 text-white relative overflow-hidden flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="text-left flex flex-col gap-1.5">
+          <span class="px-2.5 py-1 rounded bg-white text-primary-saffron text-[9px] font-display font-extrabold uppercase tracking-widest w-fit">🔥 Limited Spots</span>
+          <h3 class="font-display font-extrabold text-xl sm:text-3xl mt-1">Bodhi Utsav Launch Offer Active</h3>
+          <p class="font-body text-xs text-white/90 max-w-xl leading-relaxed font-semibold">
+            Get our Vriddhi Website plan for just ₹{bodhi_utsav_offers.website_utsav.price.toLocaleString('en-IN')} (originally ₹{web_design.plans[1].price.toLocaleString('en-IN')}) or manage all campaigns for just ₹{bodhi_utsav_offers.ads_utsav.price.toLocaleString('en-IN')}/month. Limited to 15 slots only!
+          </p>
+        </div>
+        <a 
+          href="/bodhi-utsav/" 
+          class="px-6 py-3.5 bg-primary-indigo hover:bg-neutral-dark text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 flex-shrink-0"
+        >
+          <span>Claim Utsav Spot</span>
+          <ArrowRight class="w-4 h-4" />
+        </a>
+      </div>
+    </section>
+
+    <!-- 9. FAQ ABOUT PRICING -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-center mb-10">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">FAQS</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-2 tracking-tight">Got Questions? We Have Answers.</h2>
+      </div>
+
+      <FAQAccordion faqs={pricingFaqs} />
+    </section>
+
+    <!-- 10. PRICING CTA -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="bg-neutral-ghost border border-neutral-mist rounded-3xl p-8 text-center flex flex-col items-center gap-4">
+        <span class="text-4xl">🔱</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark tracking-tight">
+          Not Sure Which Plan Is Right?
+        </h2>
+        <p class="font-body text-xs sm:text-sm text-neutral-charcoal/80 max-w-md leading-relaxed font-semibold">
+          Schedule a free 15-minute consultation on WhatsApp. We will audit your current site and ad accounts for free.
+        </p>
+        <a 
+          href="https://wa.me/919082543992?text=Namaste%20RoasBodhi%E2%84%A2!%20I'd%20like%20to%20schedule%20a%20free%20consultation." 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="px-7 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-1.5 hover:scale-105 transition-all"
+        >
+          <MessageCircle class="w-4.5 h-4.5 fill-white text-white" />
+          <span>Consult on WhatsApp</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sticky Footer -->
+  <Footer />
+
+</BaseLayout>

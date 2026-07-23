@@ -1,0 +1,100 @@
+---
+import SectionLabel from '../SectionLabel.astro';
+import ServiceCard from '../ServiceCard.astro';
+import servicesData from '../../data/services.json';
+import { ArrowRight } from 'lucide-astro';
+---
+
+<section class="py-24 bg-white relative overflow-hidden">
+  
+  <!-- Subtle decoration vector -->
+  <div class="absolute left-[-200px] top-[20%] w-[400px] h-[400px] bg-primary-saffron/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- HEADER -->
+    <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-16 select-none">
+      <SectionLabel text="OUR SERVICES" />
+      
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight mt-2">
+        Everything Your Business Needs <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">To Dominate Digital India</span>
+      </h2>
+      
+      <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-2 max-w-xl leading-relaxed font-semibold">
+        From ad creatives to Google rankings — one agency, zero excuses.
+      </p>
+    </div>
+
+    <!-- SERVICES GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {servicesData.slice(0, 6).map(service => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+
+    <!-- RESEARCH REPORTS BANNER (Option C) -->
+    <div class="mt-8 select-none">
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-secondary-purple to-secondary-blue border border-secondary-purple/20 p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_12px_40px_rgba(124,58,237,0.15)] group hover:shadow-[0_16px_50px_rgba(124,58,237,0.25)] transition-all duration-300">
+        <!-- Abstract glowing background blob -->
+        <div class="absolute right-0 top-0 w-80 h-80 bg-white/10 rounded-full blur-[60px] pointer-events-none -translate-y-12 translate-x-12"></div>
+        
+        <div class="flex items-start gap-4 z-10">
+          <span class="text-3xl mt-1">🔬</span>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-2">
+              <span class="font-display font-extrabold text-[10px] uppercase tracking-widest text-primary-gold bg-white/10 px-2 py-0.5 rounded-full">
+                New Service
+              </span>
+              <span class="inline-flex h-2 w-2 rounded-full bg-primary-gold animate-ping"></span>
+            </div>
+            <h3 class="font-display font-extrabold text-xl sm:text-2xl mt-2 tracking-tight">
+              Bodhi Drishti Research Reports
+            </h3>
+            <p class="font-body text-xs text-white/80 mt-1 max-w-xl font-medium leading-relaxed">
+              Know your competitors. See your market. Master your growth. Professional AI-powered competitor intelligence & growth roadmap for Indian local businesses.
+            </p>
+          </div>
+        </div>
+        
+        <div class="flex flex-col items-center md:items-end gap-2 z-10 flex-shrink-0">
+          <span class="font-mono text-xs text-primary-gold font-bold uppercase tracking-wider">
+            Starting ₹4,999 One-time
+          </span>
+          <a 
+            href="/services/research-reports/" 
+            class="px-6 py-3 bg-white text-secondary-purple font-display font-extrabold text-[11px] uppercase tracking-widest rounded-xl shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-1.5"
+          >
+            <span>Get Drishti Report</span>
+            <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BELOW GRID CTA BANNER -->
+    <div class="mt-12 text-center max-w-3xl mx-auto select-none">
+      <div class="inline-flex flex-col sm:flex-row items-center justify-between gap-4 p-5 rounded-2xl bg-primary-saffron/5 border border-primary-saffron/10 w-full hover:border-primary-saffron/20 transition-colors">
+        <div class="flex items-center gap-3 text-left">
+          <span class="text-xl">🎁</span>
+          <div class="flex flex-col">
+            <span class="font-display font-extrabold text-xs text-neutral-dark uppercase tracking-wider">
+              Need Everything Unified?
+            </span>
+            <span class="font-body text-[11px] text-neutral-charcoal/85 mt-0.5 font-medium">
+              Save up to 35% with our high-value Sanskrit combo bundles (Arambh, Shakti, Moksha).
+            </span>
+          </div>
+        </div>
+        <a 
+          href="/pricing/" 
+          class="px-5 py-2.5 bg-gradient-to-r from-primary-saffron to-primary-gold text-white font-display font-extrabold text-[10px] uppercase tracking-wider rounded-xl hover:shadow-button-saffron hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-1 flex-shrink-0"
+        >
+          <span>Check Bundle Packages</span>
+          <ArrowRight class="w-3.5 h-3.5" />
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

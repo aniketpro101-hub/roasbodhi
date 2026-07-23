@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+import TrustBar from '../components/sections/TrustBar.astro';
+import ServicesSection from '../components/sections/ServicesSection.astro';
+import WhyUsSection from '../components/sections/WhyUsSection.astro';
+import RoiCalculator from '../components/RoiCalculator.astro';
+import ResultsSection from '../components/sections/ResultsSection.astro';
+import PricingPreview from '../components/sections/PricingPreview.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CtaSection from '../components/sections/CtaSection.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { ArrowRight } from 'lucide-astro';
+
+// Load our services from the JSON database
+import servicesData from '../data/services.json';
+
+// Fetch latest 3 blog posts (excluding drafts)
+const posts = await getCollection('blog');
+const latestBlogPosts = posts
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
+
+const homepageTitle = "RoasBodhi™ | Website Design & Performance Ads Marketing Agency India";
+const homepageDescription = "Awakening Your Ad Returns. RoasBodhi™ is a digital agency delivering high-converting website design, Meta ads, Google ads, and GMB optimization for Indian SMBs.";
+const homepageKeywords = "digital marketing agency India, performance marketing";
+
+// Define homepage schema markup
+const homepageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "RoasBodhi",
+  "image": "https://roasbodhi.in/images/roasbodhi-og.jpg",
+  "@id": "https://roasbodhi.in/#agency",
+  "url": "https://roasbodhi.in",
+  "telephone": "+919082543992",
+  "priceRange": "₹7999 - ₹89999",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "501 Shankar Apartment Sec 20 Nerul W",
+    "addressLocality": "Navi Mumbai",
+    "addressRegion": "Maharashtra",
+    "postalCode": "400706",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 19.0330,
+    "longitude": 73.0190
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "19:00"
+  },
+  "sameAs": [
+    "https://instagram.com/roasbodhi",
+    "https://linkedin.com/company/roasbodhi",
+    "https://twitter.com/roasbodhi"
+  ]
+};
+
+// General Homepage FAQs
+const generalFaqs = [
+  {
+    question: "What does the name RoasBodhi mean?",
+    answer: "<b>ROAS</b> stands for Return on Ad Spend (your financial return). <b>Bodhi</b> is a Sanskrit word meaning awakening or enlightenment. RoasBodhi literally means <i>'Awakening Your Ad Returns'</i> — bringing strategy, clarity, and growth to your marketing investments."
+  },
+  {
+    question: "How does the 'Pay After Seeing' website model work?",
+    answer: "For our website design packages, you don't pay any advance fee. We discuss your needs, build the complete website preview on a temporary URL, and show it to you. If you love it, you pay the package price and we launch it on your live domain. If you do not approve the design, you owe us nothing."
+  },
+  {
+    question: "Is the advertising budget included in your monthly packages?",
+    answer: "No. The advertising spend budget (paid directly to Meta or Google) is separate. Our monthly fees are strictly for campaign setup, copywriting, graphic designs, optimization, and weekly/monthly reporting."
+  },
+  {
+    question: "What is your refund policy?",
+    answer: "For website development, we offer a 100% refund at any point <b>before</b> your domain is registered and the site is pushed live. Once your custom domain is purchased and the website files are live, no refunds can be issued. For monthly advertising retainers, you can cancel at any time with a 15-day notice."
+  },
+  {
+    question: "Which cities in India do you serve?",
+    answer: "We are a fully remote, digital-first agency serving all Tier 1, Tier 2, and Tier 3 cities across India. From major metros like Mumbai and Bangalore to local commercial hubs in Rajasthan, Maharashtra, and Uttar Pradesh, we customize campaigns to match local demographics."
+  }
+];
+
+// Helper to assign card colors dynamically
+const cardColors = ['saffron', 'indigo', 'purple', 'emerald', 'blue', 'saffron'] as const;
+---
+
+<BaseLayout title={homepageTitle} description={homepageDescription} keywords={homepageKeywords} schema={homepageSchema}>
+  
+  <!-- Navigation Header -->
+  <Header />
+
+  <main class="flex-grow">
+    
+    <!-- Hero Section -->
+    <Hero />
+
+    <!-- Stats & Trust Logo Bar -->
+    <TrustBar />
+
+    <!-- Services Grid Section -->
+    <ServicesSection />
+
+    <!-- Why Choose Us / Trust Section (Dark Section) -->
+    <WhyUsSection />
+
+    <!-- ROAS Calculator Section (Warm background) -->
+    <section class="py-24 bg-neutral-ghost select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+          <span class="font-display font-extrabold text-xs text-primary-saffron uppercase tracking-widest">
+            Roi Estimator
+          </span>
+          <h2 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl mt-3 tracking-tight">
+            Stop Guessing Your Ad ROI. <br />
+            <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">Calculate Your Growth Live</span>
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-4 leading-relaxed">
+            Drag the sliders to see your current baseline metrics compared with an awakened ROAS optimization.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <RoiCalculator />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Case Studies / Results Section -->
+    <ResultsSection />
+
+    <!-- Testimonials Section -->
+    <Testimonials />
+
+    <!-- Blog Preview Section -->
+    <section class="py-24 bg-white select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+          <span class="font-display font-extrabold text-xs text-primary-saffron uppercase tracking-widest">
+            From The Blog
+          </span>
+          <h2 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl mt-3 tracking-tight">
+            Latest Marketing Insights <br />
+            <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">To Grow Your ROAS</span>
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-4 leading-relaxed font-medium">
+            Explore cost reduction tips, local GMB maps hacks, and digital marketing strategies for Indian businesses.
+          </p>
+        </div>
+
+        <!-- Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {latestBlogPosts.map(post => (
+            <div class="bg-white border border-neutral-mist rounded-2xl overflow-hidden shadow-sm hover:shadow-card-hover hover:border-primary-saffron/20 transition-all duration-300 flex flex-col justify-between text-left">
+              <div>
+                <div class="bg-neutral-cloud h-44 overflow-hidden relative select-none">
+                  {post.data.image ? (
+                    <img 
+                      src={post.data.image} 
+                      alt={post.data.imageAlt || post.data.title} 
+                      class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
+                      onerror="this.style.display='none'"
+                    />
+                  ) : (
+                    <div class="w-full h-full bg-gradient-to-br from-primary-indigo/5 to-secondary-purple/5 flex items-center justify-center text-primary-indigo text-3xl">
+                      📖
+                    </div>
+                  )}
+                </div>
+                <div class="p-6">
+                  <span class="text-[9px] font-display font-extrabold text-neutral-stone normal-case tracking-widest">
+                    {post.data.category}
+                  </span>
+                  <h3 class="font-display font-extrabold text-neutral-dark text-base sm:text-lg mt-2 leading-tight">
+                    <a href={`/blog/${post.slug}/`} class="hover:text-primary-saffron transition-colors">{post.data.title}</a>
+                  </h3>
+                  <p class="font-body text-xs text-neutral-stone leading-relaxed font-semibold mt-2 line-clamp-2">
+                    {post.data.description}
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between border-t border-neutral-mist/50 p-6 pt-4">
+                <span class="text-[9px] text-neutral-stone font-semibold">
+                  {post.data.publishDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                </span>
+                <a href={`/blog/${post.slug}/`} class="text-primary-saffron font-display font-extrabold text-[9px] normal-case tracking-wider flex items-center gap-1 hover:underline">
+                  Read More <ArrowRight class="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Bottom Link -->
+        <div class="text-center">
+          <a 
+            href="/blog/" 
+            class="inline-flex items-center gap-1.5 px-6 py-3 bg-primary-indigo hover:bg-neutral-dark text-white rounded-full font-display font-extrabold text-xs tracking-wider normal-case transition-all duration-300"
+          >
+            <span>See All Articles</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pricing Preview Section -->
+    <PricingPreview />
+
+    <!-- Trust & Security Badges Section (Ghost White) -->
+    <section class="py-24 bg-neutral-ghost select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+          <span class="font-display font-extrabold text-xs text-primary-saffron uppercase tracking-widest">
+            Trust & Security
+          </span>
+          <h2 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl mt-3 tracking-tight">
+            Your Business Growth <br />
+            <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">Safeguarded Day 1</span>
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-4 leading-relaxed font-medium">
+            We employ enterprise-grade security structures and clear policies to protect your investments and business details.
+          </p>
+        </div>
+
+        <!-- Trust Badges 4x2 Grid -->
+        <div class="reveal">
+          <TrustBadges />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ Section Accordion -->
+    <section class="py-24 bg-white select-none">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+          <span class="font-display font-extrabold text-xs text-primary-saffron uppercase tracking-widest">
+            Common Questions
+          </span>
+          <h2 class="font-display font-extrabold text-neutral-dark text-3xl sm:text-5xl mt-3 tracking-tight">
+            Got Questions? <br />
+            <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">We Have Answers.</span>
+          </h2>
+          <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-4 leading-relaxed font-medium">
+            Read through the commonly asked questions about our Sanskrit packages, refund guarantees, and WhatsApp lead flow.
+          </p>
+        </div>
+
+        <div class="reveal">
+          <FAQAccordion faqs={generalFaqs} />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Main Lead Capture CTA Section -->
+    <CtaSection />
+
+  </main>
+
+  <!-- Navigation Footer -->
+  <Footer />
+
+</BaseLayout>

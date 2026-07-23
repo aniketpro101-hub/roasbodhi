@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import CtaSection from '../../components/sections/CtaSection.astro';
+import citiesData from '../../data/cities.json';
+
+const pageTitle = "All Served Cities Locations Hub | RoasBodhi";
+const pageDescription = "Explore the complete directory of cities served by RoasBodhi™ digital marketing agency. Get custom performance reports and setups in 180+ Indian markets.";
+const locationsKeywords = "digital marketing cities India, local seo cities, performance marketing directory, local ad agency locations";
+
+// Group cities by state
+const citiesByState = citiesData.reduce((acc, city) => {
+  if (!acc[city.state]) {
+    acc[city.state] = [];
+  }
+  acc[city.state].push(city);
+  return acc;
+}, {} as Record<string, typeof citiesData>);
+
+const sortedStates = Object.keys(citiesByState).sort();
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} keywords={locationsKeywords}>
+  
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal text-left select-none">
+    
+    <!-- Hero Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <SectionLabel text="TERRITORIES COVERED" />
+      <h1 class="font-display font-extrabold text-neutral-dark text-4xl sm:text-6xl mt-3 tracking-tight">
+        Local Marketing Agencies <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">Across 180+ Cities</span>
+      </h1>
+      <p class="font-body text-sm sm:text-base text-neutral-stone mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+        Select your local town below to access customized target budget estimates and local SEO metrics.
+      </p>
+    </section>
+
+    <!-- State Directory Hub Grid -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <div class="flex flex-col gap-12 bg-white border border-neutral-mist rounded-3xl p-6 sm:p-10 shadow-sm">
+        {sortedStates.map(state => {
+          const cities = citiesByState[state].sort((a, b) => a.name.localeCompare(b.name));
+          
+          return (
+            <div class="flex flex-col gap-4">
+              <h2 class="font-display font-extrabold text-sm sm:text-base text-primary-saffron uppercase tracking-widest border-b border-neutral-mist pb-2">
+                {state} Hub Directory
+              </h2>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-xs font-body font-semibold text-neutral-charcoal/80">
+                {cities.map(city => (
+                  <a 
+                    href={`/locations/${city.slug}/`}
+                    class="hover:text-primary-saffron hover:translate-x-0.5 block transition-all"
+                  >
+                    📍 {city.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- Audit form -->
+    <CtaSection />
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

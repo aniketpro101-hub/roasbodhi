@@ -1,0 +1,105 @@
+---
+import { ArrowRight, Phone, MessageCircle, ArrowUp, Send, Check } from 'lucide-astro';
+
+interface Props {
+  text: string;
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'dark';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  icon?: 'arrow-right' | 'phone' | 'whatsapp' | 'arrow-up' | 'send' | 'check';
+  iconPosition?: 'left' | 'right';
+  fullWidth?: boolean;
+  target?: string;
+  pulse?: boolean;
+  type?: 'submit' | 'button' | 'reset';
+  id?: string;
+}
+
+const { 
+  text, 
+  href, 
+  variant = 'primary', 
+  size = 'md', 
+  icon, 
+  iconPosition = 'right', 
+  fullWidth = false, 
+  target, 
+  pulse = false,
+  type = 'button',
+  id
+} = Astro.props;
+
+// Classes definitions
+const baseClasses = 'inline-flex items-center justify-center font-display font-extrabold uppercase tracking-wider transition-all duration-300 select-none';
+
+const variants = {
+  primary: 'bg-gradient-to-r from-primary-saffron to-primary-gold text-white hover:shadow-button-saffron hover:-translate-y-0.5',
+  secondary: 'bg-primary-indigo hover:bg-neutral-dark text-white hover:-translate-y-0.5 shadow-md',
+  outline: 'bg-transparent border border-primary-saffron text-primary-saffron hover:bg-primary-saffron hover:text-white',
+  ghost: 'bg-white/10 border border-white/20 text-white hover:bg-white/20',
+  dark: 'bg-neutral-dark hover:bg-neutral-charcoal text-white hover:-translate-y-0.5 shadow-md'
+};
+
+const sizes = {
+  sm: 'px-4 py-2 text-[10px] rounded-lg',
+  md: 'px-6 py-3 text-xs rounded-xl',
+  lg: 'px-8 py-4 text-xs rounded-full',
+  xl: 'px-10 py-5 text-sm rounded-full'
+};
+
+const widthClass = fullWidth ? 'w-full flex' : '';
+const pulseClass = pulse ? 'animate-pulse-glow shadow-button-saffron' : '';
+const variantClass = variants[variant];
+const sizeClass = sizes[size];
+const combinedClasses = `${baseClasses} ${variantClass} ${sizeClass} ${widthClass} ${pulseClass}`;
+---
+
+{href ? (
+  <a href={href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} class={combinedClasses} id={id}>
+    {icon && iconPosition === 'left' && (
+      <span class="mr-2">
+        {icon === 'arrow-right' && <ArrowRight class="w-4 h-4" />}
+        {icon === 'phone' && <Phone class="w-4 h-4" />}
+        {icon === 'whatsapp' && <MessageCircle class="w-4 h-4 fill-white" />}
+        {icon === 'arrow-up' && <ArrowUp class="w-4 h-4" />}
+        {icon === 'send' && <Send class="w-4 h-4" />}
+        {icon === 'check' && <Check class="w-4 h-4" />}
+      </span>
+    )}
+    <span>{text}</span>
+    {icon && iconPosition === 'right' && (
+      <span class="ml-2">
+        {icon === 'arrow-right' && <ArrowRight class="w-4 h-4" />}
+        {icon === 'phone' && <Phone class="w-4 h-4" />}
+        {icon === 'whatsapp' && <MessageCircle class="w-4 h-4 fill-white" />}
+        {icon === 'arrow-up' && <ArrowUp class="w-4 h-4" />}
+        {icon === 'send' && <Send class="w-4 h-4" />}
+        {icon === 'check' && <Check class="w-4 h-4" />}
+      </span>
+    )}
+  </a>
+) : (
+  <button type={type} class={combinedClasses} id={id}>
+    {icon && iconPosition === 'left' && (
+      <span class="mr-2">
+        {icon === 'arrow-right' && <ArrowRight class="w-4 h-4" />}
+        {icon === 'phone' && <Phone class="w-4 h-4" />}
+        {icon === 'whatsapp' && <MessageCircle class="w-4 h-4 fill-white" />}
+        {icon === 'arrow-up' && <ArrowUp class="w-4 h-4" />}
+        {icon === 'send' && <Send class="w-4 h-4" />}
+        {icon === 'check' && <Check class="w-4 h-4" />}
+      </span>
+    )}
+    <span>{text}</span>
+    {icon && iconPosition === 'right' && (
+      <span class="ml-2">
+        {icon === 'arrow-right' && <ArrowRight class="w-4 h-4" />}
+        {icon === 'phone' && <Phone class="w-4 h-4" />}
+        {icon === 'whatsapp' && <MessageCircle class="w-4 h-4 fill-white" />}
+        {icon === 'arrow-up' && <ArrowUp class="w-4 h-4" />}
+        {icon === 'send' && <Send class="w-4 h-4" />}
+        {icon === 'check' && <Check class="w-4 h-4" />}
+      </span>
+    )}
+  </button>
+)}

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import CtaSection from '../../components/sections/CtaSection.astro';
+import { ArrowRight } from 'lucide-astro';
+
+const pageTitle = "Target Industries We Scale | RoasBodhi";
+const pageDescription = "Explore the specialized commercial niches we scale using performance ads and web design. Real Estate, Healthcare, Gems, and B2B models.";
+
+const industries = [
+  { name: "Real Estate Developers", icon: "🏢", desc: "Lowering Cost-Per-Lead (CPL) and maximizing site booking intent profiles." },
+  { name: "Dental Clinics", icon: "🦷", desc: "Filling dentist calendars with premium implant and orthodontic appointments." },
+  { name: "Jewellery Showrooms", icon: "💎", desc: "Driving footfalls, store walk-ins, and high-value catalog clicks." },
+  { name: "Hospitals & Medical", icon: "🏥", desc: "Optimizing search listings for localized specialist inquiries near your facility." },
+  { name: "B2B Manufacturers", icon: "⚙️", desc: "Generating high-intent wholesale catalog queries and dealer registrations." },
+  { name: "Coaching Institutes", icon: "📚", desc: "Boosting enrollment admissions for local batch sessions." },
+  { name: "Restaurants & Cafes", icon: "🍽️", desc: "Local map hijacking and reels optimization for weekend store visits." },
+  { name: "Gyms & Fitness Centers", icon: "💪", desc: "Capturing direct member signups and coupon registrations." }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  
+  <Header />
+
+  <main class="flex-grow pt-28 pb-16 bg-neutral-ghost text-neutral-charcoal text-left select-none">
+    
+    <!-- Hero Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+      <SectionLabel text="SECTORS WE SCALE" />
+      <h1 class="font-display font-extrabold text-neutral-dark text-4xl sm:text-6xl mt-3 tracking-tight">
+        Performance Strategies <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">For Target Industries</span>
+      </h1>
+      <p class="font-body text-sm sm:text-base text-neutral-stone mt-4 max-w-xl mx-auto leading-relaxed font-semibold">
+        Custom ads management and local SEO structures configured for your specific industry model.
+      </p>
+    </section>
+
+    <!-- Industries Grid -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {industries.map(ind => (
+          <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm hover:shadow-card-hover hover:border-primary-saffron/20 transition-all duration-300 flex flex-col justify-between group">
+            <div>
+              <span class="text-3xl">{ind.icon}</span>
+              <h3 class="font-display font-extrabold text-sm sm:text-base text-neutral-dark mt-4 leading-tight group-hover:text-primary-saffron transition-colors">
+                {ind.name}
+              </h3>
+              <p class="font-body text-xs text-neutral-stone leading-relaxed mt-2.5 font-semibold">
+                {ind.desc}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-mist/50">
+              <a href="/contact/" class="text-primary-saffron font-display font-extrabold text-[9px] uppercase tracking-wider flex items-center gap-1 hover:underline">
+                <span>Request Custom Strategy</span>
+                <ArrowRight class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Audit CTA Capture -->
+    <CtaSection />
+
+  </main>
+
+  <Footer />
+
+</BaseLayout>

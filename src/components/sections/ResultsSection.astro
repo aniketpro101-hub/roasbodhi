@@ -1,0 +1,169 @@
+---
+import SectionLabel from '../SectionLabel.astro';
+import CaseStudyCard from '../CaseStudyCard.astro';
+import caseStudiesData from '../../data/case-studies.json';
+import { ArrowRight } from 'lucide-astro';
+
+// Unique list of industries from JSON
+const filterIndustries = ["All", "Real Estate", "Jewellery", "Restaurant", "Healthcare", "Education", "Manufacturing", "Logistics"];
+---
+
+<section id="results" class="py-24 bg-neutral-ghost relative overflow-hidden select-none">
+  
+  <!-- Subtle purple/indigo ambient glow -->
+  <div class="absolute right-[-200px] bottom-0 w-[450px] h-[450px] bg-secondary-purple/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <!-- HEADER -->
+    <div class="text-center flex flex-col items-center gap-3 max-w-3xl mx-auto mb-12">
+      <SectionLabel text="PROVEN RESULTS" />
+      
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-neutral-dark tracking-tight leading-tight mt-2">
+        Real Campaigns. Real ROAS. <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">Real Indian Businesses.</span>
+      </h2>
+      
+      <p class="font-body text-sm sm:text-base text-neutral-charcoal/80 mt-2 max-w-xl leading-relaxed font-semibold">
+        Every number below is from an actual client campaign.
+      </p>
+    </div>
+
+    <!-- FILTER TABS (Industry filter pills) -->
+    <div class="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-4 mb-10 w-full no-scrollbar select-none" id="case-filters">
+      {filterIndustries.map((ind, index) => (
+        <button
+          class={`px-5 py-2.5 rounded-full text-xs font-display font-extrabold normal-case tracking-wider border transition-all duration-300 whitespace-nowrap focus:outline-none ${
+            index === 0 
+              ? 'bg-primary-saffron text-white border-primary-saffron shadow-md active-pill' 
+              : 'bg-white text-neutral-charcoal border-neutral-mist hover:border-primary-saffron/40'
+          }`}
+          data-filter-target={ind}
+        >
+          {ind}
+        </button>
+      ))}
+    </div>
+
+    <!-- CASE STUDY GRID -->
+    <div 
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300" 
+      id="cases-grid"
+    >
+      {caseStudiesData.map(caseStudy => (
+        <div class="case-card-wrapper transition-all duration-500 opacity-100 scale-100" data-card-industry={caseStudy.industry}>
+          <CaseStudyCard caseStudy={caseStudy} />
+        </div>
+      ))}
+    </div>
+
+    <!-- BELOW GRID -->
+    <div class="mt-16 text-center">
+      <a 
+        href="/contact/" 
+        class="inline-flex items-center gap-1.5 px-7 py-3.5 border border-primary-saffron text-primary-saffron hover:bg-primary-saffron hover:text-white rounded-full font-display font-extrabold text-xs tracking-wider normal-case transition-all duration-300"
+      >
+        <span>Request Case Study Audit</span>
+        <ArrowRight class="w-4 h-4" />
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('#case-filters button');
+    const cards = document.querySelectorAll('#cases-grid .case-card-wrapper');
+    const timeouts = new Map();
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle active button style
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-primary-saffron', 'text-white', 'border-primary-saffron', 'shadow-md', 'active-pill');
+          b.classList.add('bg-white', 'text-neutral-charcoal', 'border-neutral-mist');
+        });
+
+        btn.classList.remove('bg-white', 'text-neutral-charcoal', 'border-neutral-mist');
+        btn.classList.add('bg-primary-saffron', 'text-white', 'border-primary-saffron', 'shadow-md', 'active-pill');
+
+        const activeFilter = btn.getAttribute('data-filter-target')!;
+
+        cards.forEach(card => {
+          const wrapper = card as HTMLElement;
+          const industry = wrapper.getAttribute('data-card-industry')!;
+
+          // Clear any active timeout for this card to prevent race conditions
+          if (timeouts.has(wrapper)) {
+            clearTimeout(timeouts.get(wrapper));
+            timeouts.delete(wrapper);
+          }
+
+          // Map filter UI names to JSON industry slugs
+          const filterMap = {
+            'All': ['real-estate', 'jewellery', 'dental-clinics', 'manufacturing', 'packers-movers', 'restaurant', 'education'],
+            'Real Estate': ['real-estate'],
+            'Jewellery': ['jewellery'],
+            'Restaurant': ['restaurant'],
+            'Healthcare': ['dental-clinics'],
+            'Education': ['education'],
+            'Manufacturing': ['manufacturing'],
+            'Logistics': ['packers-movers']
+          };
+
+          const allowed = filterMap[activeFilter] || [];
+          const matches = allowed.includes(industry);
+
+          if (matches) {
+            // Show card layout immediately
+            wrapper.classList.remove('hidden');
+            // Force browser reflow to register layout state before opacity transition
+            void wrapper.offsetWidth;
+            wrapper.classList.remove('opacity-0', 'scale-95');
+            wrapper.classList.add('opacity-100', 'scale-100');
+          } else {
+            // Start opacity hide transition
+            wrapper.classList.remove('opacity-100', 'scale-100');
+            wrapper.classList.add('opacity-0', 'scale-95');
+            
+            // Hide element from layout after transition completes
+            const tid = setTimeout(() => {
+              if (!wrapper.classList.contains('opacity-100')) {
+                wrapper.classList.add('hidden');
+              }
+            }, 300);
+            timeouts.set(wrapper, tid);
+          }
+        });
+      });
+    });
+
+    // Parse URL query parameter for active industry filtering
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('industry');
+    if (filterParam) {
+      const industryParamMap = {
+        'real-estate': 'Real Estate',
+        'jewellery': 'Jewellery',
+        'restaurant': 'Restaurant',
+        'restaurants-cafes': 'Restaurant',
+        'healthcare': 'Healthcare',
+        'dental-clinics': 'Healthcare',
+        'hospitals': 'Healthcare',
+        'education': 'Education',
+        'coaching-institutes': 'Education',
+        'manufacturing': 'Manufacturing',
+        'solar-wind': 'Manufacturing',
+        'packers-movers': 'Logistics'
+      };
+      const targetName = industryParamMap[filterParam];
+      if (targetName) {
+        const targetBtn = document.querySelector(`#case-filters button[data-filter-target="${targetName}"]`);
+        if (targetBtn) {
+          (targetBtn as HTMLButtonElement).click();
+        }
+      }
+    }
+  });
+</script>

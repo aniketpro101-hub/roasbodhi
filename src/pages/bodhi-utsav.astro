@@ -1,0 +1,622 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import { Check, X, MessageCircle, ArrowRight, ShieldCheck, Heart, Star, Award } from 'lucide-astro';
+import pricingData from '../data/pricing.json';
+
+const { web_design, meta_ads, bodhi_utsav_offers } = pricingData;
+
+const websiteUtsavPrice = bodhi_utsav_offers.website_utsav.price;
+const websiteWorth = bodhi_utsav_offers.website_utsav.worth;
+const adsUtsavPrice = bodhi_utsav_offers.ads_utsav.price;
+const adsWorth = bodhi_utsav_offers.ads_utsav.worth;
+
+const utsavTitle = "⚡ Bodhi Utsav Grand Launch Offer | RoasBodhi";
+const utsavDescription = `Claim our Bodhi Utsav offer: Get a ₹${websiteWorth.toLocaleString('en-IN')} professional website for just ₹${websiteUtsavPrice.toLocaleString('en-IN')} or manage all your Facebook & Google Ads for just ₹${adsUtsavPrice.toLocaleString('en-IN')}/month. Limited slots!`;
+
+const utsavFaqs = [
+  {
+    question: `Is there any catch to the ₹${websiteUtsavPrice.toLocaleString('en-IN')} website offer?`,
+    answer: `No catch! We build a professional 7-page site with a free .in domain and basic SEO. To maintain transparency, we utilize our Pay-After-Seeing model—you see the website live, and pay only if you love it.`
+  },
+  {
+    question: `What is included in the ₹${adsUtsavPrice.toLocaleString('en-IN')} ads offer?`,
+    answer: "We set up and manage your Meta or Google ads campaigns, design creatives, write ad copy, and set up conversion tracking. Note that ad budget spend is paid separately by you directly to Meta or Google."
+  },
+  {
+    question: "How long is this offer valid?",
+    answer: "This is our launch celebration offer limited to the first 15 signups or until the countdown timer expires. Once spots are filled, prices revert to our standard Sanskrit packages."
+  },
+  {
+    question: "Can I choose both website and ads offers?",
+    answer: "Yes, select 'Both' on the form to claim both launch discounts for your business."
+  }
+];
+---
+
+<BaseLayout title={utsavTitle} description={utsavDescription} keywords="bodhi utsav, digital marketing launch offer, discount website design, cheap performance ads India" noIndex={true}>
+  
+  <!-- 1. URGENCY HEADER BAR -->
+  <div class="bg-gradient-to-r from-primary-saffron to-primary-gold py-2.5 text-center text-white text-xs font-display font-extrabold uppercase tracking-widest sticky top-0 z-50 select-none shadow-md">
+    <div class="max-w-7xl mx-auto px-4 flex flex-wrap items-center justify-center gap-2">
+      <span>🔥 Bodhi Utsav Ends In: </span>
+      <span id="countdown" class="font-mono text-sm tracking-wider bg-black/15 px-2.5 py-1 rounded transition-all duration-300">
+        31 Oct 2026 (11:59 PM IST)
+      </span>
+      <span class="hidden sm:inline">• Only 4 spots remaining!</span>
+      <span class="text-[10px] opacity-90">(Offer ends 11:59 PM IST)</span>
+    </div>
+  </div>
+
+  <!-- MINIMAL HEADER -->
+  <header class="py-4 bg-white/80 backdrop-blur-md border-b border-neutral-mist/60 select-none">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
+      <a href="/" class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 40 40" fill="none">
+          <linearGradient id="logoUtsav" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF6B2B" />
+            <stop offset="100%" stop-color="#F5A623" />
+          </linearGradient>
+          <path d="M20 2C20 2 34 16 34 26C34 32.6274 27.732 38 20 38C12.268 38 6 32.6274 6 26C6 16 20 2 20 2Z" fill="url(#logoUtsav)" />
+        </svg>
+        <span class="font-display font-extrabold text-xl tracking-tight leading-none text-neutral-dark">
+          Roas<span class="text-primary-saffron">Bodhi</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-grow bg-neutral-ghost text-neutral-charcoal text-center select-none pb-24">
+    
+    <!-- 2. HERO SECTION -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12 select-none">
+      <div class="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-primary-saffron/10 border border-primary-saffron/20 text-[10px] font-display font-extrabold uppercase tracking-widest text-primary-saffron mb-6">
+        🔱 Grand Launch Celebration Offer
+      </div>
+
+      <h1 class="font-display font-extrabold text-3xl sm:text-6xl text-neutral-dark tracking-tight leading-[1.1]" id="utsav-title">
+        Get a ₹{websiteWorth.toLocaleString('en-IN')} Website <br />
+        <span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">For Just ₹{websiteUtsavPrice.toLocaleString('en-IN')}</span>
+      </h1>
+
+      <p class="font-body text-xs sm:text-base text-neutral-charcoal/80 mt-4 leading-relaxed font-semibold max-w-xl mx-auto">
+        Or manage all your Facebook & Google Ads campaigns for just ₹{adsUtsavPrice.toLocaleString('en-IN')}/month. 
+        Enjoy Pay-After-Seeing™ protection and zero hidden setup fees.
+      </p>
+
+      <div 
+        id="utsav-data" 
+        class="hidden" 
+        style="display: none;" 
+        data-web-price={websiteUtsavPrice}
+        data-web-worth={websiteWorth}
+        data-ads-price={adsUtsavPrice}
+        data-ads-worth={adsWorth}
+      ></div>
+
+      <div class="flex items-center justify-center gap-2 mt-6 text-xs text-neutral-stone font-semibold">
+        <span class="flex items-center gap-1"><Star class="w-4 h-4 fill-primary-gold text-primary-gold" /> 4.9/5 Rating</span>
+        <span>•</span>
+        <span>Trusted by 200+ Businesses</span>
+      </div>
+
+      <!-- Segmented switches -->
+      <div class="flex items-center justify-center mt-10">
+        <div class="inline-flex p-1 bg-neutral-cloud border border-neutral-mist/60 rounded-full" id="utsav-switcher">
+          <button class="px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider bg-white text-neutral-dark shadow-sm active-tab" data-target="web">
+            Website Offer
+          </button>
+          <button class="px-5 py-2.5 rounded-full text-xs font-display font-bold uppercase tracking-wider text-neutral-stone hover:text-neutral-charcoal" data-target="ads">
+            Ads Offer
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. OFFER TABS CONTENT -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 select-none">
+      
+      <!-- Website Offer Panel -->
+      <div id="panel-web" class="bg-white border border-neutral-mist rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:grid md:grid-cols-12 gap-8 text-left transition-all duration-300">
+        <div class="md:col-span-7 flex flex-col justify-between">
+          <div>
+            <h3 class="font-display font-extrabold text-lg text-neutral-dark border-b border-neutral-mist/60 pb-3 mb-4">What You Get:</h3>
+            <ul class="flex flex-col gap-2.5 text-xs font-body font-semibold text-neutral-charcoal">
+              <li class="flex items-center justify-between"><span>• Professional 7-Page Site</span> <span class="text-neutral-stone font-mono">₹{web_design.plans[1].price.toLocaleString('en-IN')} value</span></li>
+              <li class="flex items-center justify-between"><span>• Free .in Domain (1 Yr)</span> <span class="text-neutral-stone font-mono">₹699 value</span></li>
+              <li class="flex items-center justify-between"><span>• On-Page Local SEO Setup</span> <span class="text-neutral-stone font-mono">₹3,999 value</span></li>
+              <li class="flex items-center justify-between"><span>• WhatsApp Chat Widget</span> <span class="text-neutral-stone font-mono">₹499 value</span></li>
+              <li class="flex items-center justify-between"><span>• High-Performance Speed Setup</span> <span class="text-neutral-stone font-mono">₹1,999 value</span></li>
+              <li class="flex items-center justify-between border-t border-neutral-mist/50 pt-2 text-neutral-dark font-extrabold"><span>Total Package Value:</span> <span class="font-mono">₹{websiteWorth.toLocaleString('en-IN')}</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 p-4 bg-primary-saffron/5 border border-primary-saffron/10 rounded-xl text-[11px] leading-relaxed font-semibold">
+            🛡️ <b>Pay-After-Seeing active:</b> We build the site staging preview first. If you don't love it, you pay ₹0.
+          </div>
+        </div>
+
+        <div class="md:col-span-5 bg-neutral-ghost border border-neutral-mist/60 rounded-2xl p-6 flex flex-col justify-center text-center gap-4">
+          <span class="text-[9px] font-display font-extrabold text-neutral-stone uppercase tracking-widest">Utsav Pricing</span>
+          <div class="flex flex-col">
+            <span class="text-xs line-through text-neutral-stone/60">Regular: ₹{web_design.plans[1].price.toLocaleString('en-IN')}</span>
+            <span class="font-mono text-3xl sm:text-4xl font-extrabold text-secondary-emerald mt-1">₹{websiteUtsavPrice.toLocaleString('en-IN')}</span>
+            <span class="text-[9px] text-secondary-emerald font-bold mt-1 uppercase tracking-wider">Save ₹{(web_design.plans[1].price - websiteUtsavPrice).toLocaleString('en-IN')} (50% Off)</span>
+          </div>
+          <a href="#audit-form" class="w-full py-3.5 bg-gradient-to-r from-primary-saffron to-primary-gold text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl hover:shadow-button-saffron hover:-translate-y-0.5 transition-all">Claim Web Spot</a>
+        </div>
+      </div>
+
+      <!-- Ads Offer Panel (Hidden Initially) -->
+      <div id="panel-ads" class="bg-white border border-neutral-mist rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col md:grid md:grid-cols-12 gap-8 text-left transition-all duration-300 hidden opacity-0 scale-95">
+        <div class="md:col-span-7 flex flex-col justify-between">
+          <div>
+            <h3 class="font-display font-extrabold text-lg text-neutral-dark border-b border-neutral-mist/60 pb-3 mb-4">What is Included:</h3>
+            <ul class="flex flex-col gap-2.5 text-xs font-body font-semibold text-neutral-charcoal">
+              <li class="flex items-center justify-between"><span>• Meta & Google Ads Setup</span> <span class="text-neutral-stone font-mono">₹{meta_ads.plans[1].price.toLocaleString('en-IN')} value</span></li>
+              <li class="flex items-center justify-between"><span>• Pixel & Conversion API Config</span> <span class="text-neutral-stone font-mono">₹2,999 value</span></li>
+              <li class="flex items-center justify-between"><span>• 8 Ad Creative Designs / Mo</span> <span class="text-neutral-stone font-mono">₹4,999 value</span></li>
+              <li class="flex items-center justify-between"><span>• Weekly Performance Reports</span> <span class="text-neutral-stone font-mono">₹1,999 value</span></li>
+              <li class="flex items-center justify-between border-t border-neutral-mist/50 pt-2 text-neutral-dark font-extrabold"><span>Total Value / Month:</span> <span class="font-mono">₹{adsWorth.toLocaleString('en-IN')}</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 p-4 bg-primary-saffron/5 border border-primary-saffron/10 rounded-xl text-[11px] leading-relaxed font-semibold">
+            📊 <b>Note:</b> Ad spend budget is paid separately directly by you to Meta/Google accounts.
+          </div>
+        </div>
+
+        <div class="md:col-span-5 bg-neutral-ghost border border-neutral-mist/60 rounded-2xl p-6 flex flex-col justify-center text-center gap-4">
+          <span class="text-[9px] font-display font-extrabold text-neutral-stone uppercase tracking-widest">Utsav Pricing</span>
+          <div class="flex flex-col">
+            <span class="text-xs line-through text-neutral-stone/60">Regular: ₹{meta_ads.plans[1].price.toLocaleString('en-IN')}</span>
+            <span class="font-mono text-3xl sm:text-4xl font-extrabold text-secondary-emerald mt-1">₹{adsUtsavPrice.toLocaleString('en-IN')}<span class="text-xs font-sans text-neutral-stone">/mo</span></span>
+            <span class="text-[9px] text-secondary-emerald font-bold mt-1 uppercase tracking-wider">Save ₹{(meta_ads.plans[1].price - adsUtsavPrice).toLocaleString('en-IN')}/mo (44% Off)</span>
+          </div>
+          <a href="#audit-form" class="w-full py-3.5 bg-gradient-to-r from-primary-saffron to-primary-gold text-white font-display font-extrabold text-xs uppercase tracking-wider rounded-xl hover:shadow-button-saffron hover:-translate-y-0.5 transition-all">Claim Ads Spot</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 4. HOW IT WORKS (Timeline Flowchart) -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none mb-16">
+      <div class="text-center mb-10">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest">Timeline</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-2 tracking-tight">How It Works</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6 text-center max-w-3xl mx-auto">
+        <div class="flex flex-col items-center gap-2">
+          <div class="w-9 h-9 rounded-full bg-primary-indigo text-white flex items-center justify-center font-display font-bold text-xs">1</div>
+          <span class="font-display font-bold text-xs text-neutral-dark">Fill Form</span>
+          <span class="font-body text-[10px] text-neutral-stone">Complete details below</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <div class="w-9 h-9 rounded-full bg-primary-indigo text-white flex items-center justify-center font-display font-bold text-xs">2</div>
+          <span class="font-display font-bold text-xs text-neutral-dark">Call in 2 Hrs</span>
+          <span class="font-body text-[10px] text-neutral-stone">We consult on layout specs</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <div class="w-9 h-9 rounded-full bg-primary-indigo text-white flex items-center justify-center font-display font-bold text-xs">3</div>
+          <span class="font-display font-bold text-xs text-neutral-dark">We Build</span>
+          <span class="font-body text-[10px] text-neutral-stone">We draft website mockup</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <div class="w-9 h-9 rounded-full bg-primary-indigo text-white flex items-center justify-center font-display font-bold text-xs">4</div>
+          <span class="font-display font-bold text-xs text-neutral-dark">You Review</span>
+          <span class="font-body text-[10px] text-neutral-stone">Approve preview staging link</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <div class="w-9 h-9 rounded-full bg-primary-indigo text-white flex items-center justify-center font-display font-bold text-xs">5</div>
+          <span class="font-display font-bold text-xs text-neutral-dark">Launch & Pay</span>
+          <span class="font-body text-[10px] text-neutral-stone">Transfer and push live</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. RISK REVERSAL (Massive Trust Section) -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white rounded-3xl border border-neutral-mist select-none mb-16 text-left">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <div class="md:col-span-8 flex flex-col items-start gap-3">
+          <span class="font-display font-extrabold text-[10px] text-secondary-emerald uppercase tracking-widest flex items-center gap-1">
+            <ShieldCheck class="w-4 h-4" /> 100% Risk-Free Offer
+          </span>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-neutral-dark tracking-tight leading-tight">
+            We Take 100% Of The Financial Risk
+          </h2>
+          <p class="font-body text-xs sm:text-sm text-neutral-charcoal/80 leading-relaxed font-semibold">
+            Indian storefronts have been burned too many times by agencies making false promises. 
+            We eliminate that fear by delivering your layout first—if you're not satisfied, we refund every single rupee. 
+            No questions asked.
+          </p>
+        </div>
+        <div class="md:col-span-4 flex items-center justify-center">
+          <div class="w-28 h-28 rounded-full border-4 border-dashed border-secondary-emerald flex flex-col items-center justify-center text-center p-2">
+            <span class="font-display font-extrabold text-[10px] text-secondary-emerald uppercase tracking-wider">No Risk</span>
+            <span class="font-mono font-extrabold text-base text-secondary-emerald mt-1">₹0 DUE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. LEAD CAPTURE FORM -->
+    <section id="audit-form" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-primary-indigo text-white border border-white/10 rounded-3xl shadow-xl select-none text-left relative">
+      <div class="absolute inset-0 bg-[radial-gradient(#ffffff04_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-40 z-0 rounded-3xl"></div>
+      
+      <div class="relative z-10 flex flex-col gap-6">
+        <div class="border-b border-white/10 pb-4 flex flex-col gap-1">
+          <span class="text-[9px] font-display font-extrabold text-primary-gold uppercase tracking-widest">Claim Spot</span>
+          <h2 class="font-display font-extrabold text-xl sm:text-2xl text-white">Bodhi Utsav Request Form</h2>
+        </div>
+
+        <form 
+          id="utsav-claim-form"
+          action="https://api.web3forms.com/submit" 
+          method="POST"
+          class="flex flex-col gap-4 text-xs font-body font-semibold text-neutral-charcoal"
+        >
+          <!-- Web3Forms Hidden Inputs -->
+          <input type="hidden" name="access_key" value="[USER_WILL_ADD_KEY]">
+          <input type="hidden" name="subject" value="Utsav Offer Spot Claim - RoasBodhi Website">
+          <input type="hidden" name="from_name" value="RoasBodhi Website">
+          <input type="hidden" name="redirect" value="https://roasbodhi.in/thank-you/">
+          
+          <!-- Honeypot Anti-Spam field -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+          
+          <!-- UTM Parameter Captures -->
+          <input type="hidden" name="utm_source" id="utm_source" value="website">
+          <input type="hidden" name="utm_medium" id="utm_medium" value="form">
+          <input type="hidden" name="utm_campaign" id="utm_campaign" value="utsav_page">
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input type="text" name="name" required placeholder="Your Name" class="px-5 py-4 rounded-xl bg-white border-none focus:outline-none focus:ring-2 focus:ring-primary-saffron shadow-inner placeholder-neutral-stone" />
+            <input type="tel" name="phone" required placeholder="WhatsApp Number" class="px-5 py-4 rounded-xl bg-white border-none focus:outline-none focus:ring-2 focus:ring-primary-saffron shadow-inner placeholder-neutral-stone" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <input type="text" name="city" required placeholder="Your City" class="px-5 py-4 rounded-xl bg-white border-none focus:outline-none focus:ring-2 focus:ring-primary-saffron shadow-inner placeholder-neutral-stone" />
+            <select name="business_type" required class="px-5 py-4 rounded-xl bg-white border-none focus:outline-none focus:ring-2 focus:ring-primary-saffron shadow-inner cursor-pointer">
+              <option value="" disabled selected>Business Type</option>
+              <option value="Restaurant">Restaurant / Cafe</option>
+              <option value="Clinic">Dental / Medical Clinic</option>
+              <option value="Real Estate">Real Estate Developers</option>
+              <option value="Retail">Retail Store / Jewellery</option>
+              <option value="Education">Coaching Institutes</option>
+              <option value="Manufacturing">B2B Manufacturing</option>
+              <option value="E-commerce">E-commerce Brand</option>
+              <option value="Other">Other SMB Business</option>
+            </select>
+          </div>
+
+          <!-- Radio boxes -->
+          <div class="flex flex-col gap-2 mt-2 text-white">
+            <span class="text-xs font-semibold">What offer do you need?</span>
+            <div class="flex flex-wrap gap-4 mt-1">
+              <label class="flex items-center gap-2 cursor-pointer font-medium">
+                <input type="radio" name="offer_type" value="Website" required class="accent-primary-saffron w-4.5 h-4.5" />
+                <span>Website Offer (₹9,999)</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer font-medium">
+                <input type="radio" name="offer_type" value="Ads" required class="accent-primary-saffron w-4.5 h-4.5" />
+                <span>Ads Offer (₹9,999/mo)</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer font-medium">
+                <input type="radio" name="offer_type" value="Both" required class="accent-primary-saffron w-4.5 h-4.5" />
+                <span>Both Launch Offers</span>
+              </label>
+            </div>
+          </div>
+
+          <button 
+            type="submit" 
+            class="px-7 py-4 mt-4 bg-gradient-to-r from-primary-saffron to-primary-gold hover:shadow-button-saffron hover:-translate-y-0.5 rounded-xl font-display font-extrabold text-xs uppercase tracking-wider text-white transition-all text-center flex items-center justify-center gap-1.5 shadow-md active:scale-95"
+          >
+            <span>Claim My Bodhi Utsav Spot</span>
+            <ArrowRight class="w-4.5 h-4.5" />
+          </button>
+        </form>
+
+        <!-- TASK 6: Backup WhatsApp Option -->
+        <div class="mt-6 text-center border-t border-white/10 pt-4 flex flex-col items-center gap-2">
+          <span class="text-[9px] text-white/60 font-semibold uppercase tracking-wider">Prefer WhatsApp? Claim spot directly</span>
+          <a 
+            id="utsav-whatsapp-direct-link"
+            href="https://wa.me/919082543992?text=Namaste%20RoasBodhi!%20I'd%20like%20to%20claim%20the%20Bodhi%20Utsav%20launch%20discount%20offer%20for%20my%20business.&utm_source=website&utm_medium=button&utm_campaign=utsav_page" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="px-6 py-3 bg-emerald-500 hover:bg-emerald-600 hover:shadow-[0_8px_20px_rgba(16,185,129,0.15)] hover:-translate-y-0.5 rounded-xl font-display font-extrabold text-[10px] uppercase tracking-wider text-white transition-all text-center flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
+          >
+            <MessageCircle class="w-3.5 h-3.5 fill-white" />
+            <span>Claim Spot on WhatsApp</span>
+          </a>
+        </div>
+
+        <p class="text-[10px] text-white/50 text-center font-bold tracking-wider uppercase mt-2">
+          🔒 Private registration. We never share your data.
+        </p>
+
+        <!-- Divider -->
+        <div class="flex items-center justify-center gap-4 my-2 max-w-xs mx-auto w-full">
+          <span class="h-px bg-white/10 flex-grow"></span>
+          <span class="text-[9px] font-display font-extrabold uppercase tracking-widest text-white/40">OR</span>
+          <span class="h-px bg-white/10 flex-grow"></span>
+        </div>
+
+        <a 
+          href="https://wa.me/9082543992?text=Namaste%20RoasBodhi%E2%84%A2!%20I%20want%20to%20claim%20my%20Bodhi%20Utsav%20spot." 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 rounded-xl font-display font-extrabold text-xs uppercase tracking-wider shadow-md hover:scale-102 transition-all text-center w-full"
+        >
+          <MessageCircle class="w-4.5 h-4.5 fill-white text-white" />
+          <span>Chat on WhatsApp Directly</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 7. TESTIMONIALS (3 Focused ones) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 select-none mb-16">
+      <div class="text-center mb-12">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">CLIENT REVIEW</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-2 tracking-tight">What Business Owners Say</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+        <!-- Review 1 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+          <p class="font-body text-xs sm:text-sm text-neutral-charcoal/80 leading-relaxed font-semibold italic">
+            "I ordered the Vriddhi Website plan under the Bodhi Utsav offer. RoasBodhi built the preview in 5 days. Pay-After-Seeing is a brilliant idea, I paid only after the site went live."
+          </p>
+          <div class="mt-6 flex flex-col">
+            <span class="font-display font-extrabold text-xs text-neutral-dark">Aniket S., Restaurant Owner</span>
+            <span class="text-[10px] text-neutral-stone mt-0.5">Pune, MH</span>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+          <p class="font-body text-xs sm:text-sm text-neutral-charcoal/80 leading-relaxed font-semibold italic">
+            "Managing Meta ads for ₹9,999/month saved us half our marketing cost. Our cost per lead dropped from ₹850 to ₹210 in less than 30 days."
+          </p>
+          <div class="mt-6 flex flex-col">
+            <span class="font-display font-extrabold text-xs text-neutral-dark">Rajesh K., Real Estate Builder</span>
+            <span class="text-[10px] text-neutral-stone mt-0.5">Mumbai, MH</span>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-white border border-neutral-mist rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+          <p class="font-body text-xs sm:text-sm text-neutral-charcoal/80 leading-relaxed font-semibold italic">
+            "Highly professional. No advance fee, no setup fee during the Utsav launch celebration. Recommended agency for Indian storefronts."
+          </p>
+          <div class="mt-6 flex flex-col">
+            <span class="font-display font-extrabold text-xs text-neutral-dark">Deepak J., Jeweller Showroom</span>
+            <span class="text-[10px] text-neutral-stone mt-0.5">Jaipur, RJ</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FAQ SECTION (8 questions) -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 select-none">
+      <div class="text-center mb-10">
+        <span class="font-display font-extrabold text-[10px] text-primary-saffron uppercase tracking-widest font-bold">FAQS</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-neutral-dark mt-2 tracking-tight">Got Questions? We Have Answers.</h2>
+      </div>
+
+      <FAQAccordion faqs={utsavFaqs} />
+    </section>
+
+  </main>
+
+  <!-- Minimal Footer -->
+  <footer class="bg-neutral-dark text-white/50 text-center py-6 select-none border-t border-white/5 text-xs font-body">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© {new Date().getFullYear()} RoasBodhi™ Digital Pvt. Ltd. All rights reserved.</span>
+      <span>Made with 🔱 in Aamchi Mumbai, India</span>
+    </div>
+  </footer>
+
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Countdown Timer Logic
+    const countdownEl = document.getElementById('countdown');
+    if (countdownEl) {
+      const OFFER_END_DATE = new Date('2026-10-31T23:59:59+05:30');
+      
+      const updateTimer = () => {
+        const now = new Date().getTime();
+        const distance = OFFER_END_DATE.getTime() - now;
+
+        if (distance <= 0) {
+          countdownEl.textContent = "Offer Extended - Contact for Special Pricing";
+          countdownEl.className = "font-mono text-sm bg-emerald-600/30 text-white px-2.5 py-1 rounded";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        const format = (num: number) => num < 10 ? `0${num}` : num;
+        
+        countdownEl.textContent = `${days}d : ${format(hours)}h : ${format(minutes)}m : ${format(seconds)}s`;
+
+        // Apply styles based on urgency
+        if (distance < 1000 * 60 * 60) {
+          // Last hour: Pulsing red
+          countdownEl.className = "font-mono text-sm bg-red-600 text-white px-2.5 py-1 rounded animate-pulse font-bold";
+        } else if (distance < 1000 * 60 * 60 * 24) {
+          // Under 24 hours: Red background
+          countdownEl.className = "font-mono text-sm bg-red-500/80 text-white px-2.5 py-1 rounded font-bold";
+        } else {
+          // Normal state
+          countdownEl.className = "font-mono text-sm bg-black/15 text-white px-2.5 py-1 rounded";
+        }
+      };
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+
+    // 2. Offer Swapping Switcher Tab Logic
+    const switcherButtons = document.querySelectorAll('#utsav-switcher button');
+    const panelWeb = document.getElementById('panel-web')!;
+    const panelAds = document.getElementById('panel-ads')!;
+    const utsavTitle = document.getElementById('utsav-title')!;
+
+    switcherButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        switcherButtons.forEach(b => {
+          b.classList.remove('bg-white', 'text-neutral-dark', 'shadow-sm', 'active-tab');
+          b.classList.add('text-neutral-stone');
+        });
+
+        btn.classList.remove('text-neutral-stone');
+        btn.classList.add('bg-white', 'text-neutral-dark', 'shadow-sm', 'active-tab');
+
+        const activeTarget = btn.getAttribute('data-target')!;
+        const dataEl = document.getElementById('utsav-data');
+        const webPrice = parseInt(dataEl.dataset.webPrice).toLocaleString('en-IN');
+        const webWorth = parseInt(dataEl.dataset.webWorth).toLocaleString('en-IN');
+        const adsPrice = parseInt(dataEl.dataset.adsPrice).toLocaleString('en-IN');
+
+        if (activeTarget === 'web') {
+          panelAds.classList.add('opacity-0', 'scale-95');
+          setTimeout(() => {
+            panelAds.classList.add('hidden');
+            panelWeb.classList.remove('hidden');
+            setTimeout(() => {
+              panelWeb.classList.remove('opacity-0', 'scale-95');
+              panelWeb.classList.add('opacity-100', 'scale-100');
+            }, 10);
+          }, 300);
+          
+          utsavTitle.innerHTML = `Get a ₹${webWorth} Website <br /><span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">For Just ₹${webPrice}</span>`;
+        } else {
+          panelWeb.classList.add('opacity-0', 'scale-95');
+          setTimeout(() => {
+            panelWeb.classList.add('hidden');
+            panelAds.classList.remove('hidden');
+            setTimeout(() => {
+              panelAds.classList.remove('opacity-0', 'scale-95');
+              panelAds.classList.add('opacity-100', 'scale-100');
+            }, 10);
+          }, 300);
+
+          utsavTitle.innerHTML = `Manage ALL Your Ads <br /><span class="bg-gradient-to-r from-primary-saffron to-primary-gold bg-clip-text text-transparent">For Just ₹${adsPrice}/mo</span>`;
+        }
+      });
+    });
+
+    // 3. UTM Parameter Capture and Insertion
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get('utm_source') || 'website';
+    const utmMedium = urlParams.get('utm_medium') || 'form';
+    const utmCampaign = urlParams.get('utm_campaign') || 'utsav_page';
+
+    const sourceInput = document.getElementById('utm_source');
+    const mediumInput = document.getElementById('utm_medium');
+    const campaignInput = document.getElementById('utm_campaign');
+
+    if (sourceInput) sourceInput.value = utmSource;
+    if (mediumInput) mediumInput.value = utmMedium;
+    if (campaignInput) campaignInput.value = utmCampaign;
+
+    // 4. WhatsApp Direct Click Tracking
+    const waLink = document.getElementById('utsav-whatsapp-direct-link');
+    if (waLink) {
+      waLink.addEventListener('click', () => {
+        if (window.gtag) {
+          window.gtag('event', 'whatsapp_click', { button_location: 'utsav_page' });
+        }
+      });
+    }
+
+    // 5. Client side Validation & AJAX Submission
+    const form = document.getElementById('utsav-claim-form') as HTMLFormElement;
+    if (form) {
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const submitBtnSpan = submitBtn.querySelector('span')!;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Basic validation checks
+        const name = (form.elements.namedItem('name') as HTMLInputElement).value.trim();
+        const phone = (form.elements.namedItem('phone') as HTMLInputElement).value.trim();
+        const city = (form.elements.namedItem('city') as HTMLInputElement).value.trim();
+        const businessType = (form.elements.namedItem('business_type') as HTMLSelectElement).value;
+        const offerType = form.querySelector('input[name="offer_type"]:checked') as HTMLInputElement;
+
+        if (!name || !phone || !city || !businessType || !offerType) {
+          window.showToast("Please fill in all required fields.", "error");
+          return;
+        }
+
+        // Phone check (10 to 15 digits)
+        const phoneRegex = /^\+?[0-9\s-]{10,15}$/;
+        if (!phoneRegex.test(phone.replace(/\+/g, ''))) {
+          window.showToast("Please enter a valid 10-15 digit phone number.", "error");
+          return;
+        }
+
+        // Honeypot check
+        const botcheck = form.elements.namedItem('botcheck') as HTMLInputElement;
+        if (botcheck && botcheck.checked) {
+          console.warn("Spam detected");
+          return;
+        }
+
+        // Load State (Disable button and show status text)
+        submitBtn.disabled = true;
+        const origText = submitBtnSpan.textContent;
+        submitBtnSpan.textContent = "Reserving Spot...";
+
+        const formData = new FormData(form);
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(async (response) => {
+          const json = await response.json();
+          if (response.status === 200) {
+            // GA4 event
+            if (window.gtag) {
+              window.gtag('event', 'form_submit', {
+                form_location: 'utsav_page',
+                utm_source: utmSource,
+                utm_medium: utmMedium,
+                utm_campaign: utmCampaign
+              });
+            }
+            window.showToast("Spot reserved successfully! Redirecting...", "success");
+            setTimeout(() => {
+              window.location.href = '/thank-you/';
+            }, 1500);
+          } else {
+            if (window.gtag) {
+              window.gtag('event', 'form_error', { form_location: 'utsav_page', error_message: json.message || 'unknown_error' });
+            }
+            window.showToast(json.message || "Reservation failed. Please check access key.", "error");
+            submitBtn.disabled = false;
+            submitBtnSpan.textContent = origText;
+          }
+        })
+        .catch((err) => {
+          if (window.gtag) {
+            window.gtag('event', 'form_error', { form_location: 'utsav_page', error_message: 'network_failure' });
+          }
+          window.showToast("Network failure. Please claim spot via WhatsApp instead.", "error");
+          submitBtn.disabled = false;
+          submitBtnSpan.textContent = origText;
+        });
+      });
+    }
+  });
+</script>
+
