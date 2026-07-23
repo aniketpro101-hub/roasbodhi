@@ -53,9 +53,10 @@ const pageTitle = `Digital Marketing Agency in ${city.name} | Performance Market
 const pageDescription = `Looking for the best digital marketing agency in ${city.name}? RoasBodhi™ delivers performance Meta/Google ads and web design optimized for ${city.name} businesses.`;
 
 const localSchema = generateLocalBusinessSchema(city);
+const stateSlug = city.region ? city.region.toLowerCase().replace(/\s+/g, '-') : 'maharashtra';
 const breadcrumbSchema = generateBreadcrumbSchema([
-  { label: 'Locations', href: '/contact/' },
-  { label: city.state, href: '/contact/' },
+  { label: 'Locations', href: '/locations/' },
+  { label: city.state, href: `/locations/${stateSlug}/` },
   { label: city.name, href: `/locations/${city.slug}/` }
 ]);
 

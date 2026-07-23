@@ -210,30 +210,25 @@ export function websiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "RoasBodhi",
-    "url": siteUrl,
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": `${siteUrl}/search/?q={search_term_string}`,
-      "query-input": "required name=search_term_string"
-    }
+    "url": siteUrl
   };
 }
 
 // 8. Review Schema
 export function reviewSchema(testimonials: TestimonialItem[]) {
-  const ratings = testimonials.filter(t => t.rating);
-  const avgRating = ratings.length > 0 
-    ? (ratings.reduce((acc, t) => acc + (t.rating || 5), 0) / ratings.length).toFixed(1)
-    : "4.9";
+  const ratings = testimonials.filter(t => t && t.rating);
+  if (ratings.length === 0) return null;
+  
+  const avgRating = (ratings.reduce((acc, t) => acc + (t.rating || 5), 0) / ratings.length).toFixed(1);
     
   return {
     "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "RoasBodhi Growth Service",
+    "@type": "Service",
+    "name": "RoasBodhi Digital Marketing Services",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": avgRating,
-      "reviewCount": ratings.length > 0 ? ratings.length : 24
+      "reviewCount": ratings.length
     }
   };
 }
